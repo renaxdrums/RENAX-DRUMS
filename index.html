@@ -548,6 +548,12 @@
     }
     .poly-dot.outer { --poly-radius:min(19.5dvh, 152px); background:var(--orange); box-shadow:0 0 8px rgba(255,107,0,.32); }
     .poly-dot.inner { --poly-radius:min(12.5dvh, 98px); background:var(--cyan); box-shadow:0 0 8px rgba(0,229,255,.32); }
+    .poly-dot { cursor:pointer; }
+    .poly-dot[data-state="0"] { background:var(--grey); border-color:rgba(255,255,255,.16); box-shadow:none; }
+    .poly-dot[data-state="1"] { background:var(--cyan); border-color:var(--cyan); box-shadow:0 0 8px rgba(0,229,255,.40); }
+    .poly-dot[data-state="2"] { background:var(--yellow); border-color:var(--yellow); box-shadow:0 0 8px rgba(255,234,0,.40); }
+    .poly-dot[data-state="3"] { background:var(--orange); border-color:var(--orange); box-shadow:0 0 8px rgba(255,107,0,.40); }
+
     .poly-dot.active { filter:brightness(1.65); border-color:#fff; }
     .poly-dot.outer.active { box-shadow:0 0 20px 5px rgba(255,107,0,.72),0 0 38px 8px rgba(255,107,0,.25); }
     .poly-dot.inner.active { box-shadow:0 0 20px 5px rgba(0,229,255,.72),0 0 38px 8px rgba(0,229,255,.25); }
@@ -567,7 +573,6 @@
     body.poly-mode .beat-controls { display:none !important; }
     body.poly-mode .legend { opacity:1; }
     body.poly-mode .legend .legend-item { display:flex; }
-    body.poly-mode .legend .legend-item:first-child { display:none; }
     @media (max-width:1100px) {
       .poly-dot.outer { --poly-radius:min(18dvh,138px); }
       .poly-dot.inner { --poly-radius:min(11.5dvh,88px); }
@@ -988,6 +993,10 @@
               <option value="14">14</option>
               <option value="15">15</option>
               <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
             </select>
             <span class="slash">:</span>
             <select class="poly-number" id="polyDenominator" aria-label="Pulsations intérieures">
@@ -1006,6 +1015,10 @@
               <option value="14">14</option>
               <option value="15">15</option>
               <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
             </select>
           </div>
         </div>
@@ -1461,7 +1474,7 @@
     const polyDenominatorInput = document.getElementById('polyDenominator');
     const dirToggle = document.getElementById('dirToggle');
 
-    for (let n = 1; n <= 32; n++) {
+    for (let n = 1; n <= 20; n++) {
       const o = document.createElement('option');
       o.value = n; o.textContent = n;
       activeNumeratorSel.appendChild(o);
@@ -2085,17 +2098,34 @@
 
 
     function createPolyMeasure(numerator = 5, denominator = 4, measureTempo = tempo) {
+      const n = Math.max(2, Math.min(20, Math.round(numerator || 5)));
+      const d = Math.max(2, Math.min(20, Math.round(denominator || 4)));
       return {
-        numerator: Math.max(2, Math.min(16, Math.round(numerator || 5))),
-        denominator: Math.max(2, Math.min(16, Math.round(denominator || 4))),
+        numerator: n,
+        denominator: d,
         tempo: Math.max(20, Math.min(300, Math.round(measureTempo || 120))),
-        isPolyrhythm: true
+        isPolyrhythm: true,
+        outerStates: Array(n).fill(3),
+        innerStates: Array(d).fill(1)
       };
+    }
+
+    function ensurePolyStates(m) {
+      if (!Array.isArray(m.outerStates)) m.outerStates = Array(m.numerator).fill(3);
+      if (!Array.isArray(m.innerStates)) m.innerStates = Array(m.denominator).fill(1);
+      if (m.outerStates.length !== m.numerator) {
+        const old = m.outerStates.slice();
+        m.outerStates = Array.from({length:m.numerator}, (_,i) => old[i] ?? 3);
+      }
+      if (m.innerStates.length !== m.denominator) {
+        const old = m.innerStates.slice();
+        m.innerStates = Array.from({length:m.denominator}, (_,i) => old[i] ?? 1);
+      }
     }
 
     function clampPolyValue(value, fallback) {
       const n = parseInt(value, 10);
-      return Math.max(2, Math.min(16, Number.isFinite(n) ? n : fallback));
+      return Math.max(2, Math.min(20, Number.isFinite(n) ? n : fallback));
     }
 
     function getPolyEvents(m) {
@@ -2111,19 +2141,41 @@
     }
 
     function buildPolyVisualizer(m) {
+      ensurePolyStates(m);
       sequencerContainer.querySelectorAll('.step, .beat-divider, .poly-dot, .poly-ring').forEach(el => el.remove());
       totalSteps = 0;
       stepsData = [];
       clearProgressTrail();
       const outerRing=document.createElement('div'); outerRing.className='poly-ring outer'; sequencerContainer.appendChild(outerRing);
       const innerRing=document.createElement('div'); innerRing.className='poly-ring inner'; sequencerContainer.appendChild(innerRing);
+
+      const bindPolyState = (el, states, index) => {
+        const apply = () => {
+          const s = states[index] ?? 0;
+          el.dataset.state = String(s);
+          el.title = s === 0 ? 'Éteint' : `Clic ${s}`;
+          el.setAttribute('aria-label', el.title);
+        };
+        apply();
+        el.addEventListener('click', ev => {
+          ev.stopPropagation();
+          states[index] = ((states[index] ?? 0) + 1) % 4;
+          apply();
+          renderSequencerList();
+        });
+      };
+
       for (let i=0;i<m.numerator;i++) {
         const d=document.createElement('div'); d.className='poly-dot outer'; d.dataset.polyOuter=i;
-        d.style.setProperty('--angle', `${(i/m.numerator)*360}deg`); sequencerContainer.appendChild(d);
+        d.style.setProperty('--angle', `${(i/m.numerator)*360}deg`);
+        bindPolyState(d, m.outerStates, i);
+        sequencerContainer.appendChild(d);
       }
       for (let i=0;i<m.denominator;i++) {
         const d=document.createElement('div'); d.className='poly-dot inner'; d.dataset.polyInner=i;
-        d.style.setProperty('--angle', `${(i/m.denominator)*360}deg`); sequencerContainer.appendChild(d);
+        d.style.setProperty('--angle', `${(i/m.denominator)*360}deg`);
+        bindPolyState(d, m.innerStates, i);
+        sequencerContainer.appendChild(d);
       }
       beatDisplay.textContent=`${m.numerator}:${m.denominator}`;
     }
@@ -2142,7 +2194,7 @@
         const slash=document.createElement('span'); slash.textContent=':'; slash.className='poly-slash';
         const d=document.createElement('input'); d.type='number'; d.min='2'; d.max='16'; d.step='1'; d.value=m.denominator; d.inputMode='numeric'; d.setAttribute('aria-label',`Dénominateur mesure ${i+1}`);
         const stop=e=>e.stopPropagation(); n.addEventListener('click',stop); d.addEventListener('click',stop); n.addEventListener('keydown',stop); d.addEventListener('keydown',stop);
-        const updateRatio=()=>{ m.numerator=clampPolyValue(n.value,m.numerator); m.denominator=clampPolyValue(d.value,m.denominator); n.value=m.numerator; d.value=m.denominator; head.querySelector('.measure-sig').textContent=`${m.numerator}:${m.denominator}`; if(i===activeMeasureIndex) renderActiveMeasure(); };
+        const updateRatio=()=>{ m.numerator=clampPolyValue(n.value,m.numerator); m.denominator=clampPolyValue(d.value,m.denominator); ensurePolyStates(m); n.value=m.numerator; d.value=m.denominator; head.querySelector('.measure-sig').textContent=`${m.numerator}:${m.denominator}`; if(i===activeMeasureIndex) renderActiveMeasure(); };
         n.addEventListener('change',updateRatio); d.addEventListener('change',updateRatio);
         ratio.append(n,slash,d);
         const tempoRow=document.createElement('div'); tempoRow.className='measure-tempo-row';
@@ -2199,8 +2251,15 @@
         const events=getPolyEvents(m);
         if(polyEventIndex>=events.length) polyEventIndex=0;
         const e=events[polyEventIndex];
-        if(e.outer) playClick(3,nextNoteTime,e.u===0);
-        if(e.inner) playClick(1,nextNoteTime,e.u===0);
+        ensurePolyStates(m);
+        if(e.outer) {
+          const s = m.outerStates[e.outerIndex] ?? 3;
+          if (s > 0) playClick(s,nextNoteTime,e.u===0);
+        }
+        if(e.inner) {
+          const s = m.innerStates[e.innerIndex] ?? 1;
+          if (s > 0) playClick(s,nextNoteTime,e.u===0);
+        }
         schedulePolyVisualUpdate(mIdx,e,nextNoteTime);
         // Le numérateur est la pulsation de référence : sa vitesse reste fixée par le BPM.
         // Le dénominateur se répartit dans la même durée sans accélérer/ralentir le numérateur.
@@ -2241,7 +2300,7 @@
     }
 
     modeSwitch.addEventListener('click',e=>{ const b=e.target.closest('button[data-mode]'); if(b) setAppMode(b.dataset.mode); });
-    function updateActivePolyRatio(){ if(appMode!=='polyrhythm') return; const m=measures[activeMeasureIndex]; if(!m)return; m.numerator=clampPolyValue(polyNumeratorInput.value,m.numerator); m.denominator=clampPolyValue(polyDenominatorInput.value,m.denominator); renderSequencerList(); renderActiveMeasure(); }
+    function updateActivePolyRatio(){ if(appMode!=='polyrhythm') return; const m=measures[activeMeasureIndex]; if(!m)return; m.numerator=clampPolyValue(polyNumeratorInput.value,m.numerator); m.denominator=clampPolyValue(polyDenominatorInput.value,m.denominator); ensurePolyStates(m); renderSequencerList(); renderActiveMeasure(); }
     polyNumeratorInput.addEventListener('change',updateActivePolyRatio);
     polyDenominatorInput.addEventListener('change',updateActivePolyRatio);
 
