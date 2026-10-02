@@ -658,6 +658,32 @@
       }
     }
 
+
+    /* =========================================================
+       RENAX DRUMS — ALIGNEMENT PC + SÉQUENCEUR MÉTRONOME +10 %
+       Périmètre : géométrie Visualisation uniquement
+       ========================================================= */
+    @media (min-width: 1101px) {
+      /* Conserve exactement la même hauteur d’outil dans les deux modes.
+         En Polyrythmie, les contrôles de temps restent invisibles mais
+         leur empreinte de mise en page est préservée : aucun saut vertical. */
+      .visu-toolbar {
+        flex-wrap: nowrap;
+      }
+      body.poly-mode .panel-visu .beat-controls {
+        display: flex !important;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      /* +10 % uniquement pour la visualisation circulaire du Métronome.
+         1,10 × (100dvh - 340px) = 110dvh - 374px ; plafond 680 → 748 px. */
+      body:not(.poly-mode) .sequencer-container {
+        width: min(100%, calc(110dvh - 374px));
+        max-width: 748px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -816,8 +842,8 @@
             <span class="slash">/</span>
             <select class="poly-number" id="polyDenominator" aria-label="Pulsations intérieures">
               <option value="2">2</option>
-              <option value="3" selected>3</option>
-              <option value="4">4</option>
+              <option value="3">3</option>
+              <option value="4" selected>4</option>
               <option value="5">5</option>
               <option value="6">6</option>
               <option value="7">7</option>
@@ -1055,9 +1081,9 @@
     };
 
     function createMeasure(numerator = 4, denominator = 4, measureTempo = tempo) {
-      const beatSubdivisions = Array(numerator).fill(1);
+      const beatSubdivisions = Array(numerator).fill(2);
       const beatStates = [];
-      for (let b = 0; b < numerator; b++) beatStates.push([1]);
+      for (let b = 0; b < numerator; b++) beatStates.push([1, 0]);
       return { numerator, denominator, tempo: Math.max(20, Math.min(300, Math.round(measureTempo || 120))), beatSubdivisions, beatStates };
     }
 
@@ -1646,7 +1672,7 @@
     }
 
 
-    function createPolyMeasure(numerator = 5, denominator = 3, measureTempo = tempo) {
+    function createPolyMeasure(numerator = 5, denominator = 4, measureTempo = tempo) {
       return {
         numerator: Math.max(2, Math.min(16, Math.round(numerator || 5))),
         denominator: Math.max(2, Math.min(16, Math.round(denominator || 3))),
@@ -1785,7 +1811,7 @@
         beatDisplay.classList.remove('pulse');
       }
       measures=(mode==='metronome')?metronomeMeasures:polyrhythmMeasures;
-      if(!measures.length) measures=[mode==='metronome'?createMeasure(4,4):createPolyMeasure(5,3,tempo)];
+      if(!measures.length) measures=[mode==='metronome'?createMeasure(4,4):createPolyMeasure(5,4,tempo)];
       if(mode==='metronome') metronomeMeasures=measures; else polyrhythmMeasures=measures;
       activeMeasureIndex=0; playingMeasureIndex=0; currentStepInMeasure=0; polyEventIndex=0;
       measureCountSel.value=String(measures.length);
@@ -2022,7 +2048,7 @@
     measureCountSel.addEventListener('change', () => {
       const n = Math.max(1, Math.min(8, parseInt(measureCountSel.value)));
       if (appMode === 'polyrhythm') {
-        while (measures.length < n) measures.push(createPolyMeasure(5, 3, tempo));
+        while (measures.length < n) measures.push(createPolyMeasure(5, 4, tempo));
       } else {
         while (measures.length < n) measures.push(createMeasure(4, 4));
       }
@@ -2082,7 +2108,7 @@
       endTraining();
       resetWorkTimer();
       if (appMode === 'polyrhythm') {
-        polyrhythmMeasures = [createPolyMeasure(5, 3, tempo)];
+        polyrhythmMeasures = [createPolyMeasure(5, 4, tempo)];
         measures = polyrhythmMeasures;
       } else {
         metronomeMeasures = [createMeasure(4, 4)];
@@ -2106,7 +2132,7 @@
     });
 
     metronomeMeasures = [createMeasure(4, 4)];
-    polyrhythmMeasures = [createPolyMeasure(5, 3, 120)];
+    polyrhythmMeasures = [createPolyMeasure(5, 4, 120)];
     measures = metronomeMeasures;
     renderSequencerList();
     renderActiveMeasure();
