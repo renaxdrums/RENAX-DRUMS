@@ -21,7 +21,7 @@ jobs:
       - name: Download real human recordings and prepare 80 WAV samples
         run: |
           python3 - <<'PY'
-          import pathlib, subprocess, urllib.parse, urllib.request, tarfile, shutil, sys
+          import pathlib, subprocess, urllib.parse, urllib.request, urllib.error, tarfile, shutil, sys, time
 
           ROOT = pathlib.Path("assets/voices")
           ROOT.mkdir(parents=True, exist_ok=True)
@@ -36,11 +36,25 @@ jobs:
                 "onze","douze","treize","quatorze","quinze","seize","dix-sept",
                 "dix-huit","dix-neuf","vingt"]
 
-          def get(url, dest):
+          def get(url, dest, polite=False):
               print("GET", url, flush=True)
-              req = urllib.request.Request(url, headers={"User-Agent":"RENAX-DRUMS/2.6 human-audio-import"})
-              with urllib.request.urlopen(req, timeout=60) as r:
-                  dest.write_bytes(r.read())
+              last = None
+              for attempt in range(1, 7):
+                  try:
+                      req = urllib.request.Request(url, headers={"User-Agent":"RENAX-DRUMS/2.6 (human metronome audio; GitHub Actions)"})
+                      with urllib.request.urlopen(req, timeout=90) as r:
+                          dest.write_bytes(r.read())
+                      if polite:
+                          time.sleep(2.5)
+                      return
+                  except urllib.error.HTTPError as e:
+                      last = e
+                      if e.code != 429 or attempt == 6:
+                          raise
+                      wait = 5 * attempt
+                      print(f"Wikimedia rate limit; waiting {wait}s", flush=True)
+                      time.sleep(wait)
+              raise last
 
           def process(src, dest):
               dest.parent.mkdir(parents=True, exist_ok=True)
@@ -64,7 +78,7 @@ jobs:
                   filename = prefix + word + ".wav"
                   url = "https://commons.wikimedia.org/wiki/Special:Redirect/file/" + urllib.parse.quote(filename, safe="")
                   raw = rawdir / f"{n:02d}-raw.wav"
-                  get(url, raw)
+                  get(url, raw, polite=True)
                   process(raw, ROOT / bank / f"{n:02d}.wav")
 
           def freeswitch_bank(bank, release_tag, archive_name, words):
