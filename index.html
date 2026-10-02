@@ -191,6 +191,13 @@
     .btn-train:hover { background: #ff8c33; box-shadow: 0 0 12px rgba(255, 107, 0, 0.4); }
     .btn-train.active { background: var(--cyan); border-color: var(--cyan); color: #000; }
 
+    /* Typographie des commandes générales demandées. */
+    .dir-toggle button,
+    .btn-train,
+    .footer-center .btn {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
     .seq-count-row { display: flex; align-items: center; gap: 8px; font-size: 10px; color: var(--text-muted); }
     .seq-count-row label { flex: 0 0 72px; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
     .seq-count-row select { flex: 1; min-width: 0; }
@@ -321,11 +328,11 @@
       }
       .panel-visu .beat-control { flex: 0 0 auto; }
 
-      /* PC : séparateurs de temps légèrement épaissis et réellement blancs. */
+      /* PC : séparateurs de temps blancs, fins et nets. */
       .beat-divider {
-        width: 2px;
+        width: 1px;
         background: #fff;
-        box-shadow: 0 0 3px rgba(255, 255, 255, 0.18);
+        box-shadow: none;
       }
     }
 
@@ -394,7 +401,8 @@
     .beat-divider {
       position: absolute; left: 50%; top: 50%;
       width: 1px; height: var(--ring-radius, 138px);
-      background: var(--border);
+      background: #fff;
+      box-shadow: none;
       transform-origin: bottom center;
       transform: translate(-50%, -100%) rotate(var(--divider-angle));
       pointer-events: none; z-index: 1;
@@ -489,9 +497,9 @@
       }
 
       .beat-divider {
-        background: rgba(224, 224, 230, 0.34);
+        background: #fff;
         width: 1px;
-        box-shadow: 0 0 3px rgba(224, 224, 230, 0.10);
+        box-shadow: none;
       }
     }
 
@@ -637,50 +645,9 @@
         gap: 16px;
         z-index: 80;
       }
+      /* START / RESET : style rectangulaire d'origine, conservé au nouvel emplacement. */
       .footer-center .btn {
-        padding: 0;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 1;
-      }
-      .footer-center #playBtn {
-        width: 52px;
-        height: 52px;
-        background: var(--orange);
-        border-color: var(--orange);
-        color: #000;
-        font-size: 9px;
-        font-weight: 800;
-        outline: 1px solid var(--cyan);
-        outline-offset: 4px;
-        box-shadow: 0 0 12px rgba(255,107,0,.18);
-      }
-      .footer-center #playBtn:hover {
-        background: #ff8c33;
-        box-shadow: 0 0 14px rgba(255,107,0,.32);
-      }
-      .footer-center #playBtn.btn-cyan {
-        background: var(--cyan);
-        border-color: var(--cyan);
-        color: #000;
-        box-shadow: 0 0 14px rgba(0,229,255,.28);
-      }
-      .footer-center #panicBtn {
-        width: 38px;
-        height: 38px;
-        background: var(--grey);
-        border-color: var(--border);
-        color: var(--text-muted);
-        font-size: 7px;
-        font-weight: 700;
-        outline: 1px solid var(--cyan);
-        outline-offset: 3px;
-      }
-      .footer-center #panicBtn:hover {
-        background: var(--grey-hover);
-        color: var(--text);
+        font-family: 'JetBrains Mono', monospace;
       }
 
       /* Le footer ne réserve plus la hauteur des anciens boutons centraux. */
@@ -1797,7 +1764,9 @@
         if(e.outer) playClick(3,nextNoteTime,e.u===0);
         if(e.inner) playClick(1,nextNoteTime,e.u===0);
         schedulePolyVisualUpdate(mIdx,e,nextNoteTime);
-        const cycleSec=(m.denominator*60)/getEffectiveTempo(m);
+        // Le numérateur est la pulsation de référence : sa vitesse reste fixée par le BPM.
+        // Le dénominateur se répartit dans la même durée sans accélérer/ralentir le numérateur.
+        const cycleSec=(m.numerator*60)/getEffectiveTempo(m);
         const nextU=(polyEventIndex+1<events.length)?events[polyEventIndex+1].u:1;
         nextNoteTime += Math.max(.001,(nextU-e.u)*cycleSec);
         polyEventIndex++;
