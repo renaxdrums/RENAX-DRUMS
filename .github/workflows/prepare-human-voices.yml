@@ -1,0 +1,122 @@
+name: Prepare human metronome voices
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/prepare-human-voices.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Download and prepare real human voice samples
+        shell: python
+        run: |
+          import os, urllib.parse, urllib.request, subprocess, pathlib, sys
+
+          ROOT = pathlib.Path("assets/voices")
+          banks = {
+              "voice-men-en": {
+                  "prefix": "LL-Q1860 (eng)-Andre Vitor Kerr Lima (Andrevitorkerr)-",
+                  "suffix": ".wav",
+                  "words": ["one","two","three","four","five","six","seven","eight","nine","ten",
+                            "eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen",
+                            "eighteen","nineteen","twenty"],
+              },
+              "voice-female-en": {
+                  "prefix": "En-us-",
+                  "suffix": ".ogg",
+                  "words": ["one","two","three","four","five","six","seven","eight","nine","ten",
+                            "eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen",
+                            "eighteen","nineteen","twenty"],
+              },
+              "voix-homme-fr": {
+                  "prefix": "LL-Q150 (fra)-Ben (Mathsou)-",
+                  "suffix": ".wav",
+                  "words": ["un","deux","trois","quatre","cinq","six","sept","huit","neuf","dix",
+                            "onze","douze","treize","quatorze","quinze","seize","dix-sept",
+                            "dix-huit","dix-neuf","vingt"],
+              },
+              "voix-femme-fr": {
+                  "prefix": "LL-Q150 (fra)-Mylou (Mathsou)-",
+                  "suffix": ".wav",
+                  "words": ["un","deux","trois","quatre","cinq","six","sept","huit","neuf","dix",
+                            "onze","douze","treize","quatorze","quinze","seize","dix-sept",
+                            "dix-huit","dix-neuf","vingt"],
+              },
+          }
+
+          def commons_url(filename):
+              return "https://commons.wikimedia.org/wiki/Special:Redirect/file/" + urllib.parse.quote(filename, safe="")
+
+          missing = []
+          for bank, cfg in banks.items():
+              outdir = ROOT / bank
+              rawdir = pathlib.Path("/tmp") / bank
+              outdir.mkdir(parents=True, exist_ok=True)
+              rawdir.mkdir(parents=True, exist_ok=True)
+              for n, word in enumerate(cfg["words"], start=1):
+                  filename = cfg["prefix"] + word + cfg["suffix"]
+                  url = commons_url(filename)
+                  raw = rawdir / f"{n:02d}{cfg['suffix']}"
+                  try:
+                      print("Downloading", bank, n, word, url)
+                      req = urllib.request.Request(url, headers={"User-Agent":"RENAX-DRUMS/2.6 human-voice-import"})
+                      with urllib.request.urlopen(req, timeout=30) as r:
+                          raw.write_bytes(r.read())
+                  except Exception as e:
+                      print("MISSING", bank, n, word, e, file=sys.stderr)
+                      missing.append((bank,n,word,url))
+                      continue
+
+                  out = outdir / f"{n:02d}.mp3"
+                  # High-pass rumble only, peak normalize, remove leading/trailing silence,
+                  # keep natural pitch and a tiny tail fade to avoid clicks.
+                  filt = (
+                      "highpass=f=70,"
+                      "silenceremove=start_periods=1:start_duration=0:start_threshold=-48dB:"
+                      "stop_periods=1:stop_duration=0.015:stop_threshold=-50dB,"
+                      "loudnorm=I=-16:TP=-1.5:LRA=7,"
+                      "afade=t=out:st=0:d=0.008"
+                  )
+                  subprocess.run([
+                      "ffmpeg","-hide_banner","-loglevel","error","-y",
+                      "-i",str(raw),"-ac","1","-ar","48000",
+                      "-af",filt,"-codec:a","libmp3lame","-b:a","128k",str(out)
+                  ], check=True)
+
+          if missing:
+              print("\nMissing source files:", file=sys.stderr)
+              for item in missing:
+                  print(item, file=sys.stderr)
+              sys.exit(2)
+
+          (ROOT / "SOURCES.md").write_text("""# Human voice sources
+
+All metronome voice samples in this directory are derived from real human recordings hosted on Wikimedia Commons.
+
+- Voice men EN: Andre Vitor Kerr Lima (Lingua Libre), CC0 1.0.
+- Voice female EN: Dvortygirl Wikimedia pronunciation recordings; individual Wikimedia file pages carry their applicable open license.
+- Voix homme FR: Ben, recorded by Mathsou (Lingua Libre), CC0 1.0.
+- Voix femme FR: Mylou, recorded by Mathsou (Lingua Libre), CC0 1.0.
+
+Processing applied by RENAX DRUMS: silence trim, mono 48 kHz conversion, rumble high-pass, loudness normalization and very short tail fade. No pitch shifting.
+""", encoding="utf-8")
+
+      - name: Commit human voice samples
+        run: |
+          git config user.name "RENAX DRUMS Audio Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets/voices
+          git diff --cached --quiet && exit 0
+          git commit -m "Add human metronome voice samples"
+          git push
