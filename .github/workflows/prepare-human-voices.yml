@@ -123,38 +123,34 @@ jobs:
                       check=True, stdout=subprocess.DEVNULL
                   )
 
-          (ROOT / "SOURCES.md").write_text("""# RENAX DRUMS — human metronome voice sources
-
-These are **real human recordings**, not text-to-speech.
-
-## Voice men EN
-- Speaker: Andre Vitor Kerr Lima
-- Project: Lingua Libre / Wikimedia Commons
-- License: CC0 1.0
-- Source filename pattern: `LL-Q1860 (eng)-Andre Vitor Kerr Lima (Andrevitorkerr)-<word>.wav`
-
-## Voice female EN
-- Voice: Callie
-- Project: FreeSWITCH Sounds
-- License: MPL (as distributed by the FreeSWITCH sounds project)
-- Source package: `freeswitch-sounds-en-us-callie-48000-1.0.53.tar.gz`
-
-## Voix homme FR
-- Speaker: Ben
-- Recorder: Mathsou
-- Project: Lingua Libre / Wikimedia Commons
-- License: CC0 1.0
-- Source filename pattern: `LL-Q150 (fra)-Ben (Mathsou)-<mot>.wav`
-
-## Voix femme FR
-- Voice: June (French Canadian)
-- Project: FreeSWITCH Sounds
-- License: MPL (as distributed by the FreeSWITCH sounds project)
-- Source package: `freeswitch-sounds-fr-ca-june-48000-1.0.51.tar.gz`
-
-## RENAX processing
-Each source is converted to mono PCM WAV at 48 kHz / 16-bit. Only leading silence is removed; the original pitch and speech timing are preserved. A light 65 Hz high-pass and loudness normalization are applied. No pitch shifting and no synthetic speech are used.
-""", encoding="utf-8")
+          source_lines = [
+              "# RENAX DRUMS — human metronome voice sources",
+              "",
+              "These are real human recordings, not text-to-speech.",
+              "",
+              "## Voice men EN",
+              "- Speaker: Andre Vitor Kerr Lima",
+              "- Project: Lingua Libre / Wikimedia Commons",
+              "- License: CC0 1.0",
+              "",
+              "## Voice female EN",
+              "- Voice: Callie",
+              "- Project: FreeSWITCH Sounds",
+              "- License: MPL",
+              "",
+              "## Voix homme FR",
+              "- Speaker: Ben; recorder: Mathsou",
+              "- Project: Lingua Libre / Wikimedia Commons",
+              "- License: CC0 1.0",
+              "",
+              "## Voix femme FR",
+              "- Voice: June (French Canadian)",
+              "- Project: FreeSWITCH Sounds",
+              "- License: MPL",
+              "",
+              "RENAX processing: mono PCM WAV 48 kHz / 16-bit, leading-silence trim, 65 Hz high-pass and loudness normalization. No pitch shifting and no synthetic speech."
+          ]
+          (ROOT / "SOURCES.md").write_text("\\n".join(source_lines) + "\\n", encoding="utf-8")
           PY
 
       - name: Commit human voice samples
