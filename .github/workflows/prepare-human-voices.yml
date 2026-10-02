@@ -21,7 +21,7 @@ jobs:
       - name: Download real human recordings and prepare 80 WAV samples
         run: |
           python3 - <<'PY'
-          import pathlib, subprocess, urllib.parse, urllib.request, urllib.error, tarfile, shutil, sys, time
+          import pathlib, subprocess, urllib.parse, urllib.request, urllib.error, tarfile, shutil, sys, time, hashlib
 
           ROOT = pathlib.Path("assets/voices")
           ROOT.mkdir(parents=True, exist_ok=True)
@@ -71,14 +71,29 @@ jobs:
                   "-af",filt,"-c:a","pcm_s16le",str(dest)
               ], check=True)
 
-          def commons_bank(bank, prefix, words):
+          def github_counting_bank(bank):
+              # EnjoyPA real human male counting pack, mirrored by PEBL.
+              # PEBL's license file maps all 01..20 clips to Freesound originals under CC0.
+              base = "https://raw.githubusercontent.com/stmueller/pebl/eb22a0725d765a0597a4905920ad3c603b1c9ae8/battery/PASAT/audio"
+              rawdir = TMP / bank
+              rawdir.mkdir(parents=True, exist_ok=True)
+              for n in range(1, 21):
+                  raw = rawdir / f"{n:02d}.ogg"
+                  get(f"{base}/{n:02d}.ogg", raw)
+                  process(raw, ROOT / bank / f"{n:02d}.wav")
+
+          def wikimedia_shtooka_fr_male(bank, words):
+              # Shtooka French-number recordings: current Commons files are the
+              # male Paris-region speaker versions by Vion Nicolas (CC BY 2.0 FR).
               rawdir = TMP / bank
               rawdir.mkdir(parents=True, exist_ok=True)
               for n, word in enumerate(words, 1):
-                  filename = prefix + word + ".wav"
-                  url = "https://commons.wikimedia.org/wiki/Special:Redirect/file/" + urllib.parse.quote(filename, safe="")
-                  raw = rawdir / f"{n:02d}-raw.wav"
-                  get(url, raw, polite=True)
+                  filename = f"Fr-{word}.ogg"
+                  key = filename.replace(" ", "_")
+                  md5 = hashlib.md5(key.encode("utf-8")).hexdigest()
+                  url = "https://upload.wikimedia.org/wikipedia/commons/" + md5[0] + "/" + md5[:2] + "/" + urllib.parse.quote(key)
+                  raw = rawdir / f"{n:02d}.ogg"
+                  get(url, raw)
                   process(raw, ROOT / bank / f"{n:02d}.wav")
 
           def freeswitch_bank(bank, release_tag, archive_name, words):
@@ -97,17 +112,9 @@ jobs:
                       raise RuntimeError(f"Missing FreeSWITCH digit {n} for {bank}")
                   process(candidates[0], ROOT / bank / f"{n:02d}.wav")
 
-          # Male voices: real Lingua Libre speakers, CC0.
-          commons_bank(
-              "voice-men-en",
-              "LL-Q1860 (eng)-Andre Vitor Kerr Lima (Andrevitorkerr)-",
-              EN
-          )
-          commons_bank(
-              "voix-homme-fr",
-              "LL-Q150 (fra)-Ben (Mathsou)-",
-              FR
-          )
+          # Male voices: real human recordings from open audio projects.
+          github_counting_bank("voice-men-en")
+          wikimedia_shtooka_fr_male("voix-homme-fr", FR)
 
           # Female voices: professionally recorded FreeSWITCH prompt packs, MPL.
           freeswitch_bank(
@@ -143,8 +150,8 @@ jobs:
               "These are real human recordings, not text-to-speech.",
               "",
               "## Voice men EN",
-              "- Speaker: Andre Vitor Kerr Lima",
-              "- Project: Lingua Libre / Wikimedia Commons",
+              "- Speaker: EnjoyPA (human counting pack)",
+              "- Project: Freesound / PEBL mirror",
               "- License: CC0 1.0",
               "",
               "## Voice female EN",
@@ -153,9 +160,9 @@ jobs:
               "- License: MPL",
               "",
               "## Voix homme FR",
-              "- Speaker: Ben; recorder: Mathsou",
-              "- Project: Lingua Libre / Wikimedia Commons",
-              "- License: CC0 1.0",
+              "- Speaker: Vion Nicolas (Paris region)",
+              "- Project: Shtooka / Wikimedia Commons",
+              "- License: CC BY 2.0 France",
               "",
               "## Voix femme FR",
               "- Voice: June (French Canadian)",
