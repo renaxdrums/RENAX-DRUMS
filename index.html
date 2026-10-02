@@ -436,6 +436,9 @@
       letter-spacing: 0.5px; cursor: pointer; transition: all 0.15s;
     }
     .btn:hover { background: var(--grey-hover); }
+    /* Le libellé alterne START/STOP : réserve exactement la largeur de 5 caractères
+       + le padding/bordure actuels, afin que le bouton ne change jamais de taille. */
+    #playBtn { width: calc(5ch + 40.5px); }
     .btn-primary { background: var(--orange); color: #000; border-color: var(--orange); font-weight: 800; }
     .btn-primary:hover { background: #ff8c33; box-shadow: 0 0 12px rgba(255, 107, 0, 0.4); }
     .btn-cyan { background: var(--cyan); color: #000; border-color: var(--cyan); font-weight: 800; }
@@ -484,6 +487,7 @@
       .footer-left, .footer-right { font-size: 7px; flex: 1; }
       .footer-center { flex: 0 0 auto; gap: 6px; }
       .btn { padding: 6px 14px; font-size: 9px; }
+      #playBtn { width: calc(5ch + 32.5px); }
     }
 
     /* Smartphone : contraste de lecture uniquement — aucun changement moteur/layout */
@@ -510,6 +514,7 @@
       .beat-number { font-size: 26px; }
       .mobile-tabs button { font-size: 8px; padding: 6px 2px; }
       .btn { padding: 5px 10px; font-size: 8px; }
+      #playBtn { width: calc(5ch + 24.5px); }
     }
 
     @media (max-width: 1100px) and (max-height: 500px) {
