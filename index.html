@@ -565,8 +565,9 @@
     .poly-ratio-row input { width:50px; min-width:50px; padding:3px 4px; text-align:center; font-family:'JetBrains Mono',monospace; font-weight:800; font-size:10px; }
     body.poly-mode .silent-section { display:none; }
     body.poly-mode .beat-controls { display:none !important; }
-    body.poly-mode .legend { opacity:.55; }
-    body.poly-mode .legend .legend-item:nth-child(n+2) { display:none; }
+    body.poly-mode .legend { opacity:1; }
+    body.poly-mode .legend .legend-item { display:flex; }
+    body.poly-mode .legend .legend-item:first-child { display:none; }
     @media (max-width:1100px) {
       .poly-dot.outer { --poly-radius:min(18dvh,138px); }
       .poly-dot.inner { --poly-radius:min(11.5dvh,88px); }
@@ -1216,10 +1217,9 @@
         const gain = audioCtx.createGain();
         src.buffer = buffer;
 
-        // À tempo élevé, accélère juste assez la diction pour terminer avant le temps suivant.
-        const targetDuration = Math.max(0.08, beatDurationSec * 0.82);
-        const requiredRate = buffer.duration / targetDuration;
-        src.playbackRate.setValueAtTime(Math.min(2.35, Math.max(1, requiredRate)), time);
+        // La voix reste à sa hauteur naturelle : aucune accélération/pitch liée au tempo.
+        // Le timing du métronome reste piloté par Web Audio, indépendamment de la durée du sample.
+        src.playbackRate.setValueAtTime(1, time);
 
         let vol = state === 3 ? 0.92 : state === 2 ? 0.82 : 0.72;
         if (isFirst) vol *= 1.08;
@@ -1737,7 +1737,16 @@
       if (w === 0 || h === 0) { requestAnimationFrame(animate); return; }
       pctx.clearRect(0, 0, w, h);
 
-      if (isPlaying && appMode === 'metronome' && totalSteps > 0) updateProgressTrail(getCurrentHeadAngle());
+      if (appMode === 'polyrhythm') {
+        particles.length = 0;
+        pulses.length = 0;
+        clearProgressTrail();
+        updateTimerDisplay();
+        requestAnimationFrame(animate);
+        return;
+      }
+
+      if (isPlaying && totalSteps > 0) updateProgressTrail(getCurrentHeadAngle());
       else clearProgressTrail();
 
       for (let i = pulses.length - 1; i >= 0; i--) {
@@ -2209,6 +2218,12 @@
       if(isPlaying) stopMetronome();
       if(appMode==='metronome') metronomeMeasures=measures; else polyrhythmMeasures=measures;
       appMode=mode;
+      particles.length = 0;
+      pulses.length = 0;
+      clearProgressTrail();
+      if (pctx && canvas) {
+        pctx.clearRect(0, 0, sequencerContainer.clientWidth, sequencerContainer.clientHeight);
+      }
       if(mode==='metronome') {
         beatDisplay.textContent='1';
         beatDisplay.classList.remove('pulse');
@@ -2269,7 +2284,12 @@
       sequencerContainer.querySelectorAll('.step, .poly-dot').forEach(s => s.classList.remove('active'));
       beatDisplay.textContent = '1';
       beatDisplay.classList.remove('pulse');
+      particles.length = 0;
+      pulses.length = 0;
       clearProgressTrail();
+      if (pctx && canvas) {
+        pctx.clearRect(0, 0, sequencerContainer.clientWidth, sequencerContainer.clientHeight);
+      }
       pauseWorkTimer();
       if (training.active) endTraining();
       renderSequencerList();
