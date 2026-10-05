@@ -92,12 +92,12 @@ jobs:
           def shtooka_fr_male_bank(bank, words):
               # Full Shtooka fra-balm-voc archive, real Paris-region male speaker.
               # Download the stable collection once and resolve words through index.tags.txt.
-              archive = TMP / "fra-balm-voc_ogg.tar.bz2"
-              url = "https://shtooka-downloads.yojik.eu/fra-balm-voc_ogg.tar.bz2"
+              archive = TMP / "fra-balm-voc_flac.tar.xz"
+              url = "https://fsi-languages.yojik.eu/audiocollections/archives/fra-balm-voc_flac.tar.xz"
               get(url, archive)
               unpack = TMP / "fra-balm-voc"
               unpack.mkdir(parents=True, exist_ok=True)
-              with tarfile.open(archive, "r:bz2") as tf:
+              with tarfile.open(archive, "r:xz") as tf:
                   tf.extractall(unpack)
 
               index_files = list(unpack.rglob("index.tags.txt"))
