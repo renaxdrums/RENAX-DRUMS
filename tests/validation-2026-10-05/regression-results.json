@@ -1,0 +1,34 @@
+{
+  "nonVoiceWithinFloatRounding": true,
+  "comparison": {
+    "clic": {
+      "maxPCMError": 0,
+      "identical": true
+    },
+    "cloche": {
+      "maxPCMError": 5.960464477539063e-8,
+      "identical": false
+    },
+    "claves": {
+      "maxPCMError": 0,
+      "identical": true
+    },
+    "clic808": {
+      "maxPCMError": 0,
+      "identical": true
+    },
+    "beep": {
+      "maxPCMError": 0,
+      "identical": true
+    }
+  },
+  "drift": {
+    "beats": 10000,
+    "seconds": 10000,
+    "maxGridErrorSeconds": 0
+  },
+  "stop": {
+    "scheduledBeforeStop": 1,
+    "scheduledAfterStop": 0
+  }
+}
