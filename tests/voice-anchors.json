@@ -1,0 +1,882 @@
+[
+  {
+    "gender": "male",
+    "number": 1,
+    "anchor_ms": 116,
+    "region_ms": [
+      90,
+      141
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "0bebc81acc4269391e13d5a1ced98ec2dc9e7bde1ec10f7c6e00be1708e1ae62"
+  },
+  {
+    "gender": "male",
+    "number": 2,
+    "anchor_ms": 175,
+    "region_ms": [
+      150,
+      201
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "668005178adb76ca1f6745a89ad5b8ddf8126752b82bd1cde15141aeb73da79f"
+  },
+  {
+    "gender": "male",
+    "number": 3,
+    "anchor_ms": 262,
+    "region_ms": [
+      237,
+      288
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "639eb5bc547c7f568291d10276af4dc8eea98b16d338ee98a4dd7a298cd7ce8c"
+  },
+  {
+    "gender": "male",
+    "number": 4,
+    "anchor_ms": 143,
+    "region_ms": [
+      119,
+      170
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "a135bb9d43bdf472471bb017835e83190e774a2042d55e7ce27b7fda9a9827b8"
+  },
+  {
+    "gender": "male",
+    "number": 5,
+    "anchor_ms": 195,
+    "region_ms": [
+      170,
+      221
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "e2a9d5d1e982e2a349a8c67c290e01ef2659752755b80b7761210b2a23705df1"
+  },
+  {
+    "gender": "male",
+    "number": 6,
+    "anchor_ms": 256,
+    "region_ms": [
+      232,
+      283
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "3266fc0bbd481e04ba9e14cf358c0d94585fddc428123c1cee6f2b054558daa0"
+  },
+  {
+    "gender": "male",
+    "number": 7,
+    "anchor_ms": 216,
+    "region_ms": [
+      191,
+      242
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "2786927725420a8711e954398fd2b05640c3566d260cb9c5288cce58d3dcf746"
+  },
+  {
+    "gender": "male",
+    "number": 8,
+    "anchor_ms": 97,
+    "region_ms": [
+      72,
+      123
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "b7b7dd42e3028a0913a80f1cd725835e441f8c9ae8a5ec56db608d709872b111"
+  },
+  {
+    "gender": "male",
+    "number": 9,
+    "anchor_ms": 120,
+    "region_ms": [
+      95,
+      146
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "cc9db297338c1811d814bfdcaf52d6f697677503cacb2f3dd8113577ff8423fd"
+  },
+  {
+    "gender": "male",
+    "number": 10,
+    "anchor_ms": 176,
+    "region_ms": [
+      151,
+      202
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "5c59fac82e10c42ee04694877585d460c180dccc8f38c2ca817f28723373cf24"
+  },
+  {
+    "gender": "male",
+    "number": 11,
+    "anchor_ms": 211,
+    "region_ms": [
+      187,
+      238
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "1afbc36196dda0c8f7c8d3c3ed159c96241187ac7eb35cce30f3f8b22589be3c"
+  },
+  {
+    "gender": "male",
+    "number": 12,
+    "anchor_ms": 150,
+    "region_ms": [
+      124,
+      175
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "fcef6335cc80581bf05d39c188f2f1b90720d2aa2c6078608c78143d741a3770"
+  },
+  {
+    "gender": "male",
+    "number": 13,
+    "anchor_ms": 128,
+    "region_ms": [
+      102,
+      153
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "b572fa9d2d7fe5e98c977a117210a373e2d366cccb20f7a158d4753d8428323e"
+  },
+  {
+    "gender": "male",
+    "number": 14,
+    "anchor_ms": 125,
+    "region_ms": [
+      101,
+      152
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "a5d5279b070fa0fb86869d7e6e6e1645c072856bafd8bc5fbd5f3707351f3d48"
+  },
+  {
+    "gender": "male",
+    "number": 15,
+    "anchor_ms": 105,
+    "region_ms": [
+      80,
+      131
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "158d926eb716be6ccc526b261a3393a23ae71bda5a84f435246f710f4f1c9eeb"
+  },
+  {
+    "gender": "male",
+    "number": 16,
+    "anchor_ms": 189,
+    "region_ms": [
+      165,
+      216
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "927e179beaaf84675fc43c468a1ccd8f9e1fb848bf0f8783887c0448cebce9c6"
+  },
+  {
+    "gender": "male",
+    "number": 17,
+    "anchor_ms": 187,
+    "region_ms": [
+      161,
+      212
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "babe2333b31e935d4022188325f7c98abaa6331ad87e048fa12b8f1fd9faaaed"
+  },
+  {
+    "gender": "male",
+    "number": 18,
+    "anchor_ms": 91,
+    "region_ms": [
+      66,
+      117
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "55e669a85f2ea7da67e8f456e7995ebc4910c8ac7375d8f6e845c3ad747a151c"
+  },
+  {
+    "gender": "male",
+    "number": 19,
+    "anchor_ms": 129,
+    "region_ms": [
+      103,
+      154
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "e5a9977da3bc4262e0e0ecc96697960cb86e8837f284ee956821d8036c8dbbe1"
+  },
+  {
+    "gender": "male",
+    "number": 20,
+    "anchor_ms": 140,
+    "region_ms": [
+      116,
+      167
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "59cd5b01ff410cbdbf765adc68644d586f8ce307cf9a3239c23ef63dd7b45324"
+  },
+  {
+    "gender": "female",
+    "number": 1,
+    "anchor_ms": 107,
+    "region_ms": [
+      82,
+      133
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "8b7b3bea7352be920a80cb287fcaf2c82987188fa51c7291868f371a94134658"
+  },
+  {
+    "gender": "female",
+    "number": 2,
+    "anchor_ms": 95,
+    "region_ms": [
+      70,
+      121
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "ad5084062427fb38e7f9d6a27e3da5ee3e2525803dd3e501cce9eb48f7849a8a"
+  },
+  {
+    "gender": "female",
+    "number": 3,
+    "anchor_ms": 76,
+    "region_ms": [
+      68,
+      119
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "50aa9d81f295d6015828f6ad70db7a429aa8bc05abd24a37d25b2b050b354ce3"
+  },
+  {
+    "gender": "female",
+    "number": 4,
+    "anchor_ms": 118,
+    "region_ms": [
+      100,
+      151
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "34757e45ae316c500c0ed834041ed6b8a9a3d7df3edfd38d04d24c71465a1f6b"
+  },
+  {
+    "gender": "female",
+    "number": 5,
+    "anchor_ms": 105,
+    "region_ms": [
+      88,
+      139
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "475441b8aba1ad55f4dacae8b88cbb2260aa0330e60a18ef5fbb9d7def187e14"
+  },
+  {
+    "gender": "female",
+    "number": 6,
+    "anchor_ms": 175,
+    "region_ms": [
+      150,
+      201
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "e0161881ed810f149f0c630a7d9e2163ded8a4f78bc823ea3d1ea4c425082ab3"
+  },
+  {
+    "gender": "female",
+    "number": 7,
+    "anchor_ms": 170,
+    "region_ms": [
+      145,
+      196
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "1551708ce0f0e1269aee2006ac2a073f084705c46d8a0bb3828099efd75b855a"
+  },
+  {
+    "gender": "female",
+    "number": 8,
+    "anchor_ms": 93,
+    "region_ms": [
+      68,
+      119
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "e7a22f31fa007438bd0e283c8f3787b12c874023490b7173c66912cdcf15debc"
+  },
+  {
+    "gender": "female",
+    "number": 9,
+    "anchor_ms": 78,
+    "region_ms": [
+      54,
+      105
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "6a3c9fb5c0c4e37d77b5549fb5a31eec92fce747356e0b1c8f1b21882720ef2a"
+  },
+  {
+    "gender": "female",
+    "number": 10,
+    "anchor_ms": 71,
+    "region_ms": [
+      46,
+      97
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "9130b688477eb10439bcf9d926f9a01ff3189026cc2f8b51a2561d7b14c7947a"
+  },
+  {
+    "gender": "female",
+    "number": 11,
+    "anchor_ms": 25,
+    "region_ms": [
+      7,
+      58
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "408ace139ccf5c48432ba10a3219250c7898d169875c6d5393e2b42581d4c55c"
+  },
+  {
+    "gender": "female",
+    "number": 12,
+    "anchor_ms": 98,
+    "region_ms": [
+      73,
+      124
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "2f8a675007d0e4806c48480e31060c052db12f01c87b8918116ab5d9f86533b3"
+  },
+  {
+    "gender": "female",
+    "number": 13,
+    "anchor_ms": 22,
+    "region_ms": [
+      0,
+      50
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "6f96a9e2e0ef8168c2ae55f7afaa1a8ae5bdedbfb6a796776e762c518d7955f4"
+  },
+  {
+    "gender": "female",
+    "number": 14,
+    "anchor_ms": 116,
+    "region_ms": [
+      97,
+      148
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "ba5c87f896c72ca87d65e9ad732883fba20577c30a57cc67d693e1b05cbb88b4"
+  },
+  {
+    "gender": "female",
+    "number": 15,
+    "anchor_ms": 112,
+    "region_ms": [
+      92,
+      143
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "40ee0ce29833654f3b61c9a933dc0f4a600a9f87046753c41343aff8aca86c00"
+  },
+  {
+    "gender": "female",
+    "number": 16,
+    "anchor_ms": 131,
+    "region_ms": [
+      107,
+      158
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "aa549aed147638ea694f13fd89413e67cb5247dafc5c68f7c73fa484835a00df"
+  },
+  {
+    "gender": "female",
+    "number": 17,
+    "anchor_ms": 138,
+    "region_ms": [
+      113,
+      164
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "cb0a3efb1fa0edfdc68e7776eede44f6bd521124d995de7c86a41b4573b51ae2"
+  },
+  {
+    "gender": "female",
+    "number": 18,
+    "anchor_ms": 19,
+    "region_ms": [
+      0,
+      51
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "8d282f2c29414f700767cd0f2a19f4e603802a5828bf50a8249cd9513160cfc0"
+  },
+  {
+    "gender": "female",
+    "number": 19,
+    "anchor_ms": 60,
+    "region_ms": [
+      36,
+      87
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "730f68bb31cb1f93abc470404508d188cd60b76de227ccbae7db094e00d71d26"
+  },
+  {
+    "gender": "female",
+    "number": 20,
+    "anchor_ms": 74,
+    "region_ms": [
+      49,
+      100
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "c17b045b2a3f0b5762a74f830e68e62e23b3bab5c0e42505b8cf08f3a67a5b76"
+  },
+  {
+    "gender": "maleFR",
+    "number": 1,
+    "anchor_ms": 101,
+    "region_ms": [
+      76,
+      127
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "d309f33c1d81a0cba3da98d6ace1820368d2636d2bd7a8c4155fee9bd2b81823"
+  },
+  {
+    "gender": "maleFR",
+    "number": 2,
+    "anchor_ms": 260,
+    "region_ms": [
+      235,
+      286
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "df31cec4ce52de21d8b2f50c78c89e2c81d1f36ac458a753ee9bc8ce374e6426"
+  },
+  {
+    "gender": "maleFR",
+    "number": 3,
+    "anchor_ms": 204,
+    "region_ms": [
+      179,
+      230
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "ae28bfa5cf7298f788d742b03cfaf86d980339b3bf6aeec53a3adc7466ca86ab"
+  },
+  {
+    "gender": "maleFR",
+    "number": 4,
+    "anchor_ms": 125,
+    "region_ms": [
+      101,
+      152
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "5c275b18cb3f1142efcada5b75b85d13526921713a03a461c247135da8d707f5"
+  },
+  {
+    "gender": "maleFR",
+    "number": 5,
+    "anchor_ms": 248,
+    "region_ms": [
+      224,
+      275
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "b29f2c420cb653679db54aadc3f9ca10f16a1a7b460f06020f5da8e738305434"
+  },
+  {
+    "gender": "maleFR",
+    "number": 6,
+    "anchor_ms": 280,
+    "region_ms": [
+      255,
+      306
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "56474c90bf157f1c89fc750466af1021e579e77957ab5679d1ab540f5676f5b0"
+  },
+  {
+    "gender": "maleFR",
+    "number": 7,
+    "anchor_ms": 336,
+    "region_ms": [
+      310,
+      361
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "5c38f0a0639e7924b802880f027e2d2c6c6f2608d8fa7ff39f312b226d139e54"
+  },
+  {
+    "gender": "maleFR",
+    "number": 8,
+    "anchor_ms": 87,
+    "region_ms": [
+      63,
+      114
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "2fc1fe77ff788d4fc9f06f9f91a97d96fe324094864a0949efe901c25ca61614"
+  },
+  {
+    "gender": "maleFR",
+    "number": 9,
+    "anchor_ms": 271,
+    "region_ms": [
+      246,
+      297
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "ffacd94f35f6cfe77d57a15ccc52fa8e0d544c04822e86d294df1cd3d5419752"
+  },
+  {
+    "gender": "maleFR",
+    "number": 10,
+    "anchor_ms": 277,
+    "region_ms": [
+      253,
+      304
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "72eb27477a73ea6c177f667fe5aff957fe10f4da34647161a3319eed1da668f5"
+  },
+  {
+    "gender": "maleFR",
+    "number": 11,
+    "anchor_ms": 68,
+    "region_ms": [
+      52,
+      103
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "ec02cad0dc6e37aa6b10fc7b445c6160cdf4988a05ef314ecfe45b03aaa2336e"
+  },
+  {
+    "gender": "maleFR",
+    "number": 12,
+    "anchor_ms": 228,
+    "region_ms": [
+      204,
+      255
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "c6bfe6d2e56637e52c4b5ed037739dee15d2d98b8552d3aae32ae87d42e109fd"
+  },
+  {
+    "gender": "maleFR",
+    "number": 13,
+    "anchor_ms": 399,
+    "region_ms": [
+      349,
+      400
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "8cb0bb4e6dc84448d778c79e53da3bc910ad298f7c3f0d48ca334badf386ef00"
+  },
+  {
+    "gender": "maleFR",
+    "number": 14,
+    "anchor_ms": 102,
+    "region_ms": [
+      77,
+      128
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "f2ea97a2eb1331cc75da3907f1066eab0f5e65043e3b0ee28a62549ce1f72571"
+  },
+  {
+    "gender": "maleFR",
+    "number": 15,
+    "anchor_ms": 97,
+    "region_ms": [
+      72,
+      123
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "05ce30d2f6cf05d0392155e99a3aa2304d59bc8586b0406a10e93a00c1963874"
+  },
+  {
+    "gender": "maleFR",
+    "number": 16,
+    "anchor_ms": 336,
+    "region_ms": [
+      310,
+      361
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "9d71f4025e48402a659b5f51b2d87367d77238da80b2eebe67ff99dc1a83ce46"
+  },
+  {
+    "gender": "maleFR",
+    "number": 17,
+    "anchor_ms": 253,
+    "region_ms": [
+      229,
+      280
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "0aa4316a867166465200c374f714324618da9eb8fefe3703513bb3d589060e65"
+  },
+  {
+    "gender": "maleFR",
+    "number": 18,
+    "anchor_ms": 204,
+    "region_ms": [
+      179,
+      230
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "cd3d57c2ef6b383739794e3d32148231280bb8cbf372edce2c55fdf16fa5d78b"
+  },
+  {
+    "gender": "maleFR",
+    "number": 19,
+    "anchor_ms": 294,
+    "region_ms": [
+      269,
+      320
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "e412594332dce258f9bd57ce08f4d1e5c2ba57b456673f490d71ac19b0f214d1"
+  },
+  {
+    "gender": "maleFR",
+    "number": 20,
+    "anchor_ms": 361,
+    "region_ms": [
+      328,
+      379
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "464b7b7b6e737c7c61f38b0683193450a027ae991d39fa2a638e81838d6e3a3d"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 1,
+    "anchor_ms": 9,
+    "region_ms": [
+      0,
+      35
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "77eed27f6570a03a801804ff91142fd8cba8575c8538d737fc5bd2c2b724d33c"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 2,
+    "anchor_ms": 159,
+    "region_ms": [
+      134,
+      185
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "eed38e4cad257a81c464a551408370f5003b8546d18d02370579bc7c535f6594"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 3,
+    "anchor_ms": 130,
+    "region_ms": [
+      110,
+      161
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "afa34a803d92549a443994b025a17af1e8fc6c53df2f1fd8d7f64daeb3c0f3f6"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 4,
+    "anchor_ms": 32,
+    "region_ms": [
+      7,
+      58
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "7e295523c669e7c2b52ac294ed51a5fcbf7c56e11facaea767e56f25c5cb7e21"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 5,
+    "anchor_ms": 167,
+    "region_ms": [
+      142,
+      193
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "5c8a41ba7554f885796975c3c978003c67e409e51eac32f8e0e2277f133c967e"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 6,
+    "anchor_ms": 191,
+    "region_ms": [
+      166,
+      217
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "0268f554f6305e726227b4d9e20a4bb629be5a8ef194e7af800e7b6d28b91b32"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 7,
+    "anchor_ms": 199,
+    "region_ms": [
+      174,
+      225
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "8cb63b4394432d86bcbe34bb090f9eed20f7ce4fb877ac6f7d89b88303700927"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 8,
+    "anchor_ms": 12,
+    "region_ms": [
+      0,
+      41
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "a53129206ceac3db3ef4d100e293a9a2ab54f93324745972b8f04bbf4bc784f7"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 9,
+    "anchor_ms": 128,
+    "region_ms": [
+      103,
+      154
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "a008e43421a05b337c182ce4842420bfd808ef0ce684d03851b9ea3afd906335"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 10,
+    "anchor_ms": 230,
+    "region_ms": [
+      204,
+      255
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "3572fb1e71d2ab7f8553a336da7e720d0d4ac85339cd91dc71d7b1a5e9fb8619"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 11,
+    "anchor_ms": 14,
+    "region_ms": [
+      0,
+      45
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "3f5e73aa09e96990050428838698093393a15abb0106d1447456b48ae1e82ecd"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 12,
+    "anchor_ms": 120,
+    "region_ms": [
+      96,
+      147
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "be279839f8eb8358f2ddc9322e75165133ca794cbbd449b1c10d2e78de13d261"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 13,
+    "anchor_ms": 114,
+    "region_ms": [
+      89,
+      140
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "a6201dfe68242633d43fc6ce0c000d6ffc3a9fbffd0acd83948fe037a25022c5"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 14,
+    "anchor_ms": 37,
+    "region_ms": [
+      11,
+      62
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "5871474afb11f6d6a337368740a694a2ff8d2c7a5037b22d61532f98d6266e7c"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 15,
+    "anchor_ms": 31,
+    "region_ms": [
+      6,
+      57
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "fd515e290982b32cd76d028a78451b15083c9176c0cf4c26c1c751f0c9039270"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 16,
+    "anchor_ms": 137,
+    "region_ms": [
+      112,
+      163
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "8b4a6e8b04a460cf921576d41886ea2d8b6cb9b8cde7414f850f13e1d40d8382"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 17,
+    "anchor_ms": 101,
+    "region_ms": [
+      76,
+      127
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "bd84076500ee1e1d7f9c266f54f86e9b304132c4627429b9aa022490a611a953"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 18,
+    "anchor_ms": 119,
+    "region_ms": [
+      95,
+      146
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "25795e20138df10e5432f33e96bc7e9b6a853f16e8073773bf61c45b9fa76ca2"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 19,
+    "anchor_ms": 105,
+    "region_ms": [
+      81,
+      132
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "f6ed84672c400624585f9af637bdf0c09a3af75044ab7eb89d7b0434d1852a1b"
+  },
+  {
+    "gender": "femaleFR",
+    "number": 20,
+    "anchor_ms": 161,
+    "region_ms": [
+      137,
+      188
+    ],
+    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "sha256": "9b44c1e908a94381e1095573adcb0a512af62e10bc9f3350dea702291db269d0"
+  }
+]

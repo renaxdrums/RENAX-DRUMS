@@ -1,0 +1,233 @@
+{
+  "sampleRate": 48000,
+  "criterion": "Waveform-matched independently annotated vowel-nucleus landmarks, 1 ms search step",
+  "maxAttackErrorMs": 0,
+  "maxIntervalErrorMs": 0,
+  "lateStarts": 0,
+  "results": [
+    {
+      "bank": "voiceMale",
+      "case": "Tous les nombres 1-20",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceMale",
+      "case": "60 BPM 4/4",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceMale",
+      "case": "120 BPM 4/4",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceMale",
+      "case": "60 BPM 3/4",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceMale",
+      "case": "120 BPM 5/4",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceMale",
+      "case": "subdivisions 2/3/4/5/6/7/8",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceMale",
+      "case": "mesures et tempos 60->120->90",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceFemale",
+      "case": "Tous les nombres 1-20",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceFemale",
+      "case": "60 BPM 4/4",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceFemale",
+      "case": "120 BPM 4/4",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceFemale",
+      "case": "60 BPM 3/4",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceFemale",
+      "case": "120 BPM 5/4",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceFemale",
+      "case": "subdivisions 2/3/4/5/6/7/8",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceFemale",
+      "case": "mesures et tempos 60->120->90",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceMaleFR",
+      "case": "Tous les nombres 1-20",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceMaleFR",
+      "case": "60 BPM 4/4",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceMaleFR",
+      "case": "120 BPM 4/4",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceMaleFR",
+      "case": "60 BPM 3/4",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceMaleFR",
+      "case": "120 BPM 5/4",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceMaleFR",
+      "case": "subdivisions 2/3/4/5/6/7/8",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceMaleFR",
+      "case": "mesures et tempos 60->120->90",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceFemaleFR",
+      "case": "Tous les nombres 1-20",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceFemaleFR",
+      "case": "60 BPM 4/4",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceFemaleFR",
+      "case": "120 BPM 4/4",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceFemaleFR",
+      "case": "60 BPM 3/4",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceFemaleFR",
+      "case": "120 BPM 5/4",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceFemaleFR",
+      "case": "subdivisions 2/3/4/5/6/7/8",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    },
+    {
+      "bank": "voiceFemaleFR",
+      "case": "mesures et tempos 60->120->90",
+      "beats": 20,
+      "maxAttackErrorMs": 0,
+      "maxIntervalErrorMs": 0,
+      "lateStarts": 0
+    }
+  ]
+}

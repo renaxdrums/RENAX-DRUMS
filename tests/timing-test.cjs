@@ -2,8 +2,10 @@ const {start,save}=require('./audio-harness.cjs');
 const fs=require('fs');
 (async()=>{
  const runtime=await start();const browser=runtime.browser;
- const page=await browser.newPage();await page.goto(runtime.url);await page.waitForFunction(()=>allVoiceAudioReady);
- const result=await page.evaluate(async()=>{
+ const page=await browser.newPage();
+ if(process.env.BASELINE_INDEX)await page.route('**/*',r=>new URL(r.request().url()).pathname==='/'?r.fulfill({contentType:'text/html',body:fs.readFileSync(process.env.BASELINE_INDEX,'utf8')}):r.continue());
+ await page.goto(runtime.url);await page.waitForFunction(()=>allVoiceAudioReady);
+ const result=await page.evaluate(async anchors=>{
   const realCtx=audioCtx, originalClick=playClick, originalVisual=scheduleVisualUpdate;
   const nativeTimeout=window.setTimeout;window.setTimeout=()=>0;scheduleVisualUpdate=()=>{};
   const results=[];let maxAttackError=0,maxIntervalError=0,lateStarts=0;
@@ -26,13 +28,23 @@ const fs=require('fs');
      if(events[i].beatNumber!==expected[i].number)throw Error('Wrong count '+test.name);
      const gridError=Math.abs(events[i].time-expected[i].time);if(gridError>1e-9)throw Error('Grid changed');
      const x=rendered.getChannelData(i),start=starts[i];if(start.offset>0)lateStarts++;
-     // Independent 5 ms RMS/1 ms hop detector, applied to each rendered channel.
-     const lo=Math.round(start.when*48000),hi=Math.min(x.length,lo+Math.round(1.5*48000));let rms=[],peak=0,sum=0;
-     for(let j=lo;j<Math.min(lo+240,hi);j++)sum+=x[j]*x[j];
-     for(let j=lo;j+240<=hi;j++){if((j-lo)%48===0){let v=Math.sqrt(Math.max(0,sum)/240);rms.push(v);peak=Math.max(peak,v);}sum+=x[j+240]*x[j+240]-x[j]*x[j];}
-     const threshold=Math.max(.01*.72,peak*.20);let at=0;
-     for(let j=0;j+10<=rms.length;j++){if(rms.slice(j,j+10).every(v=>v>=threshold)){at=j;break;}}
-     const attack=lo/48000+at/1000;const err=(attack-expected[i].time)*1000;errors.push(err);maxAttackError=Math.max(maxAttackError,Math.abs(err));
+     // Locate the actual rendered vowel landmark by matching an independently
+     // annotated region of the original word, not by repeating the scheduling math.
+     const gender={voiceMale:'male',voiceFemale:'female',voiceMaleFR:'maleFR',voiceFemaleFR:'femaleFR'}[bank];
+     const annotation=anchors.find(a=>a.gender===gender&&a.number===expected[i].number);
+     const raw=VOICE_METRONOME_BUFFERS[gender][String(expected[i].number)].getChannelData(0);
+     const ref=Math.round(annotation.anchor_ms*48),center=Math.round(expected[i].time*48000);
+     const volume=.72*(i===0||expected[i].number===1?1.08:1);
+     let bestError=Infinity,bestDelta=0,energy=0;
+     for(let j=-240;j<240;j+=4)energy+=(raw[ref+j]||0)**2;
+     if(energy<1e-7)throw Error('Missing vowel nucleus in '+bank+' '+expected[i].number);
+     for(let ms=-250;ms<=250;ms++){
+      let error=0;
+      for(let j=-240;j<240;j+=4){const target=(raw[ref+j]||0)*volume,actual=x[center+ms*48+j]||0;error+=(actual-target)**2;}
+      if(error<bestError){bestError=error;bestDelta=ms;}
+     }
+     if(bestError/energy>1e-3)throw Error('Rendered word/landmark differs from reference');
+     const err=bestDelta;errors.push(err);maxAttackError=Math.max(maxAttackError,Math.abs(err));
      if(i)maxIntervalError=Math.max(maxIntervalError,Math.abs(err-errors[i-1]));
     }
     results.push({bank,case:test.name,beats:20,maxAttackErrorMs:Math.max(...errors.map(Math.abs)),maxIntervalErrorMs:Math.max(...errors.slice(1).map((e,i)=>Math.abs(e-errors[i]))),lateStarts:starts.filter(s=>s.offset>0).length});
@@ -40,8 +52,8 @@ const fs=require('fs');
   }
   audioCtx=realCtx;playClick=originalClick;scheduleVisualUpdate=originalVisual;window.setTimeout=nativeTimeout;
   if(maxAttackError>1.1||maxIntervalError>1.1||lateStarts)throw Error(JSON.stringify({maxAttackError,maxIntervalError,lateStarts}));
-  return {sampleRate:48000,criterion:'First sustained 10 ms at 20% peak 5 ms RMS, 1 ms hop',maxAttackErrorMs:maxAttackError,maxIntervalErrorMs:maxIntervalError,lateStarts,results};
- });
+  return {sampleRate:48000,criterion:'Waveform-matched independently annotated vowel-nucleus landmarks, 1 ms search step',maxAttackErrorMs:maxAttackError,maxIntervalErrorMs:maxIntervalError,lateStarts,results};
+ },JSON.parse(fs.readFileSync(require('path').join(__dirname,'voice-anchors.json'),'utf8')));
  save('timing-results.json',result);console.log(JSON.stringify(result,null,2));await browser.close();runtime.server?.close();
 })().catch(e=>{console.error(e);process.exit(1)});
 

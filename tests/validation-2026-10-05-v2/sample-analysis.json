@@ -1,0 +1,722 @@
+[
+  {
+    "gender": "male",
+    "number": 1,
+    "annotated_ms": 116,
+    "measured_ms": 116,
+    "error_ms": 0,
+    "sha256": "0bebc81acc4269391e13d5a1ced98ec2dc9e7bde1ec10f7c6e00be1708e1ae62",
+    "duration_ms": 613.7916666666666
+  },
+  {
+    "gender": "male",
+    "number": 2,
+    "annotated_ms": 175,
+    "measured_ms": 175,
+    "error_ms": 0,
+    "sha256": "668005178adb76ca1f6745a89ad5b8ddf8126752b82bd1cde15141aeb73da79f",
+    "duration_ms": 534.9375
+  },
+  {
+    "gender": "male",
+    "number": 3,
+    "annotated_ms": 262,
+    "measured_ms": 262,
+    "error_ms": 0,
+    "sha256": "639eb5bc547c7f568291d10276af4dc8eea98b16d338ee98a4dd7a298cd7ce8c",
+    "duration_ms": 646.625
+  },
+  {
+    "gender": "male",
+    "number": 4,
+    "annotated_ms": 143,
+    "measured_ms": 143,
+    "error_ms": 0,
+    "sha256": "a135bb9d43bdf472471bb017835e83190e774a2042d55e7ce27b7fda9a9827b8",
+    "duration_ms": 516.9791666666666
+  },
+  {
+    "gender": "male",
+    "number": 5,
+    "annotated_ms": 195,
+    "measured_ms": 195,
+    "error_ms": 0,
+    "sha256": "e2a9d5d1e982e2a349a8c67c290e01ef2659752755b80b7761210b2a23705df1",
+    "duration_ms": 720.2916666666666
+  },
+  {
+    "gender": "male",
+    "number": 6,
+    "annotated_ms": 256,
+    "measured_ms": 256,
+    "error_ms": 0,
+    "sha256": "3266fc0bbd481e04ba9e14cf358c0d94585fddc428123c1cee6f2b054558daa0",
+    "duration_ms": 748.6875
+  },
+  {
+    "gender": "male",
+    "number": 7,
+    "annotated_ms": 216,
+    "measured_ms": 216,
+    "error_ms": 0,
+    "sha256": "2786927725420a8711e954398fd2b05640c3566d260cb9c5288cce58d3dcf746",
+    "duration_ms": 607.7916666666666
+  },
+  {
+    "gender": "male",
+    "number": 8,
+    "annotated_ms": 97,
+    "measured_ms": 97,
+    "error_ms": 0,
+    "sha256": "b7b7dd42e3028a0913a80f1cd725835e441f8c9ae8a5ec56db608d709872b111",
+    "duration_ms": 554.1875
+  },
+  {
+    "gender": "male",
+    "number": 9,
+    "annotated_ms": 120,
+    "measured_ms": 120,
+    "error_ms": 0,
+    "sha256": "cc9db297338c1811d814bfdcaf52d6f697677503cacb2f3dd8113577ff8423fd",
+    "duration_ms": 676.4166666666666
+  },
+  {
+    "gender": "male",
+    "number": 10,
+    "annotated_ms": 176,
+    "measured_ms": 176,
+    "error_ms": 0,
+    "sha256": "5c59fac82e10c42ee04694877585d460c180dccc8f38c2ca817f28723373cf24",
+    "duration_ms": 547.5833333333334
+  },
+  {
+    "gender": "male",
+    "number": 11,
+    "annotated_ms": 211,
+    "measured_ms": 211,
+    "error_ms": 0,
+    "sha256": "1afbc36196dda0c8f7c8d3c3ed159c96241187ac7eb35cce30f3f8b22589be3c",
+    "duration_ms": 640.4166666666666
+  },
+  {
+    "gender": "male",
+    "number": 12,
+    "annotated_ms": 150,
+    "measured_ms": 150,
+    "error_ms": 0,
+    "sha256": "fcef6335cc80581bf05d39c188f2f1b90720d2aa2c6078608c78143d741a3770",
+    "duration_ms": 659.9375
+  },
+  {
+    "gender": "male",
+    "number": 13,
+    "annotated_ms": 128,
+    "measured_ms": 128,
+    "error_ms": 0,
+    "sha256": "b572fa9d2d7fe5e98c977a117210a373e2d366cccb20f7a158d4753d8428323e",
+    "duration_ms": 765.3333333333334
+  },
+  {
+    "gender": "male",
+    "number": 14,
+    "annotated_ms": 125,
+    "measured_ms": 125,
+    "error_ms": 0,
+    "sha256": "a5d5279b070fa0fb86869d7e6e6e1645c072856bafd8bc5fbd5f3707351f3d48",
+    "duration_ms": 800.1041666666666
+  },
+  {
+    "gender": "male",
+    "number": 15,
+    "annotated_ms": 105,
+    "measured_ms": 105,
+    "error_ms": 0,
+    "sha256": "158d926eb716be6ccc526b261a3393a23ae71bda5a84f435246f710f4f1c9eeb",
+    "duration_ms": 687.2916666666666
+  },
+  {
+    "gender": "male",
+    "number": 16,
+    "annotated_ms": 189,
+    "measured_ms": 189,
+    "error_ms": 0,
+    "sha256": "927e179beaaf84675fc43c468a1ccd8f9e1fb848bf0f8783887c0448cebce9c6",
+    "duration_ms": 870.4375
+  },
+  {
+    "gender": "male",
+    "number": 17,
+    "annotated_ms": 187,
+    "measured_ms": 187,
+    "error_ms": 0,
+    "sha256": "babe2333b31e935d4022188325f7c98abaa6331ad87e048fa12b8f1fd9faaaed",
+    "duration_ms": 868.0625
+  },
+  {
+    "gender": "male",
+    "number": 18,
+    "annotated_ms": 91,
+    "measured_ms": 91,
+    "error_ms": 0,
+    "sha256": "55e669a85f2ea7da67e8f456e7995ebc4910c8ac7375d8f6e845c3ad747a151c",
+    "duration_ms": 755.6041666666666
+  },
+  {
+    "gender": "male",
+    "number": 19,
+    "annotated_ms": 129,
+    "measured_ms": 129,
+    "error_ms": 0,
+    "sha256": "e5a9977da3bc4262e0e0ecc96697960cb86e8837f284ee956821d8036c8dbbe1",
+    "duration_ms": 874.5625
+  },
+  {
+    "gender": "male",
+    "number": 20,
+    "annotated_ms": 140,
+    "measured_ms": 140,
+    "error_ms": 0,
+    "sha256": "59cd5b01ff410cbdbf765adc68644d586f8ce307cf9a3239c23ef63dd7b45324",
+    "duration_ms": 594.1041666666666
+  },
+  {
+    "gender": "female",
+    "number": 1,
+    "annotated_ms": 107,
+    "measured_ms": 107,
+    "error_ms": 0,
+    "sha256": "8b7b3bea7352be920a80cb287fcaf2c82987188fa51c7291868f371a94134658",
+    "duration_ms": 447.1875
+  },
+  {
+    "gender": "female",
+    "number": 2,
+    "annotated_ms": 95,
+    "measured_ms": 95,
+    "error_ms": 0,
+    "sha256": "ad5084062427fb38e7f9d6a27e3da5ee3e2525803dd3e501cce9eb48f7849a8a",
+    "duration_ms": 380.5833333333333
+  },
+  {
+    "gender": "female",
+    "number": 3,
+    "annotated_ms": 76,
+    "measured_ms": 76,
+    "error_ms": 0,
+    "sha256": "50aa9d81f295d6015828f6ad70db7a429aa8bc05abd24a37d25b2b050b354ce3",
+    "duration_ms": 397.375
+  },
+  {
+    "gender": "female",
+    "number": 4,
+    "annotated_ms": 118,
+    "measured_ms": 118,
+    "error_ms": 0,
+    "sha256": "34757e45ae316c500c0ed834041ed6b8a9a3d7df3edfd38d04d24c71465a1f6b",
+    "duration_ms": 439.125
+  },
+  {
+    "gender": "female",
+    "number": 5,
+    "annotated_ms": 105,
+    "measured_ms": 105,
+    "error_ms": 0,
+    "sha256": "475441b8aba1ad55f4dacae8b88cbb2260aa0330e60a18ef5fbb9d7def187e14",
+    "duration_ms": 512.6041666666666
+  },
+  {
+    "gender": "female",
+    "number": 6,
+    "annotated_ms": 175,
+    "measured_ms": 175,
+    "error_ms": 0,
+    "sha256": "e0161881ed810f149f0c630a7d9e2163ded8a4f78bc823ea3d1ea4c425082ab3",
+    "duration_ms": 537.2291666666666
+  },
+  {
+    "gender": "female",
+    "number": 7,
+    "annotated_ms": 170,
+    "measured_ms": 170,
+    "error_ms": 0,
+    "sha256": "1551708ce0f0e1269aee2006ac2a073f084705c46d8a0bb3828099efd75b855a",
+    "duration_ms": 539.7083333333334
+  },
+  {
+    "gender": "female",
+    "number": 8,
+    "annotated_ms": 93,
+    "measured_ms": 93,
+    "error_ms": 0,
+    "sha256": "e7a22f31fa007438bd0e283c8f3787b12c874023490b7173c66912cdcf15debc",
+    "duration_ms": 345.7916666666667
+  },
+  {
+    "gender": "female",
+    "number": 9,
+    "annotated_ms": 78,
+    "measured_ms": 78,
+    "error_ms": 0,
+    "sha256": "6a3c9fb5c0c4e37d77b5549fb5a31eec92fce747356e0b1c8f1b21882720ef2a",
+    "duration_ms": 426.2708333333333
+  },
+  {
+    "gender": "female",
+    "number": 10,
+    "annotated_ms": 71,
+    "measured_ms": 71,
+    "error_ms": 0,
+    "sha256": "9130b688477eb10439bcf9d926f9a01ff3189026cc2f8b51a2561d7b14c7947a",
+    "duration_ms": 361.25
+  },
+  {
+    "gender": "female",
+    "number": 11,
+    "annotated_ms": 25,
+    "measured_ms": 25,
+    "error_ms": 0,
+    "sha256": "408ace139ccf5c48432ba10a3219250c7898d169875c6d5393e2b42581d4c55c",
+    "duration_ms": 509.9375
+  },
+  {
+    "gender": "female",
+    "number": 12,
+    "annotated_ms": 98,
+    "measured_ms": 98,
+    "error_ms": 0,
+    "sha256": "2f8a675007d0e4806c48480e31060c052db12f01c87b8918116ab5d9f86533b3",
+    "duration_ms": 455.9791666666667
+  },
+  {
+    "gender": "female",
+    "number": 13,
+    "annotated_ms": 22,
+    "measured_ms": 22,
+    "error_ms": 0,
+    "sha256": "6f96a9e2e0ef8168c2ae55f7afaa1a8ae5bdedbfb6a796776e762c518d7955f4",
+    "duration_ms": 550.5625
+  },
+  {
+    "gender": "female",
+    "number": 14,
+    "annotated_ms": 116,
+    "measured_ms": 116,
+    "error_ms": 0,
+    "sha256": "ba5c87f896c72ca87d65e9ad732883fba20577c30a57cc67d693e1b05cbb88b4",
+    "duration_ms": 673.0208333333334
+  },
+  {
+    "gender": "female",
+    "number": 15,
+    "annotated_ms": 112,
+    "measured_ms": 112,
+    "error_ms": 0,
+    "sha256": "40ee0ce29833654f3b61c9a933dc0f4a600a9f87046753c41343aff8aca86c00",
+    "duration_ms": 623.2708333333334
+  },
+  {
+    "gender": "female",
+    "number": 16,
+    "annotated_ms": 131,
+    "measured_ms": 131,
+    "error_ms": 0,
+    "sha256": "aa549aed147638ea694f13fd89413e67cb5247dafc5c68f7c73fa484835a00df",
+    "duration_ms": 661.9166666666666
+  },
+  {
+    "gender": "female",
+    "number": 17,
+    "annotated_ms": 138,
+    "measured_ms": 138,
+    "error_ms": 0,
+    "sha256": "cb0a3efb1fa0edfdc68e7776eede44f6bd521124d995de7c86a41b4573b51ae2",
+    "duration_ms": 743.9166666666666
+  },
+  {
+    "gender": "female",
+    "number": 18,
+    "annotated_ms": 19,
+    "measured_ms": 19,
+    "error_ms": 0,
+    "sha256": "8d282f2c29414f700767cd0f2a19f4e603802a5828bf50a8249cd9513160cfc0",
+    "duration_ms": 585.125
+  },
+  {
+    "gender": "female",
+    "number": 19,
+    "annotated_ms": 60,
+    "measured_ms": 60,
+    "error_ms": 0,
+    "sha256": "730f68bb31cb1f93abc470404508d188cd60b76de227ccbae7db094e00d71d26",
+    "duration_ms": 588.5
+  },
+  {
+    "gender": "female",
+    "number": 20,
+    "annotated_ms": 74,
+    "measured_ms": 74,
+    "error_ms": 0,
+    "sha256": "c17b045b2a3f0b5762a74f830e68e62e23b3bab5c0e42505b8cf08f3a67a5b76",
+    "duration_ms": 453.5416666666667
+  },
+  {
+    "gender": "maleFR",
+    "number": 1,
+    "annotated_ms": 101,
+    "measured_ms": 101,
+    "error_ms": 0,
+    "sha256": "d309f33c1d81a0cba3da98d6ace1820368d2636d2bd7a8c4155fee9bd2b81823",
+    "duration_ms": 341.8333333333333
+  },
+  {
+    "gender": "maleFR",
+    "number": 2,
+    "annotated_ms": 260,
+    "measured_ms": 260,
+    "error_ms": 0,
+    "sha256": "df31cec4ce52de21d8b2f50c78c89e2c81d1f36ac458a753ee9bc8ce374e6426",
+    "duration_ms": 615.1458333333334
+  },
+  {
+    "gender": "maleFR",
+    "number": 3,
+    "annotated_ms": 204,
+    "measured_ms": 204,
+    "error_ms": 0,
+    "sha256": "ae28bfa5cf7298f788d742b03cfaf86d980339b3bf6aeec53a3adc7466ca86ab",
+    "duration_ms": 500.3125
+  },
+  {
+    "gender": "maleFR",
+    "number": 4,
+    "annotated_ms": 125,
+    "measured_ms": 125,
+    "error_ms": 0,
+    "sha256": "5c275b18cb3f1142efcada5b75b85d13526921713a03a461c247135da8d707f5",
+    "duration_ms": 593.6875
+  },
+  {
+    "gender": "maleFR",
+    "number": 5,
+    "annotated_ms": 248,
+    "measured_ms": 248,
+    "error_ms": 0,
+    "sha256": "b29f2c420cb653679db54aadc3f9ca10f16a1a7b460f06020f5da8e738305434",
+    "duration_ms": 773.4583333333334
+  },
+  {
+    "gender": "maleFR",
+    "number": 6,
+    "annotated_ms": 280,
+    "measured_ms": 280,
+    "error_ms": 0,
+    "sha256": "56474c90bf157f1c89fc750466af1021e579e77957ab5679d1ab540f5676f5b0",
+    "duration_ms": 860.0416666666666
+  },
+  {
+    "gender": "maleFR",
+    "number": 7,
+    "annotated_ms": 336,
+    "measured_ms": 336,
+    "error_ms": 0,
+    "sha256": "5c38f0a0639e7924b802880f027e2d2c6c6f2608d8fa7ff39f312b226d139e54",
+    "duration_ms": 934.7916666666666
+  },
+  {
+    "gender": "maleFR",
+    "number": 8,
+    "annotated_ms": 87,
+    "measured_ms": 87,
+    "error_ms": 0,
+    "sha256": "2fc1fe77ff788d4fc9f06f9f91a97d96fe324094864a0949efe901c25ca61614",
+    "duration_ms": 735.6666666666666
+  },
+  {
+    "gender": "maleFR",
+    "number": 9,
+    "annotated_ms": 271,
+    "measured_ms": 271,
+    "error_ms": 0,
+    "sha256": "ffacd94f35f6cfe77d57a15ccc52fa8e0d544c04822e86d294df1cd3d5419752",
+    "duration_ms": 757.5208333333334
+  },
+  {
+    "gender": "maleFR",
+    "number": 10,
+    "annotated_ms": 277,
+    "measured_ms": 277,
+    "error_ms": 0,
+    "sha256": "72eb27477a73ea6c177f667fe5aff957fe10f4da34647161a3319eed1da668f5",
+    "duration_ms": 678.1458333333334
+  },
+  {
+    "gender": "maleFR",
+    "number": 11,
+    "annotated_ms": 68,
+    "measured_ms": 68,
+    "error_ms": 0,
+    "sha256": "ec02cad0dc6e37aa6b10fc7b445c6160cdf4988a05ef314ecfe45b03aaa2336e",
+    "duration_ms": 671.2708333333334
+  },
+  {
+    "gender": "maleFR",
+    "number": 12,
+    "annotated_ms": 228,
+    "measured_ms": 228,
+    "error_ms": 0,
+    "sha256": "c6bfe6d2e56637e52c4b5ed037739dee15d2d98b8552d3aae32ae87d42e109fd",
+    "duration_ms": 697.1666666666666
+  },
+  {
+    "gender": "maleFR",
+    "number": 13,
+    "annotated_ms": 399,
+    "measured_ms": 399,
+    "error_ms": 0,
+    "sha256": "8cb0bb4e6dc84448d778c79e53da3bc910ad298f7c3f0d48ca334badf386ef00",
+    "duration_ms": 826.0
+  },
+  {
+    "gender": "maleFR",
+    "number": 14,
+    "annotated_ms": 102,
+    "measured_ms": 102,
+    "error_ms": 0,
+    "sha256": "f2ea97a2eb1331cc75da3907f1066eab0f5e65043e3b0ee28a62549ce1f72571",
+    "duration_ms": 887.7708333333334
+  },
+  {
+    "gender": "maleFR",
+    "number": 15,
+    "annotated_ms": 97,
+    "measured_ms": 97,
+    "error_ms": 0,
+    "sha256": "05ce30d2f6cf05d0392155e99a3aa2304d59bc8586b0406a10e93a00c1963874",
+    "duration_ms": 652.7083333333334
+  },
+  {
+    "gender": "maleFR",
+    "number": 16,
+    "annotated_ms": 336,
+    "measured_ms": 336,
+    "error_ms": 0,
+    "sha256": "9d71f4025e48402a659b5f51b2d87367d77238da80b2eebe67ff99dc1a83ce46",
+    "duration_ms": 795.4166666666666
+  },
+  {
+    "gender": "maleFR",
+    "number": 17,
+    "annotated_ms": 253,
+    "measured_ms": 253,
+    "error_ms": 0,
+    "sha256": "0aa4316a867166465200c374f714324618da9eb8fefe3703513bb3d589060e65",
+    "duration_ms": 929.1458333333334
+  },
+  {
+    "gender": "maleFR",
+    "number": 18,
+    "annotated_ms": 204,
+    "measured_ms": 204,
+    "error_ms": 0,
+    "sha256": "cd3d57c2ef6b383739794e3d32148231280bb8cbf372edce2c55fdf16fa5d78b",
+    "duration_ms": 888.875
+  },
+  {
+    "gender": "maleFR",
+    "number": 19,
+    "annotated_ms": 294,
+    "measured_ms": 294,
+    "error_ms": 0,
+    "sha256": "e412594332dce258f9bd57ce08f4d1e5c2ba57b456673f490d71ac19b0f214d1",
+    "duration_ms": 943.5
+  },
+  {
+    "gender": "maleFR",
+    "number": 20,
+    "annotated_ms": 361,
+    "measured_ms": 361,
+    "error_ms": 0,
+    "sha256": "464b7b7b6e737c7c61f38b0683193450a027ae991d39fa2a638e81838d6e3a3d",
+    "duration_ms": 649.0208333333334
+  },
+  {
+    "gender": "femaleFR",
+    "number": 1,
+    "annotated_ms": 9,
+    "measured_ms": 9,
+    "error_ms": 0,
+    "sha256": "77eed27f6570a03a801804ff91142fd8cba8575c8538d737fc5bd2c2b724d33c",
+    "duration_ms": 363.5208333333333
+  },
+  {
+    "gender": "femaleFR",
+    "number": 2,
+    "annotated_ms": 159,
+    "measured_ms": 159,
+    "error_ms": 0,
+    "sha256": "eed38e4cad257a81c464a551408370f5003b8546d18d02370579bc7c535f6594",
+    "duration_ms": 432.0416666666667
+  },
+  {
+    "gender": "femaleFR",
+    "number": 3,
+    "annotated_ms": 130,
+    "measured_ms": 130,
+    "error_ms": 0,
+    "sha256": "afa34a803d92549a443994b025a17af1e8fc6c53df2f1fd8d7f64daeb3c0f3f6",
+    "duration_ms": 417.5416666666667
+  },
+  {
+    "gender": "femaleFR",
+    "number": 4,
+    "annotated_ms": 32,
+    "measured_ms": 32,
+    "error_ms": 0,
+    "sha256": "7e295523c669e7c2b52ac294ed51a5fcbf7c56e11facaea767e56f25c5cb7e21",
+    "duration_ms": 524.9583333333334
+  },
+  {
+    "gender": "femaleFR",
+    "number": 5,
+    "annotated_ms": 167,
+    "measured_ms": 167,
+    "error_ms": 0,
+    "sha256": "5c8a41ba7554f885796975c3c978003c67e409e51eac32f8e0e2277f133c967e",
+    "duration_ms": 543.4791666666666
+  },
+  {
+    "gender": "femaleFR",
+    "number": 6,
+    "annotated_ms": 191,
+    "measured_ms": 191,
+    "error_ms": 0,
+    "sha256": "0268f554f6305e726227b4d9e20a4bb629be5a8ef194e7af800e7b6d28b91b32",
+    "duration_ms": 579.75
+  },
+  {
+    "gender": "femaleFR",
+    "number": 7,
+    "annotated_ms": 199,
+    "measured_ms": 199,
+    "error_ms": 0,
+    "sha256": "8cb63b4394432d86bcbe34bb090f9eed20f7ce4fb877ac6f7d89b88303700927",
+    "duration_ms": 575.6875
+  },
+  {
+    "gender": "femaleFR",
+    "number": 8,
+    "annotated_ms": 12,
+    "measured_ms": 12,
+    "error_ms": 0,
+    "sha256": "a53129206ceac3db3ef4d100e293a9a2ab54f93324745972b8f04bbf4bc784f7",
+    "duration_ms": 481.7708333333333
+  },
+  {
+    "gender": "femaleFR",
+    "number": 9,
+    "annotated_ms": 128,
+    "measured_ms": 128,
+    "error_ms": 0,
+    "sha256": "a008e43421a05b337c182ce4842420bfd808ef0ce684d03851b9ea3afd906335",
+    "duration_ms": 545.0416666666666
+  },
+  {
+    "gender": "femaleFR",
+    "number": 10,
+    "annotated_ms": 230,
+    "measured_ms": 230,
+    "error_ms": 0,
+    "sha256": "3572fb1e71d2ab7f8553a336da7e720d0d4ac85339cd91dc71d7b1a5e9fb8619",
+    "duration_ms": 569.875
+  },
+  {
+    "gender": "femaleFR",
+    "number": 11,
+    "annotated_ms": 14,
+    "measured_ms": 14,
+    "error_ms": 0,
+    "sha256": "3f5e73aa09e96990050428838698093393a15abb0106d1447456b48ae1e82ecd",
+    "duration_ms": 582.4166666666666
+  },
+  {
+    "gender": "femaleFR",
+    "number": 12,
+    "annotated_ms": 120,
+    "measured_ms": 120,
+    "error_ms": 0,
+    "sha256": "be279839f8eb8358f2ddc9322e75165133ca794cbbd449b1c10d2e78de13d261",
+    "duration_ms": 665.625
+  },
+  {
+    "gender": "femaleFR",
+    "number": 13,
+    "annotated_ms": 114,
+    "measured_ms": 114,
+    "error_ms": 0,
+    "sha256": "a6201dfe68242633d43fc6ce0c000d6ffc3a9fbffd0acd83948fe037a25022c5",
+    "duration_ms": 564.4791666666666
+  },
+  {
+    "gender": "femaleFR",
+    "number": 14,
+    "annotated_ms": 37,
+    "measured_ms": 37,
+    "error_ms": 0,
+    "sha256": "5871474afb11f6d6a337368740a694a2ff8d2c7a5037b22d61532f98d6266e7c",
+    "duration_ms": 729.5625
+  },
+  {
+    "gender": "femaleFR",
+    "number": 15,
+    "annotated_ms": 31,
+    "measured_ms": 31,
+    "error_ms": 0,
+    "sha256": "fd515e290982b32cd76d028a78451b15083c9176c0cf4c26c1c751f0c9039270",
+    "duration_ms": 537.3958333333334
+  },
+  {
+    "gender": "femaleFR",
+    "number": 16,
+    "annotated_ms": 137,
+    "measured_ms": 137,
+    "error_ms": 0,
+    "sha256": "8b4a6e8b04a460cf921576d41886ea2d8b6cb9b8cde7414f850f13e1d40d8382",
+    "duration_ms": 611.25
+  },
+  {
+    "gender": "femaleFR",
+    "number": 17,
+    "annotated_ms": 101,
+    "measured_ms": 101,
+    "error_ms": 0,
+    "sha256": "bd84076500ee1e1d7f9c266f54f86e9b304132c4627429b9aa022490a611a953",
+    "duration_ms": 696.2916666666666
+  },
+  {
+    "gender": "femaleFR",
+    "number": 18,
+    "annotated_ms": 119,
+    "measured_ms": 119,
+    "error_ms": 0,
+    "sha256": "25795e20138df10e5432f33e96bc7e9b6a853f16e8073773bf61c45b9fa76ca2",
+    "duration_ms": 729.125
+  },
+  {
+    "gender": "femaleFR",
+    "number": 19,
+    "annotated_ms": 105,
+    "measured_ms": 105,
+    "error_ms": 0,
+    "sha256": "f6ed84672c400624585f9af637bdf0c09a3af75044ab7eb89d7b0434d1852a1b",
+    "duration_ms": 728.875
+  },
+  {
+    "gender": "femaleFR",
+    "number": 20,
+    "annotated_ms": 161,
+    "measured_ms": 161,
+    "error_ms": 0,
+    "sha256": "9b44c1e908a94381e1095573adcb0a512af62e10bc9f3350dea702291db269d0",
+    "duration_ms": 409.75
+  }
+]

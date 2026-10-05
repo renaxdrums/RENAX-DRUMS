@@ -1,0 +1,28 @@
+[
+  {
+    "bpm": 60,
+    "beats": 6,
+    "intervalsSeconds": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "maxErrorMs": 0,
+    "lateStarts": 0
+  },
+  {
+    "bpm": 120,
+    "beats": 6,
+    "intervalsSeconds": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "maxErrorMs": 0,
+    "lateStarts": 0
+  }
+]

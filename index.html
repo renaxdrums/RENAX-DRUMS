@@ -1128,16 +1128,17 @@
       femaleFR: 'assets/voices/voix-femme-fr'
     };
 
-    // Per-sample attack anchors measured from the shipped 48 kHz PCM WAVs.
-    // First sustained 10 ms above 20% of peak 5 ms RMS (floor 0.01), 1 ms resolution.
-    // Preserve the consonant pre-roll; only the source start moves, never the beat grid.
+    // Reviewed vowel-nucleus anchors in the complete original human recordings.
+    // See tests/voice-anchors.json; consonant pre-roll and internal pauses are retained.
+    // Natural pitch is preserved and the Web Audio beat grid never moves.
     const VOICE_ATTACK_SECONDS = {
-      male: [0, 0.031, 0.02, 0.131, 0.036, 0.074, 0.174, 0.137, 0.0, 0.022, 0.129, 0.037, 0.096, 0.039, 0.041, 0.022, 0.107, 0.104, 0.0, 0.026, 0.087],
-      female: [0, 0.01, 0.001, 0.0, 0.0, 0.0, 0.0, 0.007, 0.0, 0.0, 0.0, 0.0, 0.001, 0.005, 0.0, 0.0, 0.021, 0.003, 0.0, 0.0, 0.068],
-      maleFR: [0, 0.009, 0.013, 0.022, 0.033, 0.155, 0.065, 0.0, 0.01, 0.032, 0.014, 0.001, 0.012, 0.129, 0.027, 0.027, 0.249, 0.012, 0.015, 0.014, 0.015],
-      femaleFR: [0, 0.0, 0.028, 0.0, 0.017, 0.014, 0.041, 0.043, 0.0, 0.0, 0.005, 0.0, 0.013, 0.015, 0.023, 0.023, 0.0, 0.0, 0.001, 0.0, 0.0],
+      male: [0, 0.116, 0.175, 0.262, 0.143, 0.195, 0.256, 0.216, 0.097, 0.12, 0.176, 0.211, 0.15, 0.128, 0.125, 0.105, 0.189, 0.187, 0.091, 0.129, 0.14],
+      female: [0, 0.107, 0.095, 0.076, 0.118, 0.105, 0.175, 0.17, 0.093, 0.078, 0.071, 0.025, 0.098, 0.022, 0.116, 0.112, 0.131, 0.138, 0.019, 0.06, 0.074],
+      maleFR: [0, 0.101, 0.26, 0.204, 0.125, 0.248, 0.28, 0.336, 0.087, 0.271, 0.277, 0.068, 0.228, 0.399, 0.102, 0.097, 0.336, 0.253, 0.204, 0.294, 0.361],
+      femaleFR: [0, 0.009, 0.159, 0.13, 0.032, 0.167, 0.191, 0.199, 0.012, 0.128, 0.23, 0.014, 0.12, 0.114, 0.037, 0.031, 0.137, 0.101, 0.119, 0.105, 0.161],
     };
     const VOICE_MAX_ATTACK_SECONDS = Math.max(...Object.values(VOICE_ATTACK_SECONDS).flat());
+    const VOICE_AUDIO_REVISION = '20261005-complete-v2';
     const scheduledVoiceSources = new Set();
 
     const VOICE_METRONOME_BUFFERS = {
@@ -1176,7 +1177,7 @@
       const entries = [];
       for (const [gender, folder] of Object.entries(VOICE_METRONOME_FILES)) {
         for (let n = 1; n <= 20; n++) {
-          entries.push([gender, String(n), `${folder}/${String(n).padStart(2, '0')}.wav`]);
+          entries.push([gender, String(n), `${folder}/${String(n).padStart(2, '0')}.wav?v=${VOICE_AUDIO_REVISION}`]);
         }
       }
 
