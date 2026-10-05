@@ -82,51 +82,48 @@ jobs:
                   get(f"{base}/{n:02d}.ogg", raw)
                   process(raw, ROOT / bank / f"{n:02d}.wav")
 
-          def commons_file_url(title):
-              # Resolve the current binary URL through the Commons API instead of
-              # guessing the upload path. This is robust to redirects/renames.
-              api = "https://commons.wikimedia.org/w/api.php"
-              params = urllib.parse.urlencode({
-                  "action":"query","format":"json","prop":"imageinfo",
-                  "iiprop":"url","titles":title
-              })
-              req = urllib.request.Request(
-                  api + "?" + params,
-                  headers={"User-Agent":"RENAX-DRUMS/2.6 (human metronome audio; GitHub Actions)"}
-              )
-              with urllib.request.urlopen(req, timeout=90) as resp:
-                  data = __import__("json").load(resp)
-              for page in data.get("query", {}).get("pages", {}).values():
-                  info = page.get("imageinfo") or []
-                  if info and info[0].get("url"):
-                      return info[0]["url"]
-              return None
+          def normalize_word(s):
+              import unicodedata, re
+              s = unicodedata.normalize("NFKC", s).strip().lower()
+              s = s.replace("‐","-").replace("‑","-").replace("–","-").replace("—","-")
+              s = re.sub(r"\\s+", " ", s)
+              return s
 
-          def wikimedia_shtooka_fr_male(bank, words):
-              # Shtooka / Wikimedia Commons, real male Paris-region speaker,
-              # CC BY 2.0 France. Resolve filenames via the API because several
-              # compound numbers use a Unicode hyphen in the canonical title.
-              rawdir = TMP / bank
-              rawdir.mkdir(parents=True, exist_ok=True)
-              hyphens = ["-", "‐", "‑", "–"]
+          def shtooka_fr_male_bank(bank, words):
+              # Full Shtooka fra-balm-voc archive, real Paris-region male speaker.
+              # Download the stable collection once and resolve words through index.tags.txt.
+              archive = TMP / "fra-balm-voc_ogg.tar.bz2"
+              url = "https://shtooka-downloads.yojik.eu/fra-balm-voc_ogg.tar.bz2"
+              get(url, archive)
+              unpack = TMP / "fra-balm-voc"
+              unpack.mkdir(parents=True, exist_ok=True)
+              with tarfile.open(archive, "r:bz2") as tf:
+                  tf.extractall(unpack)
+
+              index_files = list(unpack.rglob("index.tags.txt"))
+              if not index_files:
+                  raise RuntimeError("fra-balm-voc: index.tags.txt not found")
+              index_path = index_files[0]
+
+              mapping = {}
+              current = None
+              for rawline in index_path.read_text(encoding="utf-8", errors="replace").splitlines():
+                  line = rawline.strip()
+                  if line.startswith("[") and line.endswith("]"):
+                      current = line[1:-1]
+                  elif line.startswith("SWAC_TEXT=") and current:
+                      text_value = line.split("=",1)[1].strip()
+                      mapping.setdefault(normalize_word(text_value), current)
+
               for n, word in enumerate(words, 1):
-                  variants = [word]
-                  if "-" in word:
-                      variants += [word.replace("-", h) for h in hyphens if h != "-"]
-                  url = None
-                  used_title = None
-                  for variant in variants:
-                      title = f"File:Fr-{variant}.ogg"
-                      url = commons_file_url(title)
-                      if url:
-                          used_title = title
-                          break
-                  if not url:
-                      raise RuntimeError(f"Commons French male sample not found for {n}: {word}")
-                  print("COMMONS", n, word, used_title, "->", url, flush=True)
-                  raw = rawdir / f"{n:02d}.ogg"
-                  get(url, raw, polite=True)
-                  process(raw, ROOT / bank / f"{n:02d}.wav")
+                  key = normalize_word(word)
+                  filename = mapping.get(key)
+                  if not filename:
+                      raise RuntimeError(f"fra-balm-voc: missing French number {n}: {word}")
+                  src_candidates = list(unpack.rglob(filename))
+                  if not src_candidates:
+                      raise RuntimeError(f"fra-balm-voc: file not found for {word}: {filename}")
+                  process(src_candidates[0], ROOT / bank / f"{n:02d}.wav")
 
           def freeswitch_bank(bank, release_tag, archive_name, words):
               archive = TMP / archive_name
@@ -146,7 +143,7 @@ jobs:
 
           # Male voices: real human recordings from open audio projects.
           github_counting_bank("voice-men-en")
-          wikimedia_shtooka_fr_male("voix-homme-fr", FR)
+          shtooka_fr_male_bank("voix-homme-fr", FR)
 
           # Female voices: professionally recorded FreeSWITCH prompt packs, MPL.
           freeswitch_bank(
