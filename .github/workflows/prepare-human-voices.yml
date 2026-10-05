@@ -82,18 +82,50 @@ jobs:
                   get(f"{base}/{n:02d}.ogg", raw)
                   process(raw, ROOT / bank / f"{n:02d}.wav")
 
+          def commons_file_url(title):
+              # Resolve the current binary URL through the Commons API instead of
+              # guessing the upload path. This is robust to redirects/renames.
+              api = "https://commons.wikimedia.org/w/api.php"
+              params = urllib.parse.urlencode({
+                  "action":"query","format":"json","prop":"imageinfo",
+                  "iiprop":"url","titles":title
+              })
+              req = urllib.request.Request(
+                  api + "?" + params,
+                  headers={"User-Agent":"RENAX-DRUMS/2.6 (human metronome audio; GitHub Actions)"}
+              )
+              with urllib.request.urlopen(req, timeout=90) as resp:
+                  data = __import__("json").load(resp)
+              for page in data.get("query", {}).get("pages", {}).values():
+                  info = page.get("imageinfo") or []
+                  if info and info[0].get("url"):
+                      return info[0]["url"]
+              return None
+
           def wikimedia_shtooka_fr_male(bank, words):
-              # Shtooka French-number recordings: current Commons files are the
-              # male Paris-region speaker versions by Vion Nicolas (CC BY 2.0 FR).
+              # Shtooka / Wikimedia Commons, real male Paris-region speaker,
+              # CC BY 2.0 France. Resolve filenames via the API because several
+              # compound numbers use a Unicode hyphen in the canonical title.
               rawdir = TMP / bank
               rawdir.mkdir(parents=True, exist_ok=True)
+              hyphens = ["-", "‐", "‑", "–"]
               for n, word in enumerate(words, 1):
-                  filename = f"Fr-{word}.ogg"
-                  key = filename.replace(" ", "_")
-                  md5 = hashlib.md5(key.encode("utf-8")).hexdigest()
-                  url = "https://upload.wikimedia.org/wikipedia/commons/" + md5[0] + "/" + md5[:2] + "/" + urllib.parse.quote(key)
+                  variants = [word]
+                  if "-" in word:
+                      variants += [word.replace("-", h) for h in hyphens if h != "-"]
+                  url = None
+                  used_title = None
+                  for variant in variants:
+                      title = f"File:Fr-{variant}.ogg"
+                      url = commons_file_url(title)
+                      if url:
+                          used_title = title
+                          break
+                  if not url:
+                      raise RuntimeError(f"Commons French male sample not found for {n}: {word}")
+                  print("COMMONS", n, word, used_title, "->", url, flush=True)
                   raw = rawdir / f"{n:02d}.ogg"
-                  get(url, raw)
+                  get(url, raw, polite=True)
                   process(raw, ROOT / bank / f"{n:02d}.wav")
 
           def freeswitch_bank(bank, release_tag, archive_name, words):
