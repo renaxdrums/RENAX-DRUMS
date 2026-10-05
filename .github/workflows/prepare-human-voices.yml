@@ -58,11 +58,14 @@ jobs:
 
           def process(src, dest):
               dest.parent.mkdir(parents=True, exist_ok=True)
-              # Keep the original human pitch/timing. Remove only leading room silence,
-              # tame sub-bass, normalize spoken loudness, and preserve the natural ending.
+              # Keep the original human pitch/timing. Tighten each spoken sample for
+              # metronome use: remove pre-roll decisively without pitch/time stretching,
+              # trim excessive tail silence, tame sub-bass and normalize spoken loudness.
               filt = (
                   "highpass=f=65,"
-                  "silenceremove=start_periods=1:start_duration=0:start_threshold=-52dB:start_silence=0.001,"
+                  "silenceremove="
+                  "start_periods=1:start_duration=0:start_threshold=-44dB:start_silence=0.002:"
+                  "stop_periods=1:stop_duration=0.10:stop_threshold=-46dB:stop_silence=0.035,"
                   "loudnorm=I=-18:TP=-1.5:LRA=10"
               )
               subprocess.run([
@@ -198,7 +201,7 @@ jobs:
               "- Project: FreeSWITCH Sounds",
               "- License: MPL",
               "",
-              "RENAX processing: mono PCM WAV 48 kHz / 16-bit, leading-silence trim, 65 Hz high-pass and loudness normalization. No pitch shifting and no synthetic speech."
+              "RENAX processing: mono PCM WAV 48 kHz / 16-bit, metronome-tight leading/trailing silence trim, 65 Hz high-pass and loudness normalization. No pitch shifting, no time stretching and no synthetic speech."
           ]
           (ROOT / "SOURCES.md").write_text("\\n".join(source_lines) + "\\n", encoding="utf-8")
           PY
