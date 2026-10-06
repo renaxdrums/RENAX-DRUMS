@@ -1,0 +1,128 @@
+[
+  {
+    "bank": "voiceMale",
+    "bpm": 60,
+    "subdiv": 2,
+    "state": 1,
+    "peak": 0.6047940254211426
+  },
+  {
+    "bank": "voiceMale",
+    "bpm": 60,
+    "subdiv": 2,
+    "state": 2,
+    "peak": 0.6941690444946289
+  },
+  {
+    "bank": "voiceMale",
+    "bpm": 60,
+    "subdiv": 2,
+    "state": 3,
+    "peak": 0.7761263847351074
+  },
+  {
+    "bank": "voiceMale",
+    "bpm": 120,
+    "subdiv": 4,
+    "state": 1,
+    "peak": 0.6115179061889648
+  },
+  {
+    "bank": "voiceMale",
+    "bpm": 120,
+    "subdiv": 4,
+    "state": 2,
+    "peak": 0.6964683532714844
+  },
+  {
+    "bank": "voiceMale",
+    "bpm": 120,
+    "subdiv": 4,
+    "state": 3,
+    "peak": 0.8080892562866211
+  },
+  {
+    "bank": "voiceMale",
+    "bpm": 240,
+    "subdiv": 8,
+    "state": 1,
+    "peak": 0.7974638938903809
+  },
+  {
+    "bank": "voiceMale",
+    "bpm": 240,
+    "subdiv": 8,
+    "state": 2,
+    "peak": 0.8976235389709473
+  },
+  {
+    "bank": "voiceMale",
+    "bpm": 240,
+    "subdiv": 8,
+    "state": 3,
+    "peak": 0.994872510433197
+  },
+  {
+    "bank": "voiceFemale",
+    "bpm": 60,
+    "subdiv": 2,
+    "state": 1,
+    "peak": 0.6047940254211426
+  },
+  {
+    "bank": "voiceFemale",
+    "bpm": 60,
+    "subdiv": 2,
+    "state": 2,
+    "peak": 0.7028541564941406
+  },
+  {
+    "bank": "voiceFemale",
+    "bpm": 60,
+    "subdiv": 2,
+    "state": 3,
+    "peak": 0.8240652084350586
+  },
+  {
+    "bank": "voiceFemale",
+    "bpm": 120,
+    "subdiv": 4,
+    "state": 1,
+    "peak": 0.6556401252746582
+  },
+  {
+    "bank": "voiceFemale",
+    "bpm": 120,
+    "subdiv": 4,
+    "state": 2,
+    "peak": 0.7662911415100098
+  },
+  {
+    "bank": "voiceFemale",
+    "bpm": 120,
+    "subdiv": 4,
+    "state": 3,
+    "peak": 0.920918345451355
+  },
+  {
+    "bank": "voiceFemale",
+    "bpm": 240,
+    "subdiv": 8,
+    "state": 1,
+    "peak": 0.8231630325317383
+  },
+  {
+    "bank": "voiceFemale",
+    "bpm": 240,
+    "subdiv": 8,
+    "state": 2,
+    "peak": 0.9927727580070496
+  },
+  {
+    "bank": "voiceFemale",
+    "bpm": 240,
+    "subdiv": 8,
+    "state": 3,
+    "peak": 0.9975178241729736
+  }
+]

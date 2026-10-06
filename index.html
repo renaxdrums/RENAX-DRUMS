@@ -1215,7 +1215,7 @@
 
     function playVoiceSubdivisionTick(dest, time, state, isFirst) {
       let freq = state === 3 ? 1450 : state === 2 ? 1100 : 820;
-      let vol = state === 3 ? 0.16 : state === 2 ? 0.12 : 0.09;
+      let vol = state === 3 ? 0.64 : state === 2 ? 0.48 : 0.36;
       if (isFirst) vol *= 1.08;
       oscTone(dest, time, {
         type: 'triangle',
@@ -1362,12 +1362,35 @@
       }
     };
 
+    const voiceMixers = new WeakMap();
+    function getVoiceMixDestination(context) {
+      let mixer = voiceMixers.get(context);
+      if (!mixer) {
+        const input = context.createGain();
+        input.gain.value = 0.25;
+        const guard = context.createWaveShaper();
+        const curve = new Float32Array(65537);
+        for (let i = 0; i < curve.length; i++) {
+          const x = (i / (curve.length - 1) * 2 - 1) * 4;
+          const level = Math.abs(x);
+          curve[i] = Math.sign(x) * (level <= 0.9 ? level : 0.9 + 0.1 * Math.tanh((level - 0.9) / 0.1));
+        }
+        guard.curve = curve;
+        guard.oversample = 'none';
+        input.connect(guard);
+        guard.connect(context.destination);
+        mixer = input;
+        voiceMixers.set(context, mixer);
+      }
+      return mixer;
+    }
+
     function playClick(type, time, isFirstOfMeasure, context = {}) {
       if (!audioCtx) return;
       const out = audioCtx.createGain();
       out.gain.value = masterVolume;
-      out.connect(audioCtx.destination);
       const bank = SOUND_BANKS[currentBank] || SOUND_BANKS.clic;
+      out.connect(bank.isVoice ? getVoiceMixDestination(audioCtx) : audioCtx.destination);
       bank.play(out, time, type, isFirstOfMeasure, context);
     }
 
@@ -1404,6 +1427,7 @@
     let activeMeasureIndex = 0;
     let playingMeasureIndex = 0;
     let currentStepInMeasure = 0;
+    let scheduledMeasureLayouts = new WeakMap();
     let totalSteps = 0;
     let stepsData = [];
     let nextNoteTime = 0.0;
@@ -1440,11 +1464,24 @@
       return { beat: 0, subIndex: 0 };
     }
 
+    // Keep the current audio cycle stable when its visual subdivision layout changes.
+    // The edited layout is adopted when this measure is scheduled again.
+    function getSchedulingMeasure(model) {
+      let layout = scheduledMeasureLayouts.get(model);
+      if (!layout) {
+        layout = { subdivisions: [...model.beatSubdivisions], states: model.beatStates.map(s => [...s]) };
+        scheduledMeasureLayouts.set(model, layout);
+      }
+      return { ...model, beatSubdivisions: layout.subdivisions,
+        beatStates: layout.states.map((states, b) => states.map((state, sub) => model.beatStates[b]?.[sub] ?? state)) };
+    }
+
     function validatePlayingState() {
       if (!isPlaying) return;
       if (playingMeasureIndex >= measures.length) playingMeasureIndex = 0;
       if (activeMeasureIndex >= measures.length) activeMeasureIndex = measures.length - 1;
-      const m = measures[playingMeasureIndex];
+      const model = measures[playingMeasureIndex];
+      const m = model ? getSchedulingMeasure(model) : null;
       if (m && currentStepInMeasure >= measureTotalSteps(m)) currentStepInMeasure = 0;
     }
 
@@ -1641,7 +1678,7 @@
       trailGroupOuter.appendChild(c);
     }
 
-    function markPlayheadStep(stepIdx) {
+    function markPlayheadStep(stepIdx, durationMs = null, span = 1) {
       const m = measures[activeMeasureIndex];
       // Cette fonction appartient au moteur du métronome classique.
       // Une mesure polyrythmique n'a pas de beatSubdivisions.
@@ -1650,7 +1687,8 @@
       const subdiv = m.beatSubdivisions[beat];
       playhead.stepIndex = stepIdx;
       playhead.startTime = performance.now();
-      playhead.durationMs = getStepDurationMs(getEffectiveTempo(m), m.denominator, subdiv);
+      playhead.durationMs = durationMs ?? getStepDurationMs(getEffectiveTempo(m), m.denominator, subdiv);
+      playhead.span = span;
     }
 
     function getCurrentHeadAngle() {
@@ -1658,7 +1696,7 @@
       const elapsed = performance.now() - playhead.startTime;
       const t = Math.min(1, elapsed / playhead.durationMs);
       const stepAngle = 360 / totalSteps;
-      return (playhead.stepIndex + t) * stepAngle;
+      return (playhead.stepIndex + t * (playhead.span ?? 1)) * stepAngle;
     }
 
     function updateProgressTrail(headAngle) {
@@ -1983,12 +2021,28 @@
     }, { passive: false });
 
     function resizeBeat(m, beatIdx, newSubdiv) {
+      let visibleHead = null;
+      if (isPlaying && appMode === 'metronome' && measures[activeMeasureIndex] === m) {
+        const elapsed = Math.max(0, Math.min(1, (performance.now() - playhead.startTime) / playhead.durationMs));
+        const span = playhead.span ?? 1;
+        const position = getBeatAndSub(m, playhead.stepIndex + elapsed * span);
+        const subdivisions = m.beatSubdivisions[position.beat] || 1;
+        visibleHead = { beat: position.beat, phase: position.subIndex / subdivisions,
+          remainingMs: playhead.durationMs * (1 - elapsed), remainingPhase: span * (1 - elapsed) / subdivisions };
+      }
       const oldSubdiv = m.beatSubdivisions[beatIdx];
       m.beatSubdivisions[beatIdx] = newSubdiv;
       const states = m.beatStates[beatIdx];
       while (states.length > newSubdiv) states.pop();
       while (states.length < newSubdiv) states.push(0);
       if (states.length > 0 && oldSubdiv === 0) states[0] = 1;
+      if (visibleHead) {
+        const subdivisions = m.beatSubdivisions[visibleHead.beat] || 1;
+        playhead.stepIndex = m.beatSubdivisions.slice(0, visibleHead.beat).reduce((n, v) => n + v, 0) + visibleHead.phase * subdivisions;
+        playhead.startTime = performance.now();
+        playhead.durationMs = Math.max(0.01, visibleHead.remainingMs);
+        playhead.span = visibleHead.remainingPhase * subdivisions;
+      }
     }
 
     function buildCircularSequencer(m) {
@@ -2037,10 +2091,12 @@
         if (playingMeasureIndex >= measures.length) { playingMeasureIndex = 0; currentStepInMeasure = 0; }
         const mIdx = playingMeasureIndex;
         const sIdx = currentStepInMeasure;
-        const m = measures[mIdx];
-        if (!m) { timerID = setTimeout(scheduler, lookahead); return; }
+        const model = measures[mIdx];
+        if (!model) { timerID = setTimeout(scheduler, lookahead); return; }
+        const m = getSchedulingMeasure(model);
 
         if (sIdx >= measureTotalSteps(m)) {
+          scheduledMeasureLayouts.delete(model);
           currentStepInMeasure = 0;
           playingMeasureIndex = (playingMeasureIndex + 1) % measures.length;
           advanceSilentCycle();
@@ -2060,13 +2116,14 @@
             beatDurationSec
           });
         }
-        scheduleVisualUpdate(mIdx, sIdx, nextNoteTime);
+        scheduleVisualUpdate(mIdx, sIdx, nextNoteTime, { beat, subIndex, subdivisions: m.beatSubdivisions[beat], durationMs: getStepDurationMs(effectiveTempo, m.denominator, m.beatSubdivisions[beat]) });
 
         const subdiv = m.beatSubdivisions[beat] || 1;
         nextNoteTime += getStepDurationMs(effectiveTempo, m.denominator, subdiv) / 1000;
 
         currentStepInMeasure++;
         if (currentStepInMeasure >= measureTotalSteps(m)) {
+          scheduledMeasureLayouts.delete(model);
           currentStepInMeasure = 0;
           playingMeasureIndex = (playingMeasureIndex + 1) % measures.length;
           advanceSilentCycle();
@@ -2075,7 +2132,7 @@
       timerID = setTimeout(scheduler, lookahead);
     }
 
-    function scheduleVisualUpdate(mIdx, sIdx, time) {
+    function scheduleVisualUpdate(mIdx, sIdx, time, musicalPosition = null) {
       const drawTime = (time - audioCtx.currentTime) * 1000;
       setTimeout(() => {
         if (!isPlaying) return;
@@ -2087,19 +2144,22 @@
             c.classList.toggle('active', i === activeMeasureIndex);
           });
         }
+        const m = measures[mIdx];
+        const position = musicalPosition ?? { ...getBeatAndSub(m, sIdx), subdivisions: 1 };
+        const beat = position.beat;
+        const visibleSubdivisions = m.beatSubdivisions[beat] || 1;
+        const visibleIndex = m.beatSubdivisions.slice(0, beat).reduce((n, v) => n + v, 0) + position.subIndex * visibleSubdivisions / position.subdivisions;
         const stepEls = sequencerContainer.querySelectorAll('.step');
         stepEls.forEach(el => el.classList.remove('active'));
-        const stepEl = stepEls[sIdx];
+        const stepEl = stepEls[Math.floor(visibleIndex)];
         if (stepEl) {
           stepEl.classList.add('active');
-          emitBurst(sIdx, parseInt(stepEl.dataset.state));
+          emitBurst(Math.floor(visibleIndex), parseInt(stepEl.dataset.state));
         }
-        const m = measures[mIdx];
-        const { beat } = getBeatAndSub(m, sIdx);
         beatDisplay.textContent = beat + 1;
         beatDisplay.classList.add('pulse');
         setTimeout(() => beatDisplay.classList.remove('pulse'), 130);
-        markPlayheadStep(sIdx);
+        markPlayheadStep(visibleIndex, position.durationMs, visibleSubdivisions / position.subdivisions);
       }, Math.max(0, drawTime));
     }
 
@@ -2326,6 +2386,7 @@
       polyEventIndex = 0;
       activeMeasureIndex = 0;
       resetSilentCycle();
+      scheduledMeasureLayouts = new WeakMap();
       renderSequencerList();
       renderActiveMeasure();
       const voiceLead = appMode === 'metronome' && SOUND_BANKS[currentBank]?.isVoice ? VOICE_MAX_ATTACK_SECONDS : 0;
@@ -2347,6 +2408,7 @@
       timerID = null;
       for (const src of scheduledVoiceSources) src.stop();
       scheduledVoiceSources.clear();
+      scheduledMeasureLayouts = new WeakMap();
       playBtn.textContent = 'Start';
       playBtn.classList.remove('btn-cyan');
       playBtn.classList.add('btn-primary');

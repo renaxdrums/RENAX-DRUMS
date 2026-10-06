@@ -1,0 +1,535 @@
+[
+  {
+    "version": "before",
+    "volume": [
+      {
+        "bank": "voiceMale",
+        "medianVoiceRMS20": 0.15765894215183857,
+        "ticks": [
+          {
+            "state": 1,
+            "peak": 0.0783085897564888,
+            "rms20": 0.018268737316847927,
+            "relativeToMedianVoiceDb": -18.72020154098626
+          },
+          {
+            "state": 2,
+            "peak": 0.10453985631465912,
+            "rms20": 0.02380085805361225,
+            "relativeToMedianVoiceDb": -16.42251987977871
+          },
+          {
+            "state": 3,
+            "peak": 0.1363593488931656,
+            "rms20": 0.031061993088856755,
+            "relativeToMedianVoiceDb": -14.109785790059334
+          }
+        ]
+      },
+      {
+        "bank": "voiceFemale",
+        "medianVoiceRMS20": 0.2003597430286568,
+        "ticks": [
+          {
+            "state": 1,
+            "peak": 0.0783085897564888,
+            "rms20": 0.018268737316847927,
+            "relativeToMedianVoiceDb": -20.80203869645604
+          },
+          {
+            "state": 2,
+            "peak": 0.10453985631465912,
+            "rms20": 0.02380085805361225,
+            "relativeToMedianVoiceDb": -18.50435703524849
+          },
+          {
+            "state": 3,
+            "peak": 0.1363593488931656,
+            "rms20": 0.031061993088856755,
+            "relativeToMedianVoiceDb": -16.191622945529115
+          }
+        ]
+      }
+    ],
+    "edits": [
+      {
+        "bank": "voiceMale",
+        "bpm": 60,
+        "beats": 9,
+        "changes": 6,
+        "passed": false,
+        "errors": [
+          {
+            "beat": 1,
+            "number": 4,
+            "expected": 2,
+            "timeErrorMs": 500
+          },
+          {
+            "beat": 2,
+            "number": 1,
+            "expected": 3,
+            "timeErrorMs": 500
+          },
+          {
+            "beat": 3,
+            "number": 2,
+            "expected": 4,
+            "timeErrorMs": 500
+          },
+          {
+            "beat": 4,
+            "number": 3,
+            "expected": 1,
+            "timeErrorMs": 500.00000000000176
+          },
+          {
+            "beat": 5,
+            "number": 4,
+            "expected": 2,
+            "timeErrorMs": 500.00000000000176
+          }
+        ]
+      },
+      {
+        "bank": "voiceMale",
+        "bpm": 120,
+        "beats": 18,
+        "changes": 6,
+        "passed": false,
+        "errors": [
+          {
+            "beat": 2,
+            "number": 2,
+            "expected": 3,
+            "timeErrorMs": 62.5
+          },
+          {
+            "beat": 3,
+            "number": 1,
+            "expected": 4,
+            "timeErrorMs": 62.5
+          },
+          {
+            "beat": 4,
+            "number": 2,
+            "expected": 1,
+            "timeErrorMs": 62.5
+          },
+          {
+            "beat": 5,
+            "number": 3,
+            "expected": 2,
+            "timeErrorMs": 241.07142857142972
+          },
+          {
+            "beat": 6,
+            "number": 4,
+            "expected": 3,
+            "timeErrorMs": 241.07142857142927
+          }
+        ]
+      },
+      {
+        "bank": "voiceMale",
+        "bpm": 180,
+        "beats": 26,
+        "changes": 6,
+        "passed": false,
+        "errors": [
+          {
+            "beat": 2,
+            "number": 2,
+            "expected": 3,
+            "timeErrorMs": 166.66666666666697
+          },
+          {
+            "beat": 3,
+            "number": 3,
+            "expected": 4,
+            "timeErrorMs": 166.6666666666672
+          },
+          {
+            "beat": 4,
+            "number": 1,
+            "expected": 1,
+            "timeErrorMs": 166.6666666666672
+          },
+          {
+            "beat": 5,
+            "number": 2,
+            "expected": 2,
+            "timeErrorMs": 166.66666666666697
+          },
+          {
+            "beat": 6,
+            "number": 3,
+            "expected": 3,
+            "timeErrorMs": 166.66666666666697
+          }
+        ]
+      },
+      {
+        "bank": "voiceFemale",
+        "bpm": 60,
+        "beats": 9,
+        "changes": 6,
+        "passed": false,
+        "errors": [
+          {
+            "beat": 1,
+            "number": 4,
+            "expected": 2,
+            "timeErrorMs": 500
+          },
+          {
+            "beat": 2,
+            "number": 1,
+            "expected": 3,
+            "timeErrorMs": 500
+          },
+          {
+            "beat": 3,
+            "number": 2,
+            "expected": 4,
+            "timeErrorMs": 500
+          },
+          {
+            "beat": 4,
+            "number": 3,
+            "expected": 1,
+            "timeErrorMs": 500.00000000000176
+          },
+          {
+            "beat": 5,
+            "number": 4,
+            "expected": 2,
+            "timeErrorMs": 500.00000000000176
+          }
+        ]
+      },
+      {
+        "bank": "voiceFemale",
+        "bpm": 120,
+        "beats": 18,
+        "changes": 6,
+        "passed": false,
+        "errors": [
+          {
+            "beat": 2,
+            "number": 2,
+            "expected": 3,
+            "timeErrorMs": 62.5
+          },
+          {
+            "beat": 3,
+            "number": 1,
+            "expected": 4,
+            "timeErrorMs": 62.5
+          },
+          {
+            "beat": 4,
+            "number": 2,
+            "expected": 1,
+            "timeErrorMs": 62.5
+          },
+          {
+            "beat": 5,
+            "number": 3,
+            "expected": 2,
+            "timeErrorMs": 241.07142857142972
+          },
+          {
+            "beat": 6,
+            "number": 4,
+            "expected": 3,
+            "timeErrorMs": 241.07142857142927
+          }
+        ]
+      },
+      {
+        "bank": "voiceFemale",
+        "bpm": 180,
+        "beats": 26,
+        "changes": 6,
+        "passed": false,
+        "errors": [
+          {
+            "beat": 2,
+            "number": 2,
+            "expected": 3,
+            "timeErrorMs": 166.66666666666697
+          },
+          {
+            "beat": 3,
+            "number": 3,
+            "expected": 4,
+            "timeErrorMs": 166.6666666666672
+          },
+          {
+            "beat": 4,
+            "number": 1,
+            "expected": 1,
+            "timeErrorMs": 166.6666666666672
+          },
+          {
+            "beat": 5,
+            "number": 2,
+            "expected": 2,
+            "timeErrorMs": 166.66666666666697
+          },
+          {
+            "beat": 6,
+            "number": 3,
+            "expected": 3,
+            "timeErrorMs": 166.66666666666697
+          }
+        ]
+      },
+      {
+        "bank": "clic",
+        "bpm": 60,
+        "beats": 8,
+        "changes": 6,
+        "passed": false,
+        "errors": [
+          {
+            "beat": 1,
+            "number": 1,
+            "expected": 2,
+            "timeErrorMs": 750
+          },
+          {
+            "beat": 2,
+            "number": 2,
+            "expected": 3,
+            "timeErrorMs": 750
+          },
+          {
+            "beat": 3,
+            "number": 3,
+            "expected": 4,
+            "timeErrorMs": 750.0000000000005
+          },
+          {
+            "beat": 4,
+            "number": 4,
+            "expected": 1,
+            "timeErrorMs": 958.333333333333
+          },
+          {
+            "beat": 5,
+            "number": 1,
+            "expected": 2,
+            "timeErrorMs": 958.333333333333
+          }
+        ]
+      },
+      {
+        "bank": "clic",
+        "bpm": 120,
+        "beats": 17,
+        "changes": 6,
+        "passed": false,
+        "errors": [
+          {
+            "beat": 1,
+            "number": 2,
+            "expected": 2,
+            "timeErrorMs": 374.9999999999999
+          },
+          {
+            "beat": 2,
+            "number": 1,
+            "expected": 3,
+            "timeErrorMs": 375
+          },
+          {
+            "beat": 3,
+            "number": 2,
+            "expected": 4,
+            "timeErrorMs": 375
+          },
+          {
+            "beat": 4,
+            "number": 3,
+            "expected": 1,
+            "timeErrorMs": 553.5714285714297
+          },
+          {
+            "beat": 5,
+            "number": 4,
+            "expected": 2,
+            "timeErrorMs": 553.5714285714292
+          }
+        ]
+      },
+      {
+        "bank": "clic",
+        "bpm": 180,
+        "beats": 26,
+        "changes": 6,
+        "passed": false,
+        "errors": [
+          {
+            "beat": 2,
+            "number": 2,
+            "expected": 3,
+            "timeErrorMs": 41.66666666666674
+          },
+          {
+            "beat": 3,
+            "number": 3,
+            "expected": 4,
+            "timeErrorMs": 41.66666666666696
+          },
+          {
+            "beat": 4,
+            "number": 1,
+            "expected": 1,
+            "timeErrorMs": -69.4444444444442
+          },
+          {
+            "beat": 5,
+            "number": 2,
+            "expected": 2,
+            "timeErrorMs": -69.44444444444441
+          },
+          {
+            "beat": 6,
+            "number": 3,
+            "expected": 3,
+            "timeErrorMs": -69.4444444444442
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "version": "after",
+    "volume": [
+      {
+        "bank": "voiceMale",
+        "medianVoiceRMS20": 0.15765894215183857,
+        "ticks": [
+          {
+            "state": 1,
+            "peak": 0.30573809146881104,
+            "rms20": 0.06715399842697854,
+            "relativeToMedianVoiceDb": -7.412934641362981
+          },
+          {
+            "state": 2,
+            "peak": 0.409294456243515,
+            "rms20": 0.08774197629668695,
+            "relativeToMedianVoiceDb": -5.090223920596141
+          },
+          {
+            "state": 3,
+            "peak": 0.5348697900772095,
+            "rms20": 0.11483131729326983,
+            "relativeToMedianVoiceDb": -2.7531652271099687
+          }
+        ]
+      },
+      {
+        "bank": "voiceFemale",
+        "medianVoiceRMS20": 0.2003597430286568,
+        "ticks": [
+          {
+            "state": 1,
+            "peak": 0.30573809146881104,
+            "rms20": 0.06715399842697854,
+            "relativeToMedianVoiceDb": -9.494771796832763
+          },
+          {
+            "state": 2,
+            "peak": 0.409294456243515,
+            "rms20": 0.08774197629668695,
+            "relativeToMedianVoiceDb": -7.172061076065921
+          },
+          {
+            "state": 3,
+            "peak": 0.5348697900772095,
+            "rms20": 0.11483131729326983,
+            "relativeToMedianVoiceDb": -4.835002382579748
+          }
+        ]
+      }
+    ],
+    "edits": [
+      {
+        "bank": "voiceMale",
+        "bpm": 60,
+        "beats": 9,
+        "changes": 6,
+        "passed": true,
+        "errors": []
+      },
+      {
+        "bank": "voiceMale",
+        "bpm": 120,
+        "beats": 18,
+        "changes": 6,
+        "passed": true,
+        "errors": []
+      },
+      {
+        "bank": "voiceMale",
+        "bpm": 180,
+        "beats": 27,
+        "changes": 6,
+        "passed": true,
+        "errors": []
+      },
+      {
+        "bank": "voiceFemale",
+        "bpm": 60,
+        "beats": 9,
+        "changes": 6,
+        "passed": true,
+        "errors": []
+      },
+      {
+        "bank": "voiceFemale",
+        "bpm": 120,
+        "beats": 18,
+        "changes": 6,
+        "passed": true,
+        "errors": []
+      },
+      {
+        "bank": "voiceFemale",
+        "bpm": 180,
+        "beats": 27,
+        "changes": 6,
+        "passed": true,
+        "errors": []
+      },
+      {
+        "bank": "clic",
+        "bpm": 60,
+        "beats": 9,
+        "changes": 6,
+        "passed": true,
+        "errors": []
+      },
+      {
+        "bank": "clic",
+        "bpm": 120,
+        "beats": 18,
+        "changes": 6,
+        "passed": true,
+        "errors": []
+      },
+      {
+        "bank": "clic",
+        "bpm": 180,
+        "beats": 26,
+        "changes": 6,
+        "passed": true,
+        "errors": []
+      }
+    ]
+  }
+]

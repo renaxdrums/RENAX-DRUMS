@@ -1,3 +1,13 @@
+# Subdivisions audibles et modifications pendant la lecture — 6 octobre 2026
+
+Les subdivisions des deux banques anglaises ont un gain interne multiplié par quatre. Mesure Web Audio sur fenêtres RMS de 20 ms : le clic ordinaire passe de −18,72 à −7,41 dB par rapport au niveau médian de crête vocal masculin et de −20,80 à −9,49 dB pour la voix féminine. Hausse rendue : environ 11,3 dB, identique dans les deux banques. Les niveaux des WAV, le gain des voix, les repères vocaux et les banques non vocales sont conservés. Une protection des crêtes du mélange vocal, sans anticipation ni suréchantillonnage, est transparente jusqu’à 0,9 d’amplitude ; le niveau maximal mesuré dans 18 configurations à 60/120/240 BPM, 2/4/8 subdivisions et trois accents est 0,99752, sous pleine échelle.
+
+Lors d’une modification de subdivision, la structure audio de la mesure déjà programmée reste fixe. Les subdivisions éditées prennent effet au prochain passage de cette mesure. Le compteur suit le temps musical capturé lors de la planification, et le curseur est remappé sur le nouveau cercle avec la même phase musicale. La grille Web Audio et les nombres ne sont jamais décalés pour suivre les indices des points visuels. Les accents modifiés sur les points existants continuent de suivre leurs états.
+
+Le défaut de l’ancienne version est reproduit avec six changements pendant la lecture. Après correction : neuf cas homme/femme/clic à 60/120/180 BPM gardent la séquence et la grille. Deux tests avec vraie horloge, vraie lecture audio et changements via les menus de l’UI à 120 BPM gardent 1→2→3→4, intervalles de 0,500 s et compteur visuel sans recul. Les 320 repères vocaux restent conformes au pas de recherche de 1 ms ; dérive simulée sur 10 000 pulsations : 0 s. Rendus non vocaux inchangés, hors arrondi flottant habituel de la cloche (5,96×10⁻⁸).
+
+Résultats actuels : tests/validation-2026-10-06-subdivisions/. Les tests subdivision-test.cjs (mesures de niveau et changements simulés), subdivision-live-test.cjs (vrais menus pendant lecture) et subdivision-mix-test.cjs (niveau du mélange) complètent les contrôles existants. SUBDIVISION_BASELINE peut désigner un ancien index.html local pour reproduire et comparer le défaut.
+
 # Deux voix anglaises — 6 octobre 2026
 
 L’utilisateur valide la voix homme EN jusqu’à vingt. Ses vingt WAV et ses vingt repères restent identiques. La voix femme EN reste identique sauf le repère d’eleven : 25→163 ms, sur la montée vocalique de la syllabe accentuée LE de e-LE-ven. Le sample commence donc 138 ms plus tôt ; le mot complet et sa vitesse restent identiques. Les deux voix françaises, leurs options, leurs données de chargement et leurs 40 WAV sont supprimés.
