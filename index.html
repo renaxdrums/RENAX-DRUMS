@@ -1030,6 +1030,7 @@
             <g id="trailGroup"></g>
           </svg>
           <div class="beat-number" id="beatDisplay">1</div>
+          <div id="voiceGroupLabel" hidden style="position:absolute;left:50%;top:calc(50% + 40px);transform:translateX(-50%);font-size:10px;color:var(--text-muted);white-space:nowrap;pointer-events:none"></div>
           <canvas id="particleCanvas"></canvas>
         </div>
       </div>
@@ -1463,6 +1464,17 @@
 
     // Keep the current audio cycle stable when its visual subdivision layout changes.
     // The edited layout is adopted when this measure is scheduled again.
+    function getVoiceGroupSize(m) {
+      return appMode === 'metronome' && SOUND_BANKS[currentBank]?.isVoice && m.denominator >= 16 ? m.denominator / 4 : 1;
+    }
+    function updateVoiceGroupLabel(m = measures[activeMeasureIndex]) {
+      const label = document.getElementById('voiceGroupLabel');
+      if (!label || !m) return;
+      const size = getVoiceGroupSize(m);
+      label.hidden = size === 1;
+      label.textContent = size > 1 ? 'Voix à la noire · groupes de ' + size : '';
+    }
+
     function getSchedulingMeasure(model) {
       let layout = scheduledMeasureLayouts.get(model);
       if (!layout) {
@@ -1968,6 +1980,7 @@
       const m = measures[activeMeasureIndex];
       if (!m) return;
       activeMeasureLabel.textContent = `MESURE ${activeMeasureIndex + 1} / ${measures.length}`;
+      updateVoiceGroupLabel(m);
       activeNumeratorSel.value = String(m.numerator);
       activeDenominatorSel.value = String(m.denominator);
       syncNumbox(activeNumeratorSel);
@@ -2105,15 +2118,16 @@
         const isFirst = (sIdx === 0);
         const effectiveTempo = getEffectiveTempo(m);
         const beatDurationSec = getStepDurationMs(effectiveTempo, m.denominator, 1) / 1000;
+        const voiceGroupSize = getVoiceGroupSize(m);
         if (state > 0 && isSilentCycleAudible()) {
           playClick(state, nextNoteTime, isFirst, {
             mode: 'metronome',
-            beatNumber: beat + 1,
+            beatNumber: beat % voiceGroupSize === 0 ? Math.floor(beat / voiceGroupSize) + 1 : 0,
             subIndex,
-            beatDurationSec
+            beatDurationSec: beatDurationSec * voiceGroupSize
           });
         }
-        scheduleVisualUpdate(mIdx, sIdx, nextNoteTime, { beat, subIndex, subdivisions: m.beatSubdivisions[beat], durationMs: getStepDurationMs(effectiveTempo, m.denominator, m.beatSubdivisions[beat]) });
+        scheduleVisualUpdate(mIdx, sIdx, nextNoteTime, { beat, subIndex, voiceGroupSize, subdivisions: m.beatSubdivisions[beat], durationMs: getStepDurationMs(effectiveTempo, m.denominator, m.beatSubdivisions[beat]) });
 
         const subdiv = m.beatSubdivisions[beat] || 1;
         nextNoteTime += getStepDurationMs(effectiveTempo, m.denominator, subdiv) / 1000;
@@ -2153,7 +2167,7 @@
           stepEl.classList.add('active');
           emitBurst(Math.floor(visibleIndex), parseInt(stepEl.dataset.state));
         }
-        beatDisplay.textContent = beat + 1;
+        beatDisplay.textContent = Math.floor(beat / (position.voiceGroupSize || 1)) + 1;
         beatDisplay.classList.add('pulse');
         setTimeout(() => beatDisplay.classList.remove('pulse'), 130);
         markPlayheadStep(visibleIndex, position.durationMs, visibleSubdivisions / position.subdivisions);
@@ -2290,6 +2304,7 @@
       if (appMode !== 'polyrhythm') return renderActiveMeasureMetronome();
       const m=measures[activeMeasureIndex]; if(!m) return;
       activeMeasureLabel.textContent=`MESURE ${activeMeasureIndex+1} / ${measures.length}`;
+      updateVoiceGroupLabel();
       polyNumeratorInput.value=String(m.numerator); polyDenominatorInput.value=String(m.denominator); syncNumbox(polyNumeratorInput); syncNumbox(polyDenominatorInput);
       syncTempoUI(m); buildPolyVisualizer(m);
       playhead.stepIndex=0; playhead.startTime=performance.now();
@@ -2565,6 +2580,7 @@
 
     soundBankSel.addEventListener('change', async (e) => {
       currentBank = e.target.value;
+      updateVoiceGroupLabel();
 
       // En lecture : changer la banque uniquement, sans jouer l'aperçu.
       if (isPlaying) return;

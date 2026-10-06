@@ -1,3 +1,13 @@
+# Voix par groupes en /16 et /32 — 6 octobre 2026
+
+Choix de l’utilisateur : compter les groupes à la noire et conserver tous les clics rapides. En /16, un groupe comporte quatre pulsations ; en /32, huit pulsations. Le compteur central suit les groupes et une indication sous le compteur précise ce mode. Les pulsations et subdivisions non vocales dans ces banques gardent leurs clics. Les banques non vocales et le comptage vocal en /4 et /8 restent identiques. La grille temporelle reste inchangée.
+
+20/16 : 1–2–3–4–5, une noire par groupe. 20/32 : 1–2–3, avec un dernier groupe de quatre pulsations ; cette fin de mesure partielle conserve sa durée réelle et le retour au début de la mesure arrive donc plus tôt qu’après un groupe complet. Aucun allongement de mesure, accélération du sample ou suppression de clic pour faire tenir le mot.
+
+Tests : 9 combinaisons homme/femme/clic en /4, /16, /32 ; grille exacte et tous les événements de subdivision conservés. Rendus Web Audio des groupes 20/16 et 20/32 : 400 repères vocaux au total avec les scénarios existants, erreur mesurée 0 ms au pas de 1 ms, aucune attaque tardive. Tests des vrais menus pendant lecture à 120 BPM : comptage et affichage continus. Résultats : tests/validation-2026-10-06-grouped-voice/.
+
+La nouvelle proposition graphique est un cercle avec un bloc par pulsation et une fenêtre de réglage sur clic ; elle est montrée en maquette mais n’est pas encore implémentée.
+
 Libellés de subdivision approuvés : nombre en premier, noms de notes complets calculés selon le dénominateur ; subdivisions 3/5/6/7 nommées triolet/quintolet/sextolet/septolet. Les menus sont élargis pour afficher ces noms. Exemple /8 : 4 — Triple croche, 8 — Quadruple croche ; /16 : 8 — Quintuple croche ; /32 : 8 — Sextuple croche. La grille d’édition pour les cas denses et le regroupement vocal restent des propositions, pas des fonctions livrées dans cette version.
 
 # Subdivisions audibles et modifications pendant la lecture — 6 octobre 2026

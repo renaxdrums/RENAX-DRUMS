@@ -9,18 +9,18 @@ const fs=require('fs');
   const realCtx=audioCtx, originalClick=playClick, originalVisual=scheduleVisualUpdate;
   const nativeTimeout=window.setTimeout;window.setTimeout=()=>0;scheduleVisualUpdate=()=>{};
   const results=[];let maxAttackError=0,maxIntervalError=0,lateStarts=0;
-  const cases=[{name:'Tous les nombres 1-20 a 60 BPM',ms:[[20,60,[1]]]},{name:'Tous les nombres 1-20',ms:[[20,120,[1]]]},{name:'60 BPM 4/4',ms:[[4,60,[1]]]},{name:'120 BPM 4/4',ms:[[4,120,[1]]]},{name:'60 BPM 3/4',ms:[[3,60,[1]]]},{name:'120 BPM 5/4',ms:[[5,120,[1]]]},{name:'subdivisions 2/3/4/5/6/7/8',ms:[[4,120,[2,3,4,5]],[3,60,[6,7,8]]]},{name:'mesures et tempos 60->120->90',ms:[[4,60,[1]],[3,120,[2,3,4]],[5,90,[1]]]}];
+  const cases=[{name:'Groupes 20/16 a 120 BPM',ms:[[20,120,[2],16]]},{name:'Groupes 20/32 a 120 BPM',ms:[[20,120,[2],32]]},{name:'Tous les nombres 1-20 a 60 BPM',ms:[[20,60,[1]]]},{name:'Tous les nombres 1-20',ms:[[20,120,[1]]]},{name:'60 BPM 4/4',ms:[[4,60,[1]]]},{name:'120 BPM 4/4',ms:[[4,120,[1]]]},{name:'60 BPM 3/4',ms:[[3,60,[1]]]},{name:'120 BPM 5/4',ms:[[5,120,[1]]]},{name:'subdivisions 2/3/4/5/6/7/8',ms:[[4,120,[2,3,4,5]],[3,60,[6,7,8]]]},{name:'mesures et tempos 60->120->90',ms:[[4,60,[1]],[3,120,[2,3,4]],[5,90,[1]]]}];
   for(const bank of ['voiceMale','voiceFemale']){
    for(const test of cases){
     currentBank=bank;appMode='metronome';training.active=false;silentModeEnabled=false;
-    measures=test.ms.map(([n,bpm,subs])=>{const m=createMeasure(n,4);m.tempo=bpm;m.beatSubdivisions=Array.from({length:n},(_,i)=>subs[i%subs.length]);m.beatStates=m.beatSubdivisions.map(n=>Array(n).fill(1));return m;});
+    measures=test.ms.map(([n,bpm,subs,denominator=4])=>{const m=createMeasure(n,denominator);m.tempo=bpm;m.beatSubdivisions=Array.from({length:n},(_,i)=>subs[i%subs.length]);m.beatStates=m.beatSubdivisions.map(n=>Array(n).fill(1));return m;});
     playingMeasureIndex=0;currentStepInMeasure=0;nextNoteTime=.4;
     let expected=[],t=.4;
-    while(expected.length<20){for(const m of measures){for(let beat=0;beat<m.numerator;beat++){expected.push({time:t,number:beat+1});t+=60/m.tempo;if(expected.length===20)break;}if(expected.length===20)break;}}
+    while(expected.length<20){for(const m of measures){for(let beat=0;beat<m.numerator;beat++){const group=m.denominator>=16?m.denominator/4:1;if(beat%group===0)expected.push({time:t,number:Math.floor(beat/group)+1});t+=60/m.tempo*4/m.denominator;if(expected.length===20)break;}if(expected.length===20)break;}}
     const offline=new OfflineAudioContext(20,Math.ceil((t+2)*48000),48000);const merger=offline.createChannelMerger(20);merger.connect(offline.destination);
     let clock=0,events=[],starts=[];
     audioCtx={get currentTime(){return clock;},createGain:()=>offline.createGain(),createOscillator:()=>offline.createOscillator(),createBufferSource:()=>{const s=offline.createBufferSource();const start=s.start.bind(s);s.start=(when,offset=0)=>{starts.push({when,offset,clock});start(when,offset);};return s;}};
-    playClick=(state,time,first,context)=>{if(context.subIndex===0&&events.length<20){const dest=offline.createGain();dest.connect(merger,0,events.length);events.push({...context,time});SOUND_BANKS[currentBank].play(dest,time,state,first,context);}};
+    playClick=(state,time,first,context)=>{if(context.subIndex===0&&context.beatNumber>0&&events.length<20){const dest=offline.createGain();dest.connect(merger,0,events.length);events.push({...context,time});SOUND_BANKS[currentBank].play(dest,time,state,first,context);}};
     // Uneven callbacks exercise the actual scheduler; Web Audio owns the grid.
     for(let i=0;clock<t+.5;i++){scheduler();clock += [0.025,.017,.040,.028][i%4];}
     const rendered=await offline.startRendering();let errors=[];

@@ -1,0 +1,565 @@
+[
+  {
+    "bank": "voiceMale",
+    "denominator": 4,
+    "groupSize": 1,
+    "events": 120,
+    "mainVoicesPerMeasure": 20,
+    "voicePattern": [
+      {
+        "number": 1,
+        "time": 0.4
+      },
+      {
+        "number": 2,
+        "time": 0.9
+      },
+      {
+        "number": 3,
+        "time": 1.4
+      },
+      {
+        "number": 4,
+        "time": 1.9
+      },
+      {
+        "number": 5,
+        "time": 2.4
+      },
+      {
+        "number": 6,
+        "time": 2.9
+      },
+      {
+        "number": 7,
+        "time": 3.4
+      },
+      {
+        "number": 8,
+        "time": 3.9
+      },
+      {
+        "number": 9,
+        "time": 4.4
+      },
+      {
+        "number": 10,
+        "time": 4.9
+      },
+      {
+        "number": 11,
+        "time": 5.4
+      },
+      {
+        "number": 12,
+        "time": 5.9
+      },
+      {
+        "number": 13,
+        "time": 6.4
+      },
+      {
+        "number": 14,
+        "time": 6.9
+      },
+      {
+        "number": 15,
+        "time": 7.4
+      },
+      {
+        "number": 16,
+        "time": 7.9
+      },
+      {
+        "number": 17,
+        "time": 8.4
+      },
+      {
+        "number": 18,
+        "time": 8.9
+      },
+      {
+        "number": 19,
+        "time": 9.4
+      },
+      {
+        "number": 20,
+        "time": 9.9
+      }
+    ],
+    "maxGridErrorSeconds": 0,
+    "partialFinalGroup": 0
+  },
+  {
+    "bank": "voiceMale",
+    "denominator": 16,
+    "groupSize": 4,
+    "events": 120,
+    "mainVoicesPerMeasure": 5,
+    "voicePattern": [
+      {
+        "number": 1,
+        "time": 0.4
+      },
+      {
+        "number": 2,
+        "time": 0.9
+      },
+      {
+        "number": 3,
+        "time": 1.4
+      },
+      {
+        "number": 4,
+        "time": 1.9
+      },
+      {
+        "number": 5,
+        "time": 2.4
+      }
+    ],
+    "maxGridErrorSeconds": 0,
+    "partialFinalGroup": 0
+  },
+  {
+    "bank": "voiceMale",
+    "denominator": 32,
+    "groupSize": 8,
+    "events": 119,
+    "mainVoicesPerMeasure": 3,
+    "voicePattern": [
+      {
+        "number": 1,
+        "time": 0.4
+      },
+      {
+        "number": 2,
+        "time": 0.9
+      },
+      {
+        "number": 3,
+        "time": 1.4
+      }
+    ],
+    "maxGridErrorSeconds": 0,
+    "partialFinalGroup": 4
+  },
+  {
+    "bank": "voiceFemale",
+    "denominator": 4,
+    "groupSize": 1,
+    "events": 120,
+    "mainVoicesPerMeasure": 20,
+    "voicePattern": [
+      {
+        "number": 1,
+        "time": 0.4
+      },
+      {
+        "number": 2,
+        "time": 0.9
+      },
+      {
+        "number": 3,
+        "time": 1.4
+      },
+      {
+        "number": 4,
+        "time": 1.9
+      },
+      {
+        "number": 5,
+        "time": 2.4
+      },
+      {
+        "number": 6,
+        "time": 2.9
+      },
+      {
+        "number": 7,
+        "time": 3.4
+      },
+      {
+        "number": 8,
+        "time": 3.9
+      },
+      {
+        "number": 9,
+        "time": 4.4
+      },
+      {
+        "number": 10,
+        "time": 4.9
+      },
+      {
+        "number": 11,
+        "time": 5.4
+      },
+      {
+        "number": 12,
+        "time": 5.9
+      },
+      {
+        "number": 13,
+        "time": 6.4
+      },
+      {
+        "number": 14,
+        "time": 6.9
+      },
+      {
+        "number": 15,
+        "time": 7.4
+      },
+      {
+        "number": 16,
+        "time": 7.9
+      },
+      {
+        "number": 17,
+        "time": 8.4
+      },
+      {
+        "number": 18,
+        "time": 8.9
+      },
+      {
+        "number": 19,
+        "time": 9.4
+      },
+      {
+        "number": 20,
+        "time": 9.9
+      }
+    ],
+    "maxGridErrorSeconds": 0,
+    "partialFinalGroup": 0
+  },
+  {
+    "bank": "voiceFemale",
+    "denominator": 16,
+    "groupSize": 4,
+    "events": 120,
+    "mainVoicesPerMeasure": 5,
+    "voicePattern": [
+      {
+        "number": 1,
+        "time": 0.4
+      },
+      {
+        "number": 2,
+        "time": 0.9
+      },
+      {
+        "number": 3,
+        "time": 1.4
+      },
+      {
+        "number": 4,
+        "time": 1.9
+      },
+      {
+        "number": 5,
+        "time": 2.4
+      }
+    ],
+    "maxGridErrorSeconds": 0,
+    "partialFinalGroup": 0
+  },
+  {
+    "bank": "voiceFemale",
+    "denominator": 32,
+    "groupSize": 8,
+    "events": 119,
+    "mainVoicesPerMeasure": 3,
+    "voicePattern": [
+      {
+        "number": 1,
+        "time": 0.4
+      },
+      {
+        "number": 2,
+        "time": 0.9
+      },
+      {
+        "number": 3,
+        "time": 1.4
+      }
+    ],
+    "maxGridErrorSeconds": 0,
+    "partialFinalGroup": 4
+  },
+  {
+    "bank": "clic",
+    "denominator": 4,
+    "groupSize": 1,
+    "events": 119,
+    "mainVoicesPerMeasure": 20,
+    "voicePattern": [
+      {
+        "number": 1,
+        "time": 0.4
+      },
+      {
+        "number": 2,
+        "time": 0.9
+      },
+      {
+        "number": 3,
+        "time": 1.4
+      },
+      {
+        "number": 4,
+        "time": 1.9
+      },
+      {
+        "number": 5,
+        "time": 2.4
+      },
+      {
+        "number": 6,
+        "time": 2.9
+      },
+      {
+        "number": 7,
+        "time": 3.4
+      },
+      {
+        "number": 8,
+        "time": 3.9
+      },
+      {
+        "number": 9,
+        "time": 4.4
+      },
+      {
+        "number": 10,
+        "time": 4.9
+      },
+      {
+        "number": 11,
+        "time": 5.4
+      },
+      {
+        "number": 12,
+        "time": 5.9
+      },
+      {
+        "number": 13,
+        "time": 6.4
+      },
+      {
+        "number": 14,
+        "time": 6.9
+      },
+      {
+        "number": 15,
+        "time": 7.4
+      },
+      {
+        "number": 16,
+        "time": 7.9
+      },
+      {
+        "number": 17,
+        "time": 8.4
+      },
+      {
+        "number": 18,
+        "time": 8.9
+      },
+      {
+        "number": 19,
+        "time": 9.4
+      },
+      {
+        "number": 20,
+        "time": 9.9
+      }
+    ],
+    "maxGridErrorSeconds": 0,
+    "partialFinalGroup": 0
+  },
+  {
+    "bank": "clic",
+    "denominator": 16,
+    "groupSize": 1,
+    "events": 116,
+    "mainVoicesPerMeasure": 20,
+    "voicePattern": [
+      {
+        "number": 1,
+        "time": 0.4
+      },
+      {
+        "number": 2,
+        "time": 0.525
+      },
+      {
+        "number": 3,
+        "time": 0.65
+      },
+      {
+        "number": 4,
+        "time": 0.775
+      },
+      {
+        "number": 5,
+        "time": 0.9
+      },
+      {
+        "number": 6,
+        "time": 1.025
+      },
+      {
+        "number": 7,
+        "time": 1.15
+      },
+      {
+        "number": 8,
+        "time": 1.275
+      },
+      {
+        "number": 9,
+        "time": 1.4
+      },
+      {
+        "number": 10,
+        "time": 1.525
+      },
+      {
+        "number": 11,
+        "time": 1.65
+      },
+      {
+        "number": 12,
+        "time": 1.775
+      },
+      {
+        "number": 13,
+        "time": 1.9
+      },
+      {
+        "number": 14,
+        "time": 2.025
+      },
+      {
+        "number": 15,
+        "time": 2.15
+      },
+      {
+        "number": 16,
+        "time": 2.275
+      },
+      {
+        "number": 17,
+        "time": 2.4
+      },
+      {
+        "number": 18,
+        "time": 2.525
+      },
+      {
+        "number": 19,
+        "time": 2.65
+      },
+      {
+        "number": 20,
+        "time": 2.775
+      }
+    ],
+    "maxGridErrorSeconds": 0,
+    "partialFinalGroup": 0
+  },
+  {
+    "bank": "clic",
+    "denominator": 32,
+    "groupSize": 1,
+    "events": 111,
+    "mainVoicesPerMeasure": 20,
+    "voicePattern": [
+      {
+        "number": 1,
+        "time": 0.4
+      },
+      {
+        "number": 2,
+        "time": 0.4625
+      },
+      {
+        "number": 3,
+        "time": 0.525
+      },
+      {
+        "number": 4,
+        "time": 0.5875
+      },
+      {
+        "number": 5,
+        "time": 0.65
+      },
+      {
+        "number": 6,
+        "time": 0.7125
+      },
+      {
+        "number": 7,
+        "time": 0.775
+      },
+      {
+        "number": 8,
+        "time": 0.8375
+      },
+      {
+        "number": 9,
+        "time": 0.9
+      },
+      {
+        "number": 10,
+        "time": 0.9625
+      },
+      {
+        "number": 11,
+        "time": 1.025
+      },
+      {
+        "number": 12,
+        "time": 1.0875
+      },
+      {
+        "number": 13,
+        "time": 1.15
+      },
+      {
+        "number": 14,
+        "time": 1.2125
+      },
+      {
+        "number": 15,
+        "time": 1.275
+      },
+      {
+        "number": 16,
+        "time": 1.3375
+      },
+      {
+        "number": 17,
+        "time": 1.4
+      },
+      {
+        "number": 18,
+        "time": 1.4625
+      },
+      {
+        "number": 19,
+        "time": 1.525
+      },
+      {
+        "number": 20,
+        "time": 1.5875
+      }
+    ],
+    "maxGridErrorSeconds": 0,
+    "partialFinalGroup": 0
+  }
+]
