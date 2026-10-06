@@ -1,3 +1,13 @@
+# Cercle par temps et réglage sur clic — 6 octobre 2026
+
+Le cercle conserve un bloc numéroté par temps. Le clic ou Entrée/Espace ouvre la fenêtre de réglage de ce temps : nombre de subdivisions, puis boutons d’états/accents. La lecture continue pendant l’édition ; Échap, × ou clic extérieur ferme la fenêtre. Le temps édité est repéré par un contour orange, le temps joué conserve sa surbrillance.
+
+Les numbox et la fenêtre utilisent la même liste, selon la limite de figures notées 32 et 32T : /4 → 1–8 ; /8 → 1–7 ; /16 → 1,2,3 ; /32 → 1 seul. Aucun nom de note n’est affiché. Le changement de dénominateur normalise les divisions devenues invalides en conservant si possible leur famille binaire/irrégulière et leurs premiers états. Le nouveau dénominateur et les subdivisions prennent effet au prochain passage de la mesure déjà programmée pendant la lecture. Le curseur du cercle est maintenant exprimé en phase de temps, pas en indice de subdivision.
+
+Tests réels à 923×668 et 390×740 : 20 blocs pour 20 temps quelle que soit la division, listes identiques en haut et dans la fenêtre, accent modifiable, fermeture Échap, fenêtre contenue dans l’écran mobile. Tests via la fenêtre pendant lecture avec les deux voix à 120 BPM : suite 1–2–3–4 et compteur sans recul, erreur d’intervalle au niveau de l’arrondi flottant. 400 repères vocaux rendus, erreur mesurée 0 ms au pas de 1 ms ; clics/groupes conformes aux limites /16 et /32 ; sons non vocaux conservés et dérive de grille sur 10 000 pulsations simulées : 0 s.
+
+Résultats actuels : tests/validation-2026-10-06-pulse-popup/. Cette version implémente le cercle avec fenêtre, contrairement aux maquettes précédentes. Les notes ci-dessous décrivent l’historique des corrections.
+
 Réglages de subdivision simplifiés selon le dernier choix : affichage des nombres seuls, sans noms de notes. Les valeurs, états, samples et calculs temporels sont inchangés. Les limites de subdivision restent à préciser entre limite de figures notées et limite de durée ; aucune limitation nouvelle n’est appliquée dans cette version.
 
 # Voix par groupes en /16 et /32 — 6 octobre 2026

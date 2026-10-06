@@ -383,6 +383,7 @@
       display: flex; align-items: center; justify-content: center; z-index: 2;
     }
     .step:hover { background: var(--grey-hover); }
+    .step.editing { outline: 2px solid var(--orange); outline-offset: 3px; }
     .step[data-state="0"] { background: var(--grey); border-color: transparent; }
     .step[data-state="1"] { background: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 8px rgba(0, 229, 255, 0.4); }
     .step[data-state="2"] { background: var(--yellow); border-color: var(--yellow); box-shadow: 0 0 8px rgba(255, 234, 0, 0.4); }
@@ -1441,10 +1442,27 @@
       startBpm: 80, endBpm: 140, intervalId: null
     };
 
+    function allowedSubdivisions(denominator) {
+      return [1,2,3,4,5,6,7,8].filter(n => denominator * (n === 3 ? 2 : n >= 5 && n <= 7 ? 4 : n) <= 32);
+    }
+    function normalizeMeasureSubdivisions(m) {
+      const allowed = allowedSubdivisions(m.denominator);
+      for (let b = 0; b < m.numerator; b++) {
+        if (!allowed.includes(m.beatSubdivisions[b])) {
+          const old = m.beatSubdivisions[b];
+          const sameFamily = allowed.filter(n => [1,2,4,8].includes(n) === [1,2,4,8].includes(old));
+          const n = (sameFamily.length ? sameFamily : allowed).filter(n => n <= old).at(-1) || 1;
+          m.beatSubdivisions[b] = n;
+          m.beatStates[b] = Array.from({length:n}, (_,i) => m.beatStates[b]?.[i] ?? 0);
+        }
+      }
+    }
+
     function createMeasure(numerator = 4, denominator = 4, measureTempo = tempo) {
-      const beatSubdivisions = Array(numerator).fill(2);
+      const defaultSubdivision = allowedSubdivisions(denominator).includes(2) ? 2 : 1;
+      const beatSubdivisions = Array(numerator).fill(defaultSubdivision);
       const beatStates = [];
-      for (let b = 0; b < numerator; b++) beatStates.push([1, 0]);
+      for (let b = 0; b < numerator; b++) beatStates.push(defaultSubdivision === 2 ? [1, 0] : [1]);
       return { numerator, denominator, tempo: Math.max(20, Math.min(300, Math.round(measureTempo || 120))), beatSubdivisions, beatStates };
     }
 
@@ -1475,10 +1493,10 @@
     function getSchedulingMeasure(model) {
       let layout = scheduledMeasureLayouts.get(model);
       if (!layout) {
-        layout = { subdivisions: [...model.beatSubdivisions], states: model.beatStates.map(s => [...s]) };
+        layout = { denominator: model.denominator, subdivisions: [...model.beatSubdivisions], states: model.beatStates.map(s => [...s]) };
         scheduledMeasureLayouts.set(model, layout);
       }
-      return { ...model, beatSubdivisions: layout.subdivisions,
+      return { ...model, denominator: layout.denominator, beatSubdivisions: layout.subdivisions,
         beatStates: layout.states.map((states, b) => states.map((state, sub) => model.beatStates[b]?.[sub] ?? state)) };
     }
 
@@ -1689,8 +1707,8 @@
       // Cette fonction appartient au moteur du métronome classique.
       // Une mesure polyrythmique n'a pas de beatSubdivisions.
       if (!m || appMode === 'polyrhythm' || !Array.isArray(m.beatSubdivisions)) return;
-      const { beat } = getBeatAndSub(m, stepIdx);
-      const subdiv = m.beatSubdivisions[beat];
+      const beat = Math.floor(stepIdx);
+      const subdiv = m.beatSubdivisions[beat] || 1;
       playhead.stepIndex = stepIdx;
       playhead.startTime = performance.now();
       playhead.durationMs = durationMs ?? getStepDurationMs(getEffectiveTempo(m), m.denominator, subdiv);
@@ -1983,11 +2001,89 @@
       syncNumbox(activeNumeratorSel);
       syncNumbox(activeDenominatorSel);
       syncTempoUI(m);
+      normalizeMeasureSubdivisions(m);
       buildBeatControls(m);
       buildCircularSequencer(m);
-      playhead.stepIndex = 0;
-      playhead.startTime = performance.now();
+      if (!isPlaying) { playhead.stepIndex = 0; playhead.startTime = performance.now(); }
+      refreshBeatEditor();
     }
+
+    let beatEditorSelection = null;
+    const beatEditor = document.createElement('div');
+    beatEditor.id = 'beatEditor';
+    beatEditor.hidden = true;
+    beatEditor.setAttribute('role','dialog');
+    beatEditor.setAttribute('aria-labelledby','beatEditorTitle');
+    beatEditor.style.cssText = 'position:fixed;right:16px;top:130px;width:min(340px,calc(100vw - 32px));max-height:calc(100dvh - 160px);overflow:auto;z-index:1000;background:#20212a;border:1px solid var(--cyan);border-radius:10px;padding:16px;box-shadow:0 12px 50px #0009;box-sizing:border-box';
+    document.body.appendChild(beatEditor);
+    function closeBeatEditor() { beatEditor.hidden = true; beatEditorSelection = null; sequencerContainer.querySelectorAll('.step.editing').forEach(el=>el.classList.remove('editing')); }
+    function openBeatEditor(m, beat) {
+      beatEditorSelection = { m, beat };
+      beatEditor.hidden = false;
+      refreshBeatEditor();
+    }
+    function refreshBeatEditor() {
+      if (!beatEditorSelection) return;
+      const { m, beat } = beatEditorSelection;
+      const measureIndex = measures.indexOf(m);
+      if (appMode !== 'metronome' || measureIndex < 0 || beat >= m.numerator) { closeBeatEditor(); return; }
+      sequencerContainer.querySelectorAll('.step').forEach(el=>el.classList.toggle('editing',measures[activeMeasureIndex]===m&&Number(el.dataset.beat)===beat));
+      beatEditor.replaceChildren();
+      const header = document.createElement('div');
+      header.style.cssText = 'display:flex;justify-content:space-between;align-items:center;margin-bottom:16px';
+      const title = document.createElement('strong');
+      title.id = 'beatEditorTitle';
+      title.textContent = 'Temps ' + (beat+1) + ' · mesure ' + (measureIndex+1);
+      const close = document.createElement('button');
+      close.textContent = '×'; close.setAttribute('aria-label','Fermer');
+      close.style.cssText='width:32px;height:32px;padding:0;background:transparent;border:0;color:var(--text);font-size:22px;cursor:pointer';
+      close.addEventListener('click',closeBeatEditor);
+      header.append(title,close); beatEditor.appendChild(header);
+      const label = document.createElement('label');
+      label.textContent = 'Divisé en ';
+      const select = document.createElement('select');
+      select.id = 'beatEditorDivision';
+      for (const n of allowedSubdivisions(m.denominator)) {
+        const option = document.createElement('option');option.value=n;option.textContent=n;select.appendChild(option);
+      }
+      select.value = m.beatSubdivisions[beat];
+      select.addEventListener('change',() => {
+        resizeBeat(m,beat,Number(select.value));validatePlayingState();
+        if (measures[activeMeasureIndex] === m) renderActiveMeasure();
+        refreshMeasurePreviews();refreshBeatEditor();
+      });
+      label.appendChild(select);beatEditor.appendChild(label);
+      const pads = document.createElement('div');
+      pads.id = 'beatEditorPads';
+      pads.style.cssText = 'display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0';
+      for (let i=0;i<m.beatSubdivisions[beat];i++) {
+        const button = document.createElement('button');
+        button.dataset.subIndex=i;button.dataset.state=m.beatStates[beat][i];
+        button.textContent=i+1;
+        const state=m.beatStates[beat][i];
+        button.style.cssText='height:48px;padding:0;border:2px solid transparent;border-radius:7px;font-weight:700;background:'+['var(--grey)','var(--cyan)','var(--yellow)','var(--orange)'][state]+';color:'+(state?'#111':'#ddd');
+        button.setAttribute('aria-label','Subdivision '+(i+1)+', '+['éteint','clic 1','clic 2','clic 3'][state]);
+        button.addEventListener('click',()=>{
+          m.beatStates[beat][i]=(m.beatStates[beat][i]+1)%4;
+          if(measures[activeMeasureIndex]===m){
+            const block=sequencerContainer.querySelector('.step[data-beat="'+beat+'"]');
+            if(block){block.dataset.state=m.beatStates[beat][0];block.firstChild.style.color=m.beatStates[beat][0]?'#111':'#ddd';}
+          }
+          refreshMeasurePreviews();refreshBeatEditor();
+        });pads.appendChild(button);
+      }
+      beatEditor.appendChild(pads);
+      const legend=document.createElement('p');legend.textContent='Éteint · Clic 1 · Clic 2 · Clic 3';legend.style.cssText='font-size:11px;color:var(--text-muted)';beatEditor.appendChild(legend);
+      if(isPlaying){const note=document.createElement('p');note.textContent='Les divisions prennent effet au prochain passage de la mesure.';note.style.cssText='font-size:11px;color:var(--text-muted)';beatEditor.appendChild(note);}
+    }
+    function highlightBeatEditor(m,beat,subIndex,scheduledSubdivisions) {
+      if(!beatEditorSelection || beatEditorSelection.m!==m || beatEditorSelection.beat!==beat)return;
+      const current=Math.min(m.beatSubdivisions[beat]-1,Math.floor(subIndex*m.beatSubdivisions[beat]/scheduledSubdivisions));
+      beatEditor.querySelectorAll('#beatEditorPads button').forEach((button,i)=>{button.style.borderColor=i===current?'#fff':'transparent';});
+    }
+    document.addEventListener('pointerdown',e=>{if(!beatEditor.hidden&&!beatEditor.contains(e.target)&&!e.target.closest('.step'))closeBeatEditor();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!beatEditor.hidden){closeBeatEditor();e.preventDefault();e.stopPropagation();}},true);
+    beatEditor.addEventListener('keydown',e=>e.stopPropagation());
 
     function buildBeatControls(m) {
       beatControlsDiv.innerHTML = '';
@@ -1997,7 +2093,7 @@
         const label = document.createElement('span');
         label.textContent = `Tps ${i + 1}`;
         const sel = document.createElement('select');
-        for (let v = 1; v <= 8; v++) {
+        for (const v of allowedSubdivisions(m.denominator)) {
           const opt = document.createElement('option');
           opt.value = v;
           opt.textContent = getSubdivLabel(m.denominator, v);
@@ -2028,65 +2124,44 @@
     }, { passive: false });
 
     function resizeBeat(m, beatIdx, newSubdiv) {
-      let visibleHead = null;
-      if (isPlaying && appMode === 'metronome' && measures[activeMeasureIndex] === m) {
-        const elapsed = Math.max(0, Math.min(1, (performance.now() - playhead.startTime) / playhead.durationMs));
-        const span = playhead.span ?? 1;
-        const position = getBeatAndSub(m, playhead.stepIndex + elapsed * span);
-        const subdivisions = m.beatSubdivisions[position.beat] || 1;
-        visibleHead = { beat: position.beat, phase: position.subIndex / subdivisions,
-          remainingMs: playhead.durationMs * (1 - elapsed), remainingPhase: span * (1 - elapsed) / subdivisions };
-      }
+      if (!allowedSubdivisions(m.denominator).includes(newSubdiv)) return;
       const oldSubdiv = m.beatSubdivisions[beatIdx];
       m.beatSubdivisions[beatIdx] = newSubdiv;
       const states = m.beatStates[beatIdx];
       while (states.length > newSubdiv) states.pop();
       while (states.length < newSubdiv) states.push(0);
       if (states.length > 0 && oldSubdiv === 0) states[0] = 1;
-      if (visibleHead) {
-        const subdivisions = m.beatSubdivisions[visibleHead.beat] || 1;
-        playhead.stepIndex = m.beatSubdivisions.slice(0, visibleHead.beat).reduce((n, v) => n + v, 0) + visibleHead.phase * subdivisions;
-        playhead.startTime = performance.now();
-        playhead.durationMs = Math.max(0.01, visibleHead.remainingMs);
-        playhead.span = visibleHead.remainingPhase * subdivisions;
-      }
+
     }
 
     function buildCircularSequencer(m) {
       sequencerContainer.querySelectorAll('.step, .beat-divider, .poly-dot, .poly-ring').forEach(el => el.remove());
-      totalSteps = measureTotalSteps(m);
+      totalSteps = m.numerator;
       stepsData = [];
-
-      let stepIndex = 0;
       for (let b = 0; b < m.numerator; b++) {
-        for (let s = 0; s < m.beatSubdivisions[b]; s++) {
-          stepsData.push({ beat: b, subIndex: s, globalIndex: stepIndex });
-          const step = document.createElement('div');
-          step.className = 'step';
-          step.dataset.state = m.beatStates[b][s];
-          step.dataset.index = stepIndex;
-          const angle = (stepIndex / totalSteps) * 360;
-          step.style.setProperty('--angle', `${angle}deg`);
-          step.addEventListener('click', () => {
-            let st = parseInt(step.dataset.state);
-            st = (st + 1) % 4;
-            step.dataset.state = st;
-            m.beatStates[b][s] = st;
-            refreshMeasurePreviews();
-          });
-          sequencerContainer.appendChild(step);
-          stepIndex++;
-        }
-      }
-
-      let cumul = 0;
-      for (let b = 0; b < m.numerator; b++) {
-        const angle = (cumul / totalSteps) * 360;
+        stepsData.push({ beat: b, subIndex: 0, globalIndex: b });
+        const step = document.createElement('div');
+        step.className = 'step';
+        step.dataset.state = m.beatStates[b][0];
+        step.dataset.index = b;
+        step.dataset.beat = b;
+        step.setAttribute('role','button');
+        step.tabIndex = 0;
+        step.setAttribute('aria-label','Régler le temps ' + (b+1));
+        const angle = b / m.numerator * 360;
+        step.style.setProperty('--angle', angle + 'deg');
+        const number = document.createElement('span');
+        number.textContent = b + 1;
+        number.style.cssText = 'font-size:11px;font-weight:700;color:#111;transform:rotate(' + (-angle) + 'deg)';
+        if (!m.beatStates[b][0]) number.style.color = '#ddd';
+        step.appendChild(number);
+        step.addEventListener('click', () => openBeatEditor(m,b));
+        step.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();openBeatEditor(m,b);} });
+        sequencerContainer.appendChild(step);
         const divider = document.createElement('div');
         divider.className = 'beat-divider';
-        divider.style.setProperty('--divider-angle', `${angle}deg`);
+        divider.style.setProperty('--divider-angle',angle+'deg');
         sequencerContainer.appendChild(divider);
-        cumul += m.beatSubdivisions[b];
       }
       updateRingRadius();
     }
@@ -2156,7 +2231,7 @@
         const position = musicalPosition ?? { ...getBeatAndSub(m, sIdx), subdivisions: 1 };
         const beat = position.beat;
         const visibleSubdivisions = m.beatSubdivisions[beat] || 1;
-        const visibleIndex = m.beatSubdivisions.slice(0, beat).reduce((n, v) => n + v, 0) + position.subIndex * visibleSubdivisions / position.subdivisions;
+        const visibleIndex = beat + position.subIndex / position.subdivisions;
         const stepEls = sequencerContainer.querySelectorAll('.step');
         stepEls.forEach(el => el.classList.remove('active'));
         const stepEl = stepEls[Math.floor(visibleIndex)];
@@ -2167,7 +2242,8 @@
         beatDisplay.textContent = Math.floor(beat / (position.voiceGroupSize || 1)) + 1;
         beatDisplay.classList.add('pulse');
         setTimeout(() => beatDisplay.classList.remove('pulse'), 130);
-        markPlayheadStep(visibleIndex, position.durationMs, visibleSubdivisions / position.subdivisions);
+        markPlayheadStep(visibleIndex, position.durationMs, 1 / position.subdivisions);
+        highlightBeatEditor(m, beat, position.subIndex, position.subdivisions);
       }, Math.max(0, drawTime));
     }
 
@@ -2302,6 +2378,7 @@
       const m=measures[activeMeasureIndex]; if(!m) return;
       activeMeasureLabel.textContent=`MESURE ${activeMeasureIndex+1} / ${measures.length}`;
       updateVoiceGroupLabel();
+      refreshBeatEditor();
       polyNumeratorInput.value=String(m.numerator); polyDenominatorInput.value=String(m.denominator); syncNumbox(polyNumeratorInput); syncNumbox(polyDenominatorInput);
       syncTempoUI(m); buildPolyVisualizer(m);
       playhead.stepIndex=0; playhead.startTime=performance.now();
@@ -2406,6 +2483,9 @@
       if (!training.active) startWorkTimer();
       // Le playhead visuel démarre sur le premier événement planifié, pas avant.
       // Cela garde le tout premier passage 1 → 2 parfaitement synchronisé avec l'audio.
+      playhead.stepIndex = 0;
+      playhead.span = 0;
+      playhead.startTime = performance.now();
       clearProgressTrail();
       scheduler();
     }
@@ -2663,6 +2743,8 @@
       const m = measures[activeMeasureIndex];
       if (!m) return;
       m.denominator = parseInt(activeDenominatorSel.value);
+      normalizeMeasureSubdivisions(m);
+      refreshBeatEditor();
       renderActiveMeasure();
       refreshMeasurePreviews();
     });

@@ -1,0 +1,50 @@
+[
+  {
+    "bank": "voiceMale",
+    "beats": 14,
+    "maxErrorMs": 1.7763568394002505e-12,
+    "counting": true,
+    "visuals": true,
+    "displayCounts": [
+      1,
+      2,
+      3,
+      4,
+      1,
+      2,
+      3,
+      4,
+      1,
+      2,
+      3,
+      4,
+      1,
+      2
+    ],
+    "changes": 4
+  },
+  {
+    "bank": "voiceFemale",
+    "beats": 14,
+    "maxErrorMs": 1.7763568394002505e-12,
+    "counting": true,
+    "visuals": true,
+    "displayCounts": [
+      1,
+      2,
+      3,
+      4,
+      1,
+      2,
+      3,
+      4,
+      1,
+      2,
+      3,
+      4,
+      1,
+      2
+    ],
+    "changes": 4
+  }
+]

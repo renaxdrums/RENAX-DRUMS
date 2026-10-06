@@ -1,0 +1,57 @@
+{
+  "reports": [
+    {
+      "denominator": 4,
+      "choices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "blocks": 20,
+      "popupPads": 8
+    },
+    {
+      "denominator": 8,
+      "choices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "blocks": 20,
+      "popupPads": 7
+    },
+    {
+      "denominator": 16,
+      "choices": [
+        1,
+        2,
+        3
+      ],
+      "blocks": 20,
+      "popupPads": 3
+    },
+    {
+      "denominator": 32,
+      "choices": [
+        1
+      ],
+      "blocks": 20,
+      "popupPads": 1
+    }
+  ],
+  "mobileBounds": {
+    "x": 34,
+    "y": 130,
+    "width": 340,
+    "height": 221
+  }
+}

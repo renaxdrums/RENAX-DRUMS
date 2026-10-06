@@ -9,7 +9,7 @@ const fs=require('fs');
   const realCtx=audioCtx, originalClick=playClick, originalVisual=scheduleVisualUpdate;
   const nativeTimeout=window.setTimeout;window.setTimeout=()=>0;scheduleVisualUpdate=()=>{};
   const results=[];let maxAttackError=0,maxIntervalError=0,lateStarts=0;
-  const cases=[{name:'Groupes 20/16 a 120 BPM',ms:[[20,120,[2],16]]},{name:'Groupes 20/32 a 120 BPM',ms:[[20,120,[2],32]]},{name:'Tous les nombres 1-20 a 60 BPM',ms:[[20,60,[1]]]},{name:'Tous les nombres 1-20',ms:[[20,120,[1]]]},{name:'60 BPM 4/4',ms:[[4,60,[1]]]},{name:'120 BPM 4/4',ms:[[4,120,[1]]]},{name:'60 BPM 3/4',ms:[[3,60,[1]]]},{name:'120 BPM 5/4',ms:[[5,120,[1]]]},{name:'subdivisions 2/3/4/5/6/7/8',ms:[[4,120,[2,3,4,5]],[3,60,[6,7,8]]]},{name:'mesures et tempos 60->120->90',ms:[[4,60,[1]],[3,120,[2,3,4]],[5,90,[1]]]}];
+  const cases=[{name:'Groupes 20/16 a 120 BPM',ms:[[20,120,[2],16]]},{name:'Groupes 20/32 a 120 BPM',ms:[[20,120,[1],32]]},{name:'Tous les nombres 1-20 a 60 BPM',ms:[[20,60,[1]]]},{name:'Tous les nombres 1-20',ms:[[20,120,[1]]]},{name:'60 BPM 4/4',ms:[[4,60,[1]]]},{name:'120 BPM 4/4',ms:[[4,120,[1]]]},{name:'60 BPM 3/4',ms:[[3,60,[1]]]},{name:'120 BPM 5/4',ms:[[5,120,[1]]]},{name:'subdivisions 2/3/4/5/6/7/8',ms:[[4,120,[2,3,4,5]],[3,60,[6,7,8]]]},{name:'mesures et tempos 60->120->90',ms:[[4,60,[1]],[3,120,[2,3,4]],[5,90,[1]]]}];
   for(const bank of ['voiceMale','voiceFemale']){
    for(const test of cases){
     currentBank=bank;appMode='metronome';training.active=false;silentModeEnabled=false;
@@ -56,6 +56,7 @@ const fs=require('fs');
  },JSON.parse(fs.readFileSync(require('path').join(__dirname,'voice-anchors.json'),'utf8')));
  save('timing-results.json',result);console.log(JSON.stringify(result,null,2));await browser.close();runtime.server?.close();
 })().catch(e=>{console.error(e);process.exit(1)});
+
 
 
 
