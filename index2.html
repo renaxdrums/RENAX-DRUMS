@@ -3131,10 +3131,8 @@
         polyrhythmMeasures = [createPolyMeasure(5, 4, tempo)];
         measures = polyrhythmMeasures;
       } else {
-        playBtn.disabled = true;
-    playBtn.classList.add('audio-loading');
-
-    metronomeMeasures = [createMeasure(4, 4)];
+        // RESET ne relance pas le chargement audio : conserver son état réel.
+        metronomeMeasures = [createMeasure(4, 4)];
         measures = metronomeMeasures;
       }
       activeMeasureIndex = 0;
