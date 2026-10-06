@@ -353,6 +353,7 @@
     }
 
     .visualizer-svg {
+      display: none;
       position: absolute; left: 50%; top: 50%;
       transform: translate(-50%, -50%) rotate(-90deg);
       width: calc(100% - 20px); height: calc(100% - 20px);
@@ -382,6 +383,10 @@
       transform: translate(-50%, -50%) rotate(var(--angle)) translateY(calc(-1 * var(--ring-radius, 138px)));
       display: flex; align-items: center; justify-content: center; z-index: 2;
     }
+    .subdivision-dot {position:absolute;left:50%;top:50%;width:var(--dot-size,5px);height:var(--dot-size,5px);border-radius:50%;background:var(--grey);border:1px solid #666;pointer-events:none;z-index:3;transform:translate(-50%,-50%) rotate(var(--angle)) translateY(calc(-1 * var(--ring-radius) + var(--step-size)));}
+    .subdivision-dot[data-state="1"] {background:var(--cyan);border-color:var(--cyan);}
+    .subdivision-dot[data-state="2"] {background:var(--yellow);border-color:var(--yellow);}
+    .subdivision-dot[data-state="3"] {background:var(--orange);border-color:var(--orange);}
     .step:hover { background: var(--grey-hover); }
     .step.editing { outline: 2px solid var(--orange); outline-offset: 3px; }
     .step[data-state="0"] { background: var(--grey); border-color: transparent; }
@@ -1066,7 +1071,7 @@
     function switchTab(name) {
       mobileTabs.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
       panels.forEach(p => p.classList.toggle('mobile-active', p.dataset.panel === name));
-      if (name === 'visu') setTimeout(() => { resizeCanvas(); updateRingRadius(); }, 30);
+      if (name === 'visu') setTimeout(() => { resizeCanvas(); updateRingRadius(); if(appMode!=='polyrhythm' && measures[activeMeasureIndex])renderSubdivisionDots(measures[activeMeasureIndex]); }, 30);
     }
     mobileTabs.addEventListener('click', e => {
       const btn = e.target.closest('button');
@@ -2055,13 +2060,13 @@
       label.appendChild(select);beatEditor.appendChild(label);
       const pads = document.createElement('div');
       pads.id = 'beatEditorPads';
-      pads.style.cssText = 'display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0';
+      pads.style.cssText = 'display:flex;flex-wrap:nowrap;gap:6px;margin:16px 0;overflow-x:auto';
       for (let i=0;i<m.beatSubdivisions[beat];i++) {
         const button = document.createElement('button');
         button.dataset.subIndex=i;button.dataset.state=m.beatStates[beat][i];
         button.textContent=i+1;
         const state=m.beatStates[beat][i];
-        button.style.cssText='height:48px;padding:0;border:2px solid transparent;border-radius:7px;font-weight:700;background:'+['var(--grey)','var(--cyan)','var(--yellow)','var(--orange)'][state]+';color:'+(state?'#111':'#ddd');
+        button.style.cssText='flex:1 0 28px;min-width:28px;height:48px;padding:0;border:2px solid transparent;border-radius:7px;font-weight:700;background:'+['var(--grey)','var(--cyan)','var(--yellow)','var(--orange)'][state]+';color:'+(state?'#111':'#ddd');
         button.setAttribute('aria-label','Subdivision '+(i+1)+', '+['éteint','clic 1','clic 2','clic 3'][state]);
         button.addEventListener('click',()=>{
           m.beatStates[beat][i]=(m.beatStates[beat][i]+1)%4;
@@ -2069,7 +2074,7 @@
             const block=sequencerContainer.querySelector('.step[data-beat="'+beat+'"]');
             if(block){block.dataset.state=m.beatStates[beat][0];block.firstChild.style.color=m.beatStates[beat][0]?'#111':'#ddd';}
           }
-          refreshMeasurePreviews();refreshBeatEditor();
+          renderSubdivisionDots(m);refreshMeasurePreviews();refreshBeatEditor();
         });pads.appendChild(button);
       }
       beatEditor.appendChild(pads);
@@ -2134,8 +2139,20 @@
 
     }
 
+    function renderSubdivisionDots(m) {
+      sequencerContainer.querySelectorAll('.subdivision-dot').forEach(el=>el.remove());
+      const maxDivision=Math.max(...m.beatSubdivisions);
+      sequencerContainer.style.setProperty('--dot-size',Math.max(2,Math.min(6,2*Math.PI*(RING_RADIUS-STEP_SIZE)/m.numerator/maxDivision*.45))+'px');
+      for(let beat=0;beat<m.numerator;beat++) {
+        const count=m.beatSubdivisions[beat];if(count===1)continue;
+        for(let sub=0;sub<count;sub++) {
+          const dot=document.createElement('span');dot.className='subdivision-dot';dot.dataset.beat=beat;dot.dataset.subIndex=sub;dot.dataset.state=m.beatStates[beat][sub];
+          dot.style.setProperty('--angle',((beat+sub/count)/m.numerator*360)+'deg');sequencerContainer.appendChild(dot);
+        }
+      }
+    }
     function buildCircularSequencer(m) {
-      sequencerContainer.querySelectorAll('.step, .beat-divider, .poly-dot, .poly-ring').forEach(el => el.remove());
+      sequencerContainer.querySelectorAll('.step, .subdivision-dot, .beat-divider, .poly-dot, .poly-ring').forEach(el => el.remove());
       totalSteps = m.numerator;
       stepsData = [];
       for (let b = 0; b < m.numerator; b++) {
@@ -2164,6 +2181,7 @@
         sequencerContainer.appendChild(divider);
       }
       updateRingRadius();
+      renderSubdivisionDots(m);
     }
 
     function scheduler() {
@@ -2293,7 +2311,7 @@
 
     function buildPolyVisualizer(m) {
       ensurePolyStates(m);
-      sequencerContainer.querySelectorAll('.step, .beat-divider, .poly-dot, .poly-ring').forEach(el => el.remove());
+      sequencerContainer.querySelectorAll('.step, .subdivision-dot, .beat-divider, .poly-dot, .poly-ring').forEach(el => el.remove());
       totalSteps = 0;
       stepsData = [];
       clearProgressTrail();
