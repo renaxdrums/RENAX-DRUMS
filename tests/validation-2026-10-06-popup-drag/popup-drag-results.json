@@ -1,0 +1,26 @@
+{
+  "before": {
+    "x": 567,
+    "y": 130,
+    "width": 340,
+    "height": 221
+  },
+  "after": {
+    "x": 367,
+    "y": 180,
+    "width": 340,
+    "height": 221
+  },
+  "edited": {
+    "x": 367,
+    "y": 180,
+    "width": 340,
+    "height": 221
+  },
+  "bounded": {
+    "x": 8,
+    "y": 511,
+    "width": 340,
+    "height": 221
+  }
+}

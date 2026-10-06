@@ -2017,6 +2017,35 @@
     beatEditor.setAttribute('aria-labelledby','beatEditorTitle');
     beatEditor.style.cssText = 'position:fixed;right:16px;top:130px;width:min(340px,calc(100vw - 32px));max-height:calc(100dvh - 160px);overflow:auto;z-index:1000;background:#20212a;border:1px solid var(--cyan);border-radius:10px;padding:16px;box-shadow:0 12px 50px #0009;box-sizing:border-box';
     document.body.appendChild(beatEditor);
+    let beatEditorDrag = null;
+    function positionBeatEditor(x,y) {
+      const rect=beatEditor.getBoundingClientRect();
+      beatEditor.style.right='auto';
+      beatEditor.style.left=Math.max(8,Math.min(x,window.innerWidth-rect.width-8))+'px';
+      beatEditor.style.top=Math.max(8,Math.min(y,window.innerHeight-rect.height-8))+'px';
+    }
+    beatEditor.addEventListener('pointerdown',e=>{
+      if(e.button!==0 || !e.target.closest('.beat-editor-handle') || e.target.closest('button'))return;
+      const rect=beatEditor.getBoundingClientRect();
+      beatEditorDrag={pointerId:e.pointerId,x:e.clientX,y:e.clientY,left:rect.left,top:rect.top};
+      beatEditor.setPointerCapture(e.pointerId);e.preventDefault();
+    });
+    beatEditor.addEventListener('pointermove',e=>{
+      if(!beatEditorDrag || beatEditorDrag.pointerId!==e.pointerId)return;
+      positionBeatEditor(beatEditorDrag.left+e.clientX-beatEditorDrag.x,beatEditorDrag.top+e.clientY-beatEditorDrag.y);
+    });
+    function finishBeatEditorDrag(e) {
+      if(beatEditorDrag?.pointerId===e.pointerId)beatEditorDrag=null;
+    }
+    beatEditor.addEventListener('pointerup',finishBeatEditorDrag);
+    beatEditor.addEventListener('pointercancel',finishBeatEditorDrag);
+    beatEditor.addEventListener('lostpointercapture',finishBeatEditorDrag);
+    function keepBeatEditorInView() {
+      if(beatEditor.hidden)return;
+      const rect=beatEditor.getBoundingClientRect();positionBeatEditor(rect.left,rect.top);
+    }
+    window.addEventListener('resize',keepBeatEditorInView);
+    new ResizeObserver(keepBeatEditorInView).observe(beatEditor);
     function closeBeatEditor() { beatEditor.hidden = true; beatEditorSelection = null; sequencerContainer.querySelectorAll('.step.editing').forEach(el=>el.classList.remove('editing')); }
     function openBeatEditor(m, beat) {
       beatEditorSelection = { m, beat };
@@ -2031,7 +2060,9 @@
       sequencerContainer.querySelectorAll('.step').forEach(el=>el.classList.toggle('editing',measures[activeMeasureIndex]===m&&Number(el.dataset.beat)===beat));
       beatEditor.replaceChildren();
       const header = document.createElement('div');
-      header.style.cssText = 'display:flex;justify-content:space-between;align-items:center;margin-bottom:16px';
+      header.className='beat-editor-handle';
+      header.title='Glisser pour déplacer';
+      header.style.cssText = 'display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;cursor:move;touch-action:none;user-select:none';
       const title = document.createElement('strong');
       title.id = 'beatEditorTitle';
       title.textContent = 'Temps ' + (beat+1) + ' · mesure ' + (measureIndex+1);
