@@ -6,9 +6,17 @@ Chaque profil possède sa bibliothèque dans ce navigateur. Nouveau morceau cré
 
 Les modifications sont enregistrées automatiquement dans localStorage sous `renax-drums-songs-v1`. Exporter télécharge une bibliothèque JSON ; Importer valide ce format et ajoute des profils importés sans remplacer les données existantes. Un profil local n'est pas un compte authentifié et ne synchronise pas d'autres appareils. L'export audio MP3 n'est pas inclus à ce stade.
 
-Lire le morceau utilise la grille Web Audio existante, applique le tempo et la métrique de chaque section, puis s'arrête à la fin. Les répétitions sont représentées par les sections plutôt que par une grande liste de mesures. Il n'y a pas de limite de huit mesures pour les morceaux. Le séquenceur classique conserve ses propres mesures et retrouve son état lorsqu'on y revient. Régler le clic ouvre le motif de la section dans le cercle : les subdivisions et accents modifiés sont sauvegardés pour toutes ses répétitions.
+Lire le morceau utilise la grille Web Audio existante, applique le tempo et la métrique de chaque section, puis s'arrête à la fin. Les répétitions sont représentées par les sections plutôt que par une grande liste de mesures. Il n'y a pas de limite de huit mesures pour les morceaux. Le séquenceur classique conserve ses propres mesures et retrouve son état lorsqu'on y revient. Le bloc ouvert sélectionne automatiquement son motif dans le métronome, sans bouton Régler le clic : les subdivisions et accents modifiés sont sauvegardés pour toutes ses répétitions.
 
 Le chrono de durée repart à 0:00 après une personnalisation du métronome. S'il joue, le chrono continue à tourner. Cette remise à zéro ne modifie ni la position musicale ni le scheduler.
+
+## Numbox et ouverture des cartes
+
+Mesures et Tempo utilisent le composant `enhanceNumboxSelect` du métronome : bouton 58 × 30 px, même couleur orange, police et menu, sans spinner numérique du navigateur. Le menu Autre permet une valeur de mesures hors des propositions ; la valeur doit rester un entier positif et les limites de tempo restent 20–300 BPM. Les valeurs et leur représentation sont conservées après rechargement. Le registre des widgets utilise un WeakMap pour libérer les widgets des blocs reconstruits.
+
+Un clic sur le titre, le tempo, le résumé, l’aperçu ou le fond d’une carte de playlist ouvre le morceau. Le glisser-déposer reste distinct. Le bloc ouvert sélectionne son motif automatiquement ; le bouton Régler le clic est supprimé.
+
+`tests/song-numbox-test.cjs` compare les styles au vrai numbox du métronome et vérifie menus, valeur personnalisée, rejet de valeur invalide, sauvegarde et mobile. `tests/playlist-card-click-test.cjs` vérifie toutes les zones et l’ouverture au clavier. Rapports dans `tests/validation-2026-10-06-song-numbox/`.
 
 ## Ordre de la playlist
 

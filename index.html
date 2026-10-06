@@ -842,7 +842,7 @@
     #playBtn.audio-loading { opacity: .48; cursor: not-allowed; filter: saturate(.4); }
 
   </style>
-  <link rel="stylesheet" href="songs.css?v=20261006-playlist-drag">
+  <link rel="stylesheet" href="songs.css?v=20261006-song-numbox">
 </head>
 <body>
 
@@ -1555,7 +1555,7 @@
 
 
 
-    const numboxWidgets = new Map();
+    const numboxWidgets = new WeakMap();
     function closeAllNumboxes(except = null) {
       document.querySelectorAll('.numbox-custom.open').forEach(w => { if (w !== except) w.classList.remove('open'); });
     }
@@ -2838,6 +2838,6 @@
     });
     prepareAllVoiceAudio().catch(() => {});
   </script>
-  <script src="songs.js?v=20261006-playlist-drag"></script>
+  <script src="songs.js?v=20261006-song-numbox"></script>
 </body>
 </html>

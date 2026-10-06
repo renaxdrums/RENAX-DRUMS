@@ -1,0 +1,16 @@
+{
+  "timing": {
+    "bars": 20,
+    "beats": 88,
+    "maxTimingErrorSeconds": 5.684341886080802e-14,
+    "durationSeconds": 49.69072164948456
+  },
+  "longSong": {
+    "bars": 1000016,
+    "lazyMeasure": 4
+  },
+  "reload": true,
+  "playlistFirst": true,
+  "exportImport": true,
+  "errors": []
+}
