@@ -1,10 +1,10 @@
 .song-tabs { display:flex; gap:6px; margin-bottom:12px; }
 .song-tabs button { flex:1; padding:9px 4px; background:var(--grey); border:1px solid var(--border); border-radius:5px; color:var(--text); cursor:pointer; }
 .song-tabs button[aria-selected="true"] { background:var(--orange); color:#111; font-weight:700; }
-#songPane[hidden], #sequencePane[hidden] { display:none; }
-#songPane { font-size:11px; min-width:0; }
-#songPane label { display:block; color:var(--text-muted); margin:8px 0; }
-#songPane input,#songPane select { width:100%; margin-top:4px; box-sizing:border-box; min-width:0; }
+#songPane[hidden], #profilePane[hidden], #sequencePane[hidden] { display:none; }
+:is(#songPane,#profilePane) { font-size:11px; min-width:0; }
+:is(#songPane,#profilePane) label { display:block; color:var(--text-muted); margin:8px 0; }
+:is(#songPane,#profilePane) input,:is(#songPane,#profilePane) select { width:100%; margin-top:4px; box-sizing:border-box; min-width:0; }
 .song-actions { display:flex; flex-wrap:wrap; gap:5px; margin:8px 0; }
 .song-actions button { padding:7px 9px; font-size:10px; }
 .song-section { border:1px solid var(--border); border-radius:6px; padding:9px; margin:10px 0; }
@@ -19,7 +19,14 @@
 #sequencePane {display:flex;flex-direction:column;min-height:0;flex:1;}
 
 #sequencePane {gap:14px;}
-#songPane input[type=text] {padding:7px;background:var(--grey);color:var(--text);border:1px solid var(--border);border-radius:4px;font:inherit;}
+:is(#songPane,#profilePane) input[type=text] {padding:7px;background:var(--grey);color:var(--text);border:1px solid var(--border);border-radius:4px;font:inherit;}
 .song-tabs {flex-shrink:0;}
 
 .song-tabs button {font-family:var(--font);font-size:11px;}
+
+.song-tabs button {min-width:0;padding:9px 2px;font-size:10px;}
+
+#songsRoot[hidden], #songsHome[hidden] {display:none;}
+.song-entry {display:block;width:100%;text-align:left;padding:14px;margin:8px 0;}
+.song-back {padding:4px 9px;margin:0 0 8px;}
+.song-section.measure-card {cursor:pointer;}
