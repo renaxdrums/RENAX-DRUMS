@@ -1,0 +1,471 @@
+[
+  {
+    "bank": "clic",
+    "events": 142,
+    "expectedEvents": 142,
+    "score": {
+      "name": "Grid reference",
+      "duration": 18.30010057832537,
+      "lead": 0,
+      "tail": 0.055,
+      "events": 142,
+      "steps": 188,
+      "sections": [
+        {
+          "label": "4/4",
+          "count": 2,
+          "start": 0,
+          "barDuration": 4,
+          "tempo": 60,
+          "numerator": 4,
+          "denominator": 4
+        },
+        {
+          "label": "3/4",
+          "count": 2,
+          "start": 8,
+          "barDuration": 1.5,
+          "tempo": 120,
+          "numerator": 3,
+          "denominator": 4
+        },
+        {
+          "label": "5/8",
+          "count": 2,
+          "start": 11,
+          "barDuration": 1.5463917525773196,
+          "tempo": 97,
+          "numerator": 5,
+          "denominator": 8
+        },
+        {
+          "label": "7/16",
+          "count": 2,
+          "start": 14.092783505154639,
+          "barDuration": 0.8536585365853658,
+          "tempo": 123,
+          "numerator": 7,
+          "denominator": 16
+        },
+        {
+          "label": "20/32",
+          "count": 2,
+          "start": 15.80010057832537,
+          "barDuration": 1.25,
+          "tempo": 120,
+          "numerator": 20,
+          "denominator": 32
+        }
+      ]
+    },
+    "maxPCMError": 0,
+    "relativeRMSError": 0,
+    "maxAtSeconds": 0,
+    "firstAtSeconds": -0.000020833333333333333,
+    "bufferRate": 48000,
+    "mismatches": [],
+    "gridDifference": 0
+  },
+  {
+    "bank": "cloche",
+    "events": 142,
+    "expectedEvents": 142,
+    "score": {
+      "name": "Grid reference",
+      "duration": 18.30010057832537,
+      "lead": 0,
+      "tail": 0.44,
+      "events": 142,
+      "steps": 188,
+      "sections": [
+        {
+          "label": "4/4",
+          "count": 2,
+          "start": 0,
+          "barDuration": 4,
+          "tempo": 60,
+          "numerator": 4,
+          "denominator": 4
+        },
+        {
+          "label": "3/4",
+          "count": 2,
+          "start": 8,
+          "barDuration": 1.5,
+          "tempo": 120,
+          "numerator": 3,
+          "denominator": 4
+        },
+        {
+          "label": "5/8",
+          "count": 2,
+          "start": 11,
+          "barDuration": 1.5463917525773196,
+          "tempo": 97,
+          "numerator": 5,
+          "denominator": 8
+        },
+        {
+          "label": "7/16",
+          "count": 2,
+          "start": 14.092783505154639,
+          "barDuration": 0.8536585365853658,
+          "tempo": 123,
+          "numerator": 7,
+          "denominator": 16
+        },
+        {
+          "label": "20/32",
+          "count": 2,
+          "start": 15.80010057832537,
+          "barDuration": 1.25,
+          "tempo": 120,
+          "numerator": 20,
+          "denominator": 32
+        }
+      ]
+    },
+    "maxPCMError": 1.7881393432617188e-7,
+    "relativeRMSError": 6.780264759709816e-8,
+    "maxAtSeconds": 12.641166666666667,
+    "firstAtSeconds": -0.000020833333333333333,
+    "bufferRate": 48000,
+    "mismatches": [],
+    "gridDifference": 0
+  },
+  {
+    "bank": "claves",
+    "events": 142,
+    "expectedEvents": 142,
+    "score": {
+      "name": "Grid reference",
+      "duration": 18.30010057832537,
+      "lead": 0,
+      "tail": 0.075,
+      "events": 142,
+      "steps": 188,
+      "sections": [
+        {
+          "label": "4/4",
+          "count": 2,
+          "start": 0,
+          "barDuration": 4,
+          "tempo": 60,
+          "numerator": 4,
+          "denominator": 4
+        },
+        {
+          "label": "3/4",
+          "count": 2,
+          "start": 8,
+          "barDuration": 1.5,
+          "tempo": 120,
+          "numerator": 3,
+          "denominator": 4
+        },
+        {
+          "label": "5/8",
+          "count": 2,
+          "start": 11,
+          "barDuration": 1.5463917525773196,
+          "tempo": 97,
+          "numerator": 5,
+          "denominator": 8
+        },
+        {
+          "label": "7/16",
+          "count": 2,
+          "start": 14.092783505154639,
+          "barDuration": 0.8536585365853658,
+          "tempo": 123,
+          "numerator": 7,
+          "denominator": 16
+        },
+        {
+          "label": "20/32",
+          "count": 2,
+          "start": 15.80010057832537,
+          "barDuration": 1.25,
+          "tempo": 120,
+          "numerator": 20,
+          "denominator": 32
+        }
+      ]
+    },
+    "maxPCMError": 0,
+    "relativeRMSError": 0,
+    "maxAtSeconds": 0,
+    "firstAtSeconds": -0.000020833333333333333,
+    "bufferRate": 48000,
+    "mismatches": [],
+    "gridDifference": 0
+  },
+  {
+    "bank": "clic808",
+    "events": 142,
+    "expectedEvents": 142,
+    "score": {
+      "name": "Grid reference",
+      "duration": 18.30010057832537,
+      "lead": 0,
+      "tail": 0.22,
+      "events": 142,
+      "steps": 188,
+      "sections": [
+        {
+          "label": "4/4",
+          "count": 2,
+          "start": 0,
+          "barDuration": 4,
+          "tempo": 60,
+          "numerator": 4,
+          "denominator": 4
+        },
+        {
+          "label": "3/4",
+          "count": 2,
+          "start": 8,
+          "barDuration": 1.5,
+          "tempo": 120,
+          "numerator": 3,
+          "denominator": 4
+        },
+        {
+          "label": "5/8",
+          "count": 2,
+          "start": 11,
+          "barDuration": 1.5463917525773196,
+          "tempo": 97,
+          "numerator": 5,
+          "denominator": 8
+        },
+        {
+          "label": "7/16",
+          "count": 2,
+          "start": 14.092783505154639,
+          "barDuration": 0.8536585365853658,
+          "tempo": 123,
+          "numerator": 7,
+          "denominator": 16
+        },
+        {
+          "label": "20/32",
+          "count": 2,
+          "start": 15.80010057832537,
+          "barDuration": 1.25,
+          "tempo": 120,
+          "numerator": 20,
+          "denominator": 32
+        }
+      ]
+    },
+    "maxPCMError": 5.960464477539063e-8,
+    "relativeRMSError": 2.065282973027051e-8,
+    "maxAtSeconds": 11.665208333333334,
+    "firstAtSeconds": -0.000020833333333333333,
+    "bufferRate": 48000,
+    "mismatches": [],
+    "gridDifference": 0
+  },
+  {
+    "bank": "beep",
+    "events": 142,
+    "expectedEvents": 142,
+    "score": {
+      "name": "Grid reference",
+      "duration": 18.30010057832537,
+      "lead": 0,
+      "tail": 0.075,
+      "events": 142,
+      "steps": 188,
+      "sections": [
+        {
+          "label": "4/4",
+          "count": 2,
+          "start": 0,
+          "barDuration": 4,
+          "tempo": 60,
+          "numerator": 4,
+          "denominator": 4
+        },
+        {
+          "label": "3/4",
+          "count": 2,
+          "start": 8,
+          "barDuration": 1.5,
+          "tempo": 120,
+          "numerator": 3,
+          "denominator": 4
+        },
+        {
+          "label": "5/8",
+          "count": 2,
+          "start": 11,
+          "barDuration": 1.5463917525773196,
+          "tempo": 97,
+          "numerator": 5,
+          "denominator": 8
+        },
+        {
+          "label": "7/16",
+          "count": 2,
+          "start": 14.092783505154639,
+          "barDuration": 0.8536585365853658,
+          "tempo": 123,
+          "numerator": 7,
+          "denominator": 16
+        },
+        {
+          "label": "20/32",
+          "count": 2,
+          "start": 15.80010057832537,
+          "barDuration": 1.25,
+          "tempo": 120,
+          "numerator": 20,
+          "denominator": 32
+        }
+      ]
+    },
+    "maxPCMError": 0,
+    "relativeRMSError": 0,
+    "maxAtSeconds": 0,
+    "firstAtSeconds": -0.000020833333333333333,
+    "bufferRate": 48000,
+    "mismatches": [],
+    "gridDifference": 0
+  },
+  {
+    "bank": "voiceMale",
+    "events": 142,
+    "expectedEvents": 142,
+    "score": {
+      "name": "Grid reference",
+      "duration": 18.30010057832537,
+      "lead": 0.262,
+      "tail": 0,
+      "events": 142,
+      "steps": 188,
+      "sections": [
+        {
+          "label": "4/4",
+          "count": 2,
+          "start": 0,
+          "barDuration": 4,
+          "tempo": 60,
+          "numerator": 4,
+          "denominator": 4
+        },
+        {
+          "label": "3/4",
+          "count": 2,
+          "start": 8,
+          "barDuration": 1.5,
+          "tempo": 120,
+          "numerator": 3,
+          "denominator": 4
+        },
+        {
+          "label": "5/8",
+          "count": 2,
+          "start": 11,
+          "barDuration": 1.5463917525773196,
+          "tempo": 97,
+          "numerator": 5,
+          "denominator": 8
+        },
+        {
+          "label": "7/16",
+          "count": 2,
+          "start": 14.092783505154639,
+          "barDuration": 0.8536585365853658,
+          "tempo": 123,
+          "numerator": 7,
+          "denominator": 16
+        },
+        {
+          "label": "20/32",
+          "count": 2,
+          "start": 15.80010057832537,
+          "barDuration": 1.25,
+          "tempo": 120,
+          "numerator": 20,
+          "denominator": 32
+        }
+      ]
+    },
+    "maxPCMError": 4.76837158203125e-7,
+    "relativeRMSError": 7.113377726346816e-8,
+    "maxAtSeconds": 9.043666666666667,
+    "firstAtSeconds": -0.000020833333333333333,
+    "bufferRate": 48000,
+    "mismatches": [],
+    "gridDifference": 0
+  },
+  {
+    "bank": "voiceFemale",
+    "events": 142,
+    "expectedEvents": 142,
+    "score": {
+      "name": "Grid reference",
+      "duration": 18.30010057832537,
+      "lead": 0.262,
+      "tail": 0,
+      "events": 142,
+      "steps": 188,
+      "sections": [
+        {
+          "label": "4/4",
+          "count": 2,
+          "start": 0,
+          "barDuration": 4,
+          "tempo": 60,
+          "numerator": 4,
+          "denominator": 4
+        },
+        {
+          "label": "3/4",
+          "count": 2,
+          "start": 8,
+          "barDuration": 1.5,
+          "tempo": 120,
+          "numerator": 3,
+          "denominator": 4
+        },
+        {
+          "label": "5/8",
+          "count": 2,
+          "start": 11,
+          "barDuration": 1.5463917525773196,
+          "tempo": 97,
+          "numerator": 5,
+          "denominator": 8
+        },
+        {
+          "label": "7/16",
+          "count": 2,
+          "start": 14.092783505154639,
+          "barDuration": 0.8536585365853658,
+          "tempo": 123,
+          "numerator": 7,
+          "denominator": 16
+        },
+        {
+          "label": "20/32",
+          "count": 2,
+          "start": 15.80010057832537,
+          "barDuration": 1.25,
+          "tempo": 120,
+          "numerator": 20,
+          "denominator": 32
+        }
+      ]
+    },
+    "maxPCMError": 4.76837158203125e-7,
+    "relativeRMSError": 3.529008016840834e-8,
+    "maxAtSeconds": 11.665083333333333,
+    "firstAtSeconds": -0.000020833333333333333,
+    "bufferRate": 48000,
+    "mismatches": [],
+    "gridDifference": 0
+  }
+]

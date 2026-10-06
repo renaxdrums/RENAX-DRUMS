@@ -1,0 +1,10 @@
+#mp3ExportDialog{color:#dcdce5;background:#14151d;border:1px solid #353744;border-radius:8px;padding:20px;margin:auto;width:min(390px,calc(100vw - 48px));box-sizing:border-box;font:14px Inter,Arial,sans-serif}
+#mp3ExportDialog::backdrop{background:rgba(0,0,0,.65)}
+#mp3ExportDialog h2{font-size:15px;margin:0 0 18px}
+#mp3ExportDialog label{display:block;margin:0 0 7px}
+#mp3ExportSong{display:block;box-sizing:border-box;width:100%;padding:9px;background:#282934;color:#eee;border:1px solid #40414d;border-radius:4px;margin-bottom:16px}
+#mp3ExportDialog .mp3-actions{display:flex;gap:8px;flex-wrap:wrap}
+#mp3ExportSave{background:#ff7900;color:#080808}
+#mp3ExportStatus{line-height:1.5;margin:12px 0 0;min-height:21px;overflow-wrap:anywhere}
+#mp3ExportDialog .mp3-credit{font-size:10px;color:#858a9c;margin-top:14px}
+#mp3ExportDialog .mp3-credit a{color:inherit}
