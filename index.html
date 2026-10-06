@@ -1269,18 +1269,7 @@
         src.onended = () => scheduledVoiceSources.delete(src);
         src.start(startTime, offset);
 
-        // Les états 2/3 gardent une accentuation perceptible sans masquer le comptage.
-        if (state >= 2) {
-          oscTone(dest, time, {
-            type: 'sine',
-            freqStart: state === 3 ? 1750 : 1250,
-            freqEnd: state === 3 ? 1300 : 980,
-            pitchTime: 0.016,
-            vol: state === 3 ? 0.10 : 0.065,
-            attack: 0.001,
-            duration: 0.024
-          });
-        }
+        // Les accents vocaux utilisent uniquement le volume, sans clic superposé.
         return;
       }
 
