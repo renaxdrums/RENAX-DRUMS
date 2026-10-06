@@ -10,6 +10,10 @@ Lire le morceau utilise la grille Web Audio existante, applique le tempo et la m
 
 Le chrono de durée repart à 0:00 après une personnalisation du métronome. S'il joue, le chrono continue à tourner. Cette remise à zéro ne modifie ni la position musicale ni le scheduler.
 
+## Blocs réduits
+
+Le titre du bloc reprend son libellé. Ajouter ou copier un bloc ouvre celui-ci et réduit les autres. Un bloc réduit conserve son titre, son nombre de mesures, sa métrique et son tempo ; son en-tête permet de le rouvrir ou de le refermer. Les libellés restent sauvegardés. `tests/song-folded-blocks-test.cjs` vérifie ces actions, la suppression du bloc ouvert et la réouverture sur mobile. Rapport dans `tests/validation-2026-10-06-folded-blocks/`.
+
 ## Navigation et ergonomie
 
 `tests/song-navigation-test.cjs` vérifie Profil au-dessus de Playlist, création et renommage du profil, absence de Nouveau morceau dans Profil, blocs du séquenceur, sauvegarde des réglages du métronome, bouton Lire orange, flèches de retour et absence de débordement mobile. Rapports actualisés dans `tests/validation-2026-10-06-song-navigation/`.

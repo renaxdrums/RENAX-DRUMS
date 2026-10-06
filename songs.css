@@ -30,3 +30,9 @@
 .song-entry {display:block;width:100%;text-align:left;padding:14px;margin:8px 0;}
 .song-back {padding:4px 9px;margin:0 0 8px;}
 .song-section.measure-card {cursor:pointer;}
+
+.song-block-header {width:100%;background:transparent;border:0;color:var(--text);padding:0;cursor:pointer;text-align:left;gap:6px;font:inherit;}
+.song-block-header .measure-num {flex:1;min-width:0;overflow-wrap:anywhere;}
+.song-block-summary {font-size:10px;color:var(--text-muted);line-height:1.5;margin-top:5px;}
+.song-section.collapsed .song-block-body {display:none;}
+.song-block-arrow {font-size:12px;}
