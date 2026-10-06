@@ -1026,7 +1026,6 @@
             </select>
           </div>
         </div>
-        <div class="beat-controls" id="beatControls"></div>
       </div>
 
       <div class="sequencer-wrapper">
@@ -1520,7 +1519,6 @@
     const activeMeasureLabel = document.getElementById('activeMeasureLabel');
     const activeNumeratorSel = document.getElementById('activeNumerator');
     const activeDenominatorSel = document.getElementById('activeDenominator');
-    const beatControlsDiv = document.getElementById('beatControls');
     const sequencerContainer = document.getElementById('sequencerContainer');
     const beatDisplay = document.getElementById('beatDisplay');
     const trainTimerEl = document.getElementById('trainTimer');
@@ -1765,15 +1763,25 @@
     let pulses = [];
     const STEP_RGB = { 1: [0, 229, 255], 2: [255, 234, 0], 3: [255, 107, 0], 0: [140, 150, 170] };
 
+    function clearParticleCanvas() {
+      pctx.save();
+      pctx.setTransform(1,0,0,1,0,0);
+      pctx.clearRect(0,0,canvas.width,canvas.height);
+      pctx.restore();
+    }
     function resizeCanvas() {
       const size = sequencerContainer.clientWidth;
       if (size === 0) return;
       const dpr = window.devicePixelRatio || 1;
-      canvas.width = size * dpr; canvas.height = size * dpr;
+      canvas.width = Math.round(size * dpr); canvas.height = Math.round(size * dpr);
+      particles.length = 0; pulses.length = 0;
       canvas.style.width = size + 'px'; canvas.style.height = size + 'px';
       pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
-    window.addEventListener('resize', () => { resizeCanvas(); updateRingRadius(); });
+    new ResizeObserver(() => {
+      resizeCanvas(); updateRingRadius();
+      if(appMode!=='polyrhythm' && measures[activeMeasureIndex])renderSubdivisionDots(measures[activeMeasureIndex]);
+    }).observe(sequencerContainer);
 
     function getStepXY(stepIndex) {
       const size = sequencerContainer.clientWidth;
@@ -1810,7 +1818,7 @@
       const w = sequencerContainer.clientWidth;
       const h = sequencerContainer.clientHeight;
       if (w === 0 || h === 0) { requestAnimationFrame(animate); return; }
-      pctx.clearRect(0, 0, w, h);
+      clearParticleCanvas();
 
       if (appMode === 'polyrhythm') {
         particles.length = 0;
@@ -1996,7 +2004,6 @@
       syncNumbox(activeDenominatorSel);
       syncTempoUI(m);
       normalizeMeasureSubdivisions(m);
-      buildBeatControls(m);
       buildCircularSequencer(m);
       if (!isPlaying) { playhead.stepIndex = 0; playhead.startTime = performance.now(); }
       refreshBeatEditor();
@@ -2078,44 +2085,6 @@
     document.addEventListener('pointerdown',e=>{if(!beatEditor.hidden&&!beatEditor.contains(e.target)&&!e.target.closest('.step'))closeBeatEditor();});
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!beatEditor.hidden){closeBeatEditor();e.preventDefault();e.stopPropagation();}},true);
     beatEditor.addEventListener('keydown',e=>e.stopPropagation());
-
-    function buildBeatControls(m) {
-      beatControlsDiv.innerHTML = '';
-      for (let i = 0; i < m.numerator; i++) {
-        const ctrl = document.createElement('div');
-        ctrl.className = 'beat-control';
-        const label = document.createElement('span');
-        label.textContent = `Tps ${i + 1}`;
-        const sel = document.createElement('select');
-        for (const v of allowedSubdivisions(m.denominator)) {
-          const opt = document.createElement('option');
-          opt.value = v;
-          opt.textContent = getSubdivLabel(m.denominator, v);
-          sel.appendChild(opt);
-        }
-        sel.value = String(m.beatSubdivisions[i]);
-        sel.title = getPulseDescription(m);
-        sel.addEventListener('change', (e) => {
-          resizeBeat(m, i, parseInt(e.target.value));
-          validatePlayingState();
-          renderActiveMeasure();
-          refreshMeasurePreviews();
-        });
-        ctrl.appendChild(label);
-        ctrl.appendChild(sel);
-        beatControlsDiv.appendChild(ctrl);
-      }
-    }
-
-
-    beatControlsDiv.addEventListener('wheel', (e) => {
-      if (window.matchMedia('(min-width: 1101px)').matches && beatControlsDiv.scrollWidth > beatControlsDiv.clientWidth) {
-        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-          e.preventDefault();
-          beatControlsDiv.scrollLeft += e.deltaY;
-        }
-      }
-    }, { passive: false });
 
     function resizeBeat(m, beatIdx, newSubdiv) {
       if (!allowedSubdivisions(m.denominator).includes(newSubdiv)) return;
@@ -2441,7 +2410,7 @@
       pulses.length = 0;
       clearProgressTrail();
       if (pctx && canvas) {
-        pctx.clearRect(0, 0, sequencerContainer.clientWidth, sequencerContainer.clientHeight);
+        clearParticleCanvas();
       }
       if(mode==='metronome') {
         beatDisplay.textContent='1';
@@ -2515,7 +2484,7 @@
       pulses.length = 0;
       clearProgressTrail();
       if (pctx && canvas) {
-        pctx.clearRect(0, 0, sequencerContainer.clientWidth, sequencerContainer.clientHeight);
+        clearParticleCanvas();
       }
       pauseWorkTimer();
       if (training.active) endTraining();
