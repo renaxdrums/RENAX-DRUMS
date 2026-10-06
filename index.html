@@ -316,7 +316,7 @@
       flex-shrink: 0;
     }
     .beat-control { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 9px; color: var(--text-muted); }
-    .beat-control select { width: 76px; padding: 3px 4px; font-size: 10px; text-align: center; }
+    .beat-control select { width: 170px; padding: 3px 4px; font-size: 10px; text-align: center; }
 
     /* En desktop, la barre d'outils reçoit les beat-controls à droite */
     @media (min-width: 1101px) {
@@ -476,7 +476,7 @@
       .beat-controls::-webkit-scrollbar { display: none; }
       .beat-control { flex: 0 0 auto; }
       .beat-control span { font-size: 8px; }
-      .beat-control select { width: 62px; padding: 2px 3px; font-size: 9px; }
+      .beat-control select { width: 155px; padding: 2px 3px; font-size: 9px; }
       .sequencer-wrapper { padding: 2px 0; flex: 1; min-height: 0; }
       .sequencer-container { width: min(100%, calc(100dvh - 340px)); max-width: 100%; }
       .beat-number { font-size: 32px; }
@@ -1404,13 +1404,10 @@
     };
 
     function getSubdivLabel(denominator, subdiv) {
-      if (subdiv === 3) return 'Triolet';
-      if (subdiv === 5) return 'Quintolet';
-      if (subdiv === 6) return 'Sextolet';
-      if (subdiv === 7) return 'Septolet';
-      if (subdiv === 8) return 'Triple';
-      const nv = denominator * subdiv;
-      return NOTE_NAMES[nv] || `${nv}e`;
+      const tuplets = { 3: 'Triolet', 5: 'Quintolet', 6: 'Sextolet', 7: 'Septolet' };
+      const notes = { 1: 'Ronde', 2: 'Blanche', 4: 'Noire', 8: 'Croche', 16: 'Double croche',
+        32: 'Triple croche', 64: 'Quadruple croche', 128: 'Quintuple croche', 256: 'Sextuple croche' };
+      return subdiv + ' — ' + (tuplets[subdiv] || notes[denominator * subdiv] || 'Division ' + subdiv);
     }
 
     function getPulseDescription(m) {

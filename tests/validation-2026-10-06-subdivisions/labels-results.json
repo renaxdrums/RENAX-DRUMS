@@ -1,0 +1,46 @@
+{
+  "denominators": [
+    {
+      "denominator": 8,
+      "labels": [
+        "1 — Croche",
+        "2 — Double croche",
+        "3 — Triolet",
+        "4 — Triple croche",
+        "5 — Quintolet",
+        "6 — Sextolet",
+        "7 — Septolet",
+        "8 — Quadruple croche"
+      ]
+    },
+    {
+      "denominator": 16,
+      "labels": [
+        "1 — Double croche",
+        "2 — Triple croche",
+        "3 — Triolet",
+        "4 — Quadruple croche",
+        "5 — Quintolet",
+        "6 — Sextolet",
+        "7 — Septolet",
+        "8 — Quintuple croche"
+      ]
+    },
+    {
+      "denominator": 32,
+      "labels": [
+        "1 — Triple croche",
+        "2 — Quadruple croche",
+        "3 — Triolet",
+        "4 — Quintuple croche",
+        "5 — Quintolet",
+        "6 — Sextolet",
+        "7 — Septolet",
+        "8 — Sextuple croche"
+      ]
+    }
+  ],
+  "selectWidth": 155,
+  "longestTextWidth": 95.9853515625,
+  "menus": 20
+}
