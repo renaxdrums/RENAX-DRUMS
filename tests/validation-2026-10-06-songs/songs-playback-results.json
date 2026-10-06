@@ -1,0 +1,39 @@
+{
+  "clicks": [
+    {
+      "time": 0.5086666666666667,
+      "bar": 0,
+      "beat": 1
+    },
+    {
+      "time": 0.7086666666666667,
+      "bar": 0,
+      "beat": 2
+    },
+    {
+      "time": 0.9086666666666666,
+      "bar": 1,
+      "beat": 1
+    },
+    {
+      "time": 1.0086666666666666,
+      "bar": 1,
+      "beat": 2
+    },
+    {
+      "time": 1.1086666666666667,
+      "bar": 1,
+      "beat": 3
+    }
+  ],
+  "intervals": [
+    0.19999999999999996,
+    0.19999999999999996,
+    0.09999999999999998,
+    0.10000000000000009
+  ],
+  "stopAtEnd": true,
+  "sectionClickSaved": true,
+  "profilesIsolated": true,
+  "sequencerRestored": true
+}

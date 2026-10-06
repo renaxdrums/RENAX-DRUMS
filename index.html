@@ -842,6 +842,7 @@
     #playBtn.audio-loading { opacity: .48; cursor: not-allowed; filter: saturate(.4); }
 
   </style>
+  <link rel="stylesheet" href="songs.css">
 </head>
 <body>
 
@@ -1861,6 +1862,15 @@
       requestAnimationFrame(animate);
     }
 
+    function resetCustomizationTimer() {
+      resetWorkTimer();
+      if(isPlaying)startWorkTimer();
+      updateTimerDisplay();
+    }
+    const customizationFields='#bpmSlider,#volumeSlider,#soundBank,#measureCount,#clickMeasureCount,#silentMeasureCount,#activeNumerator,#activeDenominator,#polyNumerator,#polyDenominator,#beatEditorDivision,.measure-tempo-input,.measure-card input[type=number]';
+    document.addEventListener('change',e=>{if(e.target.matches(customizationFields))resetCustomizationTimer();},true);
+    document.addEventListener('input',e=>{if(e.target.matches('#bpmSlider,#volumeSlider,.measure-tempo-input'))resetCustomizationTimer();},true);
+    document.addEventListener('click',e=>{if(e.target.closest('#beatEditorPads button,.poly-dot,#silentToggle,#modeSwitch button'))resetCustomizationTimer();},true);
     function formatTime(s) {
       s = Math.max(0, s);
       return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
@@ -2189,6 +2199,7 @@
           currentStepInMeasure = 0;
           playingMeasureIndex = (playingMeasureIndex + 1) % measures.length;
           advanceSilentCycle();
+          if(typeof songAtEnd==='function' && songAtEnd())return;
           continue;
         }
 
@@ -2217,6 +2228,7 @@
           currentStepInMeasure = 0;
           playingMeasureIndex = (playingMeasureIndex + 1) % measures.length;
           advanceSilentCycle();
+          if(typeof songAtEnd==='function' && songAtEnd())return;
         }
       }
       timerID = setTimeout(scheduler, lookahead);
@@ -2623,6 +2635,7 @@
         const avg = intervals.reduce((a, b) => a + b, 0) / intervals.length;
         const newBpm = Math.round(60000 / avg);
         if (newBpm >= 20 && newBpm <= 300) {
+          if(tempo!==newBpm)resetCustomizationTimer();
           tempo = newBpm;
           const m = measures[activeMeasureIndex];
           if (m && !training.active) m.tempo = newBpm;
@@ -2825,5 +2838,6 @@
     });
     prepareAllVoiceAudio().catch(() => {});
   </script>
+  <script src="songs.js"></script>
 </body>
 </html>

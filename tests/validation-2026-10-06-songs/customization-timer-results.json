@@ -1,0 +1,6 @@
+{
+  "openingPreservesTimer": true,
+  "pausedReset": true,
+  "runningReset": true,
+  "clockContinues": true
+}
