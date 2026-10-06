@@ -2500,7 +2500,9 @@
       playBtn.textContent = 'STOP';
       playBtn.classList.remove('btn-primary');
       playBtn.classList.add('btn-cyan');
+      resetWorkTimer();
       if (!training.active) startWorkTimer();
+      updateTimerDisplay();
       // Le playhead visuel démarre sur le premier événement planifié, pas avant.
       // Cela garde le tout premier passage 1 → 2 parfaitement synchronisé avec l'audio.
       playhead.stepIndex = 0;
@@ -2530,8 +2532,9 @@
       if (pctx && canvas) {
         clearParticleCanvas();
       }
-      pauseWorkTimer();
+      resetWorkTimer();
       if (training.active) endTraining();
+      updateTimerDisplay();
       renderSequencerList();
       renderActiveMeasure();
     }

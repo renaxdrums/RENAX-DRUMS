@@ -1,0 +1,103 @@
+{
+  "startReset": true,
+  "stopReset": true,
+  "metronome": true,
+  "songs": true,
+  "keyboard": true,
+  "naturalSongEnd": true,
+  "countingContinues": true,
+  "displayFormatUnchanged": "0:00",
+  "states": [
+    {
+      "label": "metronome start 0",
+      "playing": true,
+      "elapsed": 10.699999988079071,
+      "stored": 0,
+      "text": "0:00"
+    },
+    {
+      "label": "metronome stop 0",
+      "playing": false,
+      "elapsed": 0,
+      "stored": 0,
+      "start": 0,
+      "text": "0:00"
+    },
+    {
+      "label": "metronome start 1",
+      "playing": true,
+      "elapsed": 5.200000002980232,
+      "stored": 0,
+      "text": "0:00"
+    },
+    {
+      "label": "metronome stop 1",
+      "playing": false,
+      "elapsed": 0,
+      "stored": 0,
+      "start": 0,
+      "text": "0:00"
+    },
+    {
+      "label": "keyboard start",
+      "playing": true,
+      "elapsed": 5.799999997019768,
+      "stored": 0,
+      "text": "0:00"
+    },
+    {
+      "label": "keyboard stop",
+      "playing": false,
+      "elapsed": 0,
+      "stored": 0,
+      "start": 0,
+      "text": "0:00"
+    },
+    {
+      "label": "song start 0",
+      "playing": true,
+      "elapsed": 7.9000000059604645,
+      "stored": 0,
+      "text": "0:00"
+    },
+    {
+      "label": "song stop 0",
+      "playing": false,
+      "elapsed": 0,
+      "stored": 0,
+      "start": 0,
+      "text": "0:00"
+    },
+    {
+      "label": "song start 1",
+      "playing": true,
+      "elapsed": 5.399999991059303,
+      "stored": 0,
+      "text": "0:00"
+    },
+    {
+      "label": "song stop 1",
+      "playing": false,
+      "elapsed": 0,
+      "stored": 0,
+      "start": 0,
+      "text": "0:00"
+    },
+    {
+      "label": "song final start",
+      "playing": true,
+      "elapsed": 5.4000000059604645,
+      "stored": 0,
+      "text": "0:00"
+    },
+    {
+      "label": "song natural end",
+      "playing": false,
+      "elapsed": 0,
+      "stored": 0,
+      "start": 0,
+      "text": "0:00"
+    }
+  ],
+  "errors": []
+}
