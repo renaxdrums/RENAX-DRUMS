@@ -2482,7 +2482,8 @@
         stepsData.push({ beat: b, subIndex: 0, globalIndex: b });
         const step = document.createElement('div');
         step.className = 'step';
-        if (m.denominator === 8 && m.numerator === 6) {
+        // Regroupement graphique uniquement des signatures composées validées en /8.
+        if (m.denominator === 8 && [6, 9, 12, 15, 18].includes(m.numerator)) {
           step.classList.add(b % 3 === 0 ? 'compound-strong' : 'compound-weak');
         }
         step.dataset.state = m.beatStates[b][0];
