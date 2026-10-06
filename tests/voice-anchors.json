@@ -519,12 +519,12 @@
   {
     "gender": "maleFR",
     "number": 8,
-    "anchor_ms": 87,
+    "anchor_ms": 280,
     "region_ms": [
-      63,
-      114
+      250,
+      310
     ],
-    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "note": "Reviewed main /i/ vowel rise after initial /ɥ/ glide; user reported prior 87 ms glide landmark as off-beat.",
     "sha256": "2fc1fe77ff788d4fc9f06f9f91a97d96fe324094864a0949efe901c25ca61614"
   },
   {
@@ -574,12 +574,12 @@
   {
     "gender": "maleFR",
     "number": 13,
-    "anchor_ms": 399,
+    "anchor_ms": 300,
     "region_ms": [
-      349,
-      400
+      270,
+      340
     ],
-    "note": "Rising vowel/formant nucleus in the region transferred from the reviewed candidate; complete original consonants and internal pauses retained.",
+    "note": "Reviewed first vowel rise after /tr/ onset; replace 399 ms landmark inside established vowel, excluding later rise around 477 ms.",
     "sha256": "8cb0bb4e6dc84448d778c79e53da3bc910ad298f7c3f0d48ca334badf386ef00"
   },
   {

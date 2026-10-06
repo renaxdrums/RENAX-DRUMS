@@ -1,0 +1,24 @@
+{
+  "parent": "e00edd30f192a5cb906f6085b132eab011a564fa",
+  "changes": [
+    {
+      "bank": "maleFR",
+      "number": 8,
+      "oldAnchorMs": 87,
+      "newAnchorMs": 280
+    },
+    {
+      "bank": "maleFR",
+      "number": 13,
+      "oldAnchorMs": 399,
+      "newAnchorMs": 300
+    }
+  ],
+  "sampleFilesUnchanged": true,
+  "onlyApplicationChange": "Two values in VOICE_ATTACK_SECONDS.maleFR; verified by reversing these values and exact string comparison",
+  "oldVersionAgainstReviewedLandmarks": {
+    "maxAttackErrorMs": 193,
+    "maxIntervalErrorMs": 193
+  },
+  "perceptualCriterion": "Reviewed vowel rise; objective calibration is not a universal perceptual guarantee"
+}

@@ -1,4 +1,6 @@
-# Comptage vocal révisé — 5 octobre 2026
+# Comptage vocal révisé — 6 octobre 2026
+
+Correction ciblée après le signalement de décalage de « huit » et « treize » masculins FR : repère de huit 87→280 ms (montée de /i/ après le glissement /ɥ/) ; treize 399→300 ms (première montée vocalique après /tr/). Seules ces deux valeurs changent dans l’application. Les WAV, les autres repères, le clic, la grille, le scheduler et l’UI restent inchangés. Le test de rendu détecte 193 ms de décalage avec l’ancienne version contre les repères révisés, et 0 ms avec la correction, au pas de recherche de 1 ms. Résultats ciblés : `tests/validation-2026-10-06-8-13/`.
 
 Référence avant correction : `aa737d673d5e38a2145609d19f7f678938165f2b`. La première correction `a9a30105bac43004091225c72b32118b60df991d` a été rejetée à l'écoute : son seuil de volume ne correspondait pas au moment perçu du nombre.
 
@@ -11,7 +13,7 @@ Mesures sous Chrome, Web Audio à 48 kHz :
 | Contrôle | Résultat |
 | --- | --- |
 | Quatre banques, nombres 1–20 | 80 noyaux vocaux annotés et liés aux SHA-256 des fichiers |
-| Rendu vocal, 28 scénarios de 20 nombres | 560 repères sur la grille, erreur mesurée 0 ms avec un pas de recherche de 1 ms |
+| Rendu vocal, 32 scénarios de 20 nombres | 640 repères sur la grille, erreur mesurée 0 ms avec un pas de recherche de 1 ms |
 | 60 BPM, 4/4, horloge réelle | 1,000 s entre attaques calibrées, retour 4→1 inclus |
 | 120 BPM, 4/4, horloge réelle | 0,500 s entre attaques calibrées, retour 4→1 inclus |
 | 3/4, 5/4, subdivisions 2–8 | Séquence des nombres et grille conformes |
@@ -21,7 +23,7 @@ Mesures sous Chrome, Web Audio à 48 kHz :
 | Cloche | Écart d'arrondi maximal 5,96 × 10⁻⁸ en amplitude flottante ; code inchangé |
 | Stop | Voix planifiées annulées |
 
-Les résultats détaillés actuels sont dans `tests/validation-2026-10-05-v2/`. Les anciens résultats dans `tests/validation-2026-10-05/` ne sont pas une validation perceptive. Les callbacks irréguliers sont simulés pour les longs tests ; les contrôles à 60/120 BPM utilisent aussi le vrai timer du navigateur. Les rendus sont comparés au segment vocal annoté du fichier source, indépendamment du tableau utilisé par l'application.
+Les résultats de la correction ciblée sont dans `tests/validation-2026-10-06-8-13/`. Les contrôles de restauration des samples et d’horloge réelle sont conservés dans `tests/validation-2026-10-05-v2/`. Les anciens résultats dans `tests/validation-2026-10-05/` ne sont pas une validation perceptive. Les callbacks irréguliers sont simulés pour les longs tests ; les contrôles à 60/120 BPM utilisent aussi le vrai timer du navigateur. Les rendus sont comparés au segment vocal annoté du fichier source, indépendamment du tableau utilisé par l'application.
 
 Le nouveau repère suit la montée du noyau vocal dans une région du mot revue, avec une enveloppe filtrée 300–2500 Hz. Ce choix évite de confondre une petite prévoix de « d » ou un bruit de consonne avec la voyelle. Les régions de « treize » et « dix-sept » masculins FR ont été revues pour ne pas choisir une montée plus tardive. Les repères de la version d'écoute améliorée ont été transférés aux enregistrements complets par corrélation, puis contrôlés sur leurs nouvelles enveloppes. Voir `tests/voice-anchors.json` et `complete-voice-restoration.json`.
 
