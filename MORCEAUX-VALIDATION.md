@@ -10,6 +10,10 @@ Lire le morceau utilise la grille Web Audio existante, applique le tempo et la m
 
 Le chrono de durée repart à 0:00 après une personnalisation du métronome. S'il joue, le chrono continue à tourner. Cette remise à zéro ne modifie ni la position musicale ni le scheduler.
 
+## Ordre de la playlist
+
+Maintenir un morceau puis le glisser au-dessus ou en dessous d’un autre change l’ordre de la playlist. Une ligne orange indique le point d’insertion. L’ordre est sauvegardé automatiquement. Un clic simple ouvre le morceau. La souris et le tactile sont pris en charge, avec défilement de la colonne près des bords. `tests/playlist-drag-test.cjs` vérifie déplacement vers le haut et le bas, rechargement, appui maintenu tactile et clic simple. Rapport dans `tests/validation-2026-10-06-playlist-drag/`.
+
 ## Apparence commune avec le séquenceur
 
 Les cartes de la playlist et les blocs des morceaux reprennent les styles du séquenceur : fond #0e131c, espacement interne 8px 10px, angles 5px, titre dans l’en-tête, métrique orange, tempo compact et aperçu du clic. Les blocs conservent le libellé, le nombre de mesures et leur réduction automatique. La lecture du morceau utilise exclusivement le bouton général `playBtn` dans le footer.

@@ -53,3 +53,8 @@
 .song-block-summary {margin:0;font-size:9px;}
 
 #playBtn[data-song-transport="true"] {width:auto;min-width:120px;white-space:nowrap;}
+
+.song-playlist-card {touch-action:none;user-select:none;cursor:grab;}
+.song-playlist-card.dragging {opacity:.45;cursor:grabbing;border-color:var(--orange);}
+.song-playlist-card.drop-before {box-shadow:0 -3px 0 var(--orange);}
+.song-playlist-card.drop-after {box-shadow:0 3px 0 var(--orange);}
