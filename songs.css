@@ -36,3 +36,20 @@
 .song-block-summary {font-size:10px;color:var(--text-muted);line-height:1.5;margin-top:5px;}
 .song-section.collapsed .song-block-body {display:none;}
 .song-block-arrow {font-size:12px;}
+
+#songPane .song-section.measure-card {padding:8px 10px;border-radius:5px;margin:6px 0;gap:6px;}
+#songPane .song-open {padding:0;background:transparent;border:0;color:var(--text);font:inherit;gap:8px;}
+.song-open .measure-num {flex:1;min-width:0;overflow-wrap:anywhere;}
+.song-open .measure-sig {flex-shrink:0;}
+.song-tempo-value {color:var(--orange);font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;}
+.song-playlist-summary {font-size:9px;color:var(--text-muted);margin:0;}
+.song-playlist-card .song-actions {margin:0;gap:4px;}
+.song-playlist-card .song-actions button {padding:3px 7px;font-size:9px;}
+#songPane .song-inline-field {display:flex;align-items:center;gap:5px;margin:4px 0;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+#songPane .song-inline-field input {width:60px;min-width:60px;margin:0;padding:3px 5px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--orange);font-weight:700;}
+.song-block-body .measure-preview {margin-top:6px;}
+.song-block-body .song-actions {margin:6px 0 0;}
+.song-block-body .song-actions button {padding:4px 6px;font-size:9px;}
+.song-block-summary {margin:0;font-size:9px;}
+
+#playBtn[data-song-transport="true"] {width:auto;min-width:120px;white-space:nowrap;}

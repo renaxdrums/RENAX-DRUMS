@@ -1,0 +1,26 @@
+{
+  "sequencer": {
+    "background": "rgb(14, 19, 28)",
+    "padding": "8px 10px",
+    "borderRadius": "5px",
+    "fontFamily": "Inter, sans-serif"
+  },
+  "section": {
+    "background": "rgb(14, 19, 28)",
+    "padding": "8px 10px",
+    "borderRadius": "5px",
+    "fontFamily": "Inter, sans-serif"
+  },
+  "playlist": {
+    "background": "rgb(14, 19, 28)",
+    "padding": "8px 10px",
+    "borderRadius": "5px",
+    "fontFamily": "Inter, sans-serif"
+  },
+  "globalSongTransport": {
+    "id": "playBtn",
+    "footer": true,
+    "inCard": false
+  },
+  "stopAndRestore": true
+}

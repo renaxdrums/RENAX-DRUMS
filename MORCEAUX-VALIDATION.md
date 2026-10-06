@@ -1,8 +1,8 @@
 # Morceaux locaux — validation du 6 octobre 2026
 
-Dans la colonne Séquenceur, choisir Morceaux : une entrée Profil puis une entrée Playlist. Profil regroupe le choix, la création, le renommage et les sauvegardes ; aucun bouton Nouveau morceau sur cette page. Playlist affiche les titres avant leur structure. Cliquer sur un titre ouvre les blocs du morceau. Les petites flèches en haut à gauche reviennent à la page précédente. Les flèches des blocs ordonnent les sections. Lire le morceau est orange.
+Dans la colonne Séquenceur, choisir Morceaux : une entrée Profil puis une entrée Playlist. Profil regroupe le choix, la création, le renommage et les sauvegardes ; aucun bouton Nouveau morceau sur cette page. Playlist affiche les titres avant leur structure. Cliquer sur un titre ouvre les blocs du morceau. Les petites flèches en haut à gauche reviennent à la page précédente. Lire le morceau est orange et se trouve uniquement dans la barre de lecture générale en bas de l’application.
 
-Chaque profil possède sa bibliothèque dans ce navigateur. Nouveau morceau crée une structure modifiable : libellé libre avec suggestions Intro, Couplet, Refrain, Bridge, Solo et Outro ; nombre de mesures ; tempo. Sélectionner le bloc pour régler sa métrique, ses subdivisions et ses accents avec le métronome. Les sections et morceaux peuvent être copiés. La suppression d'un morceau demande confirmation.
+Chaque profil possède sa bibliothèque dans ce navigateur. Nouveau morceau crée une structure modifiable : libellé libre avec suggestions Intro, Couplet, Refrain, Bridge, Solo et Outro ; nombre de mesures ; tempo. Sélectionner le bloc pour régler sa métrique, ses subdivisions et ses accents avec le métronome. Les morceaux peuvent être dupliqués. Les blocs ne proposent pas de flèches de déplacement ni de bouton Copier ; le bouton de suppression s’appelle Supprimer. La suppression d'un morceau demande confirmation.
 
 Les modifications sont enregistrées automatiquement dans localStorage sous `renax-drums-songs-v1`. Exporter télécharge une bibliothèque JSON ; Importer valide ce format et ajoute des profils importés sans remplacer les données existantes. Un profil local n'est pas un compte authentifié et ne synchronise pas d'autres appareils. L'export audio MP3 n'est pas inclus à ce stade.
 
@@ -10,9 +10,15 @@ Lire le morceau utilise la grille Web Audio existante, applique le tempo et la m
 
 Le chrono de durée repart à 0:00 après une personnalisation du métronome. S'il joue, le chrono continue à tourner. Cette remise à zéro ne modifie ni la position musicale ni le scheduler.
 
+## Apparence commune avec le séquenceur
+
+Les cartes de la playlist et les blocs des morceaux reprennent les styles du séquenceur : fond #0e131c, espacement interne 8px 10px, angles 5px, titre dans l’en-tête, métrique orange, tempo compact et aperçu du clic. Les blocs conservent le libellé, le nombre de mesures et leur réduction automatique. La lecture du morceau utilise exclusivement le bouton général `playBtn` dans le footer.
+
+`tests/song-card-style-test.cjs` compare les styles calculés aux cartes du séquenceur, vérifie la position du bouton de lecture, le démarrage/l’arrêt du morceau et le retour au bouton Start classique. Rapport dans `tests/validation-2026-10-06-sequencer-cards/`.
+
 ## Blocs réduits
 
-Le titre du bloc reprend son libellé. Ajouter ou copier un bloc ouvre celui-ci et réduit les autres. Un bloc réduit conserve son titre, son nombre de mesures, sa métrique et son tempo ; son en-tête permet de le rouvrir ou de le refermer. Les libellés restent sauvegardés. `tests/song-folded-blocks-test.cjs` vérifie ces actions, la suppression du bloc ouvert et la réouverture sur mobile. Rapport dans `tests/validation-2026-10-06-folded-blocks/`.
+Le titre du bloc reprend son libellé. Ajouter un bloc ouvre celui-ci et réduit les autres. Un bloc réduit conserve son titre, son nombre de mesures, sa métrique et son tempo ; son en-tête permet de le rouvrir ou de le refermer. Les libellés restent sauvegardés. `tests/song-folded-blocks-test.cjs` vérifie ces actions, la suppression du bloc ouvert et la réouverture sur mobile. Rapport dans `tests/validation-2026-10-06-folded-blocks/`.
 
 ## Navigation et ergonomie
 
