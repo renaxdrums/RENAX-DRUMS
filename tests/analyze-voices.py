@@ -2,7 +2,7 @@
 import pathlib,wave,json,hashlib,numpy as np
 root=pathlib.Path(__file__).resolve().parents[1]
 annotations=json.loads((root/'tests/voice-anchors.json').read_text(encoding='utf-8'))
-folders={'male':'voice-men-en','female':'voice-female-en','maleFR':'voix-homme-fr','femaleFR':'voix-femme-fr'}
+folders={'male':'voice-men-en','female':'voice-female-en'}
 def smooth(x,sigma=8):
  t=np.arange(-32,33);k=np.exp(-t*t/(2*sigma*sigma));k/=k.sum()
  return np.convolve(np.pad(x,(32,32),mode='reflect'),k,'valid')

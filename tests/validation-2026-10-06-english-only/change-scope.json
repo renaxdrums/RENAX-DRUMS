@@ -1,0 +1,11 @@
+{
+  "maleEnglishTimingTableUnchanged": true,
+  "htmlUiUnchangedExceptFrenchOptions": true,
+  "femaleEleven": {
+    "oldMs": 25,
+    "newMs": 163,
+    "stress": "LE in e-LE-ven"
+  },
+  "EnglishWavsUnchanged": true,
+  "FrenchWavsDeleted": 40
+}

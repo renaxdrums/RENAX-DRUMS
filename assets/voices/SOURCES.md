@@ -12,23 +12,11 @@ These are real human recordings, not text-to-speech.
 - Project: FreeSWITCH Sounds
 - License: MPL
 
-## Voix homme FR
-- Speaker: Vion Nicolas (Paris region)
-- Project: Shtooka / Wikimedia Commons
-- License: CC BY 2.0 France
-
-## Voix femme FR
-- Voice: June (French Canadian)
-- Project: FreeSWITCH Sounds
-- License: MPL
-
 RENAX processing (revised 2026-10-05): complete original utterances, mono PCM WAV 48 kHz / 16-bit, only outside-silence trimming with protected consonant pre-roll, gentle low-frequency filtering and linear gain normalization. Internal pauses and word endings are preserved. No pitch shifting, no time stretching and no synthetic speech.
 
-The source speakers and licenses above are unchanged. The previous silence-removal treatment could cut weak consonants or stop at an internal pause. All 80 samples were restored from these same original sources:
+The source speakers and licenses above are unchanged. The previous silence-removal treatment could cut weak consonants or stop at an internal pause. All 40 English samples were restored from these same original sources:
 
 - Male EN: https://github.com/stmueller/pebl/tree/eb22a0725d765a0597a4905920ad3c603b1c9ae8/battery/PASAT/audio
 - Female EN: https://github.com/freeswitch/freeswitch-sounds/releases/tag/en-us-callie-1.0.53
-- Male FR: https://fsi-languages.yojik.eu/audiocollections/detailled/fra-balm-voc/
-- Female FR: https://github.com/freeswitch/freeswitch-sounds/releases/tag/fr-ca-june-1.0.51
 
 Per-word timing landmarks and SHA-256 sample identities are in tests/voice-anchors.json. Replacing or regenerating any sample requires recalibration.

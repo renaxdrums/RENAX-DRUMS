@@ -1,0 +1,13 @@
+{
+  "options": [
+    "clic",
+    "cloche",
+    "claves",
+    "clic808",
+    "beep",
+    "voiceMale",
+    "voiceFemale"
+  ],
+  "voiceRequests": 40,
+  "FrenchRequests": 0
+}

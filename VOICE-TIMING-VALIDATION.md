@@ -1,32 +1,13 @@
-# Comptage vocal révisé — 6 octobre 2026
+# Deux voix anglaises — 6 octobre 2026
 
-Correction ciblée après le signalement de décalage de « huit » et « treize » masculins FR : repère de huit 87→280 ms (montée de /i/ après le glissement /ɥ/) ; treize 399→300 ms (première montée vocalique après /tr/). Seules ces deux valeurs changent dans l’application. Les WAV, les autres repères, le clic, la grille, le scheduler et l’UI restent inchangés. Le test de rendu détecte 193 ms de décalage avec l’ancienne version contre les repères révisés, et 0 ms avec la correction, au pas de recherche de 1 ms. Résultats ciblés : `tests/validation-2026-10-06-8-13/`.
+L’utilisateur valide la voix homme EN jusqu’à vingt. Ses vingt WAV et ses vingt repères restent identiques. La voix femme EN reste identique sauf le repère d’eleven : 25→163 ms, sur la montée vocalique de la syllabe accentuée LE de e-LE-ven. Le sample commence donc 138 ms plus tôt ; le mot complet et sa vitesse restent identiques. Les deux voix françaises, leurs options, leurs données de chargement et leurs 40 WAV sont supprimés.
 
-Référence avant correction : `aa737d673d5e38a2145609d19f7f678938165f2b`. La première correction `a9a30105bac43004091225c72b32118b60df991d` a été rejetée à l'écoute : son seuil de volume ne correspondait pas au moment perçu du nombre.
+Le clic, les autres banques non vocales, les incréments de la grille et l’UI hors des options françaises supprimées restent inchangés.
 
-Les 80 WAV ont été restaurés depuis les enregistrements humains complets des mêmes locuteurs et des mêmes sources. Le traitement précédent pouvait supprimer une consonne faible ou arrêter le mot à une pause interne. Désormais, seul le silence extérieur est retiré, avec une marge protégeant les consonnes ; les pauses internes et les fins de mots sont conservées. Vérification ciblée de 3, 7 et 9 dans les quatre banques ; restauration notamment des fichiers masculins FR 7 et 9, réduits précédemment à environ 135 ms, et du début de « trois » féminin FR.
+Tests mesurables : 40 WAV anglais vérifiés par SHA-256 ; 16 scénarios de 20 nombres, soit 320 repères rendus dans Web Audio à 48 kHz, erreur mesurée 0 ms avec un pas de recherche de 1 ms. Tous les nombres 1–20 sont rendus à 60 et 120 BPM, notamment eleven ; mesures 3/4, 4/4, 5/4, subdivisions 2–8 et séquences 60→120→90 BPM. Aucun pré-roll coupé dans les scénarios normaux.
 
-Chaque sample possède une avance propre pour placer le noyau vocal annoté sur le beat Web Audio. Les consonnes commencent avant ce beat. La vitesse de lecture reste 1. La grille et ses incréments restent inchangés. Le scheduler vocal anticipe les sources, le premier beat attend le pré-roll, les aperçus utilisent la même compensation, et Stop annule les voix déjà planifiées. Les URL des WAV portent une nouvelle version pour éviter que le navigateur réutilise les fichiers tronqués en cache. Aucun changement HTML/CSS ni dans les définitions des banques non vocales.
+Les sons non vocaux sont conformes au rendu original : clic, claves, clic808 et beep identiques ; cloche avec seulement l’arrondi flottant maximal 5,96×10⁻⁸, code inchangé. Dérive de grille sur 10 000 pulsations à 60 BPM simulées : 0 s. Stop annule les voix planifiées.
 
-Mesures sous Chrome, Web Audio à 48 kHz :
+Résultats actuels : tests/validation-2026-10-06-english-only/. Les autres dossiers de validation sont historiques et peuvent décrire les voix françaises retirées. Le workflow ancien de préparation des samples reste un outil historique ; ne pas régénérer les WAV validés sans recalibrer leurs repères.
 
-| Contrôle | Résultat |
-| --- | --- |
-| Quatre banques, nombres 1–20 | 80 noyaux vocaux annotés et liés aux SHA-256 des fichiers |
-| Rendu vocal, 32 scénarios de 20 nombres | 640 repères sur la grille, erreur mesurée 0 ms avec un pas de recherche de 1 ms |
-| 60 BPM, 4/4, horloge réelle | 1,000 s entre attaques calibrées, retour 4→1 inclus |
-| 120 BPM, 4/4, horloge réelle | 0,500 s entre attaques calibrées, retour 4→1 inclus |
-| 3/4, 5/4, subdivisions 2–8 | Séquence des nombres et grille conformes |
-| Plusieurs mesures, 60→120→90 BPM | Transitions conformes, aucun déclenchement tardif |
-| 10 000 pulsations à 60 BPM, rappels simulés | Dérive de grille mesurée : 0 s |
-| Clic, claves, clic808, beep | Rendus PCM identiques avant/après |
-| Cloche | Écart d'arrondi maximal 5,96 × 10⁻⁸ en amplitude flottante ; code inchangé |
-| Stop | Voix planifiées annulées |
-
-Les résultats de la correction ciblée sont dans `tests/validation-2026-10-06-8-13/`. Les contrôles de restauration des samples et d’horloge réelle sont conservés dans `tests/validation-2026-10-05-v2/`. Les anciens résultats dans `tests/validation-2026-10-05/` ne sont pas une validation perceptive. Les callbacks irréguliers sont simulés pour les longs tests ; les contrôles à 60/120 BPM utilisent aussi le vrai timer du navigateur. Les rendus sont comparés au segment vocal annoté du fichier source, indépendamment du tableau utilisé par l'application.
-
-Le nouveau repère suit la montée du noyau vocal dans une région du mot revue, avec une enveloppe filtrée 300–2500 Hz. Ce choix évite de confondre une petite prévoix de « d » ou un bruit de consonne avec la voyelle. Les régions de « treize » et « dix-sept » masculins FR ont été revues pour ne pas choisir une montée plus tardive. Les repères de la version d'écoute améliorée ont été transférés aux enregistrements complets par corrélation, puis contrôlés sur leurs nouvelles enveloppes. Voir `tests/voice-anchors.json` et `complete-voice-restoration.json`.
-
-Ce travail tient compte de la distinction entre début acoustique et moment perçu d'un mot, généralement proche du début de la voyelle ([Rathcke, 2025](https://www.nature.com/articles/s42003-025-07544-8)). Le repère reste une approximation explicite, pas une certification psychoacoustique universelle. L'utilisateur a jugé la nouvelle écoute FR « mieux », a signalé l'amorce de « trois », puis a demandé d'essayer la version complète après le contrôle de 3, 7 et 9. Aucun enregistrement du périphérique de sortie ni suppression de sa latence matérielle n'est revendiqué.
-
-La réussite d'un workflow GitHub Pages établit uniquement le déploiement. Les contrôles audio ci-dessus servent de validation fonctionnelle.
+Le repère est une annotation explicite de la syllabe perçue, pas une certification universelle de perception ni une mesure de la latence du périphérique audio. Un workflow Pages réussi confirme la publication ; les rendus audio mesurés servent au contrôle fonctionnel.

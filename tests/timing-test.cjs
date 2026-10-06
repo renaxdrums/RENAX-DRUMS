@@ -10,7 +10,7 @@ const fs=require('fs');
   const nativeTimeout=window.setTimeout;window.setTimeout=()=>0;scheduleVisualUpdate=()=>{};
   const results=[];let maxAttackError=0,maxIntervalError=0,lateStarts=0;
   const cases=[{name:'Tous les nombres 1-20 a 60 BPM',ms:[[20,60,[1]]]},{name:'Tous les nombres 1-20',ms:[[20,120,[1]]]},{name:'60 BPM 4/4',ms:[[4,60,[1]]]},{name:'120 BPM 4/4',ms:[[4,120,[1]]]},{name:'60 BPM 3/4',ms:[[3,60,[1]]]},{name:'120 BPM 5/4',ms:[[5,120,[1]]]},{name:'subdivisions 2/3/4/5/6/7/8',ms:[[4,120,[2,3,4,5]],[3,60,[6,7,8]]]},{name:'mesures et tempos 60->120->90',ms:[[4,60,[1]],[3,120,[2,3,4]],[5,90,[1]]]}];
-  for(const bank of ['voiceMale','voiceFemale','voiceMaleFR','voiceFemaleFR']){
+  for(const bank of ['voiceMale','voiceFemale']){
    for(const test of cases){
     currentBank=bank;appMode='metronome';training.active=false;silentModeEnabled=false;
     measures=test.ms.map(([n,bpm,subs])=>{const m=createMeasure(n,4);m.tempo=bpm;m.beatSubdivisions=Array.from({length:n},(_,i)=>subs[i%subs.length]);m.beatStates=m.beatSubdivisions.map(n=>Array(n).fill(1));return m;});
@@ -30,7 +30,7 @@ const fs=require('fs');
      const x=rendered.getChannelData(i),start=starts[i];if(start.offset>0)lateStarts++;
      // Locate the actual rendered vowel landmark by matching an independently
      // annotated region of the original word, not by repeating the scheduling math.
-     const gender={voiceMale:'male',voiceFemale:'female',voiceMaleFR:'maleFR',voiceFemaleFR:'femaleFR'}[bank];
+     const gender={voiceMale:'male',voiceFemale:'female'}[bank];
      const annotation=anchors.find(a=>a.gender===gender&&a.number===expected[i].number);
      const raw=VOICE_METRONOME_BUFFERS[gender][String(expected[i].number)].getChannelData(0);
      const ref=Math.round(annotation.anchor_ms*48),center=Math.round(expected[i].time*48000);
