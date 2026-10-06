@@ -1133,6 +1133,28 @@
     /* Le cercle doit tenir entre la signature et la légende, quel que soit l'écran. */
     .panel-visu .sequencer-wrapper { container-type: size; width: 100%; }
     .panel-visu .sequencer-container { width: min(100%, max(40px, calc(100cqh - 24px))); }
+    .main-grid > .panel-visu.mobile-active { padding: 10px 12px; gap: 6px; }
+    .panel-visu .panel-title { padding-bottom: 6px; font-size: 10px; }
+    .panel-visu .mode-switch { padding-bottom: 0; }
+    .panel-visu .visu-toolbar { padding: 0 0 6px; }
+    .panel-visu .legend { margin-top: 0; }
+    .panel-visu .sequencer-container { width: min(100%, max(40px, calc(100cqh - 8px))); }
+    .panel-visu .beat-number { font-size: clamp(30px, 6cqh, 44px); }
+  }
+  @media (min-width: 601px) and (max-width: 1100px) and (min-height: 501px) {
+    /* Une barre compacte laisse le cercle devenir l'élément principal. */
+    .main-grid > .panel-visu.mobile-active {
+      display: grid; grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-rows: auto auto minmax(0, 1fr) auto; column-gap: 16px; row-gap: 10px;
+    }
+    .panel-visu .panel-title { grid-column: 1 / 3; grid-row: 1; }
+    .panel-visu .mode-switch { grid-column: 1; grid-row: 2; width: min(100%, 340px); align-self: center; }
+    .panel-visu .visu-toolbar { grid-column: 2; grid-row: 2; border: 0; padding: 0; }
+    .panel-visu .sequencer-wrapper { grid-column: 1 / 3; grid-row: 3; }
+    .panel-visu .legend { grid-column: 1 / 3; grid-row: 4; }
+    .mobile-tabs { width: min(100%, 720px); align-self: center; }
+    .panel-visu .mode-switch button { font-size: 10px; }
+    .footer-center { width: min(100%, 360px); }
   }
 </style>
 </head>
