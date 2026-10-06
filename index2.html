@@ -1129,6 +1129,11 @@
     .legend { margin-top: 0; }
     .footer-right { display: none; }
   }
+  @media (max-width: 1100px) {
+    /* Le cercle doit tenir entre la signature et la légende, quel que soit l'écran. */
+    .panel-visu .sequencer-wrapper { container-type: size; width: 100%; }
+    .panel-visu .sequencer-container { width: min(100%, max(40px, calc(100cqh - 24px))); }
+  }
 </style>
 </head>
 <body>
