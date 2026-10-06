@@ -3172,6 +3172,24 @@
     prepareAllVoiceAudio().catch(() => {});
   </script>
   <script src="songs.js?v=20261006-block-toggle"></script>
+  <script>
+    // Index 2 : ouvrir les morceaux de la playlist avec les sections repliées.
+    (() => {
+      const pane = document.getElementById('songPane');
+      function collapseOpenedSong() {
+        setTimeout(() => {
+          pane.querySelector('.song-block-header[aria-expanded="true"]')?.click();
+        }, 0);
+      }
+      pane.addEventListener('click', event => {
+        if (event.target.closest('.song-playlist-card')) collapseOpenedSong();
+      }, true);
+      pane.addEventListener('keydown', event => {
+        if (event.target.matches('.song-playlist-card') &&
+            (event.key === 'Enter' || event.key === ' ')) collapseOpenedSong();
+      }, true);
+    })();
+  </script>
   <script src="mp3-export.js?v=20261006-mp3"></script>
 
   <script>
