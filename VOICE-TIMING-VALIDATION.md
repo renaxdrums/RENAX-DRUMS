@@ -1,3 +1,5 @@
+Réglages de subdivision simplifiés selon le dernier choix : affichage des nombres seuls, sans noms de notes. Les valeurs, états, samples et calculs temporels sont inchangés. Les limites de subdivision restent à préciser entre limite de figures notées et limite de durée ; aucune limitation nouvelle n’est appliquée dans cette version.
+
 # Voix par groupes en /16 et /32 — 6 octobre 2026
 
 Choix de l’utilisateur : compter les groupes à la noire et conserver tous les clics rapides. En /16, un groupe comporte quatre pulsations ; en /32, huit pulsations. Le compteur central suit les groupes et une indication sous le compteur précise ce mode. Les pulsations et subdivisions non vocales dans ces banques gardent leurs clics. Les banques non vocales et le comptage vocal en /4 et /8 restent identiques. La grille temporelle reste inchangée.
