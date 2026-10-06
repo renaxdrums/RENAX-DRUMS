@@ -85,7 +85,13 @@
   const originalStop=stopMetronome;stopMetronome=function(){clearTimeout(endTimer);const result=originalStop();syncSongTransport();return result;};
   const originalMode=setAppMode;setAppMode=function(mode){unload();return originalMode(mode);};
   panicBtn.addEventListener('click',unload,true);
-  function updatePosition(){const e=document.getElementById('songPosition');if(!e)return;if(!loaded){e.textContent='';return;}const p=locate(activeMeasureIndex);e.textContent=loaded.song.name+' · '+p.section.label+' · mesure '+p.bar+'/'+p.section.count+' ('+(activeMeasureIndex+1)+'/'+loaded.total+')';songPane.querySelectorAll('.song-section').forEach((e,i)=>{e.classList.toggle('playing',isPlaying&&i===p.index);e.classList.toggle('active',i===p.index);});refreshSongCards();}
+  function updatePosition(){
+    const cards=songPane.querySelectorAll('.song-section');
+    if(!loaded){cards.forEach(card=>card.classList.remove('active','playing'));return;}
+    const position=locate(activeMeasureIndex);if(!position)return;
+    cards.forEach((card,index)=>{card.classList.toggle('playing',isPlaying&&index===position.index);card.classList.toggle('active',index===position.index);});refreshSongCards();
+  }
+
   const originalRender=renderSequencerList;renderSequencerList=function(){if(!loaded)return originalRender();measureListEl.replaceChildren();el('p','Morceau chargé : '+loaded.song.name,measureListEl,'song-note');};
   function setSectionOpen(sectionId){
     openSectionId=sectionId;
@@ -200,7 +206,6 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
       if(openSectionId!==null&&!s.sections.some(section=>section.id===openSectionId))openSectionId=s.sections[0].id;
       button('Dupliquer',actions,()=>{const copy=clone(s);copy.id=id();copy.name+=' (copie)';p.songs.push(copy);selectedSong=copy.id;changed();});button('Supprimer',actions,()=>{if(!confirm('Supprimer « '+s.name+' » ?'))return;unload();p.songs=p.songs.filter(x=>x!==s);selectedSong=null;persist();render();});
       field('Titre du morceau',songPane,s.name,value=>{s.name=value.trim()||'Sans titre';changed();});
-      el('div','',songPane).id='songPosition';
       el('p','Sélectionne un bloc pour le régler dans le métronome.',songPane,'song-note');
       el('p',s.sections.reduce((n,s)=>n+s.count,0)+' mesures · arrêt à la fin du morceau',songPane,'song-note');
       s.sections.forEach((section,i)=>{const card=el('div',undefined,songPane,'song-section measure-card');card.dataset.sectionId=section.id;card.tabIndex=0;card.setAttribute('role','group');

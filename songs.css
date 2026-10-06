@@ -11,7 +11,6 @@
 .song-section.playing { border-color:var(--cyan); }
 .song-fields { display:grid; grid-template-columns:1fr 1fr; gap:0 8px; }
 .song-note { color:var(--text-muted); font-size:10px; line-height:1.5; }
-#songPosition { color:var(--cyan); margin:8px 0; line-height:1.5; }
 #songStatus { font-size:10px; color:var(--text-muted); min-height:16px; }
 
 .song-open {width:100%;text-align:left;white-space:normal;}
