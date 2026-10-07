@@ -150,7 +150,7 @@
     }
     function activate(){if(!gesture||gesture.scrolling)return;gesture.active=true;clearTimeout(holdTimer);row.classList.add('dragging');row.setPointerCapture(gesture.id);markDrop();scrollFrame=requestAnimationFrame(autoScroll);}
     row.addEventListener('pointerdown',e=>{
-      if(e.button!==0||!e.isPrimary)return;
+      if(e.button!==0||!e.isPrimary||e.target.closest('.song-more-wrap'))return;
       gesture={id:e.pointerId,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,scrollTop:panel.scrollTop,active:false,scrolling:false,index:0,valid:false};
       holdTimer=setTimeout(activate,250);
     });
@@ -173,6 +173,7 @@
   }
   function duplicateSongTo(source,target,rename=true){const copy=clone(source);copy.id=id();copy.sections.forEach(section=>section.id=id());if(rename)copy.name+=' (copie)';target.songs.push(copy);return copy;}
   function choosePlaylist(source,mode){
+    const p=profile();
     const targets=library.profiles.filter(candidate=>mode==='move'?candidate.id!==p.id:true);
     if(!targets.length){status('Aucune autre playlist disponible.');return;}
     const labels=targets.map((candidate,index)=>(index+1)+' — '+(candidate.name==='Mon profil'?'Mes morceaux':candidate.name));
@@ -182,14 +183,16 @@
     else{unload();p.songs=p.songs.filter(song=>song!==source);target.songs.push(source);selectedSong=null;persist();render();status('Morceau déplacé dans '+(target.name==='Mon profil'?'Mes morceaux':target.name)+'.');}
   }
   function addSongMenu(row,item){
-    const wrap=el('div',undefined,row,'song-more-wrap'),trigger=button('⋯',wrap,()=>{menu.hidden=!menu.hidden;trigger.setAttribute('aria-expanded',String(!menu.hidden));});
+    const p=profile();
+    const wrap=el('div',undefined,row,'song-more-wrap'),trigger=button('⋯',wrap,()=>{const opening=menu.hidden;songPane.querySelectorAll('.song-more-menu').forEach(other=>other.hidden=true);songPane.querySelectorAll('.song-more').forEach(other=>other.setAttribute('aria-expanded','false'));menu.hidden=!opening;trigger.setAttribute('aria-expanded',String(opening));});
     trigger.className='song-more';trigger.setAttribute('aria-label','Actions pour '+item.name);trigger.setAttribute('aria-haspopup','menu');trigger.setAttribute('aria-expanded','false');
     const menu=el('div',undefined,wrap,'song-more-menu');menu.hidden=true;menu.setAttribute('role','menu');
-    const action=(label,fn)=>{const b=button(label,menu,e=>fn(e));b.setAttribute('role','menuitem');return b;};
+    const action=(label,fn)=>{const b=button(label,menu,e=>{menu.hidden=true;trigger.setAttribute('aria-expanded','false');fn(e);});b.setAttribute('role','menuitem');return b;};
     action('Dupliquer',()=>{duplicateSongTo(item,p,true);persist();render();});
     action('Déplacer vers…',()=>choosePlaylist(item,'move'));
     action('Copier vers…',()=>choosePlaylist(item,'copy'));
     wrap.addEventListener('click',e=>e.stopPropagation());
+    wrap.addEventListener('keydown',e=>{if(e.key==='Escape'){menu.hidden=true;trigger.setAttribute('aria-expanded','false');trigger.focus();}});
   }
   function render(){songPane.replaceChildren();profilePane.replaceChildren();songsHome.replaceChildren();
     songsHome.hidden=songView!=='home';profilePane.hidden=songView!=='profile';songPane.hidden=!['playlists','playlist','detail'].includes(songView);
@@ -271,6 +274,9 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
   }
   // Song playback uses a snapshot; editing the saved arrangement stops its playback.
   // Keep ordinary sequencer and polyrhythm behavior untouched when no song is loaded.
+  const actionStyle=document.createElement('style');
+  actionStyle.textContent='#songPane .song-playlist-card{position:relative;}\n#songPane .song-more-wrap{position:absolute;bottom:8px;right:8px;z-index:12;}\n#songPane .song-more{width:32px;height:32px;padding:0;border:1px solid #363640;border-radius:6px;background:#15151b;color:var(--text-muted);font:700 18px/1 var(--font);cursor:pointer;}\n#songPane .song-more:hover,#songPane .song-more[aria-expanded=true]{border-color:#a45427;color:var(--orange);background:#211a16;}\n#songPane .song-more-menu{position:absolute;bottom:36px;right:0;width:176px;padding:5px;border:1px solid #363640;border-radius:7px;background:#101116;box-shadow:0 10px 28px rgba(0,0,0,.38);}\n#songPane .song-more-menu[hidden]{display:none;}\n#songPane .song-more-menu .btn{display:block;width:100%;min-height:40px;padding:7px 9px;border:0;border-radius:5px;background:transparent;color:var(--text);font:600 11px/1.25 var(--font);text-align:left;text-transform:none;letter-spacing:0;}\n#songPane .song-more-menu .btn:hover{background:#211a16;color:var(--orange);}\n';
+  document.head.append(actionStyle);
   render();
   window.RENAX_SONGS={validateLibrary,loadSong,unload,locate,
     replaceLibrary(value){validateLibrary(value);unload();library=clone(value);selectedSong=null;openSectionId=null;songView='home';render();},
