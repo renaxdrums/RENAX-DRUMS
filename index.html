@@ -942,6 +942,12 @@
   .index2-settings-backdrop{display:none !important;}
 }
 @media (max-width:600px){
+  /* Smartphone — START / RESET symétriques autour de l'axe vertical. */
+  .footer-center{width:min(370px,100%);display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-left:auto;margin-right:auto;}
+  .footer-center .btn,#playBtn,#panicBtn{width:100%;min-width:0;height:46px;padding:5px 10px;}
+}
+
+@media (max-width:600px){
   .index2-header-btn span{display:none;}
   .index2-header-btn{width:34px;padding:0;}
   #index2SongsBtn::before{content:'♫';font-size:14px;}
