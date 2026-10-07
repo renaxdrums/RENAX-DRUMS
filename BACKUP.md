@@ -18,7 +18,7 @@ Chemins : `users/UID/records/ID` et `users/UID/records/ID/history/REVISION`. Cat
 
 Les règles refusent les anonymes et tout accès à un autre UID ; elles imposent les champs, types, tailles, temps serveur, progression de révision, écriture atomique de l'historique et son immutabilité. Elles refusent les suppressions physiques. Le JSON musical imbriqué est validé par le client avant application : les règles valident l'enveloppe, mais ne parsèment pas le JSON. Un utilisateur authentifié peut donc écrire un JSON invalide dans son propre espace avec un client modifié ; l'application le refuse, et cela n'autorise aucun accès à un autre compte. Les transactions sont atomiques par élément, pas par bibliothèque entière. Les conflits sur catalogue/profil sont également explicites.
 
-Aucune purge automatique : décision utilisateur validée le 7 octobre 2026. L'écran affiche les 20 dernières révisions de chaque élément ; les versions plus anciennes restent stockées. Une restauration crée une nouvelle révision, sans effacer l'ancienne. Des exports JSON restent nécessaires pour une copie indépendante du service et du navigateur.
+Aucune purge automatique : décision utilisateur validée le 7 octobre 2026. Le bouton Historique/restaurer a été retiré de l'interface à sa demande ; les révisions distantes demeurent conservées et les règles de sécurité inchangées. Des exports JSON restent nécessaires pour une copie indépendante du service et du navigateur. La vue sépare Sauvegarde, Profils et Copie JSON ; les actions secondaires sont dans Options du compte, et Retour reste au-dessus. Cette correction concerne uniquement la présentation et conserve les callbacks de synchronisation et d'enregistrement.
 
 ## Configuration externe
 

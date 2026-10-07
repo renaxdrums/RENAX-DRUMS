@@ -134,13 +134,13 @@ async function history(){
 function renderPanel(){
   const pane=document.getElementById('profilePane');if(!pane)return;
   let root=document.getElementById('backupAccount');if(!root){root=element('section');root.id='backupAccount';const back=pane.querySelector('.song-back');if(back)back.after(root);else pane.prepend(root);}
+  const optionsOpen=root.querySelector('details')?.open||false;
   root.replaceChildren();element('h3','Sauvegarde',root);
-  element('p','Les modifications sont enregistrées automatiquement dans ce navigateur. Effacer les données du navigateur peut les supprimer : conservez aussi une copie JSON.',root);
-  const state=element('p',storage.healthy?message:'Sauvegarde locale impossible : exportez une copie JSON.',root);state.setAttribute('role','status');state.setAttribute('aria-live','polite');
+  const state=element('p',storage.healthy?message:'Sauvegarde locale impossible : exportez une copie JSON.',root);state.className='backup-status';state.classList.toggle('is-confirmed',confirmed);state.setAttribute('role','status');state.setAttribute('aria-live','polite');
   if(failure)element('p',failure,root).className='backup-error';
   if(!storage.healthy)button('Exporter la source locale préservée',root,()=>{const raw=storage.recoverSource();if(!raw)throw Error('Aucune source trouvée.');const url=URL.createObjectURL(new Blob([raw],{type:'application/json'})),link=element('a');link.href=url;link.download='renax-source-preservee.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
   if(!account){
-    element('p','Connectez-vous pour sauvegarder vos morceaux en ligne et les retrouver sur vos appareils.',root);
+    element('p','Copie locale automatique. Connectez-vous pour retrouver vos morceaux sur vos appareils.',root).className='backup-hint';
     if(!firebaseConfig)element('p','Connexion en ligne indisponible : projet Firebase non configuré.',root);
     const form=element('div',undefined,root);form.className='backup-auth';
     const emailLabel=element('label','E-mail',form),email=element('input',undefined,emailLabel);email.type='email';email.id='backupEmail';email.autocomplete='email';
@@ -151,13 +151,14 @@ function renderPanel(){
     button('Continuer avec Google',form,()=>authenticate('google'),!firebaseConfig||!providers.google);
     if(!providers.google)element('small','Google non configuré.',form);
   }else{
-    element('p','Compte : '+(account.email||account.uid),root);
-    button('Se déconnecter',root,async()=>{await sdk.auth.signOut(auth);sessionStorage.removeItem('renax-index2-auth-enabled');});
+    element('p',account.email||account.uid,root).className='backup-identity';
     if(!account.emailVerified&&account.email)button('Vérifier mon adresse',root,()=>sdk.auth.sendEmailVerification(account));
-    button('Importer les morceaux sans compte',root,importGuest);
-    button('Réessayer la synchronisation',root,sync);
-    button('Historique / restaurer',root,history);
-    button('Lier Google à ce compte',root,()=>authenticate('google'),!providers.google);
+    const options=element('details',undefined,root);options.className='backup-options';options.open=optionsOpen;element('summary','Options du compte',options);
+    const optionActions=element('div',undefined,options);optionActions.className='backup-option-actions';
+    const syncButton=button(failure?'Réessayer la synchronisation':'Actualiser la synchronisation',optionActions,sync);syncButton.setAttribute('aria-label','Réessayer la synchronisation');
+    const importButton=button('Importer les morceaux locaux',optionActions,importGuest);importButton.setAttribute('aria-label','Importer les morceaux sans compte');
+    button('Lier Google à ce compte',optionActions,()=>authenticate('google'),!providers.google);
+    button('Se déconnecter',optionActions,async()=>{await sdk.auth.signOut(auth);sessionStorage.removeItem('renax-index2-auth-enabled');}).classList.add('backup-signout');
     for(const [id,conflict] of Object.entries(storage.state?.conflicts||{})){
       const row=element('div',undefined,root);row.className='backup-conflict';let name=id;try{name=JSON.parse(conflict.local.payload??conflict.remote.payload)?.song?.name||id;}catch{}
       element('p','Conflit : '+name+' · en ligne : '+(conflict.remote.updatedAt?new Date(conflict.remote.updatedAt).toLocaleString():'date non disponible')+' · appareil '+conflict.remote.device, row);
@@ -165,7 +166,6 @@ function renderPanel(){
       button('Conserver cet appareil',row,()=>resolve(id,'local'));button('Conserver en ligne',row,()=>resolve(id,'remote'));
     }
   }
-  element('h3','Profils locaux et copie indépendante',root);
 }
 // Install account UI after songs.js rebuilds its panes; keep local profiles/import/export.
 new MutationObserver(()=>{if(!document.getElementById('backupAccount'))renderPanel();}).observe(document.getElementById('profilePane'),{childList:true});
