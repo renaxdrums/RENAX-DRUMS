@@ -133,7 +133,7 @@ async function history(){
 }
 function renderPanel(){
   const pane=document.getElementById('profilePane');if(!pane)return;
-  let root=document.getElementById('backupAccount');if(!root){root=element('section');root.id='backupAccount';pane.prepend(root);}
+  let root=document.getElementById('backupAccount');if(!root){root=element('section');root.id='backupAccount';const back=pane.querySelector('.song-back');if(back)back.after(root);else pane.prepend(root);}
   root.replaceChildren();element('h3','Sauvegarde',root);
   element('p','Les modifications sont enregistrées automatiquement dans ce navigateur. Effacer les données du navigateur peut les supprimer : conservez aussi une copie JSON.',root);
   const state=element('p',storage.healthy?message:'Sauvegarde locale impossible : exportez une copie JSON.',root);state.setAttribute('role','status');state.setAttribute('aria-live','polite');
