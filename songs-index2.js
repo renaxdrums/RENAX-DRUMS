@@ -82,7 +82,7 @@
     if(!isPlaying&&!loaded&&!songsRoot.hidden&&songView==='detail'&&song())loadSong();
     return originalStart();
   };
-  const originalStop=stopMetronome;stopMetronome=function(){clearTimeout(endTimer);const result=originalStop();syncSongTransport();return result;};
+  const originalStop=stopMetronome;stopMetronome=function(...args){clearTimeout(endTimer);const result=originalStop(...args);syncSongTransport();return result;};
   const originalMode=setAppMode;setAppMode=function(mode){unload();return originalMode(mode);};
   panicBtn.addEventListener('click',unload,true);
   function updatePosition(){
