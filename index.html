@@ -1068,7 +1068,7 @@
     .panel-training #dirToggle { flex:1; width:auto; margin-right:34px; display:flex; gap:8px; }
     .panel-training #dirToggle button { flex:1; width:auto; min-width:0; min-height:44px; font-family:var(--font); font-size:11px; letter-spacing:.2px; }
     .panel-training .btn-train { min-height:44px; padding:10px; font-size:11px; border-radius:7px; }
-    .mobile-training-bpm { display:inline-flex; align-items:center; font:700 13px 'JetBrains Mono',monospace; color:var(--orange); white-space:nowrap; cursor:pointer; pointer-events:auto; position:relative; z-index:4; touch-action:manipulation; }
+    .mobile-training-bpm { display:inline-flex; align-items:center; font:700 13px 'JetBrains Mono',monospace; color:var(--orange); white-space:nowrap; cursor:pointer; pointer-events:auto; position:relative; z-index:4; touch-action:manipulation; appearance:none; -webkit-appearance:none; background:transparent; border:0; padding:0; margin:0; line-height:inherit; }
     .mode-switch button { min-height: 44px; font: 700 11px var(--font); letter-spacing: .3px; }
     .visu-toolbar { padding: 4px 0 10px; }
     .visu-measure-info .measure-label { font-size: 11px; letter-spacing: .4px; }
@@ -1390,7 +1390,7 @@
       <div class="visu-toolbar">
         <div class="visu-measure-info">
           <span class="measure-label" id="activeMeasureLabel">MESURE 1 / 1</span>
-          <span class="mobile-training-bpm" id="mobileTrainingBpm" aria-live="polite">120 BPM</span>
+          <button type="button" class="mobile-training-bpm" id="mobileTrainingBpm" aria-live="polite" aria-label="Modifier le tempo dans Réglages">120 BPM</button>
           <div class="sig-group" id="metroSigGroup">
             <select id="activeNumerator"></select>
             <span class="slash">/</span>
@@ -1558,24 +1558,19 @@
       if (btn) switchTab(btn.dataset.tab);
     });
 
-    // Smartphone : le BPM de Visualisation ouvre Réglages directement sur Tempo.
-    // Délégation sur le panneau : fiable même si l'affichage BPM est recréé/recouvert.
-    const visuPanel = document.querySelector('.panel-visu');
-    if (visuPanel) {
-      visuPanel.addEventListener('pointerup', e => {
-        const bpmHit = e.target.closest('#mobileTrainingBpm');
-        if (!bpmHit || window.innerWidth > 1100) return;
-        e.preventDefault();
-        e.stopPropagation();
-        switchTab('params');
-        const paramsPanel = document.querySelector('.panel-params');
-        if (paramsPanel) paramsPanel.scrollTop = 0;
-        requestAnimationFrame(() => {
-          const tempoGroup = bpmSlider?.closest('.control-group') || bpmDisplay?.closest('.control-group');
-          if (tempoGroup) tempoGroup.scrollIntoView({ block: 'start', behavior: 'auto' });
-        });
+    // Smartphone : le BPM de Visualisation est un vrai bouton.
+    // Il ouvre Réglages et place directement la zone Tempo en haut du panneau.
+    function openMobileTempoSettings() {
+      if (window.innerWidth > 1100) return;
+      switchTab('params');
+      const paramsPanel = document.querySelector('.panel-params');
+      if (paramsPanel) paramsPanel.scrollTop = 0;
+      requestAnimationFrame(() => {
+        const tempoGroup = bpmSlider?.closest('.control-group') || bpmDisplay?.closest('.control-group');
+        if (tempoGroup) tempoGroup.scrollIntoView({ block: 'start', behavior: 'auto' });
       });
     }
+    if (mobileTrainingBpm) mobileTrainingBpm.addEventListener('click', openMobileTempoSettings);
 
     let audioCtx = null;
     let masterVolume = 0.8;
