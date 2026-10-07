@@ -622,6 +622,8 @@
     .author-credit { font-size: 9px; }
 
     @media (min-width: 1101px) {
+      .mobile-training-bpm { display:none !important; }
+      .panel-training { display:none !important; }
       /* Titre principal PC. */
       .header-center h2 { font-size: 16px; }
 
@@ -1049,6 +1051,18 @@
     .main-grid > .panel.mobile-active { height: 100%; overflow-y: auto; padding: 14px; gap: 14px; }
     .panel-title { font-size: 11px; padding-bottom: 10px; }
     .panel-visu.mobile-active { gap: 8px; }
+    .panel-training.mobile-active { gap: 14px; }
+    .panel-training #mobileTrainingHost { width: min(100%, 560px); align-self: center; }
+    .panel-training .training-section { display:flex; flex-direction:column; gap:12px; padding-top:0; margin-top:0; }
+    .panel-training .training-section > label { display:none; }
+    .panel-training .training-row { display:flex; align-items:center; gap:8px; }
+    .panel-training .training-row .row-label { flex:0 0 52px; font-size:10px; }
+    .panel-training .training-row input[type=number] { min-height:44px; padding:10px; font-size:14px; border-radius:7px; flex:1; min-width:0; }
+    .panel-training .training-row .unit { font-size:10px; min-width:26px; }
+    .panel-training #dirToggle { flex:1; width:auto; margin-right:34px; display:flex; gap:8px; }
+    .panel-training #dirToggle button { flex:1; width:auto; min-width:0; min-height:44px; font-family:var(--font); font-size:11px; letter-spacing:.2px; }
+    .panel-training .btn-train { min-height:44px; padding:10px; font-size:11px; border-radius:7px; }
+    .mobile-training-bpm { display:inline-flex; align-items:center; font:700 13px 'JetBrains Mono',monospace; color:var(--cyan); white-space:nowrap; }
     .mode-switch button { min-height: 44px; font: 700 11px var(--font); letter-spacing: .3px; }
     .visu-toolbar { padding: 4px 0 10px; }
     .visu-measure-info .measure-label { font-size: 11px; letter-spacing: .4px; }
@@ -1238,7 +1252,7 @@
     <button data-tab="visu" class="active">Visualisation</button>
     <button data-tab="params">Paramètres</button>
     <button data-tab="seq">Séquenceur</button>
-    <button data-tab="settings">Réglages</button>
+    <button data-tab="training">Entraînement</button>
   </nav>
 
   <div class="main-grid">
@@ -1304,6 +1318,11 @@
       </div>
     </div>
 
+    <div class="panel panel-training" data-panel="training">
+      <div class="panel-title">ENTRAÎNEMENT</div>
+      <div id="mobileTrainingHost"></div>
+    </div>
+
     <div class="panel panel-seq" data-panel="seq">
       <div class="panel-title">SÉQUENCEUR</div>
       <div class="seq-count-row">
@@ -1347,6 +1366,7 @@
       <div class="visu-toolbar">
         <div class="visu-measure-info">
           <span class="measure-label" id="activeMeasureLabel">MESURE 1 / 1</span>
+          <span class="mobile-training-bpm" id="mobileTrainingBpm" aria-live="polite">120 BPM</span>
           <div class="sig-group" id="metroSigGroup">
             <select id="activeNumerator"></select>
             <span class="slash">/</span>
@@ -1487,6 +1507,22 @@
   <script>
     const mobileTabs = document.getElementById('mobileTabs');
     const panels = document.querySelectorAll('.panel');
+    const paramsPanel = document.querySelector('.panel-params');
+    const trainingSection = paramsPanel?.querySelector('.training-section');
+    const mobileTrainingHost = document.getElementById('mobileTrainingHost');
+    const trainingPlaceholder = document.createComment('training-section-home');
+    if(trainingSection) trainingSection.before(trainingPlaceholder);
+
+    function placeTrainingSection(){
+      if(!trainingSection)return;
+      if(window.innerWidth<=1100){
+        if(mobileTrainingHost && trainingSection.parentNode!==mobileTrainingHost) mobileTrainingHost.append(trainingSection);
+      }else if(trainingSection.parentNode!==paramsPanel){
+        trainingPlaceholder.parentNode?.insertBefore(trainingSection,trainingPlaceholder.nextSibling);
+      }
+    }
+    placeTrainingSection();
+    window.addEventListener('resize',placeTrainingSection);
 
     function switchTab(name) {
       mobileTabs.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
@@ -1925,6 +1961,8 @@
 
     const bpmDisplay = document.getElementById('bpmDisplay');
     const bpmSlider = document.getElementById('bpmSlider');
+    const mobileTrainingBpm = document.getElementById('mobileTrainingBpm');
+    function updateMobileTrainingBpm(value){ if(mobileTrainingBpm) mobileTrainingBpm.textContent = value+' BPM'; }
     const volumeSlider = document.getElementById('volumeSlider');
     const volumeValue = document.getElementById('volumeValue');
     const soundBankSel = document.getElementById('soundBank');
@@ -2041,7 +2079,7 @@
       if (!m || training.active) return;
       tempo = getEffectiveTempo(m);
       bpmSlider.value = tempo;
-      bpmDisplay.innerHTML = `${tempo} <span>BPM</span>`;
+      bpmDisplay.innerHTML = `${tempo} <span>BPM</span>`; updateMobileTrainingBpm(tempo);
     }
 
     function refreshTempoFields() {
@@ -2997,7 +3035,7 @@
 
       tempo = sBpm;
       bpmSlider.value = sBpm;
-      bpmDisplay.innerHTML = `${sBpm} <span>BPM</span>`;
+      bpmDisplay.innerHTML = `${sBpm} <span>BPM</span>`; updateMobileTrainingBpm(sBpm);
       bpmSlider.disabled = true;
       pauseWorkTimer();
       if (!isPlaying) startMetronome();
@@ -3014,7 +3052,7 @@
       if (bpm !== tempo) {
         tempo = bpm;
         bpmSlider.value = bpm;
-        bpmDisplay.innerHTML = `${bpm} <span>BPM</span>`;
+        bpmDisplay.innerHTML = `${bpm} <span>BPM</span>`; updateMobileTrainingBpm(bpm);
       }
       if (progress >= 1) {
         endTraining();
@@ -3044,7 +3082,7 @@
       if (training.active) {
         if (isPlaying) stopMetronome();
         else endTraining();
-      } else startTraining();
+      } else { startTraining(); if(window.innerWidth<=1100) switchTab('visu'); }
     });
 
     let tapTimes = [];
@@ -3068,7 +3106,7 @@
           const m = measures[activeMeasureIndex];
           if (m && !training.active) m.tempo = newBpm;
           bpmSlider.value = tempo;
-          bpmDisplay.innerHTML = `${tempo} <span>BPM</span>`;
+          bpmDisplay.innerHTML = `${tempo} <span>BPM</span>`; updateMobileTrainingBpm(tempo);
           refreshTempoFields();
         }
       }
@@ -3093,7 +3131,7 @@
       tempo = parseInt(e.target.value);
       const m = measures[activeMeasureIndex];
       if (m) m.tempo = tempo;
-      bpmDisplay.innerHTML = `${tempo} <span>BPM</span>`;
+      bpmDisplay.innerHTML = `${tempo} <span>BPM</span>`; updateMobileTrainingBpm(tempo);
       refreshTempoFields();
     });
 
@@ -3254,7 +3292,7 @@
     measures = metronomeMeasures;
     renderSequencerList();
     renderActiveMeasure();
-    bpmDisplay.innerHTML = `${tempo} <span>BPM</span>`;
+    bpmDisplay.innerHTML = `${tempo} <span>BPM</span>`; updateMobileTrainingBpm(tempo);
     volumeValue.textContent = '80%';
     soundBankSel.value = currentBank;
     setSilentMode(false);
@@ -3324,8 +3362,6 @@
     songsBtn?.addEventListener('click',openSongs);
     window.addEventListener('keydown',e=>{if(e.key==='Escape') closeSettings();});
 
-    const settingsMobileTab=document.querySelector('#mobileTabs button[data-tab="settings"]');
-    settingsMobileTab?.addEventListener('click',()=>panel.classList.add('mobile-active'));
   })();
   </script>
 
