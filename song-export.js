@@ -110,8 +110,9 @@
     const songs=playlistSongs();save.disabled=!songs.length;
     if(!songs.length)status.textContent='La playlist ne contient aucun morceau.';
     else if(!window.showSaveFilePicker){save.disabled=true;status.textContent='Pour choisir le dossier de destination, ouvre cet export dans Chrome ou Edge sur ordinateur.';}
-    let busy=false;
+    let busy=false,closeTimer=null;
     save.onclick=async()=>{
+      if(closeTimer){clearTimeout(closeTimer);closeTimer=null;}
       const song=playlistSongs().find(s=>s.id===select.value);if(!song||busy)return;
       const snapshot=clone(song),bank=currentBank,volume=masterVolume;
       const midi=format.value==='midi';
@@ -124,11 +125,12 @@
         const writable=await handle.createWritable();
         try{await writable.write(result.blob);await writable.close();}catch(e){await writable.abort().catch(()=>{});throw e;}
         status.textContent=(midi?'MIDI':'MP3')+' enregistré : '+handle.name;
+        if(!midi)closeTimer=setTimeout(()=>{if(dialog?.open&&!busy)dialog.close();},5000);
       }catch(e){status.textContent=e.name==='AbortError'?'Export annulé.':e.message;}
       finally{busy=false;select.disabled=false;format.disabled=false;save.disabled=false;close.disabled=false;}
     };
     dialog.addEventListener('cancel',e=>{if(busy)e.preventDefault();});
-    dialog.addEventListener('close',()=>{dialog.remove();dialog=null;});
+    dialog.addEventListener('close',()=>{if(closeTimer)clearTimeout(closeTimer);dialog.remove();dialog=null;});
     actions.append(save,close);dialog.append(title,label,select,formatLabel,format,midiNote,actions,status,credit);document.body.append(dialog);dialog.showModal();
   }
   function install(){
