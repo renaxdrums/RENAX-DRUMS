@@ -841,372 +841,9 @@
     .audio-ready-wrap.fade-out { opacity: 0; }
     #playBtn.audio-loading { opacity: .48; cursor: not-allowed; filter: saturate(.4); }
 
-/* ═══════════════════════════════════════════════════════════════
-   INDEX 2 — PROPOSITION ERGONOMIQUE
-   Couleurs et moteur d'origine conservés. Mise en page uniquement.
-   ═══════════════════════════════════════════════════════════════ */
-.index2-header-actions{
-  margin-left:auto;display:flex;align-items:center;gap:7px;z-index:3;
-}
-.index2-header-btn{
-  min-height:34px;padding:0 12px;border:1px solid var(--border);border-radius:7px;
-  background:var(--panel);color:var(--text-muted);font:700 9px var(--font);
-  text-transform:uppercase;letter-spacing:.65px;cursor:pointer;transition:.15s;
-}
-.index2-header-btn:hover,.index2-header-btn:focus-visible{
-  color:var(--text);border-color:var(--orange);outline:none;
-}
-#index2SettingsBtn{font-size:15px;padding:0 10px;color:var(--text);}
-.index2-badge{
-  font:700 8px 'JetBrains Mono',monospace;color:var(--orange);
-  border:1px solid rgba(255,107,0,.28);border-radius:999px;padding:4px 7px;
-  letter-spacing:.6px;white-space:nowrap;
-}
-.index2-settings-panel{
-  display:none;position:fixed;z-index:60;top:70px;right:12px;bottom:52px;
-  width:min(390px,calc(100vw - 24px));padding:16px;
-  background:#111116;border:1px solid #30303a;border-radius:10px;
-  box-shadow:0 20px 70px rgba(0,0,0,.55);overflow-y:auto;
-}
-.index2-settings-panel.open{display:flex;}
-.index2-settings-title{
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding-bottom:10px;border-bottom:1px solid var(--border);
-}
-.index2-settings-title strong{
-  font-size:11px;text-transform:uppercase;letter-spacing:1.2px;
-}
-.index2-close{
-  width:32px;height:32px;border-radius:6px;border:1px solid var(--border);
-  background:var(--grey);color:var(--text);cursor:pointer;font-size:16px;
-}
-.index2-settings-section{
-  border:1px solid var(--border);border-radius:8px;padding:12px;
-  background:#0e0e13;display:flex;flex-direction:column;gap:9px;
-}
-.index2-settings-section h3{
-  font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;
-}
-.index2-setting-row{display:grid;grid-template-columns:1fr 130px;align-items:center;gap:12px;}
-.index2-setting-row label{font-size:10px;color:var(--text);}
-.index2-setting-row select,.index2-setting-row button{min-height:34px;}
-.index2-setting-row :disabled{opacity:.45;cursor:not-allowed;}
-.index2-settings-note{
-  font-size:9px;color:var(--text-muted);line-height:1.5;padding:8px 9px;
-  border-left:2px solid var(--orange);background:rgba(255,107,0,.045);
-}
-.index2-status{
-  font:700 8px 'JetBrains Mono',monospace;text-transform:uppercase;
-  letter-spacing:.6px;color:var(--cyan);
-}
-.index2-settings-backdrop{
-  display:none;position:fixed;inset:0;z-index:59;background:rgba(0,0,0,.42);
-}
-.index2-settings-backdrop.open{display:block;}
-
-@media (min-width:1101px){
-  header{min-height:54px;margin-bottom:12px;padding:5px 0 11px;}
-  .header-center{left:50%;}
-  .main-grid{
-    grid-template-columns:230px minmax(440px,1fr) 300px;
-    gap:12px;
-  }
-  .panel-params{grid-column:1;grid-row:1;}
-  .panel-visu{grid-column:2;grid-row:1;}
-  .panel-seq{grid-column:3;grid-row:1;}
-  .panel{
-    border-radius:9px;border-color:#24242d;
-    box-shadow:0 8px 30px rgba(0,0,0,.12);
-  }
-  .panel-visu{padding:12px 16px;}
-  .panel-params{padding:12px;}
-  .panel-seq{padding:12px;}
-  .panel-title{letter-spacing:1.2px;}
-  .sequencer-container{max-width:min(680px,calc(100vw - 620px));}
-}
-
-@media (max-width:1100px){
-  .index2-header-actions{gap:5px;}
-  .index2-badge{display:none;}
-  .index2-header-btn{padding:0 9px;min-height:32px;font-size:8px;}
-  #index2SettingsBtn{font-size:14px;}
-  .mobile-tabs{grid-template-columns:repeat(4,1fr);}
-  .index2-settings-panel{
-    position:static;inset:auto;width:auto;height:100%;max-height:none;
-    border-radius:6px;box-shadow:none;padding:12px;
-  }
-  .index2-settings-panel.mobile-active{display:flex !important;}
-  .index2-settings-panel.open{display:flex !important;}
-  .index2-settings-backdrop{display:none !important;}
-}
-@media (max-width:600px){
-  .index2-header-btn span{display:none;}
-  .index2-header-btn{width:34px;padding:0;}
-  #index2SongsBtn::before{content:'♫';font-size:14px;}
-  .index2-setting-row{grid-template-columns:1fr 118px;}
-}
-
   </style>
   <link rel="stylesheet" href="songs.css?v=20261006-song-clean">
   <link rel="stylesheet" href="mp3-export.css?v=20261006-mp3">
-  <link rel="stylesheet" href="backup-index2.css?v=20261007-backup-ui">
-  <style>
-    /* Index 2 uniquement : ergonomie visuelle, sans modifier les commandes. */
-    .song-tabs { gap: 8px; margin-bottom: 4px; }
-    .song-tabs button, .index2-header-btn, .song-back,
-    :is(#songsHome, #songPane, #profilePane) .btn,
-    .footer-center .btn {
-      min-height: 40px; border-radius: 7px; padding: 10px 12px;
-      font-family: var(--font); font-size: 11px; font-weight: 700;
-      line-height: 1.35; letter-spacing: .4px;
-    }
-    .song-tabs button { text-transform: uppercase; }
-    .song-tabs button:not([aria-selected="true"]) { background: #1c1c24; border-color: #363641; }
-    .panel-seq { gap: 16px; }
-    #sequencePane { gap: 16px; }
-    .panel-seq .panel-title { font-size: 11px; padding-bottom: 10px; }
-    .seq-count-row { gap: 10px; }
-    .seq-count-row label { flex-basis: 82px; font-size: 10px; }
-    .seq-count-row select { min-height: 36px; font-size: 12px; border-radius: 7px; }
-    .silent-head-label { font-size: 10px; }
-    .silent-toggle { min-height: 32px; min-width: 52px; border-radius: 7px; font-size: 10px; }
-    .measure-card, #songPane .song-section.measure-card { padding: 12px; border-radius: 8px; gap: 10px; }
-    .measure-num { font-size: 11px; line-height: 1.4; }
-    .measure-sig { font-size: 12px; }
-    .measure-tempo-label, .measure-tempo-unit { font-size: 9px; }
-    .measure-tempo-input { min-height: 30px; font-size: 11px !important; border-radius: 6px; }
-    :is(#songPane, #profilePane) { font-size: 12px; }
-    :is(#songPane, #profilePane) label { margin: 12px 0; line-height: 1.4; }
-    :is(#songPane, #profilePane) input[type="text"], #profilePane select {
-      min-height: 40px; padding: 10px; border-radius: 7px; font-size: 12px;
-    }
-    .song-actions { gap: 8px; margin: 12px 0; }
-    #songPane > .song-actions > .btn { flex: 1; border-color: #3a3a45; }
-    #songPane > .song-actions > .btn:last-child,
-    .song-block-body .song-actions .btn { color: #ffaf78; background: #211812; border-color: #654026; }
-    .song-back { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-    .song-back::after { content: "Retour"; }
-    #songPane > .btn:not(.song-back) {
-      width: 100%; margin-top: 10px; color: var(--cyan);
-      border-color: #28717d; background: #102126; white-space: normal;
-    }
-    .song-entry { margin: 10px 0; border-color: #3a3a45; }
-    .song-note, .song-block-summary, .song-playlist-summary { font-size: 11px; line-height: 1.55; }
-    .song-note { margin: 4px 0; color: #9a9aaa; }
-    #songPane .song-section.measure-card { margin: 12px 0; }
-    .song-block-header { min-height: 32px; align-items: center; }
-    #songPane .song-inline-field { gap: 10px; margin: 8px 0; font-size: 10px; }
-    #songPane .song-inline-field .numbox-custom { margin-left: auto; }
-    #songPane .song-inline-field .numbox-button { min-height: 36px; border-radius: 7px; font-size: 12px; }
-    #songPane .song-inline-field .measure-tempo-unit { min-width: 26px; }
-    .song-tempo-value { font-size: 11px; }
-    .footer-center { gap: 10px; }
-    .footer-center #playBtn, .footer-center #playBtn[data-song-transport="true"] {
-      width: 174px; min-width: 174px; min-height: 44px; white-space: nowrap;
-    }
-    .footer-center #panicBtn { min-width: 88px; min-height: 44px; }
-    .footer-center .btn-primary { background: var(--orange); border-color: var(--orange); color: #000; }
-    .footer-center .btn-primary:hover { background: #ff8c33; }
-    .footer-center .btn-cyan { background: var(--cyan); border-color: var(--cyan); color: #000; }
-    .footer-center .btn-cyan:hover { background: #55eeff; }
-    :is(.song-tabs button, .index2-header-btn, .panel-seq button, .footer-center .btn):focus-visible {
-      outline: 2px solid var(--cyan); outline-offset: 3px;
-    }
-    :is(#songPane, #profilePane) input:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
-    @media (min-width: 1101px) {
-      .main-grid { grid-template-columns: 230px minmax(440px, 1fr) 320px; }
-      .footer-center { left: 276px; bottom: 70px; }
-      .panel-visu { padding-bottom: 72px; }
-      .sequencer-container { max-width: min(680px, calc(100vw - 640px)); }
-    }
-    @media (max-width: 600px) {
-      .footer-center #playBtn, .footer-center #playBtn[data-song-transport="true"] { width: 164px; min-width: 164px; }
-      .footer-center #panicBtn { min-width: 76px; }
-      .song-tabs button, :is(#songsHome, #songPane, #profilePane) .btn { min-height: 44px; }
-    }
-  </style>
-<!-- Styles mobiles isolés : mêmes éléments et mêmes commandes. -->
-<style>
-  .step.compound-strong { width: calc(var(--step-size) * 1.3); height: calc(var(--step-size) * 1.3); border-radius: 5px; }
-  .step.compound-weak { width: calc(var(--step-size) * .8); height: calc(var(--step-size) * .8); border-radius: 50%; }
-  .panel-params #dirToggle { flex: 0 0 auto; width: 124px; gap: 8px; padding: 0; border: 0; background: transparent; }
-  .panel-params #dirToggle button { flex: 0 0 58px; width: 58px; height: 30px; padding: 0 2px; border: 1px solid var(--border); border-radius: 5px; font-size: 8px; }
-  @media (max-width: 1100px) {
-    .panel-params #dirToggle button { height: 44px; min-height: 44px; }
-  }
-  @media (max-width: 1100px) {
-    body { padding: 8px; gap: 0; }
-    header { min-height: 48px; margin-bottom: 8px; }
-    .brand h1 { font-size: 12px; }
-    .brand p { font-size: 8px; }
-    .index2-header-btn { min-height: 44px; }
-    #index2SettingsBtn { width: 44px; }
-    .mobile-tabs { gap: 4px; padding: 4px; margin-bottom: 8px; }
-    .mobile-tabs button { min-height: 44px; font-size: 10px; letter-spacing: .2px; padding: 8px 4px; color: #b6b6c2; }
-    .mobile-tabs button.active { color: #000; }
-    .main-grid { overflow: hidden; }
-    .main-grid > .panel.mobile-active { height: 100%; overflow-y: auto; padding: 14px; gap: 14px; }
-    .panel-title { font-size: 11px; padding-bottom: 10px; }
-    .panel-visu.mobile-active { gap: 8px; }
-    .mode-switch button { min-height: 44px; font: 700 11px var(--font); letter-spacing: .3px; }
-    .visu-toolbar { padding: 4px 0 10px; }
-    .visu-measure-info .measure-label { font-size: 11px; letter-spacing: .4px; }
-    .visu-measure-info { gap: 10px; }
-    .numbox-button { width: 58px; height: 44px; border-radius: 7px; }
-    .sequencer-container { width: min(100%, max(100px, calc(100dvh - 380px))); }
-    .legend { font-size: 10px; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
-    .panel-params .control-group { gap: 10px; }
-    .control-group label, .panel-params .training-section > label { font-size: 11px; color: #b6b6c2; }
-    .panel-params .tempo-display { font-size: 40px; }
-    .panel-params select, .panel-params .training-row input[type=number] {
-      min-height: 44px; padding: 10px; font-size: 14px; border-radius: 7px;
-    }
-    .panel-params .tap-tempo-btn, .panel-params .btn-train {
-      min-height: 44px; padding: 10px; font-size: 11px; border-radius: 7px;
-    }
-    .panel-params input[type=range] { height: 6px; margin: 12px 0; }
-    .panel-params input[type=range]::-webkit-slider-thumb { width: 24px; height: 24px; }
-    .panel-params .training-section { gap: 12px; padding-top: 16px; margin-top: 8px; }
-    .panel-params .training-row { gap: 8px; }
-    .panel-params .training-row .row-label { flex-basis: 52px; font-size: 10px; }
-    .panel-params .training-row .unit { font-size: 10px; min-width: 26px; }
-    .panel-params > .panel-title,
-    .panel-params > .control-group,
-    .panel-params > .training-section { width: min(100%, 560px); align-self: center; }
-    .panel-params #dirToggle { flex: 1; width: auto; margin-right: 34px; }
-    .panel-params #dirToggle button {
-      flex: 1; width: auto; min-width: 0; height: 44px;
-      font-family: var(--font); font-size: 11px; letter-spacing: .2px;
-    }
-    .main-grid > .panel.mobile-active { scrollbar-width: thin; scrollbar-color: #555563 var(--panel); scrollbar-gutter: stable; }
-    .main-grid > .panel.mobile-active::-webkit-scrollbar { width: 6px; }
-    .main-grid > .panel.mobile-active::-webkit-scrollbar-track { background: var(--panel); }
-    .main-grid > .panel.mobile-active::-webkit-scrollbar-thumb { background: #555563; border-radius: 6px; }
-    .panel-params .training-section { padding-bottom: 12px; }
-    .panel-params .dir-toggle button { min-height: 40px; font-size: 10px; padding: 8px 4px; }
-    .seq-count-row select, .silent-toggle, .measure-tempo-input { min-height: 44px; }
-    .measure-tempo-input { font-size: 12px !important; }
-    .index2-settings-section { padding: 14px; gap: 12px; }
-    .index2-setting-row { grid-template-columns: minmax(0, 1fr) 130px; gap: 12px; }
-    .index2-setting-row label, .index2-settings-section h3 { font-size: 11px; line-height: 1.5; }
-    .index2-setting-row select, .index2-setting-row button { min-height: 44px; border-radius: 7px; }
-    .index2-setting-row button:disabled { background: #25252e; color: #b6b6c2; border: 1px solid #40404d; font: 600 12px var(--font); opacity: .65; }
-    .index2-settings-note { font-size: 11px; line-height: 1.6; padding: 10px; }
-    .index2-status { font-size: 10px; line-height: 1.5; }
-    .index2-close { width: 44px; height: 44px; flex-shrink: 0; }
-    footer { display: grid; grid-template-columns: 1fr; gap: 4px; flex-shrink: 0; padding-top: 8px; padding-bottom: env(safe-area-inset-bottom, 0px); }
-    .footer-left { display: none; }
-    .footer-center { width: min(100%, 440px); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 10px; }
-    .footer-center #playBtn, .footer-center #playBtn[data-song-transport="true"], .footer-center #panicBtn { width: 100%; min-width: 0; min-height: 48px; font-size: 12px; }
-    .footer-right { justify-content: center; font-size: 8px; }
-    .audio-ready-wrap { bottom: 5px; right: 8px; }
-  }
-  @media (max-width: 600px) {
-    .mobile-tabs { display: grid; grid-template-columns: 1fr 1fr; }
-    .mobile-tabs button { font-size: 11px; }
-    .index2-header-btn span { display: inline; }
-    #index2SongsBtn { width: auto; padding: 8px 10px; font-size: 10px; }
-    #index2SongsBtn::before { content: none; }
-    .index2-setting-row { grid-template-columns: minmax(0, 1fr) 118px; }
-    .sequencer-container { width: min(100%, max(100px, calc(100dvh - 430px))); }
-  }
-  @media (max-width: 1100px) and (max-height: 500px) {
-    header { min-height: 40px; margin-bottom: 4px; }
-    .mobile-tabs { display: grid; grid-template-columns: repeat(4, 1fr); margin-bottom: 4px; }
-    .mobile-tabs button { min-height: 40px; }
-    .main-grid > .panel-visu.mobile-active { padding: 8px 12px; gap: 4px; }
-    .main-grid > .panel-visu.mobile-active { display: grid; grid-template-columns: minmax(260px, 1fr) minmax(0, 1fr); grid-template-rows: auto 1fr auto; }
-    .panel-visu .mode-switch { grid-column: 1; grid-row: 1; }
-    .panel-visu .visu-toolbar { grid-column: 1; grid-row: 2; align-self: start; }
-    .panel-visu .sequencer-wrapper { grid-column: 2; grid-row: 1 / 4; }
-    .panel-visu .legend { grid-column: 1; grid-row: 3; }
-    .panel-visu .panel-title { display: none; }
-    .panel-visu .mode-switch { padding-bottom: 0; }
-    .panel-visu .mode-switch button { min-height: 36px; }
-    .visu-toolbar { padding: 0 0 4px; }
-    .visu-toolbar .numbox-button { height: 36px; }
-    .sequencer-container { width: min(100%, max(100px, calc(100dvh - 185px))); }
-    .legend { margin-top: 0; }
-    .footer-right { display: none; }
-  }
-  @media (max-width: 1100px) {
-    /* Le cercle doit tenir entre la signature et la légende, quel que soit l'écran. */
-    .panel-visu .sequencer-wrapper { container-type: size; width: 100%; }
-    .panel-visu .sequencer-container { width: min(100%, max(40px, calc(100cqh - 24px))); }
-    .main-grid > .panel-visu.mobile-active { padding: 10px 12px; gap: 6px; }
-    .panel-visu .panel-title { padding-bottom: 6px; font-size: 10px; }
-    .panel-visu .mode-switch { padding-bottom: 0; }
-    .panel-visu .visu-toolbar { padding: 0 0 6px; }
-    .panel-visu .legend { margin-top: 0; }
-    .panel-visu .sequencer-container { width: min(100%, max(40px, calc(100cqh - 8px))); }
-    .panel-visu .beat-number { font-size: clamp(30px, 6cqh, 44px); }
-  }
-  @media (min-width: 601px) and (max-width: 1100px) and (min-height: 501px) {
-    /* Une barre compacte laisse le cercle devenir l'élément principal. */
-    .main-grid > .panel-visu.mobile-active {
-      display: grid; grid-template-columns: minmax(0, 1fr) auto;
-      grid-template-rows: auto auto minmax(0, 1fr) auto; column-gap: 16px; row-gap: 10px;
-    }
-    .panel-visu .panel-title { grid-column: 1 / 3; grid-row: 1; }
-    .panel-visu .mode-switch { grid-column: 1; grid-row: 2; width: min(100%, 340px); align-self: center; }
-    .panel-visu .visu-toolbar { grid-column: 2; grid-row: 2; border: 0; padding: 0; }
-    .panel-visu .sequencer-wrapper { grid-column: 1 / 3; grid-row: 3; }
-    .panel-visu .legend { grid-column: 1 / 3; grid-row: 4; }
-    .mobile-tabs { width: min(100%, 720px); align-self: center; }
-    .panel-visu .mode-switch button { font-size: 10px; }
-    .footer-center { width: min(100%, 360px); }
-  }
-</style>
-<style>
-  /* Vue mobile centrée sur le métronome : commandes compactes, cercle prioritaire. */
-  #songExportFormat { display: block; margin: 0 0 16px; min-height: 40px; }
-  #mp3ExportDialog > p:not(#mp3ExportStatus) { margin: 0 0 16px; color: var(--text-muted); font-size: 11px; line-height: 1.5; }
-  @media (max-width: 1100px) {
-    body { padding: 6px; }
-    header { min-height: 32px; padding: 0 0 4px; margin-bottom: 4px; }
-    #index2SettingsBtn { width: 32px; height: 32px; min-height: 32px; padding: 0; font-size: 14px; }
-    .mobile-tabs { width: 100%; margin-bottom: 4px; padding: 2px; gap: 3px; }
-    .mobile-tabs button { min-height: 32px; padding: 5px 3px; font-size: 9px; }
-    .main-grid > .panel-visu.mobile-active { padding: 6px 10px; gap: 4px; }
-    .panel-visu .panel-title { font-size: 9px; padding: 0; margin: 0; border: 0; line-height: 14px; }
-    .panel-visu .train-timer { font-size: 10px; }
-    .panel-visu .mode-switch { gap: 5px; }
-    .panel-visu .mode-switch button { min-height: 32px; font-size: 10px; border-radius: 6px; }
-    .panel-visu .visu-toolbar { padding: 0; border: 0; }
-    .panel-visu .visu-measure-info { gap: 8px; }
-    .panel-visu .visu-measure-info .measure-label { font-size: 10px; }
-    .panel-visu .numbox-custom { width: 46px; flex-basis: 46px; }
-    .panel-visu .numbox-button { width: 46px; height: 32px; padding: 4px 6px; font-size: 11px; }
-    .panel-visu .sequencer-wrapper { padding: 0; }
-    .panel-visu .legend { font-size: 9px; gap: 8px; line-height: 12px; }
-    footer { margin-top: 4px; padding-top: 4px; gap: 0; }
-    .footer-center { width: min(100%, 260px); grid-template-columns: 164px 86px; }
-    .footer-center #playBtn, .footer-center #playBtn[data-song-transport="true"], .footer-center #panicBtn {
-      min-height: 36px; height: 36px; padding: 6px 10px; font-size: 11px;
-    }
-    .footer-right { display: none; }
-  }
-  @media (min-width: 601px) and (max-width: 1100px) and (min-height: 501px) {
-    .main-grid > .panel-visu.mobile-active { row-gap: 4px; column-gap: 12px; }
-    .panel-visu .mode-switch { width: min(100%, 280px); }
-  }
-</style>
-<style>
-  /* Présentation du transport uniquement : boutons existants et légende regroupés. */
-  .visu-bottom {display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0;min-width:0;}
-  .panel-visu > .visu-bottom {grid-column:1/-1;grid-row:4;padding-top:6px;}
-  .visu-bottom .footer-center {position:static;inset:auto;transform:none;display:flex;justify-content:center;align-items:center;width:auto;margin:0;gap:8px;z-index:auto;}
-  .visu-bottom .footer-center #playBtn,.visu-bottom .footer-center #panicBtn {width:auto;min-width:76px;min-height:36px;height:36px;padding:7px 14px;font-size:11px;border-radius:6px;}
-  .visu-bottom .footer-center #playBtn {min-width:104px;}
-  .visu-bottom .footer-center #playBtn[data-song-transport="true"] {width:auto;min-width:136px;}
-  .visu-bottom .legend {margin:0;gap:12px;font-size:10px;line-height:14px;}
-  @media(max-width:1100px) {
-    footer > .visu-bottom {gap:6px;padding:0;}
-    .visu-bottom .footer-center #playBtn,.visu-bottom .footer-center #panicBtn {min-height:44px;height:44px;}
-    footer > .visu-bottom .legend {display:none;font-size:9px;line-height:12px;}
-    body:has(.panel-visu.mobile-active) footer > .visu-bottom .legend {display:flex;}
-  }
-</style>
 </head>
 <body>
 
@@ -1221,18 +858,12 @@
     <div class="header-center">
       <h2>MÉTRO<span class="title-orange">NOME</span></h2>
     </div>
-
-    <div class="index2-header-actions" aria-label="Navigation rapide">
-      <span class="index2-badge">INDEX 1</span>
-      <button class="index2-header-btn" id="index2SettingsBtn" type="button" aria-label="Réglages" title="Réglages">⚙</button>
-    </div>
   </header>
 
   <nav class="mobile-tabs" id="mobileTabs">
     <button data-tab="visu" class="active">Visualisation</button>
     <button data-tab="params">Paramètres</button>
     <button data-tab="seq">Séquenceur</button>
-    <button data-tab="settings">Réglages</button>
   </nav>
 
   <div class="main-grid">
@@ -1280,8 +911,8 @@
         <div class="training-row">
           <span class="row-label">Sens</span>
           <div class="dir-toggle" id="dirToggle">
-            <button data-dir="down">Ralentir</button>
             <button data-dir="up" class="active">Accélérer</button>
+            <button data-dir="down">Ralentir</button>
           </div>
         </div>
         <div class="training-row">
@@ -1419,50 +1050,6 @@
       </div>
     </div>
   </div>
-
-
-  <div class="index2-settings-backdrop" id="index2SettingsBackdrop"></div>
-  <aside class="panel index2-settings-panel" data-panel="settings" id="index2SettingsPanel" aria-label="Réglages techniques">
-    <div class="index2-settings-title">
-      <strong>⚙ Réglages</strong>
-      <button class="index2-close" id="index2SettingsClose" type="button" aria-label="Fermer">×</button>
-    </div>
-
-    <section class="index2-settings-section">
-      <h3>MIDI & déclenchement</h3>
-      <div class="index2-setting-row">
-        <label>Déclenchement START</label>
-        <button type="button" disabled>Non actif</button>
-      </div>
-      <div class="index2-setting-row">
-        <label>Note MIDI START</label>
-        <select disabled><option>À définir</option></select>
-      </div>
-      <div class="index2-setting-row">
-        <label>Canal MIDI</label>
-        <select disabled><option>À définir</option></select>
-      </div>
-      <div class="index2-settings-note">Emplacement réservé à la future commande MIDI. Aucun comportement MIDI n'est ajouté dans index2 : le moteur actuel reste inchangé.</div>
-    </section>
-
-    <section class="index2-settings-section">
-      <h3>Exports</h3>
-      <div class="index2-setting-row">
-        <label>Export MP3</label>
-        <span class="index2-status">Disponible</span>
-      </div>
-      <div class="index2-setting-row">
-        <label>Export MIDI</label>
-        <span class="index2-status">Disponible</span>
-      </div>
-      <div class="index2-settings-note">Dans la playlist, Exporter permet de choisir MP3 ou MIDI.</div>
-    </section>
-
-    <section class="index2-settings-section">
-      <h3>Principe de cette variante</h3>
-      <div class="index2-settings-note">Les commandes musicales restent dans l'espace de travail. Les options techniques et futures intégrations sont isolées ici pour réduire la charge visuelle.</div>
-    </section>
-  </aside>
 
   <footer>
     <div class="footer-left"></div>
@@ -2572,10 +2159,6 @@
         stepsData.push({ beat: b, subIndex: 0, globalIndex: b });
         const step = document.createElement('div');
         step.className = 'step';
-        // Regroupement graphique uniquement des signatures composées validées en /8.
-        if (m.denominator === 8 && [6, 9, 12, 15, 18].includes(m.numerator)) {
-          step.classList.add(b % 3 === 0 ? 'compound-strong' : 'compound-weak');
-        }
         step.dataset.state = m.beatStates[b][0];
         step.dataset.index = b;
         step.dataset.beat = b;
@@ -3185,9 +2768,6 @@
       if (!m) return;
       m.denominator = parseInt(activeDenominatorSel.value);
       normalizeMeasureSubdivisions(m);
-      // Appliquer la nouvelle unité aux événements encore à programmer.
-      scheduledMeasureLayouts.delete(m);
-      validatePlayingState();
       refreshBeatEditor();
       renderActiveMeasure();
       refreshMeasurePreviews();
@@ -3221,8 +2801,10 @@
         polyrhythmMeasures = [createPolyMeasure(5, 4, tempo)];
         measures = polyrhythmMeasures;
       } else {
-        // RESET ne relance pas le chargement audio : conserver son état réel.
-        metronomeMeasures = [createMeasure(4, 4)];
+        playBtn.disabled = true;
+    playBtn.classList.add('audio-loading');
+
+    metronomeMeasures = [createMeasure(4, 4)];
         measures = metronomeMeasures;
       }
       activeMeasureIndex = 0;
@@ -3260,79 +2842,7 @@
     });
     prepareAllVoiceAudio().catch(() => {});
   </script>
-  <script src="local-backup.js?v=20261007-sync"></script>
-  <script src="songs-index2.js?v=20261007-backup-ui"></script>
-  <script type="module" src="cloud-backup.js?v=20261007-backup-ui"></script>
-  <script>
-    // Index 2 : ouvrir les morceaux de la playlist avec les sections repliées.
-    (() => {
-      const pane = document.getElementById('songPane');
-      function collapseOpenedSong() {
-        setTimeout(() => {
-          pane.querySelector('.song-block-header[aria-expanded="true"]')?.click();
-        }, 0);
-      }
-      pane.addEventListener('click', event => {
-        if (event.target.closest('.song-playlist-card')) collapseOpenedSong();
-      }, true);
-      pane.addEventListener('keydown', event => {
-        if (event.target.matches('.song-playlist-card') &&
-            (event.key === 'Enter' || event.key === ' ')) collapseOpenedSong();
-      }, true);
-    })();
-  </script>
-  <script src="midi-export.js?v=20261007-midi"></script>
-  <script src="song-export.js?v=20261007-formats"></script>
-
-  <script>
-  (() => {
-    const panel=document.getElementById('index2SettingsPanel');
-    const backdrop=document.getElementById('index2SettingsBackdrop');
-    const openBtn=document.getElementById('index2SettingsBtn');
-    const closeBtn=document.getElementById('index2SettingsClose');
-    const songsBtn=document.getElementById('index2SongsBtn');
-
-    function openSettings(){
-      if(window.innerWidth<=1100 && typeof switchTab==='function'){
-        switchTab('settings');
-        panel.classList.add('mobile-active');
-        return;
-      }
-      panel.classList.add('open');
-      backdrop.classList.add('open');
-    }
-    function closeSettings(){
-      panel.classList.remove('open','mobile-active');
-      backdrop.classList.remove('open');
-      if(window.innerWidth<=1100 && typeof switchTab==='function') switchTab('visu');
-    }
-    function openSongs(){
-      if(window.innerWidth<=1100 && typeof switchTab==='function') switchTab('seq');
-      const songTab=document.querySelector('.song-tabs button[data-pane="songs"]');
-      if(songTab) songTab.click();
-    }
-    openBtn?.addEventListener('click',openSettings);
-    closeBtn?.addEventListener('click',closeSettings);
-    backdrop?.addEventListener('click',closeSettings);
-    songsBtn?.addEventListener('click',openSongs);
-    window.addEventListener('keydown',e=>{if(e.key==='Escape') closeSettings();});
-
-    const settingsMobileTab=document.querySelector('#mobileTabs button[data-tab="settings"]');
-    settingsMobileTab?.addEventListener('click',()=>panel.classList.add('mobile-active'));
-  })();
-  </script>
-
-  <script>
-  // Disposition responsive uniquement : les boutons gardent leurs IDs et listeners.
-  (() => {
-    const panel=document.querySelector('.panel-visu'),footer=document.querySelector('footer');
-    const transport=document.querySelector('.footer-center'),legend=panel.querySelector('.legend');
-    const group=document.createElement('div');group.className='visu-bottom';
-    group.append(transport,legend);
-    const desktop=matchMedia('(min-width:1101px)');
-    const arrange=()=>{if(desktop.matches)panel.append(group);else footer.prepend(group);};
-    arrange();desktop.addEventListener('change',arrange);
-  })();
-  </script>
+  <script src="songs.js?v=20261006-block-toggle"></script>
+  <script src="mp3-export.js?v=20261006-mp3"></script>
 </body>
 </html>

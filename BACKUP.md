@@ -1,8 +1,10 @@
-# Sauvegarde de la variante index2
+# Sauvegarde du métronome principal
+
+Le 7 octobre 2026, à la demande de l'utilisateur, la version validée d'Index 2 devient la page principale `index.html` (Index 1). L'ancienne page est conservée dans `index-legacy.html`. `index2.html` redirige vers la page principale pour préserver les liens existants. Les scripts, clés de stockage, comptes Firebase, règles et données restent identiques ; aucun déplacement ni nouvelle migration des sauvegardes.
 
 ## Périmètre et audit
 
-`index.html`, `songs.js`, le moteur intégré à `index2.html`, `midi-export.js`, `song-export.js`, `mp3-export.js` et les styles existants sont conservés. L'export MIDI était déjà opérationnel et n'a pas été recréé. `index2.html` charge désormais une copie isolée `songs-index2.js`, le stockage local et la synchronisation facultative. Le modèle musical reste version 1 : profils, morceaux, sections, signatures, tempo, subdivisions et états de clic. La playlist est la liste des morceaux du profil. Le séquenceur de travail n'était pas une bibliothèque persistante : cette intégration conserve ce périmètre et n'invente pas de conversion du séquenceur.
+L'ancienne page principale est désormais archivée dans `index-legacy.html`. Le moteur de la version validée, `songs.js`, `midi-export.js`, `song-export.js`, `mp3-export.js` et les styles existants sont conservés. L'export MIDI était déjà opérationnel et n'a pas été recréé. La page principale charge la copie isolée `songs-index2.js`, le stockage local et la synchronisation facultative. Le modèle musical reste version 1 : profils, morceaux, sections, signatures, tempo, subdivisions et états de clic. La playlist est la liste des morceaux du profil. Le séquenceur de travail n'était pas une bibliothèque persistante : cette intégration conserve ce périmètre et n'invente pas de conversion du séquenceur.
 
 ## Fonctionnement
 
