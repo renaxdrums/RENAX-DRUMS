@@ -175,12 +175,12 @@
     songsHome.hidden=songView!=='home';profilePane.hidden=songView!=='profile';songPane.hidden=!['playlist','detail'].includes(songView);
     button('Sauvegarde',songsHome,()=>navigate('profile')).classList.add('song-entry');
     button('Playlist',songsHome,()=>navigate('playlist')).classList.add('song-entry');
-    const backProfile=button('←',profilePane,()=>navigate('home'));backProfile.classList.add('song-back');backProfile.setAttribute('aria-label','Retour aux morceaux');
-    const backSong=button('←',songPane,()=>navigate(songView==='detail'?'playlist':'home'));backSong.classList.add('song-back');backSong.setAttribute('aria-label',songView==='detail'?'Retour à la playlist':'Retour aux morceaux');
+    const backProfile=button('Retour',profilePane,()=>navigate('home'));backProfile.classList.add('song-back');backProfile.setAttribute('aria-label','Retour aux morceaux');
+    const backSong=button('Retour',songPane,()=>navigate(songView==='detail'?'playlist':'home'));backSong.classList.add('song-back');backSong.setAttribute('aria-label',songView==='detail'?'Retour à la playlist':'Retour aux morceaux');
 const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
-    const localProfiles=el('section',undefined,profilePane,'backup-profile');el('h3','Profils',localProfiles);
-    const profileSelect=field('Profil actif',localProfiles,p.id,value=>{unload();library.activeProfile=value;selectedSong=null;songView=songView==='detail'?'playlist':songView;persist();render();},[]);for(const item of library.profiles){const o=el('option',item.name,profileSelect);o.value=item.id;}profileSelect.value=p.id;
-    const profiles=el('div',undefined,localProfiles,'song-actions');button('Nouveau profil',profiles,()=>{const name=prompt('Nom du profil');if(!name?.trim())return;unload();const p={id:id(),name:name.trim(),songs:[]};library.profiles.push(p);library.activeProfile=p.id;selectedSong=null;persist();render();});button('Renommer',profiles,()=>{const name=prompt('Nom du profil',p.name);if(name?.trim()){p.name=name.trim();persist();render();}});
+    const localProfiles=el('section',undefined,songPane,'playlist-manager');localProfiles.hidden=songView!=='playlist';
+    const profileSelect=field('Playlist active',localProfiles,p.id,value=>{unload();library.activeProfile=value;selectedSong=null;songView='playlist';persist();render();},[]);for(const item of library.profiles){const o=el('option',item.name==='Mon profil'?'Mes morceaux':item.name,profileSelect);o.value=item.id;}profileSelect.value=p.id;
+    const profiles=el('div',undefined,localProfiles,'playlist-tools');button('Nouvelle playlist',profiles,()=>{const name=prompt('Nom de la playlist');if(!name?.trim())return;unload();const p={id:id(),name:name.trim(),songs:[]};library.profiles.push(p);library.activeProfile=p.id;selectedSong=null;songView='playlist';persist();render();});button('Renommer',profiles,()=>{const name=prompt('Nom de la playlist',p.name==='Mon profil'?'Mes morceaux':p.name);if(name?.trim()){p.name=name.trim();persist();render();}});
     const actions=el('div',undefined,songPane,'song-actions');
     const s=song();
     if(!s){

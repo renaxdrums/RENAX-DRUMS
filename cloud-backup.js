@@ -135,6 +135,8 @@ function renderPanel(){
   const pane=document.getElementById('profilePane');if(!pane)return;
   let root=document.getElementById('backupAccount');if(!root){root=element('section');root.id='backupAccount';const back=pane.querySelector('.song-back');if(back)back.after(root);else pane.prepend(root);}
   const optionsOpen=root.querySelector('details')?.open||false;
+  // Preserve existing controls and listeners before rebuilding account presentation.
+  const json=pane.querySelector('.backup-json');if(json)pane.append(json);
   root.replaceChildren();element('h3','Sauvegarde',root);
   const state=element('p',storage.healthy?message:'Sauvegarde locale impossible : exportez une copie JSON.',root);state.className='backup-status';state.classList.toggle('is-confirmed',confirmed);state.setAttribute('role','status');state.setAttribute('aria-live','polite');
   if(failure)element('p',failure,root).className='backup-error';
@@ -159,6 +161,7 @@ function renderPanel(){
     const importButton=button('Importer les morceaux locaux',optionActions,importGuest);importButton.setAttribute('aria-label','Importer les morceaux sans compte');
     button('Lier Google à ce compte',optionActions,()=>authenticate('google'),!providers.google);
     button('Se déconnecter',optionActions,async()=>{await sdk.auth.signOut(auth);sessionStorage.removeItem('renax-index2-auth-enabled');}).classList.add('backup-signout');
+    if(json)options.append(json);
     for(const [id,conflict] of Object.entries(storage.state?.conflicts||{})){
       const row=element('div',undefined,root);row.className='backup-conflict';let name=id;try{name=JSON.parse(conflict.local.payload??conflict.remote.payload)?.song?.name||id;}catch{}
       element('p','Conflit : '+name+' · en ligne : '+(conflict.remote.updatedAt?new Date(conflict.remote.updatedAt).toLocaleString():'date non disponible')+' · appareil '+conflict.remote.device, row);

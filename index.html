@@ -949,7 +949,7 @@
   </style>
   <link rel="stylesheet" href="songs.css?v=20261006-song-clean">
   <link rel="stylesheet" href="mp3-export.css?v=20261006-mp3">
-  <link rel="stylesheet" href="backup-index2.css?v=20261007-backup-ui">
+  <link rel="stylesheet" href="backup-index2.css?v=20261007-account-options">
   <style>
     /* Index 2 uniquement : ergonomie visuelle, sans modifier les commandes. */
     .song-tabs { gap: 8px; margin-bottom: 4px; }
@@ -1028,6 +1028,7 @@
 <!-- Styles mobiles isolés : mêmes éléments et mêmes commandes. -->
 <style>
   .step.compound-strong { width: calc(var(--step-size) * 1.3); height: calc(var(--step-size) * 1.3); border-radius: 5px; }
+  .step.measure-start { width: calc(var(--step-size) * 1.3); height: calc(var(--step-size) * 1.3); border-radius: 5px; }
   .step.compound-weak { width: calc(var(--step-size) * .8); height: calc(var(--step-size) * .8); border-radius: 50%; }
   .panel-params #dirToggle { flex: 0 0 auto; width: 124px; gap: 8px; padding: 0; border: 0; background: transparent; }
   .panel-params #dirToggle button { flex: 0 0 58px; width: 58px; height: 30px; padding: 0 2px; border: 1px solid var(--border); border-radius: 5px; font-size: 8px; }
@@ -1211,6 +1212,7 @@
   }
 </style>
   <link rel="stylesheet" href="song-entry.css?v=20261007-entries">
+  <link rel="stylesheet" href="navigation-index.css?v=20261007-navigation">
 </head>
 <body>
 
@@ -2580,6 +2582,7 @@
         if (m.denominator === 8 && [6, 9, 12, 15, 18].includes(m.numerator)) {
           step.classList.add(b % 3 === 0 ? 'compound-strong' : 'compound-weak');
         }
+        if (m.numerator === 3 && m.denominator === 8 && b === 0) step.classList.add('measure-start');
         step.dataset.state = m.beatStates[b][0];
         step.dataset.index = b;
         step.dataset.beat = b;
@@ -3265,8 +3268,8 @@
     prepareAllVoiceAudio().catch(() => {});
   </script>
   <script src="local-backup.js?v=20261007-sync"></script>
-  <script src="songs-index2.js?v=20261007-backup-ui"></script>
-  <script type="module" src="cloud-backup.js?v=20261007-backup-ui"></script>
+  <script src="songs-index2.js?v=20261007-account-options"></script>
+  <script type="module" src="cloud-backup.js?v=20261007-account-options"></script>
   <script>
     // Index 2 : ouvrir les morceaux de la playlist avec les sections repliées.
     (() => {

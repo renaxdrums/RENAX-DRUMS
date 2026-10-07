@@ -19,6 +19,7 @@
 .backup-options summary {cursor:pointer;color:var(--text-muted);font-size:11px;min-height:32px;line-height:32px;}
 .backup-options summary:focus-visible {outline:2px solid var(--cyan);outline-offset:2px;}
 .backup-option-actions {display:flex;flex-direction:column;gap:6px;margin-top:4px;}
+#profilePane .backup-options > .backup-profile,#profilePane .backup-options > .backup-json {margin-top:10px;}
 #profilePane .backup-option-actions button.btn {background:transparent;border-color:var(--border);text-align:left;}
 #profilePane .backup-option-actions button.btn:hover {background:var(--grey-hover);}
 #profilePane .backup-option-actions .backup-signout {color:var(--text-muted);}

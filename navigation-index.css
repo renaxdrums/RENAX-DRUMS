@@ -1,0 +1,27 @@
+/* Navigation and playlist presentation. Existing controls keep their listeners. */
+#index2SettingsPanel {color-scheme:dark;scrollbar-width:thin;scrollbar-color:#00c6d9 #111116;}
+#index2SettingsPanel::-webkit-scrollbar {width:6px;}
+#index2SettingsPanel::-webkit-scrollbar-track {background:#111116;}
+#index2SettingsPanel::-webkit-scrollbar-thumb {background:#00c6d9;border-radius:8px;border:1px solid #111116;}
+#index2SettingsPanel::-webkit-scrollbar-button {display:none;}
+.song-tabs > button {display:flex;align-items:center;justify-content:center;gap:8px;}
+.song-tabs > button::before {content:'';flex:0 0 18px;width:18px;height:18px;background:var(--orange);mask:var(--nav-icon) center/contain no-repeat;-webkit-mask:var(--nav-icon) center/contain no-repeat;}
+.song-tabs > button[aria-selected="true"]::before {background:#111;}
+.song-tabs > button[data-pane="sequence"] {--nav-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.7'%3E%3Crect x='3' y='4' width='5' height='6' rx='1'/%3E%3Crect x='10' y='4' width='5' height='6' rx='1'/%3E%3Crect x='17' y='4' width='4' height='6' rx='1'/%3E%3Cpath d='M3 15h18M3 19h12'/%3E%3C/svg%3E");}
+.song-tabs > button[data-pane="songs"] {--nav-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.7' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='4'/%3E%3Cpath d='M15 15V6l3 2'/%3E%3Cellipse cx='12.5' cy='16.5' rx='2.5' ry='2'/%3E%3C/svg%3E");}
+:is(#songPane,#profilePane) > button.song-back {display:flex;align-items:center;justify-content:center;gap:8px;align-self:flex-start;width:96px;min-width:96px;height:36px;min-height:36px;box-sizing:border-box;padding:6px 10px;background:#15151b;border:1px solid #363640;font:600 11px/1.3 var(--font);text-transform:none;letter-spacing:0;}
+:is(#songPane,#profilePane) > button.song-back::before {content:'';flex:0 0 18px;width:18px;height:18px;background:var(--orange);mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5m6-6-6 6 6 6'/%3E%3C/svg%3E") center/contain no-repeat;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5m6-6-6 6 6 6'/%3E%3C/svg%3E") center/contain no-repeat;}
+:is(#songPane,#profilePane) > button.song-back::after {content:none;}
+:is(#songPane,#profilePane) > button.song-back:hover {background:#211a16;border-color:#a45427;}
+:is(#songPane,#profilePane) > button.song-back:focus-visible {outline:2px solid #ff6b0099;outline-offset:3px;}
+#songPane .playlist-manager {border:1px solid var(--border);border-radius:8px;padding:10px;margin:10px 0;}
+#songPane .playlist-manager[hidden] {display:none;}
+#songPane .playlist-manager label {margin:0;font-size:11px;}
+#songPane .playlist-manager select {min-height:36px;font-size:12px;}
+#songPane .playlist-tools,#songPane > .song-actions {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
+#songPane .playlist-tools {margin-top:8px;}
+#songPane .playlist-tools > button.btn,#songPane > .song-actions > button.btn {min-height:36px;padding:8px;font-size:11px;line-height:1.3;letter-spacing:0;text-transform:none;white-space:normal;}
+#songPane .playlist-tools > button.btn {background:#15151b;border-color:#363640;}
+#songPane > .song-actions > button.btn:last-child {background:#15151b;color:var(--text);border-color:#363640;}
+#songPane > .song-actions > button.btn:first-child:not(#mp3ExportOpen) {background:var(--orange);border-color:var(--orange);color:#111;}
+@media(max-width:1100px){:is(#songPane,#profilePane) > button.song-back{height:44px;}:is(#songPane,#profilePane) > button.song-back,#songPane .playlist-manager select,#songPane .playlist-tools > button.btn,#songPane > .song-actions > button.btn{min-height:44px;}}
