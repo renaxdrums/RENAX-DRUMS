@@ -1,0 +1,5 @@
+{
+  "name":"renax-backup-tests","private":true,"type":"module",
+  "scripts":{"test:core":"node core.test.mjs","test:rules":"node rules.test.mjs"},
+  "devDependencies":{"firebase":"12.16.0","@firebase/rules-unit-testing":"5.0.0","firebase-tools":"15.15.0"}
+}

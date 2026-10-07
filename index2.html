@@ -950,6 +950,7 @@
   </style>
   <link rel="stylesheet" href="songs.css?v=20261006-song-clean">
   <link rel="stylesheet" href="mp3-export.css?v=20261006-mp3">
+  <link rel="stylesheet" href="backup-index2.css?v=20261007-sync">
   <style>
     /* Index 2 uniquement : ergonomie visuelle, sans modifier les commandes. */
     .song-tabs { gap: 8px; margin-bottom: 4px; }
@@ -3244,7 +3245,9 @@
     });
     prepareAllVoiceAudio().catch(() => {});
   </script>
-  <script src="songs.js?v=20261006-block-toggle"></script>
+  <script src="local-backup.js?v=20261007-sync"></script>
+  <script src="songs-index2.js?v=20261007-sync"></script>
+  <script type="module" src="cloud-backup.js?v=20261007-sync"></script>
   <script>
     // Index 2 : ouvrir les morceaux de la playlist avec les sections repliées.
     (() => {
