@@ -1696,7 +1696,13 @@
       let freq = state === 3 ? 1450 : state === 2 ? 1100 : 820;
       let vol = state === 3 ? 0.64 : state === 2 ? 0.48 : 0.36;
       if (isFirst) vol *= 1.08;
-      oscTone(dest, time, {
+
+      // Keep subdivision ticks on their own path so a simultaneous voice sample
+      // cannot mask them inside the shared voice guard/mixer.
+      const tickOut = audioCtx.createGain();
+      tickOut.gain.setValueAtTime(masterVolume * 0.38, time);
+      tickOut.connect(audioCtx.destination);
+      oscTone(tickOut, time, {
         type: 'triangle',
         freqStart: freq,
         freqEnd: freq * 0.78,
