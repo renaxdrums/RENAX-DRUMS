@@ -75,9 +75,29 @@ async function ensureFirebase(){
   authModule.onAuthStateChanged(auth,async user=>{
     const token=++generation;unsubscribe?.();unsubscribe=null;remote=null;confirmed=false;clearTimeout(timer);account=user;
     try{
+      // Preserve the anonymous library before switching to the account scope.
+      // A song created before sign-in must follow the user into the account automatically.
+      const guestBeforeSignIn=user?storage.guestLibrary():null;
       await storage.switchScope(user?'user:'+user.uid:'guest',blank());
       if(token!==generation)return;
       if(!user){say('Sauvegardé dans ce navigateur');return;}
+      if(guestBeforeSignIn){
+        api.validateLibrary(guestBeforeSignIn);
+        const signature=({id,...song})=>core.canonical({...song,sections:song.sections.map(({id,...section})=>section)});
+        const next=core.copy(api.library),known=new Set(next.profiles.flatMap(p=>p.songs.map(signature)));
+        for(const guestProfile of guestBeforeSignIn.profiles){
+          const songs=guestProfile.songs.filter(song=>!known.has(signature(song))).map(core.copy);
+          if(!songs.length)continue;
+          let target=next.profiles.find(profile=>profile.name===guestProfile.name)||next.profiles[0];
+          for(const song of songs){
+            if(next.profiles.some(profile=>profile.songs.some(existing=>existing.id===song.id&&core.canonical(existing)!==core.canonical(song))))song.id=crypto.randomUUID();
+            target.songs.push(song);known.add(signature(song));
+          }
+        }
+        api.validateLibrary(next);
+        storage.write(next);
+        storage.reconcile();
+      }
       const uid=user.uid;
       // A new empty account waits for server data; it never uploads a default
       // catalog over an existing remote library at the first connection.
