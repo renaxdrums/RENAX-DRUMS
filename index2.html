@@ -1159,6 +1159,8 @@
 </style>
 <style>
   /* Vue mobile centrée sur le métronome : commandes compactes, cercle prioritaire. */
+  #songExportFormat { display: block; margin: 0 0 16px; min-height: 40px; }
+  #mp3ExportDialog > p:not(#mp3ExportStatus) { margin: 0 0 16px; color: var(--text-muted); font-size: 11px; line-height: 1.5; }
   @media (max-width: 1100px) {
     body { padding: 6px; }
     header { min-height: 32px; padding: 0 0 4px; margin-bottom: 4px; }
@@ -1435,9 +1437,9 @@
       </div>
       <div class="index2-setting-row">
         <label>Export MIDI</label>
-        <span class="index2-status" style="color:var(--orange)">Priorité 1 · prévu</span>
+        <span class="index2-status">Disponible</span>
       </div>
-      <div class="index2-settings-note">L'export MP3 reste accessible depuis les morceaux. L'export MIDI est affiché ici uniquement comme prochaine fonction prioritaire, sans fausse commande active.</div>
+      <div class="index2-settings-note">Dans la playlist, Exporter permet de choisir MP3 ou MIDI.</div>
     </section>
 
     <section class="index2-settings-section">
@@ -3261,7 +3263,8 @@
       }, true);
     })();
   </script>
-  <script src="mp3-export.js?v=20261006-mp3"></script>
+  <script src="midi-export.js?v=20261007-midi"></script>
+  <script src="song-export.js?v=20261007-formats"></script>
 
   <script>
   (() => {

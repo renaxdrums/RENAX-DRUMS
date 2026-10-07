@@ -1,0 +1,40 @@
+/* Standard MIDI file export, independent of the live audio engine. */
+(() => {
+  'use strict';
+  const PPQ=960;
+  const bytes=text=>Array.from(new TextEncoder().encode(text));
+  const u32=n=>[n>>>24&255,n>>>16&255,n>>>8&255,n&255];
+  function variable(n){if(!Number.isSafeInteger(n)||n<0||n>0xfffffff)throw Error('Intervalle MIDI trop long.');const out=[n&127];while(n=Math.floor(n/128))out.unshift((n&127)|128);return out;}
+  function exportSong(song){
+    RENAX_SONGS.validateLibrary({version:1,profiles:[{id:'midi',name:'Export',songs:[song]}]});
+    const events=[];let tick=0,notes=0;
+    const meta=(at,type,data)=>events.push({at,order:0,data:[255,type,...variable(data.length),...data]});
+    meta(0,3,bytes(song.name));
+    for(const section of song.sections){const m=section.measure;
+      meta(tick,6,bytes(section.label));
+      const tempo=Math.round(60000000/m.tempo);
+      meta(tick,0x51,[tempo>>>16&255,tempo>>>8&255,tempo&255]);
+      meta(tick,0x58,[m.numerator,Math.log2(m.denominator),24,8]);
+      const beatTicks=PPQ*4/m.denominator,sectionStart=tick;
+      for(let bar=0;bar<section.count;bar++)for(let beat=0;beat<m.numerator;beat++){
+        const count=m.beatSubdivisions[beat];
+        for(let sub=0;sub<count;sub++){
+          const state=m.beatStates[beat][sub];if(!state)continue;
+          if(++notes>1000000)throw Error('Morceau trop long pour cet export MIDI.');
+          const at=Math.round(sectionStart+(bar*m.numerator+beat+sub/count)*beatTicks);
+          const end=Math.min(Math.round(sectionStart+(bar*m.numerator+beat+(sub+1)/count)*beatTicks),at+Math.max(1,Math.min(60,Math.round(beatTicks/count/2))));
+          const velocity=[0,64,96,127][state];
+          events.push({at,order:2,data:[0x99,37,velocity]},{at:end,order:1,data:[0x89,37,0]});
+        }
+      }
+      tick=Math.round(sectionStart+section.count*m.numerator*beatTicks);
+    }
+    events.sort((a,b)=>a.at-b.at||a.order-b.order);
+    const track=[];let last=0;
+    for(const event of events){track.push(...variable(event.at-last),...event.data);last=event.at;}
+    track.push(...variable(tick-last),255,0x2f,0);
+    const data=new Uint8Array([...bytes('MThd'),0,0,0,6,0,0,0,1,PPQ>>>8,PPQ&255,...bytes('MTrk'),...u32(track.length),...track]);
+    return {blob:new Blob([data],{type:'audio/midi'}),report:{ticks:tick,ppq:PPQ,notes}};
+  }
+  window.RENAX_MIDI_EXPORT={exportSong};
+})();
