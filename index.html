@@ -1901,7 +1901,7 @@
     let workElapsed = 0;
     let workStartTime = 0;
     let training = {
-      active: false, direction: 'up', startTime: 0, duration: 0,
+      engaged: false, active: false, direction: 'up', startTime: 0, duration: 0,
       startBpm: 80, endBpm: 140, intervalId: null
     };
 
@@ -2084,12 +2084,12 @@
     [activeNumeratorSel, activeDenominatorSel, polyNumeratorInput, polyDenominatorInput].forEach(enhanceNumboxSelect);
 
     function getEffectiveTempo(m) {
-      if (training.active) return tempo;
+      if (training.engaged) return tempo;
       return m && Number.isFinite(m.tempo) ? m.tempo : tempo;
     }
 
     function syncTempoUI(m) {
-      if (!m || training.active) return;
+      if (!m || training.engaged) return;
       tempo = getEffectiveTempo(m);
       bpmSlider.value = tempo;
       bpmDisplay.innerHTML = `${tempo} <span>BPM</span>`; updateMobileTrainingBpm(tempo);
@@ -2403,7 +2403,7 @@
           const v = Math.max(20, Math.min(300, parsed));
           m.tempo = v;
           if (normalizeField) tempoInput.value = String(v);
-          if (i === activeMeasureIndex && !training.active) syncTempoUI(m);
+          if (i === activeMeasureIndex && !training.engaged) syncTempoUI(m);
         };
         tempoInput.addEventListener('input', e => {
           e.stopPropagation();
@@ -2848,7 +2848,7 @@
         const tempoInput=document.createElement('input'); tempoInput.type='number'; tempoInput.className='measure-tempo-input'; tempoInput.min='20'; tempoInput.max='300'; tempoInput.step='1'; tempoInput.value=m.tempo; tempoInput.inputMode='numeric';
         const unit=document.createElement('span'); unit.className='measure-tempo-unit'; unit.textContent='BPM';
         tempoInput.addEventListener('click',stop); tempoInput.addEventListener('keydown',stop);
-        tempoInput.addEventListener('change',()=>{ const v=Math.max(20,Math.min(300,parseInt(tempoInput.value)||m.tempo)); m.tempo=v; tempoInput.value=v; if(i===activeMeasureIndex&&!training.active) syncTempoUI(m); });
+        tempoInput.addEventListener('change',()=>{ const v=Math.max(20,Math.min(300,parseInt(tempoInput.value)||m.tempo)); m.tempo=v; tempoInput.value=v; if(i===activeMeasureIndex&&!training.engaged) syncTempoUI(m); });
         tempoRow.append(tempoLabel,tempoInput,unit);
         const preview=document.createElement('div'); preview.className='poly-card-preview';
         const ob=document.createElement('div'); ob.className='outer-mini'; ob.style.width=`${Math.min(100,m.numerator*8)}px`;
@@ -2987,7 +2987,7 @@
       scheduler();
     }
 
-    function stopMetronome() {
+    function stopMetronome({ keepTrainingMode = false } = {}) {
       if (!isPlaying) return;
       isPlaying = false;
       clearTimeout(timerID);
@@ -3008,7 +3008,10 @@
         clearParticleCanvas();
       }
       resetWorkTimer();
-      if (training.active) endTraining();
+      if (training.active) {
+        if (keepTrainingMode) resetTrainingToStart();
+        else endTraining();
+      }
       updateTimerDisplay();
       renderSequencerList();
       renderActiveMeasure();
@@ -3040,21 +3043,37 @@
       if (training.direction === 'up') { sBpm = Math.min(a, b); eBpm = Math.max(a, b); }
       else { sBpm = Math.max(a, b); eBpm = Math.min(a, b); }
 
-      training.active = true;
-      training.startTime = performance.now();
+      training.engaged = true;
       training.duration = dur * 60 * 1000;
       training.startBpm = sBpm;
       training.endBpm = eBpm;
+      restartTraining();
+    }
 
-      tempo = sBpm;
-      bpmSlider.value = sBpm;
-      bpmDisplay.innerHTML = `${sBpm} <span>BPM</span>`; updateMobileTrainingBpm(sBpm);
+    function resetTrainingToStart() {
+      training.active = false;
+      training.startTime = 0;
+      if (training.intervalId) { clearInterval(training.intervalId); training.intervalId = null; }
+      tempo = training.startBpm;
+      bpmSlider.value = tempo;
+      bpmDisplay.innerHTML = `${tempo} <span>BPM</span>`; updateMobileTrainingBpm(tempo);
+      bpmSlider.disabled = training.engaged;
+      updateTrainButton();
+    }
+
+    function restartTraining() {
+      if (!training.engaged) return;
+      training.active = true;
+      training.startTime = performance.now();
+      tempo = training.startBpm;
+      bpmSlider.value = tempo;
+      bpmDisplay.innerHTML = `${tempo} <span>BPM</span>`; updateMobileTrainingBpm(tempo);
       bpmSlider.disabled = true;
       pauseWorkTimer();
-      if (!isPlaying) startMetronome();
       updateTrainButton();
       clearInterval(training.intervalId);
       training.intervalId = setInterval(trainingTick, 100);
+      if (!isPlaying) startMetronome();
     }
 
     function trainingTick() {
@@ -3075,6 +3094,8 @@
 
     function endTraining() {
       training.active = false;
+      training.engaged = false;
+      training.startTime = 0;
       if (training.intervalId) { clearInterval(training.intervalId); training.intervalId = null; }
       bpmSlider.disabled = false;
       updateTrainButton();
@@ -3082,20 +3103,26 @@
     }
 
     function updateTrainButton() {
-      if (training.active) {
+      if (training.engaged) {
         trainBtn.textContent = "Arrêter l'entraînement";
         trainBtn.classList.add('active');
+        panicBtn.textContent = "Arrêter l'entraînement";
       } else {
         trainBtn.textContent = "Démarrer l'entraînement";
         trainBtn.classList.remove('active');
+        panicBtn.textContent = "Reset";
       }
     }
 
     trainBtn.addEventListener('click', () => {
-      if (training.active) {
-        if (isPlaying) stopMetronome();
-        else endTraining();
-      } else { startTraining(); if(window.innerWidth<=1100) switchTab('visu'); }
+      if (training.engaged) {
+        if (isPlaying) stopMetronome({ keepTrainingMode: true });
+        endTraining();
+        updateTimerDisplay();
+      } else {
+        startTraining();
+        if(window.innerWidth<=1100) switchTab('visu');
+      }
     });
 
     let tapTimes = [];
@@ -3117,7 +3144,7 @@
           if(tempo!==newBpm)resetCustomizationTimer();
           tempo = newBpm;
           const m = measures[activeMeasureIndex];
-          if (m && !training.active) m.tempo = newBpm;
+          if (m && !training.engaged) m.tempo = newBpm;
           bpmSlider.value = tempo;
           bpmDisplay.innerHTML = `${tempo} <span>BPM</span>`; updateMobileTrainingBpm(tempo);
           refreshTempoFields();
@@ -3140,7 +3167,7 @@
     }
 
     bpmSlider.addEventListener('input', (e) => {
-      if (training.active) return;
+      if (training.engaged) return;
       tempo = parseInt(e.target.value);
       const m = measures[activeMeasureIndex];
       if (m) m.tempo = tempo;
@@ -3253,8 +3280,14 @@
 
     playBtn.addEventListener('click', () => {
       if (playBtn.disabled) return;
-      if (isPlaying) stopMetronome();
-      else startMetronome();
+      if (isPlaying) {
+        if (training.active) stopMetronome({ keepTrainingMode: true });
+        else stopMetronome();
+      } else if (training.engaged) {
+        restartTraining();
+      } else {
+        startMetronome();
+      }
     });
 
     window.addEventListener('keydown', (e) => {
@@ -3262,8 +3295,14 @@
       if (e.code === 'Space') {
         e.preventDefault();
         if (playBtn.disabled) return;
-        if (isPlaying) stopMetronome();
-        else startMetronome();
+        if (isPlaying) {
+          if (training.active) stopMetronome({ keepTrainingMode: true });
+          else stopMetronome();
+        } else if (training.engaged) {
+          restartTraining();
+        } else {
+          startMetronome();
+        }
       }
       if (e.code === 'Numpad0') {
         e.preventDefault();
@@ -3272,6 +3311,12 @@
     });
 
     panicBtn.addEventListener('click', () => {
+      if (training.engaged) {
+        if (isPlaying) stopMetronome({ keepTrainingMode: true });
+        endTraining();
+        updateTimerDisplay();
+        return;
+      }
       stopMetronome();
       endTraining();
       resetWorkTimer();
