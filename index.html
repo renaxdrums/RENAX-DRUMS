@@ -3093,11 +3093,13 @@
     }
 
     function endTraining() {
+      const wasEngaged = training.engaged;
       training.active = false;
       training.engaged = false;
       training.startTime = 0;
       if (training.intervalId) { clearInterval(training.intervalId); training.intervalId = null; }
       bpmSlider.disabled = false;
+      if (wasEngaged) syncTempoUI(measures[activeMeasureIndex]);
       updateTrainButton();
       if (isPlaying) startWorkTimer();
     }
