@@ -1572,7 +1572,6 @@
         if (tempoGroup) tempoGroup.scrollIntoView({ block: 'start', behavior: 'auto' });
       });
     }
-    if (mobileTrainingBpm) mobileTrainingBpm.addEventListener('click', openMobileTempoSettings);
 
     let audioCtx = null;
     let masterVolume = 0.8;
@@ -2008,6 +2007,7 @@
     const bpmDisplay = document.getElementById('bpmDisplay');
     const bpmSlider = document.getElementById('bpmSlider');
     const mobileTrainingBpm = document.getElementById('mobileTrainingBpm');
+    if (mobileTrainingBpm) mobileTrainingBpm.addEventListener('click', openMobileTempoSettings);
     function updateMobileTrainingBpm(value){ if(mobileTrainingBpm) mobileTrainingBpm.textContent = value+' BPM'; }
     const volumeSlider = document.getElementById('volumeSlider');
     const volumeValue = document.getElementById('volumeValue');
