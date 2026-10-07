@@ -133,10 +133,10 @@
   }
   function install(){
     const pane=document.getElementById('songPane');if(!pane||pane.hidden||document.getElementById('mp3ExportOpen'))return;
-    const isPlaylist=[...pane.children].some(e=>e.tagName==='STRONG'&&e.textContent==='Playlist');
-    if(!isPlaylist)return;
+    const playlistManager=pane.querySelector('.playlist-manager');
+    if(!playlistManager||playlistManager.hidden)return;
     const actions=pane.querySelector('.song-actions');if(!actions)return;
-    const button=document.createElement('button');button.id='mp3ExportOpen';button.className='btn';button.type='button';button.textContent='EXPORTER';button.onclick=openExport;actions.append(button);
+    const button=document.createElement('button');button.id='mp3ExportOpen';button.className='btn';button.type='button';button.textContent='Export';button.onclick=openExport;actions.append(button);
   }
   const observer=new MutationObserver(install);observer.observe(document.getElementById('songsRoot'),{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});install();
   window.RENAX_MP3_EXPORT={exportSong,filename,isolatedRender,workerClient};
