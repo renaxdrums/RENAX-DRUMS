@@ -1068,7 +1068,7 @@
     .panel-training #dirToggle { flex:1; width:auto; margin-right:34px; display:flex; gap:8px; }
     .panel-training #dirToggle button { flex:1; width:auto; min-width:0; min-height:44px; font-family:var(--font); font-size:11px; letter-spacing:.2px; }
     .panel-training .btn-train { min-height:44px; padding:10px; font-size:11px; border-radius:7px; }
-    .mobile-training-bpm { display:inline-flex; align-items:center; font:700 13px 'JetBrains Mono',monospace; color:var(--orange); white-space:nowrap; }
+    .mobile-training-bpm { display:inline-flex; align-items:center; font:700 13px 'JetBrains Mono',monospace; color:var(--orange); white-space:nowrap; cursor:pointer; pointer-events:auto; position:relative; z-index:4; touch-action:manipulation; }
     .mode-switch button { min-height: 44px; font: 700 11px var(--font); letter-spacing: .3px; }
     .visu-toolbar { padding: 4px 0 10px; }
     .visu-measure-info .measure-label { font-size: 11px; letter-spacing: .4px; }
@@ -1559,14 +1559,20 @@
     });
 
     // Smartphone : le BPM de Visualisation ouvre Réglages directement sur Tempo.
-    if (mobileTrainingBpm) {
-      mobileTrainingBpm.style.cursor = 'pointer';
-      mobileTrainingBpm.addEventListener('click', () => {
-        if (window.innerWidth > 1100) return;
+    // Délégation sur le panneau : fiable même si l'affichage BPM est recréé/recouvert.
+    const visuPanel = document.querySelector('.panel-visu');
+    if (visuPanel) {
+      visuPanel.addEventListener('pointerup', e => {
+        const bpmHit = e.target.closest('#mobileTrainingBpm');
+        if (!bpmHit || window.innerWidth > 1100) return;
+        e.preventDefault();
+        e.stopPropagation();
         switchTab('params');
+        const paramsPanel = document.querySelector('.panel-params');
+        if (paramsPanel) paramsPanel.scrollTop = 0;
         requestAnimationFrame(() => {
-          const tempoGroup = bpmDisplay ? bpmDisplay.closest('.control-group') : null;
-          if (tempoGroup) tempoGroup.scrollIntoView({ block: 'start', behavior: 'smooth' });
+          const tempoGroup = bpmSlider?.closest('.control-group') || bpmDisplay?.closest('.control-group');
+          if (tempoGroup) tempoGroup.scrollIntoView({ block: 'start', behavior: 'auto' });
         });
       });
     }
