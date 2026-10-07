@@ -1558,6 +1558,19 @@
       if (btn) switchTab(btn.dataset.tab);
     });
 
+    // Smartphone : le BPM de Visualisation ouvre Réglages directement sur Tempo.
+    if (mobileTrainingBpm) {
+      mobileTrainingBpm.style.cursor = 'pointer';
+      mobileTrainingBpm.addEventListener('click', () => {
+        if (window.innerWidth > 1100) return;
+        switchTab('params');
+        requestAnimationFrame(() => {
+          const tempoGroup = bpmDisplay ? bpmDisplay.closest('.control-group') : null;
+          if (tempoGroup) tempoGroup.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        });
+      });
+    }
+
     let audioCtx = null;
     let masterVolume = 0.8;
     let currentBank = 'clic';
