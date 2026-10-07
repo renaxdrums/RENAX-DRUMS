@@ -131,16 +131,20 @@
   songPane.addEventListener('click',e=>{if(performance.now()<suppressSongClickUntil){e.preventDefault();e.stopImmediatePropagation();}},true);
   function enableSongDrag(row,item,p){
     row.dataset.songId=item.id;
-    let gesture=null,holdTimer=null,scrollFrame=null;
+    let gesture=null,holdTimer=null,scrollFrame=null,placeholder=null,originalStyle=null;
     function clearMarks(){songPane.querySelectorAll('.drop-before,.drop-after').forEach(e=>e.classList.remove('drop-before','drop-after'));}
     function markDrop(){
-      clearMarks();if(!gesture)return;
+      if(!gesture?.active)return;
+      row.style.top=(gesture.y-gesture.offsetY)+'px';
+      row.style.left=(gesture.x-gesture.offsetX)+'px';
       const rect=panel.getBoundingClientRect();gesture.valid=gesture.x>=rect.left&&gesture.x<=rect.right;
       const others=[...songPane.querySelectorAll('.song-playlist-card')].filter(e=>e!==row);
-      const before=others.findIndex(e=>{const r=e.getBoundingClientRect();return gesture.y<r.top+r.height/2;});
+      const gap=placeholder.getBoundingClientRect(),gapStyle=getComputedStyle(placeholder),gapHeight=gap.height+parseFloat(gapStyle.marginTop)+parseFloat(gapStyle.marginBottom);
+      const before=others.findIndex(e=>{const r=e.getBoundingClientRect();const top=r.top>=gap.bottom?r.top-gapHeight:r.top;return gesture.y<top+r.height/2;});
       gesture.index=before<0?others.length:before;
-      const target=others[gesture.index]||others.at(-1);
-      if(target&&gesture.valid)target.classList.add(before<0?'drop-after':'drop-before');
+      const target=others[gesture.index];
+      if(target)target.before(placeholder);else if(others.length)others.at(-1).after(placeholder);
+      placeholder.style.opacity=gesture.valid?'1':'.35';
     }
     function autoScroll(){
       if(!gesture?.active)return;
@@ -148,7 +152,17 @@
       if(speed){panel.scrollTop+=speed;markDrop();}
       scrollFrame=requestAnimationFrame(autoScroll);
     }
-    function activate(){if(!gesture||gesture.scrolling)return;gesture.active=true;clearTimeout(holdTimer);row.classList.add('dragging');row.setPointerCapture(gesture.id);markDrop();scrollFrame=requestAnimationFrame(autoScroll);}
+    function activate(){
+      if(!gesture||gesture.scrolling)return;
+      gesture.active=true;clearTimeout(holdTimer);
+      const rect=row.getBoundingClientRect(),rowStyle=getComputedStyle(row);gesture.offsetX=gesture.startX-rect.left;gesture.offsetY=gesture.startY-rect.top;
+      originalStyle=row.getAttribute('style');
+      placeholder=document.createElement('div');placeholder.className='song-drag-placeholder';
+      Object.assign(placeholder.style,{height:rect.height+'px',flexShrink:'0',boxSizing:'border-box',border:'1px dashed var(--orange)',borderRadius:'8px',background:'rgba(255,107,0,.06)',marginTop:rowStyle.marginTop,marginBottom:rowStyle.marginBottom});
+      row.before(placeholder);
+      Object.assign(row.style,{position:'fixed',transition:'none',width:rect.width+'px',height:rect.height+'px',boxSizing:'border-box',margin:'0',zIndex:'1000',pointerEvents:'none',opacity:'.92',boxShadow:'0 12px 32px rgba(0,0,0,.5)',borderColor:'var(--orange)'});
+      row.classList.add('dragging');row.setPointerCapture(gesture.id);markDrop();scrollFrame=requestAnimationFrame(autoScroll);
+    }
     row.addEventListener('pointerdown',e=>{
       if(e.button!==0||!e.isPrimary||e.target.closest('.song-more-wrap'))return;
       gesture={id:e.pointerId,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,scrollTop:panel.scrollTop,active:false,scrolling:false,index:0,valid:false};
@@ -165,6 +179,7 @@
       if(!gesture||gesture.id!==e.pointerId)return;
       clearTimeout(holdTimer);cancelAnimationFrame(scrollFrame);row.classList.remove('dragging');clearMarks();
       const done=gesture;gesture=null;
+      if(done.active){placeholder?.remove();placeholder=null;if(originalStyle===null)row.removeAttribute('style');else row.setAttribute('style',originalStyle);originalStyle=null;}
       if(done.active||done.scrolling)suppressSongClickUntil=performance.now()+150;
       if(row.hasPointerCapture(e.pointerId))row.releasePointerCapture(e.pointerId);
       if(done.active&&done.valid&&!cancelled){const previous=p.songs.indexOf(item);p.songs.splice(previous,1);p.songs.splice(done.index,0,item);persist();render();}
