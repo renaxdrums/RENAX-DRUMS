@@ -225,9 +225,20 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
       button('Nouvelle playlist',heading,createPlaylist).classList.add('playlist-create');
       const list=el('div',undefined,overview,'playlist-list');
       for(const item of library.profiles){
-        const choice=button('',list,()=>openPlaylist(item));choice.classList.add('playlist-choice');choice.setAttribute('aria-label','Ouvrir la playlist '+(item.name==='Mon profil'?'Mes morceaux':item.name));
+        const entry=el('div',undefined,list);entry.style.position='relative';
+        const choice=button('',entry,()=>openPlaylist(item));choice.style.paddingRight='58px';choice.classList.add('playlist-choice');choice.setAttribute('aria-label','Ouvrir la playlist '+(item.name==='Mon profil'?'Mes morceaux':item.name));
         const name=el('strong',item.name==='Mon profil'?'Mes morceaux':item.name,choice,'playlist-choice-name');
         el('span',item.songs.length+' morceau'+(item.songs.length===1?'':'x'),choice,'playlist-choice-count');
+        const controls=el('div',undefined,entry,'song-more-wrap');controls.style.top='8px';controls.style.bottom='auto';
+        const trigger=button('⋯',controls,()=>{const opening=menu.hidden;songPane.querySelectorAll('.song-more-menu').forEach(other=>other.hidden=true);songPane.querySelectorAll('.song-more').forEach(other=>other.setAttribute('aria-expanded','false'));menu.hidden=!opening;trigger.setAttribute('aria-expanded',String(opening));});
+        trigger.className='song-more';trigger.setAttribute('aria-label','Actions de la playlist '+(item.name==='Mon profil'?'Mes morceaux':item.name));trigger.setAttribute('aria-haspopup','menu');trigger.setAttribute('aria-expanded','false');
+        const menu=el('div',undefined,controls,'song-more-menu');menu.hidden=true;menu.setAttribute('role','menu');menu.style.top='36px';menu.style.bottom='auto';
+        const remove=button('Supprimer',menu,()=>{menu.hidden=true;trigger.setAttribute('aria-expanded','false');if(!confirm('Supprimer la playlist « '+(item.name==='Mon profil'?'Mes morceaux':item.name)+' » et ses '+item.songs.length+' morceau(x) ?'))return;
+          if(library.activeProfile===item.id)unload();library.profiles=library.profiles.filter(candidate=>candidate!==item);
+          if(!library.profiles.length)library.profiles=defaultLibrary().profiles;
+          if(!library.profiles.some(candidate=>candidate.id===library.activeProfile)){library.activeProfile=library.profiles[0].id;selectedSong=null;openSectionId=null;}
+          persist();render();});remove.setAttribute('role','menuitem');
+        controls.addEventListener('keydown',e=>{if(e.key==='Escape'){e.stopPropagation();menu.hidden=true;trigger.setAttribute('aria-expanded','false');trigger.focus();}});
       }
     }
     const localProfiles=el('section',undefined,songPane,'playlist-manager');localProfiles.hidden=songView!=='playlist';
