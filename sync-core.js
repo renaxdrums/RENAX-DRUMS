@@ -46,11 +46,11 @@ function mergePayload(id,local,remote,base){
 const editTime=r=>r?.modifiedAt||operationTime(r?.operationId)||r?.updatedAt||0;
 // Stable tie break when clocks give the same millisecond.
 const newer=(a,b)=>editTime(a)!==editTime(b)?editTime(a)>editTime(b):String(a.operationId)>String(b.operationId);
-export function mergeRemote(state,remote){
+export function mergeRemote(state,remote,operationId=()=>crypto.randomUUID()){
   const next=copy(state);
   // Convert existing manual conflicts to the automatic policy as well.
   for(const [id,c] of Object.entries(next.conflicts)){
-    next.pending[id]={...c.local,expected:next.base[id]?.revision??0,operationId:c.local.operationId||'legacy-local',modifiedAt:c.local.modifiedAt||0};
+    next.pending[id]={...c.local,expected:next.base[id]?.revision??0,operationId:c.local.operationId||timestampedOperation(operationId,0),modifiedAt:c.local.modifiedAt||0};
     remote={...remote,[id]:remote[id]||c.remote};delete next.conflicts[id];
   }
   for(const [id,record] of Object.entries(remote)){
