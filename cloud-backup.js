@@ -154,6 +154,7 @@ async function history(){
 let backupView='';
 const backupIcons={
  google:'<path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2.1H12v4h5.4a4.6 4.6 0 0 1-2 3v2.5h3.3c1.9-1.8 2.9-4.3 2.9-7.4Z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.7-2.4l-3.3-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3v2.6A10 10 0 0 0 12 22Z"/><path fill="#FBBC05" d="M6.4 14a6 6 0 0 1 0-4V7.4H3a10 10 0 0 0 0 9.2Z"/><path fill="#EA4335" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9A9.6 9.6 0 0 0 12 2a10 10 0 0 0-9 5.4L6.4 10A6 6 0 0 1 12 5.9Z"/>',
+ login:'<path d="M14 3h7v18h-7M3 12h13m-4-4 4 4-4 4"/>',
  account:'<circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M19 7v6m-3-3h6"/>',
  local:'<path d="M4 3h13l4 4v14H3V3h1Zm3 0v6h10V3M7 21v-8h10v8"/>',
  export:'<path d="M12 16V3m-4 4 4-4 4 4M4 14v7h16v-7"/>',
@@ -174,15 +175,16 @@ function renderPanel(){
   const json=pane.querySelector('.backup-json');if(json)pane.append(json);
   const emailValue=root.querySelector('#backupEmail')?.value||'',passwordValue=root.querySelector('#backupPassword')?.value||'';
   root.replaceChildren();element('h3','Sauvegarde',root);
-  const choices=element('div',undefined,root);choices.className='backup-choices';choices.style.cssText='display:flex;flex-wrap:wrap;gap:8px';
+  const choices=element('div',undefined,root);choices.className='backup-choices';choices.style.cssText='display:flex;flex-direction:column;gap:8px';
   const choose=(label,icon,view,action,disabled=false)=>{
     const control=button(label,choices,action,disabled);backupIcon(control,icon);
-    control.style.cssText='display:flex;align-items:center;justify-content:center;flex:1 1 150px';
+    control.style.cssText='display:flex;align-items:center;justify-content:center;width:100%';
     if(view){control.setAttribute('aria-expanded',String(backupView===view));control.setAttribute('aria-controls','backup-'+view);if(backupView===view)control.style.borderColor='var(--cyan)';}
     return control;
   };
   if(!account){
     choose('Se connecter avec Google','google',null,()=>authenticate('google'),!firebaseConfig||!providers.google);
+    choose('Se connecter','login','login',()=>{backupView=backupView==='login'?'':'login';renderPanel();});
     choose('Créer un compte','account','account',()=>{backupView=backupView==='account'?'':'account';renderPanel();});
   }
   choose('Sauvegarde locale','local','local',()=>{backupView=backupView==='local'?'':'local';renderPanel();});
@@ -194,11 +196,11 @@ function renderPanel(){
   if(!account){
     element('p','Copie locale automatique. Connectez-vous pour retrouver vos morceaux sur vos appareils.',root).className='backup-hint';
     if(!firebaseConfig)element('p','Connexion en ligne indisponible : projet Firebase non configuré.',root);
-    const form=element('div',undefined,root);form.className='backup-auth';form.id='backup-account';form.style.display=backupView==='account'?'grid':'none';
+    const form=element('div',undefined,root);form.className='backup-auth';form.id=backupView==='login'?'backup-login':'backup-account';form.style.display=['login','account'].includes(backupView)?'grid':'none';
     const emailLabel=element('label','E-mail',form),email=element('input',undefined,emailLabel);email.type='email';email.id='backupEmail';email.autocomplete='email';email.value=emailValue;
-    const passwordLabel=element('label','Mot de passe',form),password=element('input',undefined,passwordLabel);password.type='password';password.id='backupPassword';password.autocomplete='current-password';password.minLength=6;password.value=passwordValue;
-    button('Se connecter',form,()=>authenticate('email'),!firebaseConfig||!providers.email);
-    button('Créer un compte',form,()=>authenticate('email',true),!firebaseConfig||!providers.email);
+    const passwordLabel=element('label','Mot de passe',form),password=element('input',undefined,passwordLabel);password.type='password';password.id='backupPassword';password.autocomplete=backupView==='account'?'new-password':'current-password';password.minLength=6;password.value=passwordValue;
+    if(backupView==='account')button('Créer un compte',form,()=>authenticate('email',true),!firebaseConfig||!providers.email);
+    else button('Se connecter',form,()=>authenticate('email'),!firebaseConfig||!providers.email);
     button('Mot de passe oublié',form,async()=>{await ensureFirebase();await sdk.auth.sendPasswordResetEmail(auth,email.value.trim());say(message,'Si cette adresse dispose d’un compte, un message de réinitialisation lui sera envoyé.');},!firebaseConfig||!providers.email);
 
   }else{
