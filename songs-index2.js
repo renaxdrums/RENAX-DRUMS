@@ -149,6 +149,7 @@
   function enableSongDrag(row,item,p,isBlock=false){
     row.dataset.songId=item.id;row.addEventListener('dragstart',e=>e.preventDefault());
     let gesture=null,holdTimer=null,scrollFrame=null,placeholder=null,originalStyle=null;
+    const shifts=new Map();
     function clearMarks(){songPane.querySelectorAll('.drop-before,.drop-after').forEach(e=>e.classList.remove('drop-before','drop-after'));}
     function markDrop(){
       if(!gesture?.active)return;
@@ -157,10 +158,24 @@
       const rect=panel.getBoundingClientRect();gesture.valid=gesture.x>=rect.left&&gesture.x<=rect.right;
       const others=[...songPane.querySelectorAll(isBlock?'[data-section-id]':'.song-playlist-card')].filter(e=>e!==row);
       const gap=placeholder.getBoundingClientRect(),gapStyle=getComputedStyle(placeholder),gapHeight=gap.height+parseFloat(gapStyle.marginTop)+parseFloat(gapStyle.marginBottom);
-      const before=others.findIndex(e=>{const r=e.getBoundingClientRect();const top=r.top>=gap.bottom?r.top-gapHeight:r.top;return gesture.y<top+r.height/2;});
+      const before=others.findIndex(e=>{const r=e.getBoundingClientRect();
+        const transform=shifts.has(e)?getComputedStyle(e).transform:'none';
+        const values=transform&&transform!=='none'?transform.slice(transform.indexOf('(')+1,-1).split(',').map(Number):[];
+        const visualOffset=values.length===16?values[13]:values.length===6?values[5]:0;
+        const layoutTop=r.top-visualOffset,top=layoutTop>=gap.bottom?layoutTop-gapHeight:layoutTop;return gesture.y<top+r.height/2;});
       gesture.index=before<0?others.length:before;
       const target=others[gesture.index];
-      if(target)target.before(placeholder);else if(others.length)others.at(-1).after(placeholder);
+      if(gesture.lastDropIndex!==gesture.index){
+        const positions=isBlock?others.map(card=>[card,card.getBoundingClientRect().top]):[];
+        shifts.forEach(animation=>animation.cancel());shifts.clear();
+        if(target)target.before(placeholder);else if(others.length)others.at(-1).after(placeholder);
+        gesture.lastDropIndex=gesture.index;
+        for(const [card,top] of positions){const delta=top-card.getBoundingClientRect().top;
+          if(Math.abs(delta)>.5&&typeof card.animate==='function'&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+            const animation=card.animate([{transform:'translateY('+delta+'px)'},{transform:'translateY(0)'}],{duration:160,easing:'cubic-bezier(.2,.8,.2,1)'});shifts.set(card,animation);
+          }
+        }
+      }
       placeholder.style.opacity=gesture.valid?'1':'.35';
     }
     function autoScroll(){
@@ -177,25 +192,28 @@
       placeholder=document.createElement('div');placeholder.className='song-drag-placeholder';
       Object.assign(placeholder.style,{height:rect.height+'px',flexShrink:'0',boxSizing:'border-box',border:'1px dashed var(--orange)',borderRadius:'8px',background:'rgba(255,107,0,.06)',marginTop:rowStyle.marginTop,marginBottom:rowStyle.marginBottom});
       row.before(placeholder);
-      Object.assign(row.style,{position:'fixed',transition:'none',width:rect.width+'px',height:rect.height+'px',boxSizing:'border-box',margin:'0',zIndex:'1000',pointerEvents:'none',userSelect:'none',opacity:'.92',boxShadow:'0 12px 32px rgba(0,0,0,.5)',borderColor:'var(--orange)'});
+      Object.assign(row.style,{position:'fixed',transition:'none',width:rect.width+'px',height:rect.height+'px',boxSizing:'border-box',margin:'0',zIndex:'1000',userSelect:'none',opacity:'.92',boxShadow:'0 12px 32px rgba(0,0,0,.5)',borderColor:'var(--orange)'});
       row.classList.add('dragging');row.setPointerCapture(gesture.id);markDrop();scrollFrame=requestAnimationFrame(autoScroll);
     }
     row.addEventListener('pointerdown',e=>{
       if(e.button!==0||!e.isPrimary||e.target.closest('.song-more-wrap')||(isBlock&&e.target.closest('input,select,label,button:not(.song-block-header)')))return;
-      gesture={id:e.pointerId,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,scrollTop:panel.scrollTop,active:false,scrolling:false,index:0,valid:false};
-      if(e.pointerType==='mouse'){e.preventDefault();row.setPointerCapture(e.pointerId);}
+      if(gesture)return;
+      gesture={id:e.pointerId,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,scrollTop:panel.scrollTop,active:false,scrolling:false,index:0,valid:false,directDrag:isBlock&&row.classList.contains('collapsed')};
+      row.setPointerCapture(e.pointerId);
+      if(e.pointerType==='mouse')e.preventDefault();
       holdTimer=setTimeout(activate,250);
     });
     row.addEventListener('pointermove',e=>{
       if(!gesture||gesture.id!==e.pointerId)return;gesture.x=e.clientX;gesture.y=e.clientY;
       const moved=Math.hypot(e.clientX-gesture.startX,e.clientY-gesture.startY)>8;
-      if(!gesture.active&&moved){if(e.pointerType==='touch'){gesture.scrolling=true;clearTimeout(holdTimer);}else activate();}
+      if(!gesture.active&&moved){if(e.pointerType==='touch'&&!gesture.directDrag){gesture.scrolling=true;clearTimeout(holdTimer);}else activate();}
       if(gesture.scrolling){panel.scrollTop=gesture.scrollTop+gesture.startY-e.clientY;e.preventDefault();return;}
       if(gesture.active){e.preventDefault();markDrop();}
     });
     function finish(e,cancelled=false){
       if(!gesture||gesture.id!==e.pointerId)return;
       clearTimeout(holdTimer);cancelAnimationFrame(scrollFrame);row.classList.remove('dragging');clearMarks();
+      shifts.forEach(animation=>animation.cancel());shifts.clear();
       const done=gesture;gesture=null;
       if(done.active){placeholder?.remove();placeholder=null;if(originalStyle===null)row.removeAttribute('style');else row.setAttribute('style',originalStyle);originalStyle=null;}
       if(done.active||done.scrolling)suppressSongClickUntil=performance.now()+150;
