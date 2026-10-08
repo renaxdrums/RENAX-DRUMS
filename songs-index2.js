@@ -198,7 +198,7 @@
     row.addEventListener('pointerdown',e=>{
       if(e.button!==0||!e.isPrimary||e.target.closest('.song-more-wrap')||(isBlock&&e.target.closest('input,select,label,button:not(.song-block-header)')))return;
       if(gesture)return;
-      gesture={id:e.pointerId,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,scrollTop:panel.scrollTop,active:false,scrolling:false,index:0,valid:false,directDrag:isBlock&&row.classList.contains('collapsed')};
+      gesture={id:e.pointerId,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,scrollTop:panel.scrollTop,active:false,scrolling:false,index:0,valid:false};
       row.setPointerCapture(e.pointerId);
       if(e.pointerType==='mouse')e.preventDefault();
       holdTimer=setTimeout(activate,250);
@@ -206,7 +206,7 @@
     row.addEventListener('pointermove',e=>{
       if(!gesture||gesture.id!==e.pointerId)return;gesture.x=e.clientX;gesture.y=e.clientY;
       const moved=Math.hypot(e.clientX-gesture.startX,e.clientY-gesture.startY)>8;
-      if(!gesture.active&&moved){if(e.pointerType==='touch'&&!gesture.directDrag){gesture.scrolling=true;clearTimeout(holdTimer);}else activate();}
+      if(!gesture.active&&moved){if(e.pointerType==='touch'){gesture.scrolling=true;clearTimeout(holdTimer);}else activate();}
       if(gesture.scrolling){panel.scrollTop=gesture.scrollTop+gesture.startY-e.clientY;e.preventDefault();return;}
       if(gesture.active){e.preventDefault();markDrop();}
     });
