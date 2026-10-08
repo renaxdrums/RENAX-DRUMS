@@ -12,14 +12,15 @@
       return scope==='guest'?localStorage.getItem(LEGACY):null;
     }catch(e){healthy=false;readOnly=true;notify();throw e;}
   }
-  const ready=import('./sync-core.js').then(module=>{core=module;});
+  const ready=import('./sync-core.js?v=20261008-auto-sync').then(module=>{core=module;});
   window.RENAX_STORAGE={ready,read,
     write(library){try{const initial=state||{version:1,library:clone(library),base:{},pending:{},conflicts:{},importDecisions:{}};const next=core?core.stage(initial,library,()=>crypto.randomUUID()):{...initial,library:clone(library)};save(next);return true;}catch(e){healthy=false;notify();throw e;}},
     get scope(){return scope;},get healthy(){return healthy;},get state(){return clone(state);},
     update(next){save(clone(next));},
     async switchScope(nextScope,empty){await ready;if(!/^(guest|user:[A-Za-z0-9_-]+)$/.test(nextScope))throw Error('Identité de stockage incorrecte.');scope=nextScope;sessionStorage.setItem(SESSION,scope);state=null;readOnly=false;lastRaw=null;const raw=read();const library=raw?JSON.parse(raw):clone(empty);try{RENAX_SONGS.validateLibrary(library);}catch(e){readOnly=true;healthy=false;throw e;}if(!state)save(core.blankState(library));RENAX_SONGS.replaceLibrary(library);notify();},
+    guestState(){const raw=localStorage.getItem(PREFIX+'guest');return raw?JSON.parse(raw):null;},
     guestLibrary(){const raw=localStorage.getItem(PREFIX+'guest');return raw?JSON.parse(raw).library:JSON.parse(localStorage.getItem(LEGACY)||'null');},
-    reconcile(){RENAX_SONGS.replaceLibrary(state.library);},
+    reconcile(){RENAX_SONGS.replaceLibrary(state.library,true);},
     markCorrupt(){readOnly=true;healthy=false;notify();},
     recoverSource(){return localStorage.getItem(PREFIX+scope)||localStorage.getItem(LEGACY);}
   };

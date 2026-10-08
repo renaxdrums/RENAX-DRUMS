@@ -1,4 +1,4 @@
-import * as core from './sync-core.js';
+import * as core from './sync-core.js?v=20261008-auto-sync';
 import {firebaseConfig,providers,appCheckSiteKey,emulator} from './firebase-config.js';
 const storage=window.RENAX_STORAGE,api=window.RENAX_SONGS;
 await storage.ready;
@@ -13,7 +13,7 @@ function validatedLibrary(state){const value=core.materialize(core.visibleRecord
 // Audio variables are lexical globals; do not enqueue anything into the scheduler.
 function playing(){try{return isPlaying;}catch{return false;}}
 function deferApply(state){state.library=validatedLibrary(state);storage.update(state);if(playing()){deferred=true;return;}if(core.canonical(api.library)!==core.canonical(state.library))storage.reconcile();deferred=false;}
-function decode(document){const value=document.data();if(value.schema!==1||!Number.isSafeInteger(value.revision)||value.revision<1||typeof value.deleted!=='boolean'||typeof value.payload!=='string'||typeof value.operationId!=='string')throw Error('Données distantes incompatibles. Aucune bibliothèque remplacée.');if(!value.deleted)JSON.parse(value.payload);return {revision:value.revision,payload:value.deleted?null:value.payload,deleted:value.deleted,operationId:value.operationId,device:value.device,updatedAt:value.updatedAt?.toMillis?.()??null};}
+function decode(document){const value=document.data();if(value.schema!==1||!Number.isSafeInteger(value.revision)||value.revision<1||typeof value.deleted!=='boolean'||typeof value.payload!=='string'||typeof value.operationId!=='string')throw Error('Données distantes incompatibles. Aucune bibliothèque remplacée.');if(!value.deleted)JSON.parse(value.payload);return {revision:value.revision,payload:value.deleted?null:value.payload,deleted:value.deleted,operationId:value.operationId,device:value.device,modifiedAt:core.operationTime(value.operationId)||value.updatedAt?.toMillis?.()||0,updatedAt:value.updatedAt?.toMillis?.()??null};}
 function recordRef(uid,id){return sdk.firestore.doc(db,'users',uid,'records',id);}
 async function writeAtomic(uid,id,pending){
   return sdk.firestore.runTransaction(db,async transaction=>{
@@ -30,13 +30,11 @@ async function writeAtomic(uid,id,pending){
 }
 async function sync(){
   if(!account||!sdk||!storage.healthy||running)return;
-  if(playing()){confirmed=false;clearTimeout(timer);timer=setTimeout(sync,1500);say('Modifications locales en attente','La synchronisation reprendra à l’arrêt de la lecture.');return;}
   if(!navigator.onLine){say('Hors connexion');return;}
   const uid=account.uid,token=generation;running=true;say('Synchronisation en cours');
   try{
     const snapshot=await sdk.firestore.getDocsFromServer(sdk.firestore.collection(db,'users',uid,'records'));
     if(token!==generation)return;
-    if(playing()){timer=setTimeout(sync,1500);return;}
     const records={};snapshot.forEach(doc=>records[doc.id]=decode(doc));
     deferApply(core.mergeRemote(storage.state,records));
     for(const id of Object.keys(storage.state.pending)){
@@ -44,7 +42,7 @@ async function sync(){
       const pending=storage.state.pending[id];if(!pending)continue;
       const result=await writeAtomic(uid,id,pending);if(token!==generation)return;
       let next=storage.state;
-      if(result.conflict){next.conflicts[id]={local:{payload:pending.payload,deleted:pending.deleted},remote:result.conflict};delete next.pending[id];}
+      if(result.conflict){next=core.mergeRemote(next,{[id]:result.conflict});}
       else{
         // A newer local edit during the write is rebased on the confirmed revision.
         next.base[id]=result.record;
@@ -83,20 +81,20 @@ async function ensureFirebase(){
       if(!user){say('Sauvegardé dans ce navigateur');return;}
       if(guestBeforeSignIn){
         api.validateLibrary(guestBeforeSignIn);
-        const signature=({id,...song})=>core.canonical({...song,sections:song.sections.map(({id,...section})=>section)});
-        const next=core.copy(api.library),known=new Set(next.profiles.flatMap(p=>p.songs.map(signature)));
-        for(const guestProfile of guestBeforeSignIn.profiles){
-          const songs=guestProfile.songs.filter(song=>!known.has(signature(song))).map(core.copy);
-          if(!songs.length)continue;
-          let target=next.profiles.find(profile=>profile.name===guestProfile.name)||next.profiles[0];
-          for(const song of songs){
-            if(next.profiles.some(profile=>profile.songs.some(existing=>existing.id===song.id&&core.canonical(existing)!==core.canonical(song))))song.id=crypto.randomUUID();
-            target.songs.push(song);known.add(signature(song));
-          }
-        }
+        const accountState=storage.state;
+        let next=core.mergeLibraries(api.library,guestBeforeSignIn);
         api.validateLibrary(next);
         storage.write(next);
-        storage.reconcile();
+        // Retain guest edit dates rather than treating login as a new edit.
+        const guest=storage.guestState(),state=storage.state;
+        for(const [id,record] of Object.entries(guest?.pending||{})){
+          const existing=accountState.pending[id]||accountState.base[id];
+          if(id.startsWith('song_')&&core.flatten(next)[id]!==undefined&&(!existing||(record.modifiedAt||core.operationTime(record.operationId)||0)>(existing.modifiedAt||core.operationTime(existing.operationId)||existing.updatedAt||0))){
+            state.pending[id]={...record,expected:state.base[id]?.revision||0};
+          }
+        }
+        state.library=core.materialize(core.visibleRecords(state),state.library);
+        storage.update(state);storage.reconcile();
       }
       const uid=user.uid;
       // A new empty account waits for server data; it never uploads a default
@@ -243,4 +241,3 @@ window.addEventListener('renax-library-edited',queue);
 renderPanel();
 if(firebaseConfig&&sessionStorage.getItem('renax-index2-auth-enabled')==='1')ensureFirebase().catch(error=>say('Sauvegardé dans ce navigateur',friendly(error)));
 window.RENAX_BACKUP={sync,resolve,importGuest,get status(){return {message,failure,account:account?.uid??null,confirmed};}};
-

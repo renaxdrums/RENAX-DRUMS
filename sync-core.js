@@ -15,7 +15,13 @@ export function materialize(records,fallback){
   return {version:1,activeProfile:profiles.some(p=>p.id===fallback.activeProfile)?fallback.activeProfile:profiles[0].id,profiles};
 }
 export function blankState(library){return {version:VERSION,library:copy(library),base:{},pending:{},conflicts:{},importDecisions:{}};}
-export function stage(state,library,operationId){
+export function timestampedOperation(operationId,time){
+  const raw=operationId().replaceAll('-','');
+  const hex=Math.trunc(time).toString(16).padStart(12,'0')+ '7'+raw.slice(13);
+  return hex.slice(0,8)+'-'+hex.slice(8,12)+'-'+hex.slice(12,16)+'-'+hex.slice(16,20)+'-'+hex.slice(20);
+}
+export function operationTime(id){return /^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-/i.test(id||'')?parseInt(id.slice(0,8)+id.slice(9,13),16):0;}
+export function stage(state,library,operationId,now=Date.now){
   const next=copy(state),current=flatten(library);next.library=copy(library);
   const ids=new Set([...Object.keys(next.base),...Object.keys(next.pending),...Object.keys(current)]);
   for(const id of ids){const payload=current[id]??null,deleted=payload===null,base=next.base[id];
@@ -23,19 +29,59 @@ export function stage(state,library,operationId){
     if(base&&base.deleted===deleted&&base.payload===payload){delete next.pending[id];continue;}
     if(!base&&deleted){delete next.pending[id];continue;}
     if(next.pending[id]?.payload===payload&&next.pending[id]?.deleted===deleted)continue;
-    next.pending[id]={payload,deleted,expected:base?.revision??0,operationId:operationId()};
+    const modifiedAt=now();next.pending[id]={payload,deleted,expected:base?.revision??0,operationId:timestampedOperation(operationId,modifiedAt),modifiedAt};
   }return next;
 }
+// Membership changes merge against their common base; unrelated additions survive.
+function mergePayload(id,local,remote,base){
+  if(local.deleted||remote.deleted)return null;
+  const l=JSON.parse(local.payload),r=JSON.parse(remote.payload),b=base&&!base.deleted?JSON.parse(base.payload):null;
+  const field=l.type==='catalog'?'profileIds':l.type==='profile'?'songIds':null;
+  if(!field)return null;
+  const previous=new Set(b?.[field]||[]),ls=new Set(l[field]),rs=new Set(r[field]);
+  const ids=[...new Set([...r[field],...l[field]])].filter(x=>!previous.has(x)||(ls.has(x)&&rs.has(x)));
+  const winner=newer(local,remote)?l:r;
+  return canonical({...winner,[field]:ids});
+}
+const editTime=r=>r?.modifiedAt||operationTime(r?.operationId)||r?.updatedAt||0;
+// Stable tie break when clocks give the same millisecond.
+const newer=(a,b)=>editTime(a)!==editTime(b)?editTime(a)>editTime(b):String(a.operationId)>String(b.operationId);
 export function mergeRemote(state,remote){
   const next=copy(state);
+  // Convert existing manual conflicts to the automatic policy as well.
+  for(const [id,c] of Object.entries(next.conflicts)){
+    next.pending[id]={...c.local,expected:next.base[id]?.revision??0,operationId:c.local.operationId||'legacy-local',modifiedAt:c.local.modifiedAt||0};
+    remote={...remote,[id]:remote[id]||c.remote};delete next.conflicts[id];
+  }
   for(const [id,record] of Object.entries(remote)){
     const known=next.base[id];if(known&&record.revision<known.revision)continue;
     const pending=next.pending[id];
-    if(next.conflicts[id]){next.conflicts[id].remote=copy(record);continue;}
     if(pending){
-      if(record.operationId===pending.operationId){next.base[id]=copy(record);delete next.pending[id];}
-      else if(record.revision!==pending.expected){next.conflicts[id]={local:{payload:pending.payload,deleted:pending.deleted},remote:copy(record)};delete next.pending[id];}
+      if(record.operationId===pending.operationId||(record.deleted===pending.deleted&&record.payload===pending.payload)){
+        next.base[id]=copy(record);delete next.pending[id];
+      }else if(record.revision!==pending.expected){
+        const merged=mergePayload(id,pending,record,known);
+        next.base[id]=copy(record);
+        if(merged!==null){
+          if(merged===record.payload)delete next.pending[id];
+          else next.pending[id]={...pending,payload:merged,expected:record.revision,modifiedAt:Math.max(editTime(pending),editTime(record))};
+        }else if(newer(pending,record))next.pending[id].expected=record.revision;
+        else delete next.pending[id];
+      }
     }else next.base[id]=copy(record);
+  }
+  return next;
+}
+// Guest and account libraries share song identities. Keep each unique song;
+// resolve edits later against record modification timestamps.
+export function mergeLibraries(account,guest){
+  const next=copy(account);
+  const signature=({id,...song})=>canonical({...song,sections:song.sections.map(({id,...section})=>section)});
+  const known=new Set(next.profiles.flatMap(p=>p.songs.map(signature)));
+  for(const p of guest.profiles){
+    let target=next.profiles.find(x=>x.id===p.id);
+    if(!target){target={id:p.id,name:p.name,songs:[]};next.profiles.push(target);}
+    for(const song of p.songs){if(!target.songs.some(x=>x.id===song.id)&&!known.has(signature(song))){target.songs.push(copy(song));known.add(signature(song));}}
   }
   return next;
 }

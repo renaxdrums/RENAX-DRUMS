@@ -322,7 +322,7 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
   document.head.append(actionStyle);
   render();
   window.RENAX_SONGS={validateLibrary,loadSong,unload,locate,
-    replaceLibrary(value){validateLibrary(value);unload();library=clone(value);selectedSong=null;openSectionId=null;songView='home';render();},
+    replaceLibrary(value,preserveNavigation=false){validateLibrary(value);unload();library=clone(value);if(!preserveNavigation){selectedSong=null;openSectionId=null;songView='home';}else if(!profile().songs.some(s=>s.id===selectedSong)){selectedSong=null;openSectionId=null;if(songView==='detail')songView='playlist';}render();},
     get navigation(){return {pane:songsRoot.hidden?'sequence':'songs',view:songView,song:selectedSong,profile:library.activeProfile};},
     restoreNavigation(state){
       const target=library.profiles.find(p=>p.id===state.profile)||profile();
