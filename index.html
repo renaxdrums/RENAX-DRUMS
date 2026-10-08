@@ -3132,6 +3132,8 @@
       if (result.done) {
         if (isPlaying) stopMetronome({ keepTrainingMode: true });
         else resetTrainingToStart();
+        endTraining();
+        updateTimerDisplay();
         if (training.run?.mode === 'steps') {
           tempo = bpm; bpmSlider.value = bpm;
           bpmDisplay.innerHTML = `${bpm} <span>BPM</span>`; updateMobileTrainingBpm(bpm);
