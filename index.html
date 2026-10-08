@@ -1254,6 +1254,7 @@
     .mobile-tabs button.active .orange-ui-icon { stroke: #000; opacity: 1; visibility: visible; }
 </style>
   <link rel="stylesheet" href="mobile-landscape.css?v=20261008-landscape">
+  <link rel="stylesheet" href="training-modes.css?v=20261008-training">
 </head>
 <body>
 
@@ -2388,7 +2389,9 @@
     function updateTimerDisplay() {
       if (training.engaged) {
         const remaining = training.active ? Math.max(0, training.duration - (performance.now() - training.startTime)) : training.duration;
-        trainTimerEl.textContent = formatTime(Math.ceil(remaining / 1000));
+        trainTimerEl.textContent = training.run?.mode === 'steps'
+          ? formatTime(Math.floor((training.active ? performance.now() - training.startTime : 0) / 1000))
+          : formatTime(Math.ceil(remaining / 1000));
         trainTimerEl.classList.add('active', 'training');
       } else if (isPlaying || workElapsed > 0 || workStartTime > 0) {
         trainTimerEl.textContent = formatTime(Math.floor(getWorkElapsed() / 1000));
@@ -3054,6 +3057,7 @@
     function setDirection(dir) {
       training.direction = dir;
       dirToggle.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.dir === dir));
+      if (window.RENAX_TRAINING?.mode === 'steps') return;
       const a = parseInt(trainStartInput.value) || 80;
       const b = parseInt(trainEndInput.value) || 140;
       if (dir === 'up' && a > b) { trainStartInput.value = b; trainEndInput.value = a; }
@@ -3077,10 +3081,11 @@
       if (training.direction === 'up') { sBpm = Math.min(a, b); eBpm = Math.max(a, b); }
       else { sBpm = Math.max(a, b); eBpm = Math.min(a, b); }
 
+      training.run = window.RENAX_TRAINING?.prepare(a, b, dur, training.direction);
       training.engaged = true;
       training.duration = dur * 60 * 1000;
-      training.startBpm = sBpm;
-      training.endBpm = eBpm;
+      training.startBpm = training.run?.startBpm ?? sBpm;
+      training.endBpm = training.run?.endBpm ?? eBpm;
       restartTraining();
     }
 
@@ -3098,6 +3103,7 @@
     function restartTraining() {
       if (!training.engaged) return;
       training.active = true;
+      window.RENAX_TRAINING?.begin();
       training.startTime = performance.now();
       tempo = training.startBpm;
       bpmSlider.value = tempo;
@@ -3114,15 +3120,23 @@
       if (!training.active) return;
       const elapsed = performance.now() - training.startTime;
       const progress = Math.min(elapsed / training.duration, 1);
-      const bpm = Math.round(training.startBpm + (training.endBpm - training.startBpm) * progress);
+      const result = training.run && window.RENAX_TRAINING
+        ? RENAX_TRAINING.at(training.run, elapsed)
+        : { bpm: Math.round(training.startBpm + (training.endBpm - training.startBpm) * progress), done: progress >= 1 };
+      const bpm = result.bpm;
       if (bpm !== tempo) {
         tempo = bpm;
         bpmSlider.value = bpm;
         bpmDisplay.innerHTML = `${bpm} <span>BPM</span>`; updateMobileTrainingBpm(bpm);
       }
-      if (progress >= 1) {
+      if (result.done) {
         if (isPlaying) stopMetronome({ keepTrainingMode: true });
         else resetTrainingToStart();
+        if (training.run?.mode === 'steps') {
+          tempo = bpm; bpmSlider.value = bpm;
+          bpmDisplay.innerHTML = `${bpm} <span>BPM</span>`; updateMobileTrainingBpm(bpm);
+        }
+        window.RENAX_TRAINING?.finish(bpm);
       }
     }
 
@@ -3139,6 +3153,7 @@
     }
 
     function updateTrainButton() {
+      window.RENAX_TRAINING?.update();
       if (training.engaged) {
         trainBtn.textContent = "Arrêter l'entraînement";
         trainBtn.classList.add('active');
@@ -3471,6 +3486,7 @@
     arrange();desktop.addEventListener('change',arrange);
   })();
   </script>
+  <script src="training-modes.js?v=20261008-training"></script>
   <script src="compact-controls.js?v=20261008-fullscreen"></script>
   <script src="navigation-history.js?v=20261008-semantic-back"></script>
 </body>
