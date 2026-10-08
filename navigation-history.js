@@ -25,13 +25,20 @@
     if(restoring)return;
     const next=capture();
     if(JSON.stringify(next)===JSON.stringify(current))return;
-    const depth=(history.state?.[key]?.depth||0)+1;
-    history.pushState({...history.state,[key]:{screen:next,depth}},'');current=next;
+    // Editing or duplicating a song changes its identity, not the screen.
+    // Keep the playlist as the preceding entry instead of adding another detail entry.
+    const sameScreen=next.tab===current.tab&&next.settings===current.settings&&
+      next.songs.pane===current.songs.pane&&next.songs.view===current.songs.view;
+    const depth=(history.state?.[key]?.depth||0)+(sameScreen?0:1);
+    history[sameScreen?'replaceState':'pushState']({...history.state,[key]:{screen:next,depth}},'');current=next;
   }
   document.addEventListener('click',event=>{
     const back=event.target.closest('.song-back,#index2SettingsClose,#index2SettingsBackdrop');
     if(back&&(history.state?.[key]?.depth||0)>0){event.preventDefault();event.stopImmediatePropagation();history.back();return;}
     clearTimeout(pending);pending=setTimeout(record,0);
+  },true);
+  document.addEventListener('keyup',event=>{
+    if(event.key==='Enter'||event.key===' '){clearTimeout(pending);pending=setTimeout(record,0);}
   },true);
   window.addEventListener('popstate',event=>{const state=event.state?.[key];if(state?.screen)restore(state.screen);});
 })();
