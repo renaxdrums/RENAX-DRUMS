@@ -12,13 +12,13 @@ function scenario({touch=false,collapsed=true,hold=false,downward=true,cancel=fa
  assert.equal(captured,1,'Pointer must remain captured before activation');if(hold)timer();
  if(move)handlers.pointermove(event(downward?280:110));
  handlers[cancel?'pointercancel':'pointerup'](event(downward?280:110));
- const reordered=move&&(!touch||collapsed||hold)&&!cancel;
+ const reordered=move&&(!touch||hold)&&!cancel;
  assert.deepEqual(items.map(x=>x.id),reordered?(downward?['first','last','middle']:['middle','first','last']):['first','middle','last']);
  assert.equal(changed,reordered?1:0);assert.equal(captured,null);assert(!classes.has('dragging'));assert.equal(persisted,0);
- if(move&&(!touch||collapsed||hold))assert.equal(removed,1);
+ if(move&&(!touch||hold))assert.equal(removed,1);
 }
 for(const touch of [false,true])for(const downward of [false,true])for(const hold of [false,true])for(const cancel of [false,true])scenario({touch,downward,hold,cancel});
 scenario({touch:true,collapsed:false});scenario({control:true});scenario({move:false});
 assert(!src.includes('pointerEvents:\'none\''),'Dragged surface must remain interactive');
 assert(!/enableSongDrag\(card,c,/.test(src),'Count-in must not be draggable');
-console.log('19 gesture cases passed: mouse/touch, immediate/held, up/down, cancellation, controls, normal click and fixed count-in.');
+console.log('19 gesture cases passed: mouse/touch, swipe scrolling/held dragging, up/down, cancellation, controls, normal click and fixed count-in.');
