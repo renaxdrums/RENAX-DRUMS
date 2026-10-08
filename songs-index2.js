@@ -205,6 +205,7 @@
     trigger.className='song-more';trigger.setAttribute('aria-label','Actions pour '+item.name);trigger.setAttribute('aria-haspopup','menu');trigger.setAttribute('aria-expanded','false');
     const menu=el('div',undefined,wrap,'song-more-menu');menu.hidden=true;menu.setAttribute('role','menu');
     const action=(label,fn)=>{const b=button(label,menu,e=>{menu.hidden=true;trigger.setAttribute('aria-expanded','false');fn(e);});b.setAttribute('role','menuitem');return b;};
+    action('Renommer',()=>{const name=prompt('Nom du morceau',item.name);if(name?.trim()){item.name=name.trim();changed();}});
     action('Dupliquer',()=>{duplicateSongTo(item,p,true);persist();render();});
     action('Déplacer vers…',()=>choosePlaylist(item,'move'));
     action('Copier vers…',()=>choosePlaylist(item,'copy'));
@@ -235,6 +236,7 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
         const trigger=button('⋯',controls,()=>{const opening=menu.hidden;songPane.querySelectorAll('.song-more-menu').forEach(other=>other.hidden=true);songPane.querySelectorAll('.song-more').forEach(other=>other.setAttribute('aria-expanded','false'));menu.hidden=!opening;trigger.setAttribute('aria-expanded',String(opening));});
         trigger.className='song-more';trigger.setAttribute('aria-label','Actions de la playlist '+(item.name==='Mon profil'?'Mes morceaux':item.name));trigger.setAttribute('aria-haspopup','menu');trigger.setAttribute('aria-expanded','false');
         const menu=el('div',undefined,controls,'song-more-menu');menu.hidden=true;menu.setAttribute('role','menu');menu.style.top='36px';menu.style.bottom='auto';
+        const rename=button('Renommer',menu,()=>{menu.hidden=true;trigger.setAttribute('aria-expanded','false');const name=prompt('Nom de la playlist',item.name==='Mon profil'?'Mes morceaux':item.name);if(name?.trim()){item.name=name.trim();persist();render();}});rename.setAttribute('role','menuitem');
         const remove=button('Supprimer',menu,()=>{menu.hidden=true;trigger.setAttribute('aria-expanded','false');if(!confirm('Supprimer la playlist « '+(item.name==='Mon profil'?'Mes morceaux':item.name)+' » et ses '+item.songs.length+' morceau(x) ?'))return;
           if(library.activeProfile===item.id)unload();library.profiles=library.profiles.filter(candidate=>candidate!==item);
           if(!library.profiles.length)library.profiles=defaultLibrary().profiles;
@@ -246,7 +248,7 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
     const localProfiles=el('section',undefined,songPane,'playlist-manager');localProfiles.hidden=songView!=='playlist';
     const playlistHeading=el('div',undefined,localProfiles,'playlist-heading');
     el('strong',p.name==='Mon profil'?'Mes morceaux':p.name,playlistHeading,'playlist-heading-name');
-    button('Renommer',playlistHeading,()=>{const name=prompt('Nom de la playlist',p.name==='Mon profil'?'Mes morceaux':p.name);if(name?.trim()){p.name=name.trim();persist();render();}}).classList.add('playlist-rename');
+    if(songView==='playlist')playlistHeading.prepend(backSong);
     const actions=songView==='playlists'?null:el('div',undefined,songPane,'song-actions');
     const s=song();
     if(songView==='playlist'&&!s){
@@ -310,6 +312,11 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
   }
   // Song playback uses a snapshot; editing the saved arrangement stops its playback.
   // Keep ordinary sequencer and polyrhythm behavior untouched when no song is loaded.
+  document.addEventListener('pointerdown',event=>{
+    if(event.target.closest('.song-more-wrap'))return;
+    songPane.querySelectorAll('.song-more-menu').forEach(menu=>menu.hidden=true);
+    songPane.querySelectorAll('.song-more').forEach(trigger=>trigger.setAttribute('aria-expanded','false'));
+  },true);
   const actionStyle=document.createElement('style');
   actionStyle.textContent='#songPane .song-playlist-card{position:relative;}\n#songPane .song-more-wrap{position:absolute;bottom:8px;right:8px;z-index:12;}\n#songPane .song-more{width:32px;height:32px;padding:0;border:1px solid #363640;border-radius:6px;background:#15151b;color:var(--text-muted);font:700 18px/1 var(--font);cursor:pointer;}\n#songPane .song-more:hover,#songPane .song-more[aria-expanded=true]{border-color:#a45427;color:var(--orange);background:#211a16;}\n#songPane .song-more-menu{position:absolute;bottom:36px;right:0;width:176px;padding:5px;border:1px solid #363640;border-radius:7px;background:#101116;box-shadow:0 10px 28px rgba(0,0,0,.38);}\n#songPane .song-more-menu[hidden]{display:none;}\n#songPane .song-more-menu .btn{display:block;width:100%;min-height:40px;padding:7px 9px;border:0;border-radius:5px;background:transparent;color:var(--text);font:600 11px/1.25 var(--font);text-align:left;text-transform:none;letter-spacing:0;}\n#songPane .song-more-menu .btn:hover{background:#211a16;color:var(--orange);}\n';
   document.head.append(actionStyle);
