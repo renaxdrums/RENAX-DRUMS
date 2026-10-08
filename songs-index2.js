@@ -172,7 +172,7 @@
         gesture.lastDropIndex=gesture.index;
         for(const [card,top] of positions){const delta=top-card.getBoundingClientRect().top;
           if(Math.abs(delta)>.5&&typeof card.animate==='function'&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-            const animation=card.animate([{transform:'translateY('+delta+'px)'},{transform:'translateY(0)'}],{duration:160,easing:'cubic-bezier(.2,.8,.2,1)'});shifts.set(card,animation);
+            const animation=card.animate([{transform:'translateY('+delta+'px)'},{transform:'translateY(0)'}],{duration:260,easing:'cubic-bezier(.2,.8,.2,1)'});shifts.set(card,animation);
           }
         }
       }
