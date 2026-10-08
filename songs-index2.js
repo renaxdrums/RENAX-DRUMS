@@ -311,7 +311,6 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
       button('Dupliquer',actions,()=>{const copy=clone(s);copy.id=id();copy.name+=' (copie)';p.songs.push(copy);selectedSong=copy.id;changed();});
       field('Titre du morceau',songPane,s.name,value=>{s.name=value.trim()||'Sans titre';changed();});
       el('p','Sélectionne un bloc pour le régler dans le métronome.',songPane,'song-note');
-      el('p',s.sections.reduce((n,s)=>n+s.count,0)+' mesures · Durée totale : '+durationText(s)+' · arrêt à la fin du morceau',songPane,'song-note').id='songDuration';
       const addCountIn=button('Décompte',actions,()=>{if(s.countIn)return;s.countIn={count:1,numerator:s.sections[0].measure.numerator,denominator:s.sections[0].measure.denominator};changed();});
       addCountIn.className='song-count-in-button';addCountIn.disabled=!!s.countIn;addCountIn.setAttribute('aria-label','Ajouter un décompte');
       const icon=el('span',undefined,addCountIn,'song-count-in-icon');icon.innerHTML='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2h6M12 2v3m6 1 2-2M12 9v5l3 2"/><circle cx="12" cy="14" r="8"/></svg>';icon.setAttribute('aria-hidden','true');addCountIn.prepend(icon);
@@ -361,6 +360,7 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
         controls.addEventListener('click',e=>e.stopPropagation());
         controls.addEventListener('keydown',e=>{if(e.key==='Escape'){e.stopPropagation();menu.hidden=true;trigger.setAttribute('aria-expanded','false');trigger.focus();}});
       });button('+ Ajouter une section',songPane,()=>{const section=blankSection();s.sections.push(section);openSectionId=section.id;changed();});
+      el('p',s.sections.reduce((n,s)=>n+s.count,0)+' mesures · Durée totale : '+durationText(s)+' · arrêt à la fin du morceau',songPane,'song-note').id='songDuration';
     }
     const labels=el('datalist',undefined,songPane);labels.id='songLabels';for(const name of ['Intro','Couplet 1','Couplet 2','Refrain 1','Refrain 2','Bridge','Solo','Outro'])el('option',name,labels).value=name;
     const transferPane=el('section',undefined,profilePane,'backup-json');el('h3','Copie JSON',transferPane);
