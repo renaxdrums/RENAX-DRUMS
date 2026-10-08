@@ -15,6 +15,16 @@
   function makeRow(label,id,value,min,max){const wrapper=document.createElement('div');wrapper.className='training-row';const text=document.createElement('label');text.className='row-label';text.htmlFor=id;text.textContent=label;const input=document.createElement('input');input.type='number';input.id=id;input.inputMode='numeric';input.value=value;input.min=min;input.max=max;input.step=1;wrapper.append(text,input);fields.append(wrapper);return {wrapper,input};}
   const step=makeRow('Écart','trainStep',4,1,280);const stepUnit=document.createElement('span');stepUnit.className='unit';stepUnit.textContent='BPM';step.wrapper.append(stepUnit);
   const interval=makeRow('Toutes les','trainInterval',30,1,3600);const unit=document.createElement('select');unit.id='trainIntervalUnit';unit.setAttribute('aria-label','Unité de durée du palier');unit.innerHTML='<option value="seconds">secondes</option><option value="minutes">minutes</option>';interval.wrapper.append(unit);
+  // The mobile keyboard Done action confirms editing without starting playback.
+  for(const input of fields.querySelectorAll('input[type="number"]')){
+    input.enterKeyHint='done';
+    input.addEventListener('keydown',event=>{
+      if(event.key!=='Enter'||event.isComposing)return;
+      event.preventDefault();event.stopPropagation();
+      input.dispatchEvent(new Event('change',{bubbles:true}));
+      input.blur();
+    });
+  }
   const curveRow=document.createElement('div');curveRow.className='training-curve-row';const curveLabel=document.createElement('span');curveLabel.textContent='Courbe';const curves=document.createElement('div');curves.className='training-curve-options';curves.setAttribute('role','group');curves.setAttribute('aria-label','Courbe du tempo');curveRow.append(curveLabel,curves);fields.append(curveRow);
   const curveButtons=[];
   for(const value of ['linear','shaped']){const button=document.createElement('button');button.type='button';button.dataset.curve=value;button.onclick=()=>{curve=value;update();};curves.append(button);curveButtons.push(button);}
