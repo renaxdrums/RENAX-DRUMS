@@ -224,7 +224,7 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
     const openPlaylist=item=>{unload();library.activeProfile=item.id;selectedSong=null;songView='playlist';persist();render();panel.scrollTop=0;};
     if(songView==='playlists'){
       const overview=el('section',undefined,songPane,'playlist-overview');
-      const heading=el('div',undefined,overview,'playlist-overview-head');el('strong','Playlists',heading);
+      const heading=el('div',undefined,overview,'playlist-overview-head playlist-heading');heading.append(backSong);el('strong','Playlists',heading,'playlist-heading-name');
       button('Nouvelle playlist',heading,createPlaylist).classList.add('playlist-create');
       const list=el('div',undefined,overview,'playlist-list');
       for(const item of library.profiles){
