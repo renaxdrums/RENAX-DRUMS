@@ -61,6 +61,12 @@
 .song-playlist-card.dragging {opacity:.45;cursor:grabbing;border-color:var(--orange);}
 .song-playlist-card.drop-before {box-shadow:0 -3px 0 var(--orange);}
 .song-playlist-card.drop-after {box-shadow:0 3px 0 var(--orange);}
+/* Readable secondary text; existing sizes, layout and accent colors stay intact. */
+body .control-group label,body .training-section > label,body .training-row,
+body .training-row .unit,body .seq-count-row,body .silent-head-label,
+body .measure-tempo-label,body .measure-tempo-unit,body .beat-control,
+body .tempo-display span,body .song-note,body .song-block-summary,
+body .song-playlist-summary {color:#c6c6d0;}
 
 .song-count-in-button {display:inline-flex;align-items:center;gap:6px;padding:6px 10px;font-size:12px;background:rgba(0,229,255,.08);color:var(--text);border:1px solid rgba(0,229,255,.55);box-shadow:0 0 0 1px rgba(0,229,255,.08) inset;}
 .song-count-in-button .song-count-in-icon {color:var(--orange);font-size:16px;}
