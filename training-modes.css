@@ -31,3 +31,7 @@
   .panel-training .training-section .training-curve-options button {min-height:30px;padding:4px;}
   .panel-training .training-section .btn-train {height:32px;min-height:32px;padding:5px;}
 }
+
+/* Sky-blue trial: only the four training choice icons; geometry and opacity unchanged. */
+.training-section .training-mode-tabs button svg,
+.training-section .training-curve-options button svg {stroke:#87ceeb;}
