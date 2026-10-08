@@ -151,27 +151,56 @@ async function history(){
     }
   }catch(error){element('p',friendly(error),dialog);}
 }
+let backupView='';
+const backupIcons={
+ google:'<path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2.1H12v4h5.4a4.6 4.6 0 0 1-2 3v2.5h3.3c1.9-1.8 2.9-4.3 2.9-7.4Z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.7-2.4l-3.3-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3v2.6A10 10 0 0 0 12 22Z"/><path fill="#FBBC05" d="M6.4 14a6 6 0 0 1 0-4V7.4H3a10 10 0 0 0 0 9.2Z"/><path fill="#EA4335" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9A9.6 9.6 0 0 0 12 2a10 10 0 0 0-9 5.4L6.4 10A6 6 0 0 1 12 5.9Z"/>',
+ account:'<circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M19 7v6m-3-3h6"/>',
+ local:'<path d="M4 3h13l4 4v14H3V3h1Zm3 0v6h10V3M7 21v-8h10v8"/>',
+ export:'<path d="M12 16V3m-4 4 4-4 4 4M4 14v7h16v-7"/>',
+ import:'<path d="M12 3v13m-4-4 4 4 4-4M4 14v7h16v-7"/>'
+};
+function backupIcon(node,name){
+ const icon=document.createElementNS('http://www.w3.org/2000/svg','svg');
+ icon.setAttribute('viewBox','0 0 24 24');icon.setAttribute('width','20');icon.setAttribute('height','20');icon.setAttribute('aria-hidden','true');
+ icon.style.cssText='flex-shrink:0;vertical-align:middle;margin-right:8px';
+ if(name!=='google'){icon.setAttribute('fill','none');icon.setAttribute('stroke','currentColor');icon.setAttribute('stroke-width','1.8');icon.setAttribute('stroke-linecap','round');icon.setAttribute('stroke-linejoin','round');}
+ icon.innerHTML=backupIcons[name];node.prepend(icon);
+}
 function renderPanel(){
   const pane=document.getElementById('profilePane');if(!pane)return;
   let root=document.getElementById('backupAccount');if(!root){root=element('section');root.id='backupAccount';const back=pane.querySelector('.song-back');if(back)back.after(root);else pane.prepend(root);}
   const optionsOpen=root.querySelector('details')?.open||false;
   // Preserve existing controls and listeners before rebuilding account presentation.
   const json=pane.querySelector('.backup-json');if(json)pane.append(json);
+  const emailValue=root.querySelector('#backupEmail')?.value||'',passwordValue=root.querySelector('#backupPassword')?.value||'';
   root.replaceChildren();element('h3','Sauvegarde',root);
+  const choices=element('div',undefined,root);choices.className='backup-choices';choices.style.cssText='display:flex;flex-wrap:wrap;gap:8px';
+  const choose=(label,icon,view,action,disabled=false)=>{
+    const control=button(label,choices,action,disabled);backupIcon(control,icon);
+    control.style.cssText='display:flex;align-items:center;justify-content:center;flex:1 1 150px';
+    if(view){control.setAttribute('aria-expanded',String(backupView===view));control.setAttribute('aria-controls','backup-'+view);if(backupView===view)control.style.borderColor='var(--cyan)';}
+    return control;
+  };
+  if(!account){
+    choose('Se connecter avec Google','google',null,()=>authenticate('google'),!firebaseConfig||!providers.google);
+    choose('Créer un compte','account','account',()=>{backupView=backupView==='account'?'':'account';renderPanel();});
+  }
+  choose('Sauvegarde locale','local','local',()=>{backupView=backupView==='local'?'':'local';renderPanel();});
+  if(json){json.id='backup-local';json.style.display=backupView==='local'?'flex':'none';root.append(json);const title=json.querySelector('h3');if(title)title.textContent='Sauvegarde locale';json.querySelectorAll('button').forEach((control,index)=>{if(!control.querySelector('svg'))backupIcon(control,index===0?'export':'import');});}
+
   const state=element('p',storage.healthy?message:'Sauvegarde locale impossible : exportez une copie JSON.',root);state.className='backup-status';state.classList.toggle('is-confirmed',confirmed);state.setAttribute('role','status');state.setAttribute('aria-live','polite');
   if(failure)element('p',failure,root).className='backup-error';
   if(!storage.healthy)button('Exporter la source locale préservée',root,()=>{const raw=storage.recoverSource();if(!raw)throw Error('Aucune source trouvée.');const url=URL.createObjectURL(new Blob([raw],{type:'application/json'})),link=element('a');link.href=url;link.download='renax-source-preservee.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
   if(!account){
     element('p','Copie locale automatique. Connectez-vous pour retrouver vos morceaux sur vos appareils.',root).className='backup-hint';
     if(!firebaseConfig)element('p','Connexion en ligne indisponible : projet Firebase non configuré.',root);
-    const form=element('div',undefined,root);form.className='backup-auth';
-    const emailLabel=element('label','E-mail',form),email=element('input',undefined,emailLabel);email.type='email';email.id='backupEmail';email.autocomplete='email';
-    const passwordLabel=element('label','Mot de passe',form),password=element('input',undefined,passwordLabel);password.type='password';password.id='backupPassword';password.autocomplete='current-password';password.minLength=6;
+    const form=element('div',undefined,root);form.className='backup-auth';form.id='backup-account';form.style.display=backupView==='account'?'grid':'none';
+    const emailLabel=element('label','E-mail',form),email=element('input',undefined,emailLabel);email.type='email';email.id='backupEmail';email.autocomplete='email';email.value=emailValue;
+    const passwordLabel=element('label','Mot de passe',form),password=element('input',undefined,passwordLabel);password.type='password';password.id='backupPassword';password.autocomplete='current-password';password.minLength=6;password.value=passwordValue;
     button('Se connecter',form,()=>authenticate('email'),!firebaseConfig||!providers.email);
     button('Créer un compte',form,()=>authenticate('email',true),!firebaseConfig||!providers.email);
     button('Mot de passe oublié',form,async()=>{await ensureFirebase();await sdk.auth.sendPasswordResetEmail(auth,email.value.trim());say(message,'Si cette adresse dispose d’un compte, un message de réinitialisation lui sera envoyé.');},!firebaseConfig||!providers.email);
-    button('Continuer avec Google',form,()=>authenticate('google'),!firebaseConfig||!providers.google);
-    if(!providers.google)element('small','Google non configuré.',form);
+
   }else{
     element('p',account.email||account.uid,root).className='backup-identity';
     if(!account.emailVerified&&account.email)button('Vérifier mon adresse',root,()=>sdk.auth.sendEmailVerification(account));
@@ -181,7 +210,7 @@ function renderPanel(){
     const importButton=button('Importer les morceaux locaux',optionActions,importGuest);importButton.setAttribute('aria-label','Importer les morceaux sans compte');
     button('Lier Google à ce compte',optionActions,()=>authenticate('google'),!providers.google);
     button('Se déconnecter',optionActions,async()=>{await sdk.auth.signOut(auth);sessionStorage.removeItem('renax-index2-auth-enabled');}).classList.add('backup-signout');
-    if(json)options.append(json);
+    // JSON controls stay in the dedicated local backup view.
     for(const [id,conflict] of Object.entries(storage.state?.conflicts||{})){
       const row=element('div',undefined,root);row.className='backup-conflict';let name=id;try{name=JSON.parse(conflict.local.payload??conflict.remote.payload)?.song?.name||id;}catch{}
       element('p','Conflit : '+name+' · en ligne : '+(conflict.remote.updatedAt?new Date(conflict.remote.updatedAt).toLocaleString():'date non disponible')+' · appareil '+conflict.remote.device, row);
@@ -201,3 +230,4 @@ window.addEventListener('renax-library-edited',queue);
 renderPanel();
 if(firebaseConfig&&sessionStorage.getItem('renax-index2-auth-enabled')==='1')ensureFirebase().catch(error=>say('Sauvegardé dans ce navigateur',friendly(error)));
 window.RENAX_BACKUP={sync,resolve,importGuest,get status(){return {message,failure,account:account?.uid??null,confirmed};}};
+
