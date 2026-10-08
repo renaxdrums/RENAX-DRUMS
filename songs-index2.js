@@ -3,6 +3,7 @@
   const KEY='renax-drums-songs-v1';
   const id=()=>crypto.randomUUID();
   const clone=value=>JSON.parse(JSON.stringify(value));
+  function durationText(song){const seconds=Math.round(song.sections.reduce((total,section)=>total+section.count*section.measure.numerator*(4/section.measure.denominator)*60/section.measure.tempo,0));return Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');}
   const blankSection=()=>({id:id(),label:'Couplet 1',count:4,measure:createMeasure(4,4,120)});
   const blankSong=()=>({id:id(),name:'Nouveau morceau',sections:[blankSection()]});
   const defaultLibrary=()=>({version:1,activeProfile:null,profiles:[{id:id(),name:'Mon profil',songs:[]}]});
@@ -109,6 +110,7 @@
   }
   function refreshSongCards(){
     const current=song();if(!current)return;
+    const duration=document.getElementById('songDuration');if(duration)duration.textContent=current.sections.reduce((n,section)=>n+section.count,0)+' mesures · Durée totale : '+durationText(current)+' · arrêt à la fin du morceau';
     songPane.querySelectorAll('[data-section-id]').forEach(card=>{
       const section=current.sections.find(s=>s.id===card.dataset.sectionId);if(!section)return;
       card.querySelector('.measure-sig').textContent=section.measure.numerator+'/'+section.measure.denominator;
@@ -129,7 +131,7 @@
   const originalActive=renderActiveMeasure;renderActiveMeasure=function(){originalActive();saveLoadedPattern();updatePosition();};
   let suppressSongClickUntil=0;
   songPane.addEventListener('click',e=>{if(performance.now()<suppressSongClickUntil){e.preventDefault();e.stopImmediatePropagation();}},true);
-  function enableSongDrag(row,item,p){
+  function enableSongDrag(row,item,p,isBlock=false){
     row.dataset.songId=item.id;
     let gesture=null,holdTimer=null,scrollFrame=null,placeholder=null,originalStyle=null;
     function clearMarks(){songPane.querySelectorAll('.drop-before,.drop-after').forEach(e=>e.classList.remove('drop-before','drop-after'));}
@@ -138,7 +140,7 @@
       row.style.top=(gesture.y-gesture.offsetY)+'px';
       row.style.left=(gesture.x-gesture.offsetX)+'px';
       const rect=panel.getBoundingClientRect();gesture.valid=gesture.x>=rect.left&&gesture.x<=rect.right;
-      const others=[...songPane.querySelectorAll('.song-playlist-card')].filter(e=>e!==row);
+      const others=[...songPane.querySelectorAll(isBlock?'[data-section-id]':'.song-playlist-card')].filter(e=>e!==row);
       const gap=placeholder.getBoundingClientRect(),gapStyle=getComputedStyle(placeholder),gapHeight=gap.height+parseFloat(gapStyle.marginTop)+parseFloat(gapStyle.marginBottom);
       const before=others.findIndex(e=>{const r=e.getBoundingClientRect();const top=r.top>=gap.bottom?r.top-gapHeight:r.top;return gesture.y<top+r.height/2;});
       gesture.index=before<0?others.length:before;
@@ -164,7 +166,7 @@
       row.classList.add('dragging');row.setPointerCapture(gesture.id);markDrop();scrollFrame=requestAnimationFrame(autoScroll);
     }
     row.addEventListener('pointerdown',e=>{
-      if(e.button!==0||!e.isPrimary||e.target.closest('.song-more-wrap'))return;
+      if(e.button!==0||!e.isPrimary||e.target.closest('.song-more-wrap')||(isBlock&&e.target.closest('input,select,label,button:not(.song-block-header)')))return;
       gesture={id:e.pointerId,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,scrollTop:panel.scrollTop,active:false,scrolling:false,index:0,valid:false};
       holdTimer=setTimeout(activate,250);
     });
@@ -182,7 +184,7 @@
       if(done.active){placeholder?.remove();placeholder=null;if(originalStyle===null)row.removeAttribute('style');else row.setAttribute('style',originalStyle);originalStyle=null;}
       if(done.active||done.scrolling)suppressSongClickUntil=performance.now()+150;
       if(row.hasPointerCapture(e.pointerId))row.releasePointerCapture(e.pointerId);
-      if(done.active&&done.valid&&!cancelled){const previous=p.songs.indexOf(item);p.songs.splice(previous,1);p.songs.splice(done.index,0,item);persist();render();}
+      if(done.active&&done.valid&&!cancelled){const items=isBlock?p.sections:p.songs,previous=items.indexOf(item);items.splice(previous,1);items.splice(done.index,0,item);if(isBlock)changed();else{persist();render();}}
     }
     row.addEventListener('pointerup',e=>finish(e));row.addEventListener('pointercancel',e=>finish(e,true));row.addEventListener('lostpointercapture',e=>finish(e,true));
   }
@@ -262,7 +264,7 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
         const signature=el('span',meters.length===1?meters[0]:'Mixte',open,'measure-sig');signature.title=meters.join(' · ');
         const tempos=item.sections.map(s=>s.measure.tempo),min=Math.min(...tempos),max=Math.max(...tempos);
         const tempoRow=el('div',undefined,row,'measure-tempo-row');el('span','TEMPO',tempoRow,'measure-tempo-label');el('span',min===max?String(min):min+'–'+max,tempoRow,'song-tempo-value');el('span','BPM',tempoRow,'measure-tempo-unit');
-        el('p',item.sections.length+' sections · '+item.sections.reduce((n,s)=>n+s.count,0)+' mesures',row,'song-playlist-summary');
+        el('p',item.sections.length+' sections · '+item.sections.reduce((n,s)=>n+s.count,0)+' mesures · '+durationText(item),row,'song-playlist-summary');
         const preview=el('div',undefined,row,'measure-preview');preview.title='Début du morceau';for(const states of item.sections[0].measure.beatStates){const group=el('div',undefined,preview,'preview-beat');for(const state of states)el('span',undefined,group,'preview-dot').dataset.state=state;}
         addSongMenu(row,item);
 
@@ -273,8 +275,8 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
       button('Dupliquer',actions,()=>{const copy=clone(s);copy.id=id();copy.name+=' (copie)';p.songs.push(copy);selectedSong=copy.id;changed();});
       field('Titre du morceau',songPane,s.name,value=>{s.name=value.trim()||'Sans titre';changed();});
       el('p','Sélectionne un bloc pour le régler dans le métronome.',songPane,'song-note');
-      el('p',s.sections.reduce((n,s)=>n+s.count,0)+' mesures · arrêt à la fin du morceau',songPane,'song-note');
-      s.sections.forEach((section,i)=>{const card=el('div',undefined,songPane,'song-section measure-card');card.dataset.sectionId=section.id;card.tabIndex=0;card.setAttribute('role','group');
+      el('p',s.sections.reduce((n,s)=>n+s.count,0)+' mesures · Durée totale : '+durationText(s)+' · arrêt à la fin du morceau',songPane,'song-note').id='songDuration';
+      s.sections.forEach((section,i)=>{const card=el('div',undefined,songPane,'song-section measure-card');card.dataset.sectionId=section.id;enableSongDrag(card,section,s,true);card.style.touchAction='none';card.tabIndex=0;card.setAttribute('role','group');
         const head=el('button',undefined,card,'measure-head song-block-header');head.type='button';
         const title=el('span',section.label||'Bloc '+(i+1),head,'measure-num');
         el('span',section.measure.numerator+'/'+section.measure.denominator,head,'measure-sig');
