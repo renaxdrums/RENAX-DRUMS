@@ -21,7 +21,26 @@
     if(label)button.setAttribute('aria-label',label.trim());button.disabled=select.disabled;
   }
   document.querySelectorAll('select').forEach(enhance);
-  const observer=new MutationObserver(records=>{for(const record of records){if(record.type==='attributes'){if(record.target.tagName!=='SELECT')continue;const widget=record.target.parentElement.querySelector('.numbox-button');if(widget)widget.disabled=record.target.disabled;continue;}if(record.target.tagName==='SELECT')numboxWidgets.get(record.target)?.rebuild();for(const node of record.addedNodes){if(node.nodeType!==1)continue;if(node.matches('select'))enhance(node);node.querySelectorAll('select').forEach(enhance);}}});
+  const observer=new MutationObserver(records=>{
+    const rebuilds=new Set();
+    for(const record of records){
+      if(record.type==='attributes'){
+        if(record.target.tagName!=='SELECT')continue;
+        const widget=record.target.parentElement?.querySelector('.numbox-button');
+        if(widget&&widget.disabled!==record.target.disabled)widget.disabled=record.target.disabled;
+        continue;
+      }
+      if(record.target.tagName==='SELECT'&&record.target.isConnected)rebuilds.add(record.target);
+      for(const node of record.addedNodes){
+        if(node.nodeType!==1||!node.isConnected)continue;
+        if(node.matches('select'))enhance(node);
+        node.querySelectorAll('select').forEach(enhance);
+      }
+    }
+    // Hundreds of option insertions arrive together when a song is rendered.
+    // Rebuild each connected select once, rather than once per option.
+    for(const select of rebuilds)numboxWidgets.get(select)?.rebuild();
+  });
   observer.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['disabled']});
   document.addEventListener('click',event=>{const button=event.target.closest('.numbox-button');if(!button)return;setTimeout(()=>{const wrap=button.closest('.numbox-custom');if(!wrap?.classList.contains('open'))return;const menu=wrap.querySelector('.numbox-menu'),rect=button.getBoundingClientRect(),height=Math.min(220,menu.scrollHeight);menu.classList.add('compact-floating');menu.style.width=Math.min(innerWidth-16,Math.max(rect.width,wrap.classList.contains('compact-select')?140:64))+'px';menu.style.left=Math.max(8,Math.min(rect.left,innerWidth-parseFloat(menu.style.width)-8))+'px';menu.style.top=(innerHeight-rect.bottom-8>=height?rect.bottom+4:Math.max(8,rect.top-height-4))+'px';menu.style.maxHeight=height+'px';},0);},true);
   window.addEventListener('resize',()=>closeAllNumboxes());

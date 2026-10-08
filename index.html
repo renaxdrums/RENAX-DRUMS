@@ -1726,7 +1726,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
       // cannot mask them inside the shared voice guard/mixer.
       const tickOut = audioCtx.createGain();
       tickOut.gain.setValueAtTime(masterVolume * 0.38 * Math.pow(10, 4.5 / 20), time);
-      tickOut.connect(audioCtx.destination);
+      tickOut.connect(getAudioMixDestination(audioCtx));
       oscTone(tickOut, time, {
         type: 'triangle',
         freqStart: freq,
@@ -1861,24 +1861,37 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
       }
     };
 
+    // The limiter is a safety net. Bank gains keep the incoming mix below -0.5 dBFS.
+    const audioMixers = new WeakMap();
+    const BANK_GAINS = { clic: 0.6, cloche: 0.35, claves: 0.6, clic808: 0.37, beep: 1, voiceMale: 1, voiceFemale: 1 };
+    function getAudioMixDestination(context) {
+      let mixer = audioMixers.get(context);
+      if (!mixer) {
+        const input = context.createGain();
+        const limiter = context.createWaveShaper();
+        const ceiling = Math.pow(10, -0.1 / 20);
+        const curve = new Float32Array(65537);
+        for (let i = 0; i < curve.length; i++) {
+          const x = i / (curve.length - 1) * 2 - 1;
+          curve[i] = Math.max(-ceiling, Math.min(ceiling, x));
+        }
+        // Exact unity below the safety ceiling: no makeup gain, knee or added delay.
+        limiter.curve = curve;
+        limiter.oversample = 'none';
+        input.connect(limiter);
+        limiter.connect(context.destination);
+        mixer = { input, limiter };
+        audioMixers.set(context, mixer);
+      }
+      return mixer.input;
+    }
     const voiceMixers = new WeakMap();
     function getVoiceMixDestination(context) {
       let mixer = voiceMixers.get(context);
       if (!mixer) {
-        const input = context.createGain();
-        input.gain.value = 0.25;
-        const guard = context.createWaveShaper();
-        const curve = new Float32Array(65537);
-        for (let i = 0; i < curve.length; i++) {
-          const x = (i / (curve.length - 1) * 2 - 1) * 4;
-          const level = Math.abs(x);
-          curve[i] = Math.sign(x) * (level <= 0.9 ? level : 0.9 + 0.1 * Math.tanh((level - 0.9) / 0.1));
-        }
-        guard.curve = curve;
-        guard.oversample = 'none';
-        input.connect(guard);
-        guard.connect(context.destination);
-        mixer = input;
+        mixer = context.createGain();
+        mixer.gain.value = 0.25;
+        mixer.connect(getAudioMixDestination(context));
         voiceMixers.set(context, mixer);
       }
       return mixer;
@@ -1891,7 +1904,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
       oscillator.frequency.exponentialRampToValueAtTime(accent?650:450,time+.065);
       gain.gain.setValueAtTime(Math.max(.0001,masterVolume*.85),time);
       gain.gain.exponentialRampToValueAtTime(.0001,time+.09);
-      oscillator.connect(gain);gain.connect(audioCtx.destination);
+      oscillator.connect(gain);gain.connect(getAudioMixDestination(audioCtx));
       scheduledVoiceSources.add(oscillator);oscillator.onended=()=>{scheduledVoiceSources.delete(oscillator);oscillator.disconnect();gain.disconnect();};
       oscillator.start(time);oscillator.stop(time+.1);
     }
@@ -1899,9 +1912,9 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
     function playClick(type, time, isFirstOfMeasure, context = {}) {
       if (!audioCtx) return;
       const out = audioCtx.createGain();
-      out.gain.value = masterVolume;
+      out.gain.value = masterVolume * (BANK_GAINS[currentBank] ?? 1);
       const bank = SOUND_BANKS[currentBank] || SOUND_BANKS.clic;
-      out.connect(bank.isVoice ? getVoiceMixDestination(audioCtx) : audioCtx.destination);
+      out.connect(bank.isVoice ? getVoiceMixDestination(audioCtx) : getAudioMixDestination(audioCtx));
       bank.play(out, time, type, isFirstOfMeasure, context);
     }
 
@@ -3270,9 +3283,9 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
       }
 
       const out = audioCtx.createGain();
-      out.gain.value = masterVolume;
-      out.connect(audioCtx.destination);
+      out.gain.value = masterVolume * (BANK_GAINS[currentBank] ?? 1);
       const bank = SOUND_BANKS[currentBank];
+      out.connect(bank?.isVoice ? getVoiceMixDestination(audioCtx) : getAudioMixDestination(audioCtx));
       const t = audioCtx.currentTime + 0.02 + (bank?.isVoice ? VOICE_MAX_ATTACK_SECONDS : 0);
 
       if (bank && bank.isVoice) {
@@ -3501,7 +3514,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
   })();
   </script>
   <script src="training-modes.js?v=20261008-keyboard-done"></script>
-  <script src="compact-controls.js?v=20261008-fullscreen"></script>
+  <script src="compact-controls.js?v=20261008-count-in-performance"></script>
   <script src="navigation-history.js?v=20261008-semantic-back"></script>
 </body>
 </html>
