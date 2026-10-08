@@ -1,6 +1,6 @@
 .song-tabs { display:flex; gap:6px; margin-bottom:12px; }
 .song-tabs button { flex:1; padding:9px 4px; background:var(--grey); border:1px solid var(--border); border-radius:5px; color:var(--text); cursor:pointer; }
-.song-tabs button[aria-selected="true"] { background:var(--orange); color:#111; font-weight:700; }
+.song-tabs button[aria-selected="true"] { background:rgba(0,229,255,.08); color:var(--text); border-color:rgba(0,229,255,.55); box-shadow:0 0 0 1px rgba(0,229,255,.08) inset; font-weight:700; }
 #songPane[hidden], #profilePane[hidden], #sequencePane[hidden] { display:none; }
 :is(#songPane,#profilePane) { font-size:11px; min-width:0; }
 :is(#songPane,#profilePane) label { display:block; color:var(--text-muted); margin:8px 0; }
