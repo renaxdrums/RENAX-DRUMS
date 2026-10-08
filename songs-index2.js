@@ -99,7 +99,7 @@
     const cards=songPane.querySelectorAll('.song-section,.song-count-in');
     if(!loaded){cards.forEach(card=>card.classList.remove('active','playing'));return;}
     const position=locate(activeMeasureIndex);if(!position)return;
-    cards.forEach((card,index)=>{card.classList.toggle('playing',isPlaying&&(card.dataset.sectionId||card.dataset.countInId)===position.section.id);card.classList.toggle('active',(card.dataset.sectionId||card.dataset.countInId)===position.section.id);});refreshSongCards();
+    cards.forEach((card,index)=>{card.classList.toggle('playing',isPlaying&&(card.dataset.sectionId||card.dataset.countInId)===position.section.id);card.classList.toggle('active',(card.dataset.sectionId||card.dataset.countInId)===position.section.id);});
   }
 
   const originalRender=renderSequencerList;renderSequencerList=function(){if(!loaded)return originalRender();measureListEl.replaceChildren();el('p','Morceau chargé : '+loaded.song.name,measureListEl,'song-note');};
@@ -126,20 +126,23 @@
       const section=current.sections.find(s=>s.id===card.dataset.sectionId);if(!section)return;
       card.querySelector('.measure-sig').textContent=section.measure.numerator+'/'+section.measure.denominator;
       card.querySelector('.song-block-summary').firstChild.textContent=section.count+' mesures · '+section.measure.numerator+'/'+section.measure.denominator+' · '+section.measure.tempo+' BPM';
-      const preview=card.querySelector('.measure-preview');preview.replaceChildren();
-      for(const states of section.measure.beatStates){const group=el('div',undefined,preview,'preview-beat');for(const state of states)el('span',undefined,group,'preview-dot').dataset.state=state;}
-      const bpm=card.querySelector('select[aria-label="Tempo (BPM)"]');if(document.activeElement!==bpm){if(![...bpm.options].some(o=>Number(o.value)===section.measure.tempo)){const option=el('option',String(section.measure.tempo),bpm);option.value=section.measure.tempo;numboxWidgets.get(bpm)?.rebuild();}bpm.value=section.measure.tempo;syncNumbox(bpm);bpm.closest('.numbox-custom').querySelector('.numbox-button').setAttribute('aria-label','Tempo (BPM) : '+section.measure.tempo);}
+      const preview=card.querySelector('.measure-preview'),previewKey=JSON.stringify(section.measure.beatStates);
+      if(preview.dataset.pattern!==previewKey){preview.dataset.pattern=previewKey;preview.replaceChildren();
+        for(const states of section.measure.beatStates){const group=el('div',undefined,preview,'preview-beat');for(const state of states)el('span',undefined,group,'preview-dot').dataset.state=state;}
+      }
+      const bpm=card.querySelector('select[aria-label="Tempo (BPM)"]');if(document.activeElement!==bpm&&Number(bpm.value)!==section.measure.tempo){if(![...bpm.options].some(o=>Number(o.value)===section.measure.tempo)){const option=el('option',String(section.measure.tempo),bpm);option.value=section.measure.tempo;numboxWidgets.get(bpm)?.rebuild();}bpm.value=section.measure.tempo;syncNumbox(bpm);bpm.closest('.numbox-custom').querySelector('.numbox-button').setAttribute('aria-label','Tempo (BPM) : '+section.measure.tempo);}
     });
   }
   document.addEventListener('input',e=>{if(loaded&&e.target.matches('#bpmSlider,.measure-tempo-input'))queueMicrotask(()=>{saveLoadedPattern();refreshSongCards();});});
   function saveLoadedPattern(){
-    if(!loaded)return;
+    if(!loaded)return false;
     const source=profile().songs.find(s=>s.id===loaded.song.id),position=locate(activeMeasureIndex);
     const section=source?.sections.find(s=>s.id===position?.section.id);
-    if(section&&JSON.stringify(section.measure)!==JSON.stringify(position.section.measure)){section.measure=clone(position.section.measure);persist();}
+    if(section&&JSON.stringify(section.measure)!==JSON.stringify(position.section.measure)){section.measure=clone(position.section.measure);persist();return true;}
+    return false;
   }
   const originalPreviews=refreshMeasurePreviews;refreshMeasurePreviews=function(){originalPreviews();saveLoadedPattern();refreshSongCards();};
-  const originalActive=renderActiveMeasure;renderActiveMeasure=function(){originalActive();saveLoadedPattern();updatePosition();};
+  const originalActive=renderActiveMeasure;renderActiveMeasure=function(){originalActive();if(saveLoadedPattern())refreshSongCards();updatePosition();};
   let suppressSongClickUntil=0;
   songPane.addEventListener('click',e=>{if(performance.now()<suppressSongClickUntil){e.preventDefault();e.stopImmediatePropagation();}},true);
   function enableSongDrag(row,item,p,isBlock=false){
@@ -324,9 +327,10 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
         card.addEventListener('click',e=>{if(!e.target.closest('input,select,button,label')){if(openSectionId===section.id)setSectionOpen(null);else choose(false);}});card.addEventListener('keydown',e=>{if(e.target===card&&(e.key==='Enter'||e.key===' ')){e.preventDefault();choose();}});
         const label=field('Libellé',body,section.label,value=>{section.label=value.trim()||'Section '+(i+1);changed();});label.setAttribute('list','songLabels');label.addEventListener('input',()=>{title.textContent=label.value.trim()||'Bloc '+(i+1);});
         const fields=el('div',undefined,body,'song-block-controls');const count=songNumbox('Mesures',fields,section.count,(value,input)=>{const n=Number(value);if(!Number.isSafeInteger(n)||n<1){input.value=section.count;return;}const total=s.sections.reduce((n,x)=>n+(x===section?0:x.count),0)+n;if(!Number.isSafeInteger(total)){input.value=section.count;return;}section.count=n;changed();},Array.from({length:64},(_,i)=>i+1));
-        const bpm=songNumbox('Tempo (BPM)',fields,section.measure.tempo,(v,input)=>{const n=Number(v);if(!Number.isFinite(n)||n<20||n>300){input.value=section.measure.tempo;return;}section.measure.tempo=n;changed();},Array.from({length:281},(_,i)=>i+20));const bpmRow=bpm.closest('label');bpmRow.firstChild.textContent='Tempo';el('span','BPM',bpmRow,'measure-tempo-unit');
+        const bpm=songNumbox('Tempo (BPM)',fields,section.measure.tempo,(v,input)=>{const n=Number(v);if(!Number.isFinite(n)||n<20||n>300){input.value=section.measure.tempo;return;}if(section.measure.tempo===n){input.value=String(n);return;}section.measure.tempo=n;unload();resetCustomizationTimer();persist();refreshSongCards();selectOpenBlock();syncSongTransport();},Array.from({length:281},(_,i)=>i+20));const bpmRow=bpm.closest('label');bpmRow.firstChild.textContent='Tempo';el('span','BPM',bpmRow,'measure-tempo-unit');
         const preview=el('div',undefined,body,'measure-preview');
         for(let b=0;b<section.measure.numerator;b++){const group=el('div',undefined,preview,'preview-beat');for(const state of section.measure.beatStates[b])el('span',undefined,group,'preview-dot').dataset.state=state;}
+        preview.dataset.pattern=JSON.stringify(section.measure.beatStates);
         const controls=el('div',undefined,summary,'song-more-wrap');
         Object.assign(controls.style,{position:'relative',float:'right',top:'auto',bottom:'auto',right:'auto',marginLeft:'8px'});
         const trigger=button('⋯',controls,()=>{const opening=menu.hidden;songPane.querySelectorAll('.song-more-menu').forEach(other=>other.hidden=true);songPane.querySelectorAll('.song-more').forEach(other=>other.setAttribute('aria-expanded','false'));menu.hidden=!opening;trigger.setAttribute('aria-expanded',String(opening));});
