@@ -222,7 +222,18 @@ function renderPanel(){
   }
 }
 // Install account UI after songs.js rebuilds its panes; keep local profiles/import/export.
-new MutationObserver(()=>{if(!document.getElementById('backupAccount'))renderPanel();}).observe(document.getElementById('profilePane'),{childList:true});
+const backupPane=document.getElementById('profilePane');
+let backupVisible=!backupPane.hidden&&!backupPane.parentElement.hidden;
+const backupNavigationObserver=new MutationObserver(()=>{
+  const visible=!backupPane.hidden&&!backupPane.parentElement.hidden;
+  if(visible!==backupVisible){
+    backupVisible=visible;
+    backupView='';
+    renderPanel();
+  }else if(!document.getElementById('backupAccount'))renderPanel();
+});
+backupNavigationObserver.observe(backupPane,{childList:true,attributes:true,attributeFilter:['hidden']});
+backupNavigationObserver.observe(backupPane.parentElement,{attributes:true,attributeFilter:['hidden']});
 window.addEventListener('renax-storage',()=>{renderPanel();});
 window.addEventListener('renax-other-tab',()=>say('Conflit local à résoudre','Un autre onglet a modifié cette bibliothèque. Exportez votre copie puis rechargez pour récupérer l’autre version.'));
 window.addEventListener('online',queue);window.addEventListener('offline',()=>{if(account)say('Hors connexion');});
