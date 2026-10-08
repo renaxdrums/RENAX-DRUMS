@@ -112,7 +112,7 @@
     songPane.querySelectorAll('[data-section-id]').forEach(card=>{
       const section=current.sections.find(s=>s.id===card.dataset.sectionId);if(!section)return;
       card.querySelector('.measure-sig').textContent=section.measure.numerator+'/'+section.measure.denominator;
-      card.querySelector('.song-block-summary').textContent=section.count+' mesures · '+section.measure.numerator+'/'+section.measure.denominator+' · '+section.measure.tempo+' BPM';
+      card.querySelector('.song-block-summary').firstChild.textContent=section.count+' mesures · '+section.measure.numerator+'/'+section.measure.denominator+' · '+section.measure.tempo+' BPM';
       const preview=card.querySelector('.measure-preview');preview.replaceChildren();
       for(const states of section.measure.beatStates){const group=el('div',undefined,preview,'preview-beat');for(const state of states)el('span',undefined,group,'preview-dot').dataset.state=state;}
       const bpm=card.querySelector('select[aria-label="Tempo (BPM)"]');if(document.activeElement!==bpm){if(![...bpm.options].some(o=>Number(o.value)===section.measure.tempo)){const option=el('option',String(section.measure.tempo),bpm);option.value=section.measure.tempo;numboxWidgets.get(bpm)?.rebuild();}bpm.value=section.measure.tempo;syncNumbox(bpm);bpm.closest('.numbox-custom').querySelector('.numbox-button').setAttribute('aria-label','Tempo (BPM) : '+section.measure.tempo);}
@@ -259,7 +259,7 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
     }
     if(s){
       if(openSectionId!==null&&!s.sections.some(section=>section.id===openSectionId))openSectionId=s.sections[0].id;
-      button('Dupliquer',actions,()=>{const copy=clone(s);copy.id=id();copy.name+=' (copie)';p.songs.push(copy);selectedSong=copy.id;changed();});button('Supprimer',actions,()=>{if(!confirm('Supprimer « '+s.name+' » ?'))return;unload();p.songs=p.songs.filter(x=>x!==s);selectedSong=null;persist();render();});
+      button('Dupliquer',actions,()=>{const copy=clone(s);copy.id=id();copy.name+=' (copie)';p.songs.push(copy);selectedSong=copy.id;changed();});
       field('Titre du morceau',songPane,s.name,value=>{s.name=value.trim()||'Sans titre';changed();});
       el('p','Sélectionne un bloc pour le régler dans le métronome.',songPane,'song-note');
       el('p',s.sections.reduce((n,s)=>n+s.count,0)+' mesures · arrêt à la fin du morceau',songPane,'song-note');
@@ -278,9 +278,16 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
         const bpm=songNumbox('Tempo (BPM)',fields,section.measure.tempo,(v,input)=>{const n=Number(v);if(!Number.isFinite(n)||n<20||n>300){input.value=section.measure.tempo;return;}section.measure.tempo=n;changed();},Array.from({length:281},(_,i)=>i+20));const bpmRow=bpm.closest('label');bpmRow.firstChild.textContent='Tempo';el('span','BPM',bpmRow,'measure-tempo-unit');
         const preview=el('div',undefined,body,'measure-preview');
         for(let b=0;b<section.measure.numerator;b++){const group=el('div',undefined,preview,'preview-beat');for(const state of section.measure.beatStates[b])el('span',undefined,group,'preview-dot').dataset.state=state;}
-        const controls=el('div',undefined,body,'song-actions');
-        button('Dupliquer le bloc',controls,()=>{const copy=clone(section);copy.id=id();s.sections.splice(i+1,0,copy);openSectionId=copy.id;changed();});
-        if(s.sections.length>1)button('Supprimer',controls,()=>{s.sections.splice(i,1);changed();});
+        const controls=el('div',undefined,summary,'song-more-wrap');
+        Object.assign(controls.style,{position:'relative',float:'right',top:'auto',bottom:'auto',right:'auto',marginLeft:'8px'});
+        const trigger=button('⋯',controls,()=>{const opening=menu.hidden;songPane.querySelectorAll('.song-more-menu').forEach(other=>other.hidden=true);songPane.querySelectorAll('.song-more').forEach(other=>other.setAttribute('aria-expanded','false'));menu.hidden=!opening;trigger.setAttribute('aria-expanded',String(opening));});
+        trigger.className='song-more';trigger.setAttribute('aria-label','Actions du bloc '+(section.label||i+1));trigger.setAttribute('aria-haspopup','menu');trigger.setAttribute('aria-expanded','false');
+        const menu=el('div',undefined,controls,'song-more-menu');menu.hidden=true;menu.setAttribute('role','menu');menu.style.top='36px';menu.style.bottom='auto';
+        const action=(name,fn)=>{const b=button(name,menu,()=>{menu.hidden=true;trigger.setAttribute('aria-expanded','false');fn();});b.setAttribute('role','menuitem');return b;};
+        action('Dupliquer',()=>{const copy=clone(section);copy.id=id();s.sections.splice(i+1,0,copy);openSectionId=copy.id;changed();});
+        const remove=action('Supprimer',()=>{if(s.sections.length<=1)return;s.sections.splice(i,1);changed();});remove.disabled=s.sections.length<=1;
+        controls.addEventListener('click',e=>e.stopPropagation());
+        controls.addEventListener('keydown',e=>{if(e.key==='Escape'){e.stopPropagation();menu.hidden=true;trigger.setAttribute('aria-expanded','false');trigger.focus();}});
       });button('+ Ajouter une section',songPane,()=>{const section=blankSection();s.sections.push(section);openSectionId=section.id;changed();});
     }
     const labels=el('datalist',undefined,songPane);labels.id='songLabels';for(const name of ['Intro','Couplet 1','Couplet 2','Refrain 1','Refrain 2','Bridge','Solo','Outro'])el('option',name,labels).value=name;
@@ -296,6 +303,16 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
   render();
   window.RENAX_SONGS={validateLibrary,loadSong,unload,locate,
     replaceLibrary(value){validateLibrary(value);unload();library=clone(value);selectedSong=null;openSectionId=null;songView='home';render();},
+    get navigation(){return {pane:songsRoot.hidden?'sequence':'songs',view:songView,song:selectedSong,profile:library.activeProfile};},
+    restoreNavigation(state){
+      const target=library.profiles.find(p=>p.id===state.profile)||profile();
+      const targetSong=target.songs.find(s=>s.id===state.song);
+      if(library.activeProfile!==target.id||selectedSong!==(targetSong?.id||null)||songView!==state.view)unload();
+      library.activeProfile=target.id;selectedSong=targetSong?.id||null;
+      songView=['home','profile','playlists','playlist','detail'].includes(state.view)?state.view:'home';
+      if(songView==='detail'&&!targetSong)songView='playlist';
+      openSectionId=targetSong?.sections[0]?.id||null;render();tab(state.pane==='songs'?'songs':'sequence');
+    },
     get library(){return library;},get loaded(){return loaded;}};
   try{RENAX_STORAGE.write(library);}catch{status('Sauvegarde locale impossible : exporte ta bibliothèque.');}
 })();
