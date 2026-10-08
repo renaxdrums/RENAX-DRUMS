@@ -958,7 +958,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
 }
 
   </style>
-  <link rel="stylesheet" href="songs.css?v=20261008-cyan-tabs">
+  <link rel="stylesheet" href="songs.css?v=20261008-count-in">
   <link rel="stylesheet" href="mp3-export.css?v=20261008-export-spacing">
   <link rel="stylesheet" href="backup-index2.css?v=20261007-account-options">
   <style>
@@ -1884,6 +1884,18 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
       return mixer;
     }
 
+    // Dedicated short, pitched percussion; independent of the selected bank.
+    function playCountIn(time,accent) {
+      const oscillator=audioCtx.createOscillator(),gain=audioCtx.createGain();
+      oscillator.type='triangle';oscillator.frequency.setValueAtTime(accent?1800:1200,time);
+      oscillator.frequency.exponentialRampToValueAtTime(accent?650:450,time+.065);
+      gain.gain.setValueAtTime(Math.max(.0001,masterVolume*.85),time);
+      gain.gain.exponentialRampToValueAtTime(.0001,time+.09);
+      oscillator.connect(gain);gain.connect(audioCtx.destination);
+      scheduledVoiceSources.add(oscillator);oscillator.onended=()=>{scheduledVoiceSources.delete(oscillator);oscillator.disconnect();gain.disconnect();};
+      oscillator.start(time);oscillator.stop(time+.1);
+    }
+
     function playClick(type, time, isFirstOfMeasure, context = {}) {
       if (!audioCtx) return;
       const out = audioCtx.createGain();
@@ -2723,7 +2735,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
         const beatDurationSec = getStepDurationMs(effectiveTempo, m.denominator, 1) / 1000;
         const voiceGroupSize = getVoiceGroupSize(m);
         if (state > 0 && isSilentCycleAudible()) {
-          playClick(state, nextNoteTime, isFirst, {
+          if(model.countIn)playCountIn(nextNoteTime,isFirst);else playClick(state, nextNoteTime, isFirst, {
             mode: 'metronome',
             beatNumber: beat % voiceGroupSize === 0 ? Math.floor(beat / voiceGroupSize) + 1 : 0,
             subIndex,
@@ -3417,7 +3429,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
     prepareAllVoiceAudio().catch(() => {});
   </script>
   <script src="local-backup.js?v=20261008-auto-sync"></script>
-  <script src="songs-index2.js?v=20261008-auto-sync"></script>
+  <script src="songs-index2.js?v=20261008-optional-count-in"></script>
   <script type="module" src="cloud-backup.js?v=20261008-auto-sync"></script>
   <script>
     // Index 2 : ouvrir les morceaux de la playlist avec les sections repliées.
