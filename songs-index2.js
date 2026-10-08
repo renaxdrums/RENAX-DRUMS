@@ -206,6 +206,7 @@
     action('Dupliquer',()=>{duplicateSongTo(item,p,true);persist();render();});
     action('Déplacer vers…',()=>choosePlaylist(item,'move'));
     action('Copier vers…',()=>choosePlaylist(item,'copy'));
+    action('Supprimer',()=>{if(!confirm('Supprimer « '+item.name+' » ?'))return;unload();p.songs=p.songs.filter(song=>song!==item);if(selectedSong===item.id)selectedSong=null;persist();render();});
     wrap.addEventListener('click',e=>e.stopPropagation());
     wrap.addEventListener('keydown',e=>{if(e.key==='Escape'){menu.hidden=true;trigger.setAttribute('aria-expanded','false');trigger.focus();}});
   }
