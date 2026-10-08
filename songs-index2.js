@@ -3,6 +3,7 @@
   const KEY='renax-drums-songs-v1';
   const id=()=>crypto.randomUUID();
   const clone=value=>JSON.parse(JSON.stringify(value));
+  const collapsedCountIns=new Set();
   const countInBars=song=>song.countIn?.count||0;
   function playbackSections(song){
     if(!song.countIn)return song.sections;
@@ -294,8 +295,16 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
       const icon=el('span',undefined,addCountIn,'song-count-in-icon');icon.innerHTML='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2h6M12 2v3m6 1 2-2M12 9v5l3 2"/><circle cx="12" cy="14" r="8"/></svg>';icon.setAttribute('aria-hidden','true');addCountIn.prepend(icon);
       if(s.countIn){
         const c=s.countIn,card=el('div',undefined,songPane,'song-count-in measure-card');card.dataset.countInId='count-in:'+s.id;
-        el('div','⏱ Décompte',card,'measure-head');el('p',s.sections[0].measure.tempo+' BPM · tempo du premier bloc',card,'song-count-in-tempo');
-        const fields=el('div',undefined,card,'song-block-controls');
+        const head=el('button','⏱ Décompte',card,'measure-head song-block-header');head.type='button';
+        el('p',c.count+' mesures · '+c.numerator+'/'+c.denominator,card,'song-count-in-summary');
+        el('p',s.sections[0].measure.tempo+' BPM · tempo du premier bloc',card,'song-count-in-tempo');
+        const body=el('div',undefined,card,'song-count-in-body');body.id='song-count-in-'+s.id;head.setAttribute('aria-controls',body.id);
+        const updateExpanded=()=>{const expanded=!collapsedCountIns.has(s.id);body.style.display=expanded?'':'none';head.setAttribute('aria-expanded',String(expanded));};
+        const toggle=()=>{if(collapsedCountIns.has(s.id))collapsedCountIns.delete(s.id);else collapsedCountIns.add(s.id);updateExpanded();};
+        head.addEventListener('click',e=>{e.stopPropagation();toggle();});
+        card.addEventListener('click',e=>{if(!e.target.closest('input,select,button,label,.numbox-custom,.song-more-wrap'))toggle();});
+        updateExpanded();
+        const fields=el('div',undefined,body,'song-block-controls');
         songNumbox('Mesures',fields,c.count,(v,input)=>{const n=Number(v);if(!Number.isSafeInteger(n)||n<1||!Number.isSafeInteger(n+s.sections.reduce((total,x)=>total+x.count,0))){input.value=c.count;return;}c.count=n;changed();},Array.from({length:64},(_,i)=>i+1));
         songNumbox('Temps',fields,c.numerator,(v,input)=>{const n=Number(v);if(!Number.isInteger(n)||n<1||n>20){input.value=c.numerator;return;}c.numerator=n;changed();},Array.from({length:20},(_,i)=>i+1));
         songNumbox('Unité',fields,c.denominator,(v,input)=>{const n=Number(v);if(![2,4,8,16,32].includes(n)){input.value=c.denominator;return;}c.denominator=n;changed();},[2,4,8,16,32]);
