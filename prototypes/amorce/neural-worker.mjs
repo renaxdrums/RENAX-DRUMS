@@ -23,7 +23,7 @@ self.onmessage=({data})=>{queue=queue.then(async()=>{
  try{
   if(!initialized)initialized=initialize('wasm').catch(e=>{initialized=null;throw e;});
   await initialized;
-  const voice='bm_george';
+  const voice=language==='fr'?'ff_siwis':'bm_george';
   if(!voices.has(voice)){
    const response=await fetch(`https://huggingface.co/${modelId}/resolve/${revision}/voices/${voice}.bin`);
    if(!response.ok)throw new Error('NEURAL_VOICE_DOWNLOAD_FAILED');

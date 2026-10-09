@@ -13,8 +13,9 @@ const result=await p.evaluate(async(real)=>{
  await new Promise(r=>setTimeout(r,(plan.duration+.6)*1000));const stopped=!isPlaying,unchanged=JSON.stringify(RENAX_SONGS.library)===JSON.stringify(library);
  const rendered=await RENAX_MP3_EXPORT.isolatedRender(song,'claves',.8);let peak=0;for(const x of rendered.pcm)peak=Math.max(peak,Math.abs(x));
  const encoded=await RENAX_MP3_EXPORT.exportSong(song,'claves',.8);
- return {encodedBytes:encoded.blob.size,encodedPeak:encoded.report.decodedTruePeak,button:!!button,pressed:button.getAttribute('aria-pressed'),countIn:plan.countInMeasures,enabled,stopped,unchanged,midiEqual:midiA.length===midiB.length&&midiA.every((v,i)=>v===midiB[i]),trace,mp3PcmPeak:peak,mp3Score:rendered.score};
+ return {voices:plan.speeches.map(s=>s.voice),realNeural:real,encodedBytes:encoded.blob.size,encodedPeak:encoded.report.decodedTruePeak,button:!!button,pressed:button.getAttribute('aria-pressed'),countIn:plan.countInMeasures,enabled,stopped,unchanged,midiEqual:midiA.length===midiB.length&&midiA.every((v,i)=>v===midiB[i]),trace,mp3PcmPeak:peak,mp3Score:rendered.score};
 },!!process.env.REAL_AMORCE);
+if(process.env.REAL_AMORCE)assert.deepEqual(result.voices,['ff_siwis','bm_george','ff_siwis']);
 assert(result.encodedBytes>1000&&result.encodedPeak<1);
 assert(result.button&&result.pressed==='true'&&result.countIn>=2&&result.enabled&&result.stopped&&result.unchanged&&result.midiEqual);assert(result.trace.some(e=>e.bank==='voiceMale'&&e.beatNumber===2));assert(result.trace.some(e=>e.bank==='claves'));assert(result.mp3PcmPeak>0&&result.mp3PcmPeak<1);assert.deepEqual(errors,[]);fs.writeFileSync('tests/amorce-song-integration-results.json',JSON.stringify({...result,errors},null,2));console.log({...result,trace:result.trace.length});
 }finally{await h.browser.close();h.server.close();closeAssets?.();}})().catch(e=>{console.error(e);process.exitCode=1;});
