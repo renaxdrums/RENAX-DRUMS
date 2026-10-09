@@ -2616,7 +2616,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
       title.textContent = 'Temps ' + (beat+1) + ' · mesure ' + (measureIndex+1);
       const close = document.createElement('button');
       close.textContent = '×'; close.setAttribute('aria-label','Fermer');
-      close.style.cssText='width:32px;height:32px;padding:0;background:transparent;border:0;color:var(--text);font-size:22px;cursor:pointer';
+      close.style.cssText='width:32px;height:32px;padding:0;background:transparent;border:1px solid var(--orange);border-radius:4px;color:var(--orange);font-size:22px;cursor:pointer';
       close.addEventListener('click',closeBeatEditor);
       header.append(title,close); beatEditor.appendChild(header);
       const label = document.createElement('label');
@@ -2653,7 +2653,8 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
         });pads.appendChild(button);
       }
       beatEditor.appendChild(pads);
-      const legend=document.createElement('p');legend.textContent='Éteint · Clic 1 · Clic 2 · Clic 3';legend.style.cssText='font-size:11px;color:var(--text-muted)';beatEditor.appendChild(legend);
+      const legend=document.createElement('p');legend.style.cssText='display:flex;flex-wrap:wrap;gap:8px 12px;font-size:11px;color:var(--text-muted)';
+      ['Éteint','Clic 1','Clic 2','Clic 3'].forEach((text,state)=>{const item=document.createElement('span'),dot=document.createElement('span');item.style.cssText='display:inline-flex;align-items:center;gap:5px';dot.setAttribute('aria-hidden','true');dot.style.cssText='width:9px;height:9px;border-radius:2px;background:'+['var(--grey)','var(--cyan)','var(--yellow)','var(--orange)'][state];item.append(dot,document.createTextNode(text));legend.append(item);});beatEditor.appendChild(legend);
       if(isPlaying){const note=document.createElement('p');note.textContent='Les divisions prennent effet au prochain passage de la mesure.';note.style.cssText='font-size:11px;color:var(--text-muted)';beatEditor.appendChild(note);}
     }
     function highlightBeatEditor(m,beat,subIndex,scheduledSubdivisions) {
