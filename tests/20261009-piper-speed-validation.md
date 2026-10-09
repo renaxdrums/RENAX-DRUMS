@@ -27,11 +27,13 @@ model/runtime files:
 - piper-speed-test.cjs passes for approved phrases, 1, un, Fin, Pré-refrain,
   Couplet 2 : guitare, Bonjour. Refrain, Fin.; finite audio, peak <0.801,
   phoneme timings and persistent-cache retrieval; no page errors.
+- Concurrent language regression passes: atomic eSpeak voice selection keeps
+  simultaneous FR/EN/FR phoneme sequences equal to independent synthesis.
 - Real first-start test passes: suspended audio resumes on first Play before
   preparation; one session starts, Stop/Start works, both 1/un are Piper.
 - Real mobile-viewport integration passes: FR/EN/FR guide voices, two count-in
   measures, automatic stop, unchanged library, MIDI equality, existing click
-  bank behavior. MP3 export: 567,360 bytes; decoded true peak 0.872 (<1).
+  bank behavior. MP3 export: 567,360 bytes; decoded true peak 0.876 (<1).
 - Syntax checks pass for the amended and new modules.
 
 Manual check: reload the published site, play a French Guide Vocal song with

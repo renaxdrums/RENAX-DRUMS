@@ -14,7 +14,7 @@ function collect(text){
 }
 export async function synthesize(text,language='fr'){
  if(typeof text!=='string'||!text.trim())throw new Error('EMPTY_LABEL');
- await prepare(language);
+ await prepare(language);worker.set_voice(language);
  return collect(text);
 }
 
@@ -36,7 +36,7 @@ export async function synthesizePhonemes(phonemes,language='fr'){
 // Piper uses NFD IPA characters, including stress, spaces and punctuation.
 export async function piperInput(text){
  if(typeof text!=='string'||!text.trim())throw new Error('EMPTY_LABEL');
- await prepare('fr');
+ await prepare('fr');worker.set_voice('fr');
  const reference=collect(text),pointer=worker.convert_to_phonemes(text,true).ptr;
  let end=pointer;while(module.HEAPU8[end])end++;
  const punctuation=Array.from(text.matchAll(/[,.!?;:]+/gu),m=>m[0]);let clause=0;
