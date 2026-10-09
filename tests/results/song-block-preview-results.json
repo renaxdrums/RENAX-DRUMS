@@ -1,0 +1,108 @@
+{
+  "preview": {
+    "clicks": [
+      {
+        "state": 3,
+        "time": 0.5811564625850341,
+        "bar": 0,
+        "beat": 1,
+        "sub": 0,
+        "section": "b"
+      },
+      {
+        "state": 2,
+        "time": 0.6811564625850342,
+        "bar": 0,
+        "beat": 2,
+        "sub": 0,
+        "section": "b"
+      },
+      {
+        "state": 1,
+        "time": 0.7811564625850341,
+        "bar": 0,
+        "beat": 3,
+        "sub": 0,
+        "section": "b"
+      },
+      {
+        "state": 1,
+        "time": 0.8144897959183675,
+        "bar": 0,
+        "beat": 3,
+        "sub": 1,
+        "section": "b"
+      },
+      {
+        "state": 1,
+        "time": 0.8478231292517008,
+        "bar": 0,
+        "beat": 3,
+        "sub": 2,
+        "section": "b"
+      },
+      {
+        "state": 3,
+        "time": 0.8811564625850341,
+        "bar": 1,
+        "beat": 1,
+        "sub": 0,
+        "section": "b"
+      },
+      {
+        "state": 2,
+        "time": 0.9811564625850342,
+        "bar": 1,
+        "beat": 2,
+        "sub": 0,
+        "section": "b"
+      },
+      {
+        "state": 1,
+        "time": 1.0811564625850343,
+        "bar": 1,
+        "beat": 3,
+        "sub": 0,
+        "section": "b"
+      },
+      {
+        "state": 1,
+        "time": 1.1144897959183677,
+        "bar": 1,
+        "beat": 3,
+        "sub": 1,
+        "section": "b"
+      },
+      {
+        "state": 1,
+        "time": 1.1478231292517012,
+        "bar": 1,
+        "beat": 3,
+        "sub": 2,
+        "section": "b"
+      }
+    ],
+    "counts": [],
+    "preserved": true
+  },
+  "whole": {
+    "sections": [
+      "a",
+      "b",
+      "c"
+    ],
+    "countIn": 2,
+    "clicks": 16,
+    "preserved": true
+  },
+  "manualStop": true,
+  "switchBlock": true,
+  "alignment": {
+    "rightDifference": 0,
+    "tempoUnits": 0,
+    "playButtons": 1
+  },
+  "duplicateButtonRemoved": true,
+  "duplicateMenuWorks": true,
+  "errors": []
+}
