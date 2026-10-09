@@ -8,13 +8,13 @@ const {start}=require('./audio-harness.cjs');
    const buffer=VOICE_METRONOME_BUFFERS.male[String(number)],samples=buffer.getChannelData(0),onset=samples.findIndex(v=>Math.abs(v)>1e-5)/buffer.sampleRate;
    const beat=60/bpm,target=.3+(number-1)*beat,length=Math.ceil((target+buffer.duration+1)*48000);
    audioCtx=new OfflineAudioContext(1,length,48000);masterVolume=1;currentBank='voiceMale';
-   playClick(2,target+VOICE_ATTACK_SECONDS.male[number]-onset,false,{beatNumber:number,subIndex:0,beatDurationSec:beat});
+   playClick(2,target,false,{beatNumber:number,subIndex:0,beatDurationSec:beat});
    const rendered=(await audioCtx.startRendering()).getChannelData(0);
    const actual=rendered.findIndex(v=>Math.abs(v)>1e-5*.25*.82)/48000;
    const origin=new OfflineAudioContext(1,Math.ceil((buffer.duration+1)*48000),48000),src=origin.createBufferSource();src.buffer=buffer;src.connect(origin.destination);src.start(0);
    const ref=(await origin.startRendering()).getChannelData(0),referenceOnset=ref.findIndex(v=>Math.abs(v)>1e-5)/48000;
-   const errorMs=(actual-(target-onset+referenceOnset))*1000;
-   results.push({bpm,number,target,firstSampleOnset:onset,errorMs,oscillatorCalls,scope:'Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator.'});
+   const errorMs=(actual-(target-VOICE_ATTACK_SECONDS.male[number]+referenceOnset))*1000;
+   results.push({bpm,number,target,firstSampleOnset:onset,attackAnchor:VOICE_ATTACK_SECONDS.male[number],errorMs,oscillatorCalls,scope:'Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator.'});
   }
   return results;
  });

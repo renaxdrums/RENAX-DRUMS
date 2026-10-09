@@ -6,7 +6,7 @@
 
 Kokoro-82M synthétise localement les libellés libres : Siwis (ff_siwis) en FR, George (bm_george) en EN. eSpeak NG sert seulement à la phonémisation ; sa voix robotique n'est plus jouée. Les événements sont repositionnés à partir des durées prédites par Kokoro, sans réutiliser les timings du son eSpeak.
 
-FR par défaut ; première sélection de langue commune puis modifications locales. Au moins deux mesures de décompte, premier bloc annoncé dans la dernière. L'annonce remplace one. Les enregistrements masculins anglais originaux comptent les temps suivants sans clic principal superposé ; les subdivisions restent entre les temps. La banque choisie reprend au début du bloc. L'adaptation audio reste dans l'iframe du prototype : moteur principal et samples inchangés.
+FR par défaut ; première sélection de langue commune puis modifications locales. Au moins deux mesures de décompte, premier bloc annoncé dans la dernière. L'annonce remplace one. Les enregistrements masculins anglais originaux comptent les temps suivants avec les repères d’attaque préexistants du métronome (two 175 ms, three 262 ms, four 143 ms de prélecture), sans clic principal superposé ; les subdivisions restent entre les temps. La banque choisie reprend au début du bloc. L'adaptation audio reste dans l'iframe du prototype : moteur principal et samples inchangés.
 
 **Le début acoustique réel de la dernière syllabe reste non certifié et son erreur réelle non mesurée.** Les repères prédits ne sont pas une annotation acoustique indépendante ; le dernier mot n'est pas utilisé comme substitut.
 
@@ -17,7 +17,7 @@ FR par défaut ; première sélection de langue commune puis modifications local
 | Six synthèses neuronales FR/EN personnalisées | PCM fini, pic 0,7015051, zéro saturation | Exécution CPU native |
 | Synthèse WASM Chromium | Trois annonces avec Siwis et George | Dépendances externes servies par miroir local |
 | Huit mixages de trois blocs à 48 kHz | 60/120 BPM ; 3/4, 4/4, 5/4, 7/8 ; subdivisions 4 ; zéro saturation ; pic 0,3706495 | Banques claves/cloche/voiceFemale |
-| Quinze rendus de two/three/four | 40/60/120/240/320 BPM ; erreur maximale de transport 0,01205 ms ; aucun oscillateur de clic principal | Début du sample détecté au seuil 1e-5, pas attaque perceptive certifiée |
+| Quinze rendus de two/three/four | 40/60/120/240/320 BPM ; erreur maximale de transport 0,01205 ms ; aucun oscillateur de clic principal | Transport du sample avec avance du repère d’attaque existant ; pas nouvelle certification perceptive |
 | Page mobile 390 px | Langue commune puis locale, Stop préparation/lecture, relance, aucun débordement horizontal ou erreur JS | Chromium, pas compatibilité universelle |
 
 Preuves : neural-results.json, count-onset-results.json, page-results.json. Tests : tests/amorce-neural-test.mjs, tests/amorce-count-onset-test.cjs, tests/amorce-page-test.cjs. tests/amorce-neural-route.cjs fournit uniquement le miroir de test et n'est pas chargé en production.

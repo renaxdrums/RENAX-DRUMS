@@ -3,7 +3,7 @@ import {lastSyllableCandidate} from './syllables.mjs';
 import {languageState} from './planner.mjs';
 import {renderSequence} from './sequence-render.mjs?v=20261009-neural';
 import {isolatedPlayback} from './sequence.mjs';
-import {createAudioAdapter} from './audio-adapter.mjs';
+import {createAudioAdapter} from './audio-adapter.mjs?v=20261009-count-attacks';
 const $=id=>document.getElementById(id),languages=languageState(3);
 const labels=['Introduction','Couplet personnalisé','Refrain final'];
 for(let i=0;i<3;i++){
