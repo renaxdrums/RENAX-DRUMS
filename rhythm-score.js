@@ -1,11 +1,11 @@
 /* Read-only Bravura view. Audio, transport, score data and exports stay owned by
    their existing engines. VexFlow is loaded only on the first score request. */
 (()=>{
- const panel=document.querySelector('.panel-visu'),wrapper=panel.querySelector('.sequencer-wrapper'),button=document.getElementById('scoreToggle');
+ const panel=document.querySelector('.panel-visu'),wrapper=panel.querySelector('.sequencer-wrapper'),metronomeButton=document.getElementById('scoreMetronomeBtn'),partitionButton=document.getElementById('scorePartitionBtn');
  const host=document.createElement('div');host.className='rhythm-score';host.id='rhythmScore';host.setAttribute('role','img');host.setAttribute('aria-label','Partition rythmique, police Bravura');wrapper.append(host);
  let enabled=false,loading,Flow,core,lastKey='',notes=new Map(),cues=[],active=[],frame=0,redraw=0;
  const status=text=>{host.replaceChildren();const p=document.createElement('div');p.className='rhythm-score-status';p.textContent=text;host.append(p);};
- async function load(){if(!loading)loading=Promise.all([import('./rhythm-score-core.mjs?v=20261009-score'),new Promise((resolve,reject)=>{if(window.Vex)return resolve();const script=document.createElement('script');script.src='vendor/vexflow-bravura-4.2.5.js';script.onload=resolve;script.onerror=()=>{script.remove();reject(new Error('Impossible de charger la partition. Réessaie avec l’icône.'));};document.head.append(script);})]).then(([module])=>{core=module;Flow=window.Vex.Flow||window.Vex;Flow.setMusicFont('Bravura');}).catch(error=>{loading=null;throw error;});return loading;}
+ async function load(){if(!loading)loading=Promise.all([import('./rhythm-score-core.mjs?v=20261009-score'),new Promise((resolve,reject)=>{if(window.Vex)return resolve();const script=document.createElement('script');script.src='vendor/vexflow-bravura-4.2.5.js';script.onload=resolve;script.onerror=()=>{script.remove();reject(new Error('Impossible de charger la partition. Réessaie avec Partition.'));};document.head.append(script);})]).then(([module])=>{core=module;Flow=window.Vex.Flow||window.Vex;Flow.setMusicFont('Bravura');}).catch(error=>{loading=null;throw error;});return loading;}
  function clearHeads(){for(const item of active)for(const head of item.heads)head.classList.remove('score-active-head');active=[];}
  function remember(note,key,state){const element=note.getSVGElement();const heads=element?Array.from(element.querySelectorAll('.vf-notehead')):[];notes.set(key,{heads,state});}
  function makeNote(duration,state){const note=new Flow.StaveNote({keys:['b/4'],clef:'percussion',duration:duration+(state?'':'r'),stem_direction:1});return note;}
@@ -50,7 +50,12 @@
  const visual=scheduleVisualUpdate;scheduleVisualUpdate=function(mIdx,sIdx,time,position){const result=visual.apply(this,arguments);const m=measures[mIdx],p=position||getBeatAndSub(m,sIdx);enqueue({measure:mIdx,key:`${p.beat}:${p.subIndex}`,time,end:time+(p.durationMs||getStepDurationMs(getEffectiveTempo(m),m.denominator,m.beatSubdivisions[p.beat]))/1000,audible:isSilentCycleAudible()});return result;};
  const polyVisual=schedulePolyVisualUpdate;schedulePolyVisualUpdate=function(mIdx,event,time){const result=polyVisual.apply(this,arguments),m=measures[mIdx],cycle=m.numerator*60/getEffectiveTempo(m);if(event.outer)enqueue({measure:mIdx,key:`outer:${event.outerIndex}`,time,end:time+cycle/m.numerator,audible:true});if(event.inner)enqueue({measure:mIdx,key:`inner:${event.innerIndex}`,time,end:time+cycle/m.denominator,audible:true});return result;};
  const stop=stopMetronome;stopMetronome=function(...args){const result=stop.apply(this,args);cues=[];clearHeads();cancelAnimationFrame(frame);frame=0;refresh();return result;};
- button.addEventListener('click',async()=>{enabled=!enabled;button.setAttribute('aria-pressed',String(enabled));button.setAttribute('aria-label',enabled?'Afficher le métronome':'Afficher la partition');button.title=button.getAttribute('aria-label');panel.classList.toggle('score-view',enabled);if(!enabled){clearHeads();cancelAnimationFrame(frame);frame=0;return;}status('Chargement de la partition…');try{await load();lastKey='';draw();wake();}catch(error){status(error.message);}});
+ async function setView(next){
+  if(enabled===next&&(!next||Flow))return;enabled=next;partitionButton.setAttribute('aria-pressed',String(enabled));metronomeButton.setAttribute('aria-pressed',String(!enabled));partitionButton.classList.toggle('active',enabled);metronomeButton.classList.toggle('active',!enabled);panel.classList.toggle('score-view',enabled);
+  if(!enabled){clearHeads();cancelAnimationFrame(frame);frame=0;return;}
+  status('Chargement de la partition…');try{await load();if(!enabled)return;lastKey='';draw();wake();}catch(error){if(enabled)status(error.message);}
+ }
+ partitionButton.addEventListener('click',()=>setView(true));metronomeButton.addEventListener('click',()=>setView(false));
  new ResizeObserver(refresh).observe(wrapper);
  window.RENAX_SCORE={get enabled(){return enabled;},refresh,get snapshot(){return {font:'Bravura',notes:notes.size,queued:cues.length,active:active.length};}};
 })();

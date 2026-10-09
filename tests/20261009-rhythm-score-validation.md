@@ -1,9 +1,10 @@
 # Optional Bravura rhythm score view
 
-Scope: add a read-only score view in Visualisation and a permanent icon beside
-Reset. Existing Start/Reset coordinates, circular view, controls, song data,
+Scope: add a read-only score view in Visualisation and two permanent icon buttons directly below
+Métronome / Polyrythmie. Existing Start/Reset coordinates, circular view, controls, song data,
 French Piper guide, English guide, audio engine and exporters are unchanged.
-Only three integration lines are added to index.html; new files own the view.
+The two buttons select circular visualization or the score explicitly.
+Reset has no score icon. New files own the view.
 
 The locally served VexFlow 4.2.5 Bravura-only bundle retains the original font
 outlines. It loads on demand. The current measure is engraved with notes and
@@ -24,15 +25,15 @@ Validation:
   switching during Play, unchanged 250/500 ms scheduled click intervals,
   and unchanged source measures. No page errors.
 - Start and Reset bounding boxes match a page without the new view within
-  1 pixel. Smartphone 390×844, narrow 320×640, landscape 844×390 and desktop
+  1 pixel. Smartphone 390×844, narrow 320×640, tablet 768×1024, landscape 844×390 and desktop
   1440×1000 pass layout checks, including no page overflow and icon visibility.
 - Smartphone and desktop screenshots were visually inspected.
 - Syntax and diff checks pass. Review: draw is cached by rhythm/width; live
   progress changes notehead classes only. No voice or exporter source changed.
 
 Manual test:
-1. Reload; in Visualisation, click the small icon beside Reset. Confirm Bravura
-   notation uses the available width and the original view returns on toggle.
+1. Reload; in Visualisation, click Partition under Métronome / Polyrythmie. Confirm Bravura
+   notation uses the available width and Métronome restores the original circular view.
 2. Enter notes, rests and a triplet. Play: notes turn blue in order and return
    to black; rests stay black. Toggle both ways while playing, then Stop/Reset.
 3. Try multiple measures and a song; confirm the current measure follows
