@@ -1,4 +1,5 @@
 {
+  "separateNumber": true,
   "voices": [
     "ff_siwis",
     "bm_george",
@@ -18,7 +19,7 @@
     {
       "bank": "voiceMale",
       "state": 1,
-      "time": 18.66465306122449,
+      "time": 19.86338321995465,
       "first": false,
       "mode": "metronome",
       "beatNumber": 2,
@@ -28,7 +29,7 @@
     {
       "bank": "voiceMale",
       "state": 1,
-      "time": 19.16465306122449,
+      "time": 20.36338321995465,
       "first": false,
       "mode": "metronome",
       "beatNumber": 3,
@@ -38,7 +39,7 @@
     {
       "bank": "claves",
       "state": 3,
-      "time": 19.66465306122449,
+      "time": 20.86338321995465,
       "first": true,
       "mode": "metronome",
       "beatNumber": 1,
@@ -48,7 +49,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 19.91465306122449,
+      "time": 21.11338321995465,
       "first": false,
       "mode": "metronome",
       "beatNumber": 1,
@@ -58,7 +59,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 20.16465306122449,
+      "time": 21.36338321995465,
       "first": false,
       "mode": "metronome",
       "beatNumber": 2,
@@ -68,7 +69,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 20.41465306122449,
+      "time": 21.61338321995465,
       "first": false,
       "mode": "metronome",
       "beatNumber": 2,
@@ -78,7 +79,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 20.66465306122449,
+      "time": 21.86338321995465,
       "first": false,
       "mode": "metronome",
       "beatNumber": 3,
@@ -88,7 +89,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 20.91465306122449,
+      "time": 22.11338321995465,
       "first": false,
       "mode": "metronome",
       "beatNumber": 3,
@@ -98,7 +99,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 21.41465306122449,
+      "time": 22.61338321995465,
       "first": false,
       "mode": "metronome",
       "beatNumber": 1,
@@ -108,7 +109,7 @@
     {
       "bank": "voiceMale",
       "state": 1,
-      "time": 21.66465306122449,
+      "time": 22.86338321995465,
       "first": false,
       "mode": "metronome",
       "beatNumber": 2,
@@ -118,7 +119,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 21.91465306122449,
+      "time": 23.11338321995465,
       "first": false,
       "mode": "metronome",
       "beatNumber": 2,
@@ -128,7 +129,7 @@
     {
       "bank": "voiceMale",
       "state": 1,
-      "time": 22.16465306122449,
+      "time": 23.36338321995465,
       "first": false,
       "mode": "metronome",
       "beatNumber": 3,
@@ -138,7 +139,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 22.41465306122449,
+      "time": 23.61338321995465,
       "first": false,
       "mode": "metronome",
       "beatNumber": 3,
@@ -148,7 +149,7 @@
     {
       "bank": "claves",
       "state": 3,
-      "time": 22.66465306122449,
+      "time": 23.86338321995465,
       "first": true,
       "mode": "metronome",
       "beatNumber": 1,
@@ -158,7 +159,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 22.964653061224492,
+      "time": 24.16338321995465,
       "first": false,
       "mode": "metronome",
       "beatNumber": 1,
@@ -168,7 +169,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 23.264653061224493,
+      "time": 24.46338321995465,
       "first": false,
       "mode": "metronome",
       "beatNumber": 2,
@@ -178,7 +179,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 23.564653061224494,
+      "time": 24.76338321995465,
       "first": false,
       "mode": "metronome",
       "beatNumber": 2,
@@ -188,7 +189,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 23.864653061224494,
+      "time": 25.063383219954652,
       "first": false,
       "mode": "metronome",
       "beatNumber": 3,
@@ -198,7 +199,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 24.164653061224495,
+      "time": 25.363383219954653,
       "first": false,
       "mode": "metronome",
       "beatNumber": 3,
@@ -208,7 +209,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 24.464653061224496,
+      "time": 25.663383219954653,
       "first": false,
       "mode": "metronome",
       "beatNumber": 4,
@@ -218,7 +219,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 24.764653061224497,
+      "time": 25.963383219954654,
       "first": false,
       "mode": "metronome",
       "beatNumber": 4,
@@ -228,7 +229,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 25.364653061224498,
+      "time": 26.563383219954655,
       "first": false,
       "mode": "metronome",
       "beatNumber": 1,
@@ -238,7 +239,7 @@
     {
       "bank": "voiceMale",
       "state": 1,
-      "time": 25.6646530612245,
+      "time": 26.863383219954656,
       "first": false,
       "mode": "metronome",
       "beatNumber": 2,
@@ -248,7 +249,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 25.9646530612245,
+      "time": 27.163383219954657,
       "first": false,
       "mode": "metronome",
       "beatNumber": 2,
@@ -258,7 +259,7 @@
     {
       "bank": "voiceMale",
       "state": 1,
-      "time": 26.2646530612245,
+      "time": 27.463383219954657,
       "first": false,
       "mode": "metronome",
       "beatNumber": 3,
@@ -268,7 +269,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 26.5646530612245,
+      "time": 27.763383219954658,
       "first": false,
       "mode": "metronome",
       "beatNumber": 3,
@@ -278,7 +279,7 @@
     {
       "bank": "voiceMale",
       "state": 1,
-      "time": 26.8646530612245,
+      "time": 28.06338321995466,
       "first": false,
       "mode": "metronome",
       "beatNumber": 4,
@@ -288,7 +289,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 27.164653061224502,
+      "time": 28.36338321995466,
       "first": false,
       "mode": "metronome",
       "beatNumber": 4,
@@ -298,7 +299,7 @@
     {
       "bank": "claves",
       "state": 3,
-      "time": 27.464653061224503,
+      "time": 28.66338321995466,
       "first": true,
       "mode": "metronome",
       "beatNumber": 1,
@@ -308,7 +309,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 27.714653061224503,
+      "time": 28.91338321995466,
       "first": false,
       "mode": "metronome",
       "beatNumber": 1,
@@ -318,7 +319,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 27.964653061224503,
+      "time": 29.16338321995466,
       "first": false,
       "mode": "metronome",
       "beatNumber": 2,
@@ -328,7 +329,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 28.214653061224503,
+      "time": 29.41338321995466,
       "first": false,
       "mode": "metronome",
       "beatNumber": 2,
@@ -338,7 +339,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 28.464653061224503,
+      "time": 29.66338321995466,
       "first": false,
       "mode": "metronome",
       "beatNumber": 3,
@@ -348,7 +349,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 28.714653061224503,
+      "time": 29.91338321995466,
       "first": false,
       "mode": "metronome",
       "beatNumber": 3,
@@ -358,7 +359,7 @@
     {
       "bank": "claves",
       "state": 3,
-      "time": 28.964653061224503,
+      "time": 30.16338321995466,
       "first": true,
       "mode": "metronome",
       "beatNumber": 1,
@@ -368,7 +369,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 29.214653061224503,
+      "time": 30.41338321995466,
       "first": false,
       "mode": "metronome",
       "beatNumber": 1,
@@ -378,7 +379,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 29.464653061224503,
+      "time": 30.66338321995466,
       "first": false,
       "mode": "metronome",
       "beatNumber": 2,
@@ -388,7 +389,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 29.714653061224503,
+      "time": 30.91338321995466,
       "first": false,
       "mode": "metronome",
       "beatNumber": 2,
@@ -398,7 +399,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 29.964653061224503,
+      "time": 31.16338321995466,
       "first": false,
       "mode": "metronome",
       "beatNumber": 3,
@@ -408,7 +409,7 @@
     {
       "bank": "claves",
       "state": 1,
-      "time": 30.214653061224503,
+      "time": 31.41338321995466,
       "first": false,
       "mode": "metronome",
       "beatNumber": 3,
@@ -435,7 +436,7 @@
         "denominator": 4
       },
       {
-        "label": "Intro libre",
+        "label": "Couplet 1",
         "count": 2,
         "start": 3,
         "barDuration": 1.5,

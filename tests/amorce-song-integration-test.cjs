@@ -5,7 +5,7 @@ await p.route('**/*.mjs*',route=>{const u=new URL(route.request().url());if(u.or
 await p.goto(h.url);await p.waitForFunction(()=>window.RENAX_SONGS&&window.RENAX_AMORCE&&allVoiceAudioReady);
 const result=await p.evaluate(async(real)=>{
  const m=(n,tempo)=>({numerator:n,denominator:4,tempo:real?(tempo===240?100:120):tempo,beatSubdivisions:Array(n).fill(2),beatStates:Array.from({length:n},(_,i)=>[i===0?3:1,1])});
- const song={id:'song-amorce',name:'Amorce test',amorce:true,sections:[{id:'a',label:'Intro libre',count:real?2:1,measure:m(3,300)},{id:'b',label:'Custom chorus',amorceLanguage:'en',count:real?2:1,measure:m(4,240)},{id:'c',label:'Fin',count:real?2:1,measure:m(3,300)}]};
+ const song={id:'song-amorce',name:'Amorce test',amorce:true,sections:[{id:'a',label:'Couplet 1',count:real?2:1,measure:m(3,300)},{id:'b',label:'Custom chorus',amorceLanguage:'en',count:real?2:1,measure:m(4,240)},{id:'c',label:'Fin',count:real?2:1,measure:m(3,300)}]};
  const library={version:1,activeProfile:'test',profiles:[{id:'test',name:'Test',songs:[song]}]};RENAX_SONGS.replaceLibrary(library);RENAX_SONGS.restoreNavigation({pane:'songs',view:'detail',song:song.id,profile:'test'});
  const button=document.getElementById('songAmorceBtn');const plan=await RENAX_AMORCE.prepare(song);
  const midiA=new Uint8Array(await RENAX_MIDI_EXPORT.exportSong({...song,amorce:false}).blob.arrayBuffer()),midiB=new Uint8Array(await RENAX_MIDI_EXPORT.exportSong(song).blob.arrayBuffer());
@@ -13,9 +13,9 @@ const result=await p.evaluate(async(real)=>{
  await new Promise(r=>setTimeout(r,(plan.duration+.6)*1000));const stopped=!isPlaying,unchanged=JSON.stringify(RENAX_SONGS.library)===JSON.stringify(library);
  const rendered=await RENAX_MP3_EXPORT.isolatedRender(song,'claves',.8);let peak=0;for(const x of rendered.pcm)peak=Math.max(peak,Math.abs(x));
  const encoded=await RENAX_MP3_EXPORT.exportSong(song,'claves',.8);
- return {voices:plan.speeches.map(s=>s.voice),realNeural:real,encodedBytes:encoded.blob.size,encodedPeak:encoded.report.decodedTruePeak,button:!!button,pressed:button.getAttribute('aria-pressed'),countIn:plan.countInMeasures,enabled,stopped,unchanged,midiEqual:midiA.length===midiB.length&&midiA.every((v,i)=>v===midiB[i]),trace,mp3PcmPeak:peak,mp3Score:rendered.score};
+ return {separateNumber:!!plan.speeches[0].separateNumber,voices:plan.speeches.map(s=>s.voice),realNeural:real,encodedBytes:encoded.blob.size,encodedPeak:encoded.report.decodedTruePeak,button:!!button,pressed:button.getAttribute('aria-pressed'),countIn:plan.countInMeasures,enabled,stopped,unchanged,midiEqual:midiA.length===midiB.length&&midiA.every((v,i)=>v===midiB[i]),trace,mp3PcmPeak:peak,mp3Score:rendered.score};
 },!!process.env.REAL_AMORCE);
-if(process.env.REAL_AMORCE)assert.deepEqual(result.voices,['ff_siwis','bm_george','ff_siwis']);
+if(process.env.REAL_AMORCE){assert.deepEqual(result.voices,['ff_siwis','bm_george','ff_siwis']);assert(result.separateNumber);}
 assert(result.encodedBytes>1000&&result.encodedPeak<1);
 assert(result.button&&result.pressed==='true'&&result.countIn>=2&&result.enabled&&result.stopped&&result.unchanged&&result.midiEqual);assert(result.trace.some(e=>e.bank==='voiceMale'&&e.beatNumber===2));assert(result.trace.some(e=>e.bank==='claves'));assert(result.mp3PcmPeak>0&&result.mp3PcmPeak<1);assert.deepEqual(errors,[]);fs.writeFileSync('tests/amorce-song-integration-results.json',JSON.stringify({...result,errors},null,2));console.log({...result,trace:result.trace.length});
 }finally{await h.browser.close();h.server.close();closeAssets?.();}})().catch(e=>{console.error(e);process.exitCode=1;});

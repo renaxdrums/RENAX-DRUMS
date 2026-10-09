@@ -1,0 +1,165 @@
+[
+  {
+    "text": "Solo",
+    "language": "fr",
+    "voice": "ff_siwis",
+    "lufs": -20,
+    "level": {
+      "gain": 0.7754884040733043,
+      "loudnessBefore": -17.791506163311535,
+      "loudnessAfter": -20.00000000444606,
+      "targetLufs": -20,
+      "peakAfter": 0.5018400179453056,
+      "peakLimited": false
+    },
+    "anchor": {
+      "anchorSeconds": 0.6395731091499328,
+      "onsetPhone": "l",
+      "nucleusPhone": "ˈo",
+      "phones": [
+        "l",
+        "ˈo"
+      ],
+      "method": "phonotactic-candidate",
+      "anchorVerified": false,
+      "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+    },
+    "separateNumber": false
+  },
+  {
+    "text": "Introduction",
+    "language": "fr",
+    "voice": "ff_siwis",
+    "lufs": -20,
+    "level": {
+      "gain": 0.8330154564900089,
+      "loudnessBefore": -18.413061195147606,
+      "loudnessAfter": -20.00000000453295,
+      "targetLufs": -20,
+      "peakAfter": 0.48694660240329657,
+      "peakLimited": false
+    },
+    "anchor": {
+      "anchorSeconds": 0.9612311661243439,
+      "onsetPhone": "s",
+      "nucleusPhone": "ˈɔ̃",
+      "phones": [
+        "s",
+        "j",
+        "ˈɔ̃"
+      ],
+      "method": "phonotactic-candidate",
+      "anchorVerified": false,
+      "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+    },
+    "separateNumber": false
+  },
+  {
+    "text": "Chorus",
+    "language": "en",
+    "voice": "bm_george",
+    "lufs": -20,
+    "level": {
+      "gain": 0.994171322423832,
+      "loudnessBefore": -19.94922462903261,
+      "loudnessAfter": -20.00000000576672,
+      "targetLufs": -20,
+      "peakAfter": 0.5576044761260374,
+      "peakLimited": false
+    },
+    "anchor": {
+      "anchorSeconds": 0.5472962319850921,
+      "onsetPhone": "ɹ",
+      "nucleusPhone": "ə",
+      "phones": [
+        "ɹ",
+        "ə",
+        "s"
+      ],
+      "method": "phonotactic-candidate",
+      "anchorVerified": false,
+      "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+    },
+    "separateNumber": false
+  },
+  {
+    "text": "My custom drum breakdown",
+    "language": "en",
+    "voice": "bm_george",
+    "lufs": -20,
+    "level": {
+      "gain": 1.1460153334327365,
+      "loudnessBefore": -21.183808568695074,
+      "loudnessAfter": -20.00000000031339,
+      "targetLufs": -20,
+      "peakAfter": 0.6751502877871888,
+      "peakLimited": false
+    },
+    "anchor": {
+      "anchorSeconds": 1.8681710928678517,
+      "onsetPhone": "d",
+      "nucleusPhone": "aʊ",
+      "phones": [
+        "d",
+        "aʊ",
+        "n"
+      ],
+      "method": "phonotactic-candidate",
+      "anchorVerified": false,
+      "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+    },
+    "separateNumber": false
+  },
+  {
+    "text": "Couplet 1",
+    "language": "fr",
+    "voice": "ff_siwis",
+    "lufs": -20,
+    "level": {
+      "gain": 0.8716531702584452,
+      "loudnessBefore": -18.80687428108384,
+      "loudnessAfter": -20.00000000335429,
+      "targetLufs": -20,
+      "peakAfter": 0.5116802164423176,
+      "peakLimited": false
+    },
+    "anchor": {
+      "anchorSeconds": 0.5395416666666667,
+      "onsetPhone": "ˈœ̃",
+      "nucleusPhone": "ˈœ̃",
+      "phones": [
+        "ˈœ̃"
+      ],
+      "method": "phonotactic-candidate",
+      "anchorVerified": false,
+      "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+    },
+    "separateNumber": true
+  },
+  {
+    "text": "Refrain 1",
+    "language": "fr",
+    "voice": "ff_siwis",
+    "lufs": -20,
+    "level": {
+      "gain": 0.9523374082671728,
+      "loudnessBefore": -19.57581687918729,
+      "loudnessAfter": -19.99999999738241,
+      "targetLufs": -20,
+      "peakAfter": 0.5719530191114469,
+      "peakLimited": false
+    },
+    "anchor": {
+      "anchorSeconds": 0.742125,
+      "onsetPhone": "ˈœ̃",
+      "nucleusPhone": "ˈœ̃",
+      "phones": [
+        "ˈœ̃"
+      ],
+      "method": "phonotactic-candidate",
+      "anchorVerified": false,
+      "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+    },
+    "separateNumber": true
+  }
+]
