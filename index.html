@@ -957,7 +957,9 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
   .index2-setting-row{grid-template-columns:1fr 118px;}
 }
 
-  </style>
+      button, [role="button"], .btn { -webkit-user-select: none; user-select: none; }
+    :is(button, [role="button"], .btn) :is(input, textarea, [contenteditable="true"]) { -webkit-user-select: text; user-select: text; }
+</style>
   <link rel="stylesheet" href="songs.css?v=20261008-count-in">
   <link rel="stylesheet" href="mp3-export.css?v=20261008-export-spacing">
   <link rel="stylesheet" href="backup-index2.css?v=20261007-account-options">
