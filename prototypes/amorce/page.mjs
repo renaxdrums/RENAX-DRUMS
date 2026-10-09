@@ -1,4 +1,4 @@
-import {synthesize} from './neural-engine.mjs';
+import {synthesize} from './neural-engine.mjs?v=20261009-speed';
 import {lastSyllableCandidate} from './syllables.mjs';
 import {languageState} from './planner.mjs';
 import {renderSequence} from './sequence-render.mjs?v=20261009-neural';
@@ -9,10 +9,18 @@ const labels=['Introduction','Couplet personnalisé','Refrain final'];
 for(let i=0;i<3;i++){
  const row=document.createElement('div');row.className='block';
  const label=document.createElement('label');label.textContent=`Bloc ${i+1}`;
- const input=document.createElement('input');input.value=labels[i];input.id=`label-${i}`;label.append(input);row.append(label);
+ const input=document.createElement('input');input.value=labels[i];input.id=`label-${i}`;label.append(input);const readiness=document.createElement('small');readiness.id=`ready-${i}`;readiness.textContent='À préparer';label.append(readiness);input.addEventListener('input',()=>{readiness.textContent='À préparer';});input.addEventListener('blur',()=>prepareBlock(i));row.append(label);
  const controls=document.createElement('div');controls.className='languages';
- for(const lang of ['fr','en']){const button=document.createElement('button');button.textContent=lang.toUpperCase();button.dataset.index=i;button.dataset.lang=lang;button.setAttribute('aria-label',`${lang.toUpperCase()} pour le bloc ${i+1}`);button.onclick=()=>{languages.choose(i,lang);refreshLanguages();};controls.append(button);}
+ for(const lang of ['fr','en']){const button=document.createElement('button');button.textContent=lang.toUpperCase();button.dataset.index=i;button.dataset.lang=lang;button.setAttribute('aria-label',`${lang.toUpperCase()} pour le bloc ${i+1}`);button.onclick=()=>{languages.choose(i,lang);refreshLanguages();for(let j=0;j<3;j++)prepareBlock(j);};controls.append(button);}
  row.append(controls);$('blocks').append(row);
+}
+async function prepareBlock(i){
+ const input=$(`label-${i}`),text=input.value,language=languages.get(i),note=$(`ready-${i}`);
+ const key=JSON.stringify([text,language]);note.dataset.key=key;
+ if(!text.trim()){note.textContent='Libellé vide';return;}
+ note.textContent='Préparation…';
+ try{const speech=await synthesize(text,language);if(note.dataset.key===key&&input.value===text&&languages.get(i)===language)note.textContent=`Prêt · ${speech.backend.toUpperCase()} · calcul ${(speech.inferenceMs/1000).toFixed(2)} s`;}
+ catch(error){if(note.dataset.key===key)note.textContent='Préparation échouée — réessayer à la lecture';}
 }
 function refreshLanguages(){document.querySelectorAll('[data-lang]').forEach(b=>{const selected=languages.get(Number(b.dataset.index))===b.dataset.lang;b.classList.toggle('active',selected);b.setAttribute('aria-pressed',selected);});}
 refreshLanguages();
@@ -40,7 +48,7 @@ $('run').onclick=async()=>{
   while(!adapter.ready()){if(id!==token)return;if(performance.now()-started>20000)throw new Error('Chargement des samples trop long. Réessayez.');await new Promise(r=>setTimeout(r,100));}
   if(id!==token)return;
   const result=renderSequence(context,blocks,speeches,candidates,{bpm,subdivisions:Number($('subdivisions').value)},adapter);
-  window.amorceTest={result,blocks,candidates,speeches,voices:speeches.map(s=>({model:s.model,voice:s.voice,timingSource:s.timingSource})),status:'calage-a-valider'};
+  window.amorceTest={result,blocks,candidates,speeches,voices:speeches.map(s=>({model:s.model,voice:s.voice,timingSource:s.timingSource,backend:s.backend,inferenceMs:s.inferenceMs,preparationMs:s.preparationMs,fallbackReason:s.fallbackReason})),status:'calage-a-valider'};
   $('status').textContent=`Lecture · ${result.countInMeasures} mesures de décompte · calage à valider\n`+blocks.map((b,i)=>`${i+1}. ${b.text} (${b.language.toUpperCase()}) — début du bloc à ${result.layout[i].blockStart.toFixed(2)} s`).join('\n');
   completion=setTimeout(async()=>{if(id!==token)return;await playback.stop();playback=null;busy(false);$('status').textContent+='\nLecture terminée. Le repère acoustique reste à valider.';},Math.ceil((result.end+.5)*1000));
  }catch(error){if(id!==token)return;if(playback)await playback.stop();playback=null;busy(false);$('status').textContent=errors[error.message]||error.message;}

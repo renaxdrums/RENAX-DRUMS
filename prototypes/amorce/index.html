@@ -10,7 +10,7 @@
 <label>Mesures par bloc<input id="measures" type="number" min="2" max="8" value="2"></label>
 <label>Banque<select id="bank"><option value="claves">Claves</option><option value="clic">Clic</option><option value="cloche">Cloche</option><option value="clic808">Clic 808</option><option value="beep">Beep</option><option value="voiceMale">Voix masculine EN</option><option value="voiceFemale">Voix féminine EN</option></select></label>
 <label>Subdivisions<select id="subdivisions"><option value="1" selected>1</option><option value="2">2</option><option value="4">4</option></select></label>
-</div><div id="blocks"></div><div class="actions"><button id="run" class="primary">Écouter la séquence</button><button id="stop" disabled>Stop</button></div>
+</div><p>Les annonces se préparent quand vous quittez leur champ. « Prêt » indique le calcul effectué ; les relances réutilisent la voix en mémoire.</p><p><a href="?v=20261009-speed">Test CPU</a> · <a href="?v=20261009-speed&amp;device=webgpu">Test WebGPU expérimental</a> (CPU en secours)</p><div id="blocks"></div><div class="actions"><button id="run" class="primary">Écouter la séquence</button><button id="stop" disabled>Stop</button></div>
 <div id="status" role="status" aria-live="polite">FR par défaut. Au moins deux mesures de décompte sont ajoutées.</div></section>
 <section class="panel"><details><summary>Mini plan de test</summary><ol>
 <li>À 120 BPM en 4/4, écouter les trois libellés et vérifier le décompte du premier bloc.</li>
@@ -22,4 +22,4 @@
 </ol><p>Les annonces utilisent les voix neuronales Kokoro : Siwis en français et George en anglais. Le comptage utilise les enregistrements masculins anglais existants ; les repères d’attaque du métronome sont placés sur les temps, sans clic principal ajouté. Les subdivisions choisies restent entre les temps.</p><p>Limites : trois blocs de même métrique et de même banque, deux mesures minimum par bloc ; les annonces qui se chevauchent ou débordent sont refusées. Premier chargement : environ 140 Mo de moteur, modèle et données, puis cache du navigateur. Les textes sont synthétisés sur votre appareil et ne sont pas envoyés aux hébergeurs des fichiers.</p></details>
 <p><a href="./VALIDATION.md">Rapport et résultats de validation</a> · <a href="../../">Revenir au métronome</a></p></section>
 <iframe id="audio-app" src="../../index.html" title="Moteur audio isolé du test" aria-hidden="true" tabindex="-1"></iframe>
-<script type="module" src="./page.mjs?v=20261009-count-attacks"></script></body></html>
+<script type="module" src="./page.mjs?v=20261009-speed"></script></body></html>

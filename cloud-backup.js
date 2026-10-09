@@ -3,6 +3,8 @@ import {firebaseConfig,providers,appCheckSiteKey,emulator} from './firebase-conf
 const storage=window.RENAX_STORAGE,api=window.RENAX_SONGS;
 await storage.ready;
 let account=null,remote=null,sdk=null,auth=null,db=null,unsubscribe=null,generation=0,running=false,retry=0,timer=null,deferred=false,message='Sauvegardé dans ce navigateur',failure='',confirmed=false;
+const rememberKey='renax-index2-remember-auth';
+let remember=false;try{remember=localStorage.getItem(rememberKey)==='1';}catch{}
 const deviceKey='renax-index2-device';
 let device;try{device=localStorage.getItem(deviceKey);}catch{}
 if(!device){device=crypto.randomUUID();try{localStorage.setItem(deviceKey,device);}catch{/* Keep the recovery interface usable when local storage is full. */}}
@@ -65,7 +67,7 @@ async function ensureFirebase(){
   const version='12.16.0',base='https://www.gstatic.com/firebasejs/'+version+'/';
   const [app,authModule,firestore]=await Promise.all([import(base+'firebase-app.js'),import(base+'firebase-auth.js'),import(base+'firebase-firestore.js')]);
   sdk={app,auth:authModule,firestore};const instance=app.initializeApp(firebaseConfig,'renax-index2');
-  auth=authModule.initializeAuth(instance,{persistence:authModule.browserSessionPersistence,popupRedirectResolver:authModule.browserPopupRedirectResolver});
+  auth=authModule.initializeAuth(instance,{persistence:remember?authModule.browserLocalPersistence:authModule.browserSessionPersistence,popupRedirectResolver:authModule.browserPopupRedirectResolver});
   // Memory cache plus persistent business outbox: no cross-account disk cache.
   db=firestore.initializeFirestore(instance,{localCache:firestore.memoryLocalCache()});
   if(emulator){if(!['localhost','127.0.0.1'].includes(location.hostname))throw Error('Émulateurs interdits sur le site public.');authModule.connectAuthEmulator(auth,'http://'+emulator.host+':'+emulator.authPort,{disableWarnings:true});firestore.connectFirestoreEmulator(db,emulator.host,emulator.firestorePort);}
@@ -109,7 +111,7 @@ async function ensureFirebase(){
 }
 async function authenticate(method,creating=false){
   const email=document.getElementById('backupEmail')?.value.trim(),password=document.getElementById('backupPassword')?.value;
-  try{await ensureFirebase();sessionStorage.setItem('renax-index2-auth-enabled','1');
+  try{await ensureFirebase();await sdk.auth.setPersistence(auth,remember?sdk.auth.browserLocalPersistence:sdk.auth.browserSessionPersistence);localStorage.setItem(rememberKey,remember?'1':'0');sessionStorage.setItem('renax-index2-auth-enabled','1');
     if(method==='email'){const result=await (creating?sdk.auth.createUserWithEmailAndPassword:sdk.auth.signInWithEmailAndPassword)(auth,email,password);if(creating)await sdk.auth.sendEmailVerification(result.user);}
     else if(method==='google'){const provider=new sdk.auth.GoogleAuthProvider();if(account)await sdk.auth.linkWithPopup(account,provider);else await sdk.auth.signInWithPopup(auth,provider);}
   }catch(error){say(message,friendly(error));}
@@ -181,6 +183,7 @@ function renderPanel(){
     return control;
   };
   if(!account){
+    const rememberLabel=element('label',undefined,choices);rememberLabel.style.cssText='display:flex;align-items:center;gap:8px;text-transform:none';const rememberBox=element('input',undefined,rememberLabel);rememberBox.type='checkbox';rememberBox.id='backupRemember';rememberBox.checked=remember;rememberBox.onchange=()=>{remember=rememberBox.checked;};element('span','Rester connecté',rememberLabel);
     choose('Se connecter avec Google','google',null,()=>authenticate('google'),!firebaseConfig||!providers.google);
     choose('Se connecter','login','login',()=>{backupView=backupView==='login'?'':'login';renderPanel();});
     choose('Créer un compte','account','account',()=>{backupView=backupView==='account'?'':'account';renderPanel();});
@@ -209,7 +212,7 @@ function renderPanel(){
     const syncButton=button(failure?'Réessayer la synchronisation':'Actualiser la synchronisation',optionActions,sync);syncButton.setAttribute('aria-label','Réessayer la synchronisation');
     const importButton=button('Importer les morceaux locaux',optionActions,importGuest);importButton.setAttribute('aria-label','Importer les morceaux sans compte');
     button('Lier Google à ce compte',optionActions,()=>authenticate('google'),!providers.google);
-    button('Se déconnecter',optionActions,async()=>{await sdk.auth.signOut(auth);sessionStorage.removeItem('renax-index2-auth-enabled');}).classList.add('backup-signout');
+    button('Se déconnecter',optionActions,async()=>{await sdk.auth.signOut(auth);sessionStorage.removeItem('renax-index2-auth-enabled');localStorage.removeItem(rememberKey);remember=false;}).classList.add('backup-signout');
     // JSON controls stay in the dedicated local backup view.
     for(const [id,conflict] of Object.entries(storage.state?.conflicts||{})){
       const row=element('div',undefined,root);row.className='backup-conflict';let name=id;try{name=JSON.parse(conflict.local.payload??conflict.remote.payload)?.song?.name||id;}catch{}
@@ -239,5 +242,12 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&account)q
 setInterval(()=>{if(deferred&&!playing()){storage.reconcile();deferred=false;}},1500);
 window.addEventListener('renax-library-edited',queue);
 renderPanel();
-if(firebaseConfig&&sessionStorage.getItem('renax-index2-auth-enabled')==='1')ensureFirebase().catch(error=>say('Sauvegardé dans ce navigateur',friendly(error)));
+if(firebaseConfig&&(remember||sessionStorage.getItem('renax-index2-auth-enabled')==='1'))ensureFirebase().catch(error=>say('Sauvegardé dans ce navigateur',friendly(error)));
 window.RENAX_BACKUP={sync,resolve,importGuest,get status(){return {message,failure,account:account?.uid??null,confirmed};}};
+
+const accountDialog=document.createElement('dialog');accountDialog.id='directAccountDialog';accountDialog.setAttribute('aria-label','Connexion et compte');accountDialog.style.cssText='width:min(390px,calc(100vw - 28px));max-height:85vh;overflow:auto;background:#111116;color:var(--text);border:1px solid #30303a;border-radius:10px;padding:18px;';
+const closeAccount=document.createElement('button');closeAccount.type='button';closeAccount.className='btn';closeAccount.textContent='Fermer';closeAccount.onclick=()=>accountDialog.close();accountDialog.append(closeAccount);document.body.append(accountDialog);
+accountDialog.addEventListener('close',()=>{const root=document.getElementById('backupAccount');if(root){const back=backupPane.querySelector('.song-back');if(back)back.after(root);else backupPane.prepend(root);}renderPanel();});
+const accountButton=document.createElement('button');accountButton.type='button';accountButton.id='directAccountBtn';accountButton.className='index2-header-btn';accountButton.title='Connexion et compte';accountButton.setAttribute('aria-label','Connexion et compte');accountButton.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3h7v18h-7M3 12h13m-4-4 4 4-4 4"/></svg>';
+accountButton.onclick=()=>{backupView=account?'':'login';renderPanel();accountDialog.append(document.getElementById('backupAccount'));accountDialog.showModal();};
+document.querySelector('.index2-header-actions').prepend(accountButton);

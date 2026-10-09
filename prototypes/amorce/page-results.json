@@ -1,21 +1,38 @@
 {
   "date": "2026-10-09",
   "model": "Kokoro-82M",
+  "requestedBackend": "webgpu",
+  "cacheCheck": {
+    "samePromise": true,
+    "elapsedMs": 0.10000000055879354
+  },
   "voices": [
     {
       "model": "Kokoro-82M",
       "voice": "bm_george",
-      "timingSource": "model-predicted-phoneme-durations"
+      "timingSource": "model-predicted-phoneme-durations",
+      "backend": "wasm",
+      "inferenceMs": 4958.200000000186,
+      "preparationMs": 8421,
+      "fallbackReason": "WebGPU indisponible"
     },
     {
       "model": "Kokoro-82M",
       "voice": "ff_siwis",
-      "timingSource": "model-predicted-phoneme-durations"
+      "timingSource": "model-predicted-phoneme-durations",
+      "backend": "wasm",
+      "inferenceMs": 5407.300000000745,
+      "preparationMs": 29874.900000000373,
+      "fallbackReason": "WebGPU indisponible"
     },
     {
       "model": "Kokoro-82M",
       "voice": "bm_george",
-      "timingSource": "model-predicted-phoneme-durations"
+      "timingSource": "model-predicted-phoneme-durations",
+      "backend": "wasm",
+      "inferenceMs": 7250.799999999814,
+      "preparationMs": 37083.299999999814,
+      "fallbackReason": "WebGPU indisponible"
     }
   ],
   "mixedRenders": [
@@ -73,7 +90,7 @@
       "bpm": 120,
       "numerator": 4,
       "denominator": 4,
-      "peak": 0.3438408374786377,
+      "peak": 0.34381771087646484,
       "clipped": 0,
       "blocks": 3,
       "subdivisions": 4,
@@ -83,7 +100,7 @@
       "bpm": 120,
       "numerator": 5,
       "denominator": 4,
-      "peak": 0.3449913263320923,
+      "peak": 0.34381771087646484,
       "clipped": 0,
       "blocks": 3,
       "subdivisions": 4,
@@ -93,14 +110,14 @@
       "bpm": 120,
       "numerator": 7,
       "denominator": 8,
-      "peak": 0.37064945697784424,
+      "peak": 0.3683215379714966,
       "clipped": 0,
       "blocks": 3,
       "subdivisions": 4,
       "anchorVerified": false
     }
   ],
-  "worstMixedPeak": 0.37064945697784424,
+  "worstMixedPeak": 0.3683215379714966,
   "mobileWidth": 390,
   "multiblockScheduled": true,
   "languageScope": true,

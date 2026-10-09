@@ -7,7 +7,7 @@ const {start}=require('./audio-harness.cjs');
  page.on('requestfailed',r=>console.log('Request failed:',r.url(),r.failure()?.errorText));
  closeAssets=await require('./amorce-neural-route.cjs').install(page.context(),h.url);
  await page.context().route('**/*.mjs*',route=>{const url=new URL(route.request().url());if(url.origin!==h.url)return route.fallback();let body=fs.readFileSync(path.join(__dirname,'..',url.pathname),'utf8');if(url.pathname.endsWith('/neural-worker.mjs')){const root=require('./amorce-neural-route.cjs').assetURL;body=`const testFetch=globalThis.fetch;globalThis.fetch=(input,options)=>{const url=typeof input==='string'?input:input.url;if(url.startsWith('https://huggingface.co/')){const relative=url.split('/resolve/')[1]?.split('/').slice(1).join('/');return testFetch(${JSON.stringify(root)}+'/'+relative,options);}return testFetch(input,options);};\n`+body;}return route.fulfill({contentType:'text/javascript',body});});
- await page.goto(h.url+'/prototypes/amorce/index.html');
+ await page.goto(h.url+'/prototypes/amorce/index.html'+(process.env.TEST_WEBGPU?'?device=webgpu':''));
  await page.waitForSelector('#label-2');
  assert.equal(await page.locator('[data-lang="fr"].active').count(),3);
  await page.locator('[data-index="0"][data-lang="en"]').click();
@@ -28,6 +28,8 @@ const {start}=require('./audio-harness.cjs');
  for(const a of r.result.layout){const e=r.result.events.filter(e=>e.announcing&&e.subIndex===0&&e.time>=a.target-1e-9&&e.time<a.blockStart-1e-9);assert.equal(e.length,3);assert(e.every(x=>x.bank==='voiceMale'&&x.number>=2));}
  await page.locator('#stop').click();
  await page.waitForFunction(()=>!document.getElementById('run').disabled);
+ const cacheCheck=await page.evaluate(async()=>{const {synthesize}=await import('/prototypes/amorce/neural-engine.mjs?v=20261009-speed');const b=amorceTest.blocks[0],a=synthesize(b.text,b.language),c=synthesize(b.text,b.language),start=performance.now();await c;return {samePromise:a===c,elapsedMs:performance.now()-start};});
+ assert(cacheCheck.samePromise);assert(cacheCheck.elapsedMs<100);
  assert.match(await page.locator('#status').textContent(),/arrêtée/);
  const mixed=await page.evaluate(async()=>{
   const {renderSequence}=await import('/prototypes/amorce/sequence-render.mjs?v=20261009-neural');
@@ -55,6 +57,6 @@ const {start}=require('./audio-harness.cjs');
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
  await page.screenshot({path:path.join(__dirname,'../prototypes/amorce/page-mobile.png'),fullPage:true});
  assert.deepEqual(errors,[]);
- const report={date:'2026-10-09',model:'Kokoro-82M',voices:r.voices,mixedRenders:mixed,worstMixedPeak:Math.max(...mixed.map(r=>r.peak)),mobileWidth:390,multiblockScheduled:true,languageScope:true,stopDuringPlayback:true,stopDuringPreparation:true,noHorizontalOverflow:true,errors,anchorVerified:false};
+ const report={date:'2026-10-09',model:'Kokoro-82M',requestedBackend:process.env.TEST_WEBGPU?'webgpu':'wasm',cacheCheck,voices:r.voices,mixedRenders:mixed,worstMixedPeak:Math.max(...mixed.map(r=>r.peak)),mobileWidth:390,multiblockScheduled:true,languageScope:true,stopDuringPlayback:true,stopDuringPreparation:true,noHorizontalOverflow:true,errors,anchorVerified:false};
  fs.writeFileSync(path.join(__dirname,'../prototypes/amorce/page-results.json'),JSON.stringify(report,null,2)+'\n');console.log(report);
 }finally{await h.browser.close();h.server?.close();closeAssets?.();}})().catch(e=>{console.error(e);process.exitCode=1;});
