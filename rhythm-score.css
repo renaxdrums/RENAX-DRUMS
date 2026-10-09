@@ -1,0 +1,15 @@
+.footer-center:has(#scoreToggle){position:relative;}
+#scoreToggle{position:absolute;left:calc(100% + 8px);top:50%;transform:translateY(-50%);width:36px;height:36px;min-width:36px;padding:7px;border-radius:6px;display:grid;place-items:center;}
+#scoreToggle svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+#scoreToggle[aria-pressed="true"]{color:var(--cyan);border-color:var(--cyan);}
+#scoreToggle .score-metronome-icon{display:none;}
+#scoreToggle[aria-pressed="true"] .score-metronome-icon{display:block;}
+#scoreToggle[aria-pressed="true"] .score-partition-icon{display:none;}
+.rhythm-score{display:none;width:100%;min-width:0;max-height:100%;overflow:auto;background:#fff;color:#111;border:1px solid #d6dbe2;border-radius:8px;box-sizing:border-box;padding:4px;align-self:center;overscroll-behavior:contain;}
+.rhythm-score-status{padding:24px 12px;text-align:center;font-size:13px;}
+.panel-visu.score-view .sequencer-wrapper{width:100%;min-width:0;overflow:hidden;}
+.panel-visu.score-view #sequencerContainer{display:none;}
+.panel-visu.score-view .rhythm-score{display:block;}
+.rhythm-score svg{display:block;}
+.rhythm-score .score-active-head path{fill:#1683ff!important;stroke:#1683ff!important;}
+@media(max-width:1100px) and (orientation:landscape){.main-grid>.panel-visu.mobile-active.score-view .sequencer-wrapper{grid-column:1/-1;grid-row:3;}.main-grid>.panel-visu.mobile-active.score-view .legend{grid-row:4;}}

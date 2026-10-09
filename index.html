@@ -1256,6 +1256,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
 </style>
   <link rel="stylesheet" href="mobile-landscape.css?v=20261008-landscape">
   <link rel="stylesheet" href="training-modes.css?v=20261008-metronome-cyan">
+  <link rel="stylesheet" href="rhythm-score.css?v=20261009-score">
 </head>
 <body>
 
@@ -1523,6 +1524,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
     <div class="footer-center">
       <button class="btn btn-primary" id="playBtn">Start</button>
       <button class="btn" id="panicBtn">Reset</button>
+      <button class="btn" id="scoreToggle" type="button" aria-label="Afficher la partition" title="Afficher la partition" aria-pressed="false" aria-controls="rhythmScore"><svg class="score-partition-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18M3 11h18M3 15h18M3 19h18M10 16V5l7-2v11"/><ellipse cx="7.5" cy="16.5" rx="2.5" ry="1.7"/><ellipse cx="14.5" cy="14.5" rx="2.5" ry="1.7"/></svg><svg class="score-metronome-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10L14 4h-4L7 20ZM12 16l6-9M9 20v-3h6v3"/></svg></button>
     </div>
     
     <div class="audio-ready-wrap" id="audioReadyWrap" aria-live="polite">
@@ -3518,5 +3520,6 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
   <script src="training-modes.js?v=20261009-exponential-labels"></script>
   <script src="compact-controls.js?v=20261009-header-icons"></script>
   <script src="navigation-history.js?v=20261008-semantic-back"></script>
+  <script src="rhythm-score.js?v=20261009-score"></script>
 </body>
 </html>
