@@ -1,6 +1,6 @@
 import {synthesize as phoneticReference} from './engine.mjs';
 import {phonemeInput} from './neural-core.mjs?v=20261009-levels';
-import {joinNumber} from './separate-number.mjs?v=20261009-levels';
+import {joinNumber} from './separate-number.mjs?v=20261009-un-complete';
 let worker,sequence=0;const pending=new Map();
 async function generate(text,language='fr'){
  const parts=language==='fr'&&text.match(/^(.*\S)\s+(\d+)\s*$/u);

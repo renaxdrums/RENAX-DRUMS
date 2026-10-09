@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import {joinNumber} from '../prototypes/amorce/separate-number.mjs';
+const rate=24000;
+const prefix={sampleRate:rate,pcm:new Float32Array(12000),events:[{type:'phoneme',id:'o',text_position:1,audio_position:100}]};
+prefix.pcm.fill(.1,2400,9600);
+const number={sampleRate:rate,pcm:new Float32Array(19200),events:[{type:'phoneme',id:'ˈœ̃',text_position:1,audio_position:430}]};
+// Weak nasal onset and decay would be lost by the former 1% / 5 ms crop.
+number.pcm.fill(.0005,6000,7800);number.pcm.fill(.2,7800,14400);number.pcm.fill(.0005,14400,16800);
+const copy=number.pcm.slice(),result=joinNumber(prefix,number);
+const prefixStart=2400-120,prefixEnd=9600+120,offset=prefixEnd-prefixStart+1920;
+assert.equal(result.pcm.length,offset+number.pcm.length);
+const gain=result.pcm[offset+8000]/copy[8000];
+for(let i=0;i<copy.length;i++)assert.ok(Math.abs(result.pcm[offset+i]-copy[i]*gain)<1e-7,`sample ${i} retained`);
+assert.deepEqual(number.pcm,copy);
+assert.equal(result.events.at(-1).audio_position,(offset+7800)/rate*1000);
+const other={...number,events:[{type:'phoneme',id:'d',text_position:1,audio_position:325},{type:'phoneme',id:'ø',text_position:1,audio_position:400}]};
+const untouched=joinNumber(prefix,other);
+assert.equal(untouched.pcm.length,offset+(14400+120)-(7800-120));
+assert.equal(untouched.events.at(-1).audio_position,400-(7800-120)/rate*1000+offset/rate*1000);
+console.log('PASS: complete French un retained, acoustic anchor compensated, other numbers unchanged');
