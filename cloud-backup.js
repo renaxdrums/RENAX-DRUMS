@@ -188,7 +188,7 @@ function renderPanel(){
     choose('Se connecter','login','login',()=>{backupView=backupView==='login'?'':'login';renderPanel();});
     choose('Créer un compte','account','account',()=>{backupView=backupView==='account'?'':'account';renderPanel();});
   }
-  choose('Sauvegarde locale','local','local',()=>{backupView=backupView==='local'?'':'local';renderPanel();});
+  const localControl=choose('Sauvegarde locale','local','local',()=>{backupView=backupView==='local'?'':'local';renderPanel();});localControl.style.borderColor='var(--cyan)';localControl.querySelector('svg').style.color='var(--orange)';
   if(json){json.id='backup-local';json.style.display=backupView==='local'?'flex':'none';root.append(json);const title=json.querySelector('h3');if(title)title.textContent='Sauvegarde locale';json.querySelectorAll('button').forEach((control,index)=>{if(!control.querySelector('svg'))backupIcon(control,index===0?'export':'import');});}
 
   const state=element('p',storage.healthy?message:'Sauvegarde locale impossible : exportez une copie JSON.',root);state.className='backup-status';state.classList.toggle('is-confirmed',confirmed);state.setAttribute('role','status');state.setAttribute('aria-live','polite');
@@ -212,7 +212,7 @@ function renderPanel(){
     const syncButton=button(failure?'Réessayer la synchronisation':'Actualiser la synchronisation',optionActions,sync);syncButton.setAttribute('aria-label','Réessayer la synchronisation');
     const importButton=button('Importer les morceaux locaux',optionActions,importGuest);importButton.setAttribute('aria-label','Importer les morceaux sans compte');
     button('Lier Google à ce compte',optionActions,()=>authenticate('google'),!providers.google);
-    const signout=button('Se déconnecter',root,async()=>{await sdk.auth.signOut(auth);sessionStorage.removeItem('renax-index2-auth-enabled');localStorage.removeItem(rememberKey);remember=false;});signout.classList.add('backup-signout');backupIcon(signout,'login');signout.querySelector('svg').style.transform='rotate(180deg)';
+    const signout=button('Se déconnecter',root,async()=>{await sdk.auth.signOut(auth);sessionStorage.removeItem('renax-index2-auth-enabled');localStorage.removeItem(rememberKey);remember=false;});signout.classList.add('backup-signout');signout.style.borderColor='var(--cyan)';backupIcon(signout,'login');signout.querySelector('svg').style.color='var(--orange)';signout.querySelector('svg').style.transform='rotate(180deg)';
     // JSON controls stay in the dedicated local backup view.
     for(const [id,conflict] of Object.entries(storage.state?.conflicts||{})){
       const row=element('div',undefined,root);row.className='backup-conflict';let name=id;try{name=JSON.parse(conflict.local.payload??conflict.remote.payload)?.song?.name||id;}catch{}

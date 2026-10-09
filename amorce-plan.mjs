@@ -1,0 +1,18 @@
+// Pure arrangement plan shared by live playback and offline MP3 rendering.
+export function planAmorce(song,speeches,candidates){
+ if(speeches.length!==song.sections.length)throw Error('Annonces Amorce incomplètes.');
+ const first=song.sections[0].measure,c=song.countIn||{numerator:first.numerator,denominator:first.denominator,count:2};
+ const bar=(m)=>(60/m.tempo)*(4/m.denominator)*m.numerator;
+ const countMeasure={...first,numerator:c.numerator,denominator:c.denominator,countIn:true,beatSubdivisions:Array(c.numerator).fill(1),beatStates:Array.from({length:c.numerator},()=>[1])};
+ const initialBar=bar(countMeasure),count=Math.max(2,c.count||0,1+Math.ceil(candidates[0].anchorSeconds/initialBar));
+ const sections=[{id:'count-in:'+song.id,label:'Décompte',count,measure:countMeasure},...song.sections];
+ let cursor=count*initialBar,previous=countMeasure;const announcements=[];
+ for(let i=0;i<song.sections.length;i++){
+  const target=cursor-bar(previous),start=target-candidates[i].anchorSeconds,end=start+speeches[i].pcm.length/speeches[i].sampleRate;
+  if(start<-.000001)throw Error('Décompte insuffisant pour Amorce.');
+  if(end>cursor+.000001)throw Error('Annonce trop longue pour la mesure précédente : '+song.sections[i].label);
+  if(announcements.length&&start<announcements.at(-1).end-.000001)throw Error('Deux annonces Amorce se chevauchent. Ajoutez des mesures ou raccourcissez les libellés.');
+  announcements.push({index:i,start,end,target,blockStart:cursor,measure:previous});cursor+=song.sections[i].count*bar(song.sections[i].measure);previous=song.sections[i].measure;
+ }
+ return {sections,announcements,countInMeasures:count,duration:cursor};
+}

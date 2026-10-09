@@ -1,0 +1,461 @@
+{
+  "encodedBytes": 567360,
+  "encodedPeak": 0.8717304328537251,
+  "button": true,
+  "pressed": "true",
+  "countIn": 2,
+  "enabled": true,
+  "stopped": true,
+  "unchanged": true,
+  "midiEqual": true,
+  "trace": [
+    {
+      "bank": "voiceMale",
+      "state": 1,
+      "time": 21.752907029478457,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 2,
+      "subIndex": 0,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "voiceMale",
+      "state": 1,
+      "time": 22.252907029478457,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 3,
+      "subIndex": 0,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 3,
+      "time": 22.752907029478457,
+      "first": true,
+      "mode": "metronome",
+      "beatNumber": 1,
+      "subIndex": 0,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 23.002907029478457,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 1,
+      "subIndex": 1,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 23.252907029478457,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 2,
+      "subIndex": 0,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 23.502907029478457,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 2,
+      "subIndex": 1,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 23.752907029478457,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 3,
+      "subIndex": 0,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 24.002907029478457,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 3,
+      "subIndex": 1,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 24.502907029478457,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 1,
+      "subIndex": 1,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "voiceMale",
+      "state": 1,
+      "time": 24.752907029478457,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 2,
+      "subIndex": 0,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 25.002907029478457,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 2,
+      "subIndex": 1,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "voiceMale",
+      "state": 1,
+      "time": 25.252907029478457,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 3,
+      "subIndex": 0,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 25.502907029478457,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 3,
+      "subIndex": 1,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 3,
+      "time": 25.752907029478457,
+      "first": true,
+      "mode": "metronome",
+      "beatNumber": 1,
+      "subIndex": 0,
+      "beatDurationSec": 0.6
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 26.052907029478458,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 1,
+      "subIndex": 1,
+      "beatDurationSec": 0.6
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 26.35290702947846,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 2,
+      "subIndex": 0,
+      "beatDurationSec": 0.6
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 26.65290702947846,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 2,
+      "subIndex": 1,
+      "beatDurationSec": 0.6
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 26.95290702947846,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 3,
+      "subIndex": 0,
+      "beatDurationSec": 0.6
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 27.25290702947846,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 3,
+      "subIndex": 1,
+      "beatDurationSec": 0.6
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 27.55290702947846,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 4,
+      "subIndex": 0,
+      "beatDurationSec": 0.6
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 27.852907029478462,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 4,
+      "subIndex": 1,
+      "beatDurationSec": 0.6
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 28.452907029478464,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 1,
+      "subIndex": 1,
+      "beatDurationSec": 0.6
+    },
+    {
+      "bank": "voiceMale",
+      "state": 1,
+      "time": 28.752907029478465,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 2,
+      "subIndex": 0,
+      "beatDurationSec": 0.6
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 29.052907029478465,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 2,
+      "subIndex": 1,
+      "beatDurationSec": 0.6
+    },
+    {
+      "bank": "voiceMale",
+      "state": 1,
+      "time": 29.352907029478466,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 3,
+      "subIndex": 0,
+      "beatDurationSec": 0.6
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 29.652907029478467,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 3,
+      "subIndex": 1,
+      "beatDurationSec": 0.6
+    },
+    {
+      "bank": "voiceMale",
+      "state": 1,
+      "time": 29.952907029478467,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 4,
+      "subIndex": 0,
+      "beatDurationSec": 0.6
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 30.252907029478468,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 4,
+      "subIndex": 1,
+      "beatDurationSec": 0.6
+    },
+    {
+      "bank": "claves",
+      "state": 3,
+      "time": 30.55290702947847,
+      "first": true,
+      "mode": "metronome",
+      "beatNumber": 1,
+      "subIndex": 0,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 30.80290702947847,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 1,
+      "subIndex": 1,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 31.05290702947847,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 2,
+      "subIndex": 0,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 31.30290702947847,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 2,
+      "subIndex": 1,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 31.55290702947847,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 3,
+      "subIndex": 0,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 31.80290702947847,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 3,
+      "subIndex": 1,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 3,
+      "time": 32.05290702947847,
+      "first": true,
+      "mode": "metronome",
+      "beatNumber": 1,
+      "subIndex": 0,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 32.30290702947847,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 1,
+      "subIndex": 1,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 32.55290702947847,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 2,
+      "subIndex": 0,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 32.80290702947847,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 2,
+      "subIndex": 1,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 33.05290702947847,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 3,
+      "subIndex": 0,
+      "beatDurationSec": 0.5
+    },
+    {
+      "bank": "claves",
+      "state": 1,
+      "time": 33.30290702947847,
+      "first": false,
+      "mode": "metronome",
+      "beatNumber": 3,
+      "subIndex": 1,
+      "beatDurationSec": 0.5
+    }
+  ],
+  "mp3PcmPeak": 0.2790592908859253,
+  "mp3Score": {
+    "name": "Amorce test",
+    "duration": 13.8,
+    "lead": 0.262,
+    "tail": 0.075,
+    "events": 36,
+    "steps": 46,
+    "sections": [
+      {
+        "label": "Décompte",
+        "count": 2,
+        "start": 0,
+        "barDuration": 1.5,
+        "tempo": 120,
+        "numerator": 3,
+        "denominator": 4
+      },
+      {
+        "label": "Intro libre",
+        "count": 2,
+        "start": 3,
+        "barDuration": 1.5,
+        "tempo": 120,
+        "numerator": 3,
+        "denominator": 4
+      },
+      {
+        "label": "Custom chorus",
+        "count": 2,
+        "start": 6,
+        "barDuration": 2.4,
+        "tempo": 100,
+        "numerator": 4,
+        "denominator": 4
+      },
+      {
+        "label": "Fin",
+        "count": 2,
+        "start": 10.8,
+        "barDuration": 1.5,
+        "tempo": 120,
+        "numerator": 3,
+        "denominator": 4
+      }
+    ]
+  },
+  "errors": []
+}

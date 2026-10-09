@@ -5,9 +5,10 @@
   const clone=value=>JSON.parse(JSON.stringify(value));
   const filename=name=>(name.trim().replace(/[<>:"/\\|?*\x00-\x1f]/g,'_').replace(/[. ]+$/,'')||'Morceau')+'.mp3';
   const pause=()=>new Promise(resolve=>setTimeout(resolve,0));
-  async function renderPCM(song,bank,volume) {
+  async function renderPCM(song,bank,volume,amorcePlan=null) {
     RENAX_SONGS.validateLibrary({version:1,profiles:[{id:'export',name:'Export',songs:[song]}]});
     if(!SOUND_BANKS[bank]||!Number.isFinite(volume)||volume<0||volume>1)throw Error('Réglages audio incorrects.');
+    if(song.amorce){amorcePlan=amorcePlan||await RENAX_AMORCE.prepare(song);song={...song,sections:amorcePlan.sections};await prepareAllVoiceAudio();}
     const voice=!!SOUND_BANKS[bank].isVoice;
     if(voice)await prepareAllVoiceAudio();else if(allVoiceAudioPromise)await allVoiceAudioPromise;
     if(audioCtx)await audioCtx.close();
@@ -17,12 +18,13 @@
       sections.push({label:section.label,count:section.count,start:duration,barDuration,tempo:m.tempo,numerator:m.numerator,denominator:m.denominator});
       duration+=barDuration*section.count;
     }
-    const lead=voice?VOICE_MAX_ATTACK_SECONDS:0;
+    const lead=voice||amorcePlan?VOICE_MAX_ATTACK_SECONDS:0;
     // Oscillator tails are allowed to finish, just as in finite live playback.
     const tail=voice?0:bank==='cloche'?.44:bank==='clic808'?.22:bank==='claves'?.075:bank==='beep'?.075:.055;
     const length=Math.ceil((lead+duration+tail)*RATE);
     if(!Number.isSafeInteger(length)||length>2147483647)throw Error('Morceau trop long pour le rendu audio de ce navigateur.');
     audioCtx=new OfflineAudioContext(1,length,RATE);currentBank=bank;masterVolume=volume;
+    if(amorcePlan)RENAX_AMORCE.begin(audioCtx,lead,amorcePlan);
     let time=lead,events=0,steps=0;
     for(const section of song.sections){
       const m=section.measure,beatDuration=getStepDurationMs(m.tempo,m.denominator,1)/1000;
@@ -32,7 +34,7 @@
           const subdivisions=m.beatSubdivisions[beat];
           for(let sub=0;sub<subdivisions;sub++){
             const state=m.beatStates[beat][sub];
-            if(state){playClick(state,time,beat===0&&sub===0,{mode:'metronome',beatNumber:beat%group===0?Math.floor(beat/group)+1:0,subIndex:sub,beatDurationSec:beatDuration*group});events++;}
+            if(!RENAX_AMORCE.step(time,state,beat===0&&sub===0,sub,beat)&&state){playClick(state,time,beat===0&&sub===0,{mode:'metronome',beatNumber:beat%group===0?Math.floor(beat/group)+1:0,subIndex:sub,beatDurationSec:beatDuration*group});events++;}
             time+=getStepDurationMs(m.tempo,m.denominator,subdivisions)/1000;
             if(++steps%4096===0)await pause();
           }
@@ -57,12 +59,13 @@
     })};
   }
   async function isolatedRender(song,bank,volume){
+    const prepared=song.amorce?await RENAX_AMORCE.prepare(song):null;
     const frame=document.createElement('iframe');frame.hidden=true;frame.title='Rendu MP3';
     const url=new URL(location.href);url.searchParams.set('mp3-render','1');frame.src=url.href;
     try{
       await new Promise((resolve,reject)=>{frame.onload=resolve;frame.onerror=()=>reject(Error('Rendu audio indisponible.'));document.body.append(frame);});
       if(!frame.contentWindow.RENAX_MP3_RENDER)throw Error('Module de rendu audio indisponible.');
-      return await frame.contentWindow.RENAX_MP3_RENDER.renderPCM(song,bank,volume);
+      return await frame.contentWindow.RENAX_MP3_RENDER.renderPCM(song,bank,volume,prepared);
     }finally{frame.remove();}
   }
   async function exportSong(song,bank,volume,progress=()=>{}){

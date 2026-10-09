@@ -2723,7 +2723,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
 
     function scheduler() {
       if (appMode === 'polyrhythm') { schedulerPolyrhythm(); return; }
-      const voiceLead = SOUND_BANKS[currentBank]?.isVoice ? VOICE_MAX_ATTACK_SECONDS : 0;
+      const voiceLead = SOUND_BANKS[currentBank]?.isVoice || window.RENAX_AMORCE?.active ? VOICE_MAX_ATTACK_SECONDS : 0;
       while (nextNoteTime < audioCtx.currentTime + scheduleAheadTime + voiceLead) {
         if (playingMeasureIndex >= measures.length) { playingMeasureIndex = 0; currentStepInMeasure = 0; }
         const mIdx = playingMeasureIndex;
@@ -2747,7 +2747,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
         const effectiveTempo = getEffectiveTempo(m);
         const beatDurationSec = getStepDurationMs(effectiveTempo, m.denominator, 1) / 1000;
         const voiceGroupSize = getVoiceGroupSize(m);
-        if (state > 0 && isSilentCycleAudible()) {
+        if (!window.RENAX_AMORCE?.step(nextNoteTime,state,isFirst,subIndex,beat) && state > 0 && isSilentCycleAudible()) {
           if(model.countIn)playCountIn(nextNoteTime,isFirst);else playClick(state, nextNoteTime, isFirst, {
             mode: 'metronome',
             beatNumber: beat % voiceGroupSize === 0 ? Math.floor(beat / voiceGroupSize) + 1 : 0,
@@ -3032,8 +3032,9 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
       scheduledMeasureLayouts = new WeakMap();
       renderSequencerList();
       renderActiveMeasure();
-      const voiceLead = appMode === 'metronome' && SOUND_BANKS[currentBank]?.isVoice ? VOICE_MAX_ATTACK_SECONDS : 0;
+      const voiceLead = appMode === 'metronome' && (SOUND_BANKS[currentBank]?.isVoice || window.RENAX_AMORCE?.active) ? VOICE_MAX_ATTACK_SECONDS : 0;
       nextNoteTime = audioCtx.currentTime + 0.05 + voiceLead;
+      window.RENAX_AMORCE?.begin(audioCtx,nextNoteTime);
       playBtn.textContent = 'STOP';
       playBtn.classList.remove('btn-primary');
       playBtn.classList.add('btn-cyan');
@@ -3442,8 +3443,9 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
     prepareAllVoiceAudio().catch(() => {});
   </script>
   <script src="local-backup.js?v=20261008-auto-sync"></script>
-  <script src="songs-index2.js?v=20261009-block-preview"></script>
-  <script type="module" src="cloud-backup.js?v=20261009-account-position"></script>
+  <script src="amorce-song.js?v=20261009-song"></script>
+  <script src="songs-index2.js?v=20261009-amorce-song"></script>
+  <script type="module" src="cloud-backup.js?v=20261009-account-colors"></script>
   <script>
     // Index 2 : ouvrir les morceaux de la playlist avec les sections repliées.
     (() => {
@@ -3463,7 +3465,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
     })();
   </script>
   <script src="midi-export.js?v=20261007-midi"></script>
-  <script src="song-export.js?v=20261007-auto-close"></script>
+  <script src="song-export.js?v=20261009-amorce-song"></script>
 
   <script>
   (() => {
