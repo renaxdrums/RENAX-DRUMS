@@ -50,10 +50,21 @@
 @keyframes scorePulse{0%{transform:scale(1.7)}100%{transform:scale(1)}}
 @media(prefers-reduced-motion:reduce){.score-pulse.pulsing span,.score-pulse.pulsing:before,.score-pulse.pulsing:after{animation-duration:.05s;}}
 
-@media(max-height:500px){
- .panel-visu.score-view .sequencer-wrapper{padding-left:48px;}
- .panel-visu.score-view .score-view-switch{position:absolute;left:6px;top:0;}
- .panel-visu.score-view .rhythm-editor{max-height:56px;}
-}
 
 .rhythm-score .score-active-head{filter:drop-shadow(0 0 3px var(--cyan));}
+
+.score-tools-panel{display:flex;align-items:flex-start;gap:12px;align-self:stretch;flex-shrink:0;max-height:42%;margin-bottom:10px;min-height:0;}
+.score-tools-panel .score-view-switch{position:static;align-self:flex-start;margin:0;}
+.score-tools-panel .rhythm-editor{flex:1;min-width:0;max-height:100%;margin:0;padding:12px 14px;background:#16191f;border:1px solid rgba(255,255,255,.07);border-radius:5px;}
+.panel-visu.score-view .sequencer-wrapper{justify-content:flex-start;}
+.panel-visu.score-view .rhythm-score{margin-top:auto;margin-bottom:auto;}
+.score-duration-tools button{display:inline-flex;align-items:center;gap:5px;background:#20242c;border-color:transparent;transition:background .15s,border-color .15s;}
+.score-duration-tools button svg{width:22px;height:24px;fill:none;stroke:currentColor;stroke-width:1.5;color:var(--orange);flex-shrink:0;}
+.rhythm-editor button:disabled{opacity:.45;}
+.rhythm-editor button:not(:disabled):hover{background:#2b303a;border-color:rgba(255,107,0,.55);}
+.rhythm-editor button:focus-visible,.rhythm-editor select:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
+.score-state-tools button{border-left-width:3px;background:transparent;}
+.score-editor-title{font-size:12px;letter-spacing:.1px;}
+@media(max-height:500px){.score-tools-panel{max-height:110px;gap:10px;}.score-tools-panel .rhythm-editor{max-height:110px;padding:8px 10px;}.score-duration-tools button{min-height:27px;padding:3px 6px;}.score-duration-tools button svg{height:18px;width:18px;}}
+
+@media(max-height:500px){.score-tools-panel{max-height:86px;}.score-tools-panel .rhythm-editor{max-height:86px;}.score-tools-panel .score-view-switch{gap:4px;}.score-tools-panel .score-view-switch button{width:26px;height:26px;min-width:26px;min-height:26px;padding:4px;}}

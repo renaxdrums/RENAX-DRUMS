@@ -29,3 +29,11 @@ Limit: no physical-device Safari/Firefox verification. Dense notation is deliber
 3. In 7/8, check 2+2+3; enable custom groups and choose 3+2+2. In 6/8, choose 2+2+2 and verify the pulse still marks two dotted quarters.
 4. Edit a note during playback: audio continues; the new pattern applies on the next pass. Stop/restart and switch visualization.
 5. Edit a saved song, reload and reopen it; notes/rests/groups survive. On a phone, load a dense 13/8: one reduced stave, no second system or horizontal scroll.
+
+## Independent tools panel — 2026-10-10
+
+Editor controls now sit beside the vertical visualization buttons, in a separate flat dark panel. Duration controls include orange note symbols. On short screens, the icon stack and tools are compact; long tool lists remain scrollable. The score scales to both the available width and height, preserving one stave and exposing the complete music below the tools.
+
+The editor integration test asserts matching top alignment of tools/icons, placement to the right, one stave, no horizontal overflow, and a complete SVG inside the paper bounds at all five tested viewports. Playback, cycle adoption, song persistence and duration/state edits pass unchanged.
+
+Manual: open the pencil; check the tools are beside the visualization icons. Select a note and edit its duration. Rotate the phone; verify the complete stave remains visible and scroll the tools to reach click states and grouping.
