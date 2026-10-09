@@ -3,7 +3,7 @@
 .score-view-switch button svg{width:17px;height:17px;flex-shrink:0;fill:none;stroke:var(--orange);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
 .score-view-switch button.active{color:var(--text);border-color:rgba(0,229,255,.55);background:rgba(0,229,255,.08);box-shadow:0 0 0 1px rgba(0,229,255,.08) inset;}
 .score-view-switch button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
-.rhythm-score{display:none;width:100%;min-width:0;max-height:100%;overflow:auto;background:#fff;color:#111;border:1px solid #e1e5e9;border-top:3px solid var(--orange);border-radius:10px;box-shadow:0 3px 12px rgba(0,0,0,.12);box-sizing:border-box;padding:4px;align-self:center;overscroll-behavior:contain;}
+.rhythm-score{display:none;width:100%;min-width:0;max-height:100%;overflow:auto;background:linear-gradient(to bottom,#fff 0 8px,var(--orange) 8px 11px,#fff 11px);background-attachment:local;color:#111;border:1px solid #e1e5e9;border-radius:10px;box-shadow:0 3px 12px rgba(0,0,0,.12);box-sizing:border-box;padding:4px;align-self:center;overscroll-behavior:contain;}
 .rhythm-score-status{padding:24px 12px;text-align:center;font-size:13px;}
 .panel-visu.score-view .sequencer-wrapper{width:100%;min-width:0;overflow:hidden;}
 .panel-visu.score-view #sequencerContainer{display:none;}

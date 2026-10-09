@@ -1256,7 +1256,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
 </style>
   <link rel="stylesheet" href="mobile-landscape.css?v=20261008-landscape">
   <link rel="stylesheet" href="training-modes.css?v=20261008-metronome-cyan">
-  <link rel="stylesheet" href="rhythm-score.css?v=20261009-score-views">
+  <link rel="stylesheet" href="rhythm-score.css?v=20261009-paper-band">
 </head>
 <body>
 
@@ -3428,6 +3428,8 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
     });
 
     metronomeMeasures = [createMeasure(4, 4)];
+    metronomeMeasures[0].beatSubdivisions = [1, 1, 1, 1];
+    metronomeMeasures[0].beatStates = [[1], [1], [1], [1]];
     polyrhythmMeasures = [createPolyMeasure(5, 4, 120)];
     measures = metronomeMeasures;
     renderSequencerList();
