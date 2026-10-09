@@ -95,7 +95,7 @@
     const current=loaded?.song?.amorce?song()||loaded.song:(!songsRoot.hidden&&songView==='detail'?song():null);
     if(!isPlaying&&current?.amorce){
       const epoch=++songStartEpoch;preparingAmorce=true;playBtn.textContent='Préparation…';
-      try{const plan=await RENAX_AMORCE.prepare(current);await prepareAllVoiceAudio();if(epoch!==songStartEpoch)return;loadSong(null,plan);RENAX_AMORCE.install(plan);preparingAmorce=false;return await originalStart();}
+      try{await initAudio();if(epoch!==songStartEpoch)return;const plan=await RENAX_AMORCE.prepare(current);await prepareAllVoiceAudio();if(epoch!==songStartEpoch)return;loadSong(null,plan);RENAX_AMORCE.install(plan);preparingAmorce=false;return await originalStart();}
       catch(error){status(error.message);return;}finally{if(epoch===songStartEpoch){preparingAmorce=false;syncSongTransport();}}
     }
     if(!isPlaying&&loaded?.preview)loadSong();
