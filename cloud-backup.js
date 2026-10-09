@@ -212,7 +212,7 @@ function renderPanel(){
     const syncButton=button(failure?'Réessayer la synchronisation':'Actualiser la synchronisation',optionActions,sync);syncButton.setAttribute('aria-label','Réessayer la synchronisation');
     const importButton=button('Importer les morceaux locaux',optionActions,importGuest);importButton.setAttribute('aria-label','Importer les morceaux sans compte');
     button('Lier Google à ce compte',optionActions,()=>authenticate('google'),!providers.google);
-    button('Se déconnecter',optionActions,async()=>{await sdk.auth.signOut(auth);sessionStorage.removeItem('renax-index2-auth-enabled');localStorage.removeItem(rememberKey);remember=false;}).classList.add('backup-signout');
+    const signout=button('Se déconnecter',root,async()=>{await sdk.auth.signOut(auth);sessionStorage.removeItem('renax-index2-auth-enabled');localStorage.removeItem(rememberKey);remember=false;});signout.classList.add('backup-signout');backupIcon(signout,'login');signout.querySelector('svg').style.transform='rotate(180deg)';
     // JSON controls stay in the dedicated local backup view.
     for(const [id,conflict] of Object.entries(storage.state?.conflicts||{})){
       const row=element('div',undefined,root);row.className='backup-conflict';let name=id;try{name=JSON.parse(conflict.local.payload??conflict.remote.payload)?.song?.name||id;}catch{}
@@ -249,5 +249,18 @@ const accountDialog=document.createElement('dialog');accountDialog.id='directAcc
 const closeAccount=document.createElement('button');closeAccount.type='button';closeAccount.className='btn';closeAccount.setAttribute('aria-label','Fermer');closeAccount.title='Fermer';closeAccount.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>';closeAccount.style.cssText='width:28px;height:28px;min-height:28px;padding:0;display:flex;align-items:center;justify-content:center;margin-left:auto;';closeAccount.onclick=()=>accountDialog.close();accountDialog.append(closeAccount);document.body.append(accountDialog);
 accountDialog.addEventListener('close',()=>{const root=document.getElementById('backupAccount');if(root){const back=backupPane.querySelector('.song-back');if(back)back.after(root);else backupPane.prepend(root);}renderPanel();});
 const accountButton=document.createElement('button');accountButton.type='button';accountButton.id='directAccountBtn';accountButton.className='index2-header-btn';accountButton.title='Connexion et compte';accountButton.setAttribute('aria-label','Connexion et compte');accountButton.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3h7v18h-7M3 12h13m-4-4 4 4-4 4"/></svg>';
-accountButton.onclick=()=>{backupView=account?'':'login';renderPanel();accountDialog.append(document.getElementById('backupAccount'));accountDialog.showModal();};
+accountButton.onclick=()=>{backupView=account?'':'login';renderPanel();accountDialog.append(document.getElementById('backupAccount'));accountDialog.showModal();positionAccount();};
 document.querySelector('.index2-header-actions').prepend(accountButton);
+
+function positionAccount(){
+ if(!accountDialog.open)return;
+ Object.assign(accountDialog.style,{position:'fixed',margin:'0',right:'auto',bottom:'auto'});
+ if(innerWidth<=1100){
+  Object.assign(accountDialog.style,{left:'50%',top:'50%',transform:'translate(-50%,-50%)',maxHeight:'85vh'});
+ }else{
+  const anchor=accountButton.getBoundingClientRect(),width=accountDialog.getBoundingClientRect().width;
+  const top=Math.min(innerHeight-120,anchor.bottom+8);
+  Object.assign(accountDialog.style,{left:Math.max(8,Math.min(innerWidth-width-8,anchor.right-width))+'px',top:top+'px',transform:'none',maxHeight:Math.max(100,innerHeight-top-16)+'px'});
+ }
+}
+window.addEventListener('resize',positionAccount);

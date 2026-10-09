@@ -22,6 +22,8 @@ Preuve : tests/direct-auth-ui-test.cjs. API de référence : https://firebase.go
 
 ## Mini plan manuel
 
+Mise à jour compte : croix en haut à droite ; fenêtre sous le bouton Connexion sur PC et centrée sur smartphone ; Déconnexion avec icône visible dans la fenêtre du compte. Le test UI vérifie ces positions et le retour au stockage invité après déconnexion avec SDK simulé. Contrôle visuel mobile et PC effectué.
+
 1. Saisir un libellé puis passer au suivant : Préparation puis Prêt. Modifier le premier pendant préparation et vérifier que seule sa nouvelle annonce est utilisée.
 2. Écouter puis relancer sans modification : aucune régénération. Recharger pour constater que le cache audio est limité à cette page.
 3. Comparer les liens CPU et WebGPU : relever le moteur et les secondes affichées avec les mêmes libellés ; confirmer voix et dernière syllabe identiques à l'écoute. Le secours CPU doit rester utilisable.
