@@ -15,7 +15,7 @@ const result=await p.evaluate(async(real)=>{
  const encoded=await RENAX_MP3_EXPORT.exportSong(song,'claves',.8);
  return {separateNumber:!!plan.speeches[0].separateNumber,voices:plan.speeches.map(s=>s.voice),realNeural:real,encodedBytes:encoded.blob.size,encodedPeak:encoded.report.decodedTruePeak,button:!!button,pressed:button.getAttribute('aria-pressed'),countIn:plan.countInMeasures,enabled,stopped,unchanged,midiEqual:midiA.length===midiB.length&&midiA.every((v,i)=>v===midiB[i]),trace,mp3PcmPeak:peak,mp3Score:rendered.score};
 },!!process.env.REAL_AMORCE);
-if(process.env.REAL_AMORCE){assert.deepEqual(result.voices,['ff_siwis','bm_george','ff_siwis']);assert(result.separateNumber);}
+if(process.env.REAL_AMORCE){assert.deepEqual(result.voices,['fr_FR-siwis-medium','bm_george','fr_FR-siwis-medium']);assert(!result.separateNumber);}
 assert(result.encodedBytes>1000&&result.encodedPeak<1);
 assert(result.button&&result.pressed==='true'&&result.countIn>=2&&result.enabled&&result.stopped&&result.unchanged&&result.midiEqual);assert(result.trace.some(e=>e.bank==='voiceMale'&&e.beatNumber===2));assert(result.trace.some(e=>e.bank==='claves'));assert(result.mp3PcmPeak>0&&result.mp3PcmPeak<1);assert.deepEqual(errors,[]);fs.writeFileSync('tests/amorce-song-integration-results.json',JSON.stringify({...result,errors},null,2));console.log({...result,trace:result.trace.length});
 }finally{await h.browser.close();h.server.close();closeAssets?.();}})().catch(e=>{console.error(e);process.exitCode=1;});

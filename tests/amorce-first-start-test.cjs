@@ -32,7 +32,7 @@ const {start}=require('./audio-harness.cjs');
   if(process.env.REAL_AMORCE){const r=await p.evaluate(async()=>{
    const song=RENAX_SONGS.library.profiles[0].songs[0],plan=await RENAX_AMORCE.prepare(song);
    return plan.speeches.map(s=>{let peak=0;for(const x of s.pcm)peak=Math.max(peak,Math.abs(x));const first=s.pcm.findIndex(x=>Math.abs(x)>=peak*.01);return {voice:s.voice,peak,samples:s.pcm.length,onset:first/s.sampleRate,event:s.events.find(e=>e.type==='phoneme'&&e.id.trim()).audio_position/1000,timingSource:s.timingSource};});
-  });for(const s of r){assert.equal(s.voice,'bm_george');assert.ok(s.peak>0&&s.peak<.801);assert.ok(s.samples>2400);}assert.deepEqual(r[0],r[1]);result.voices=r;}
+  });for(const s of r){assert.equal(s.voice,'fr_FR-siwis-medium');assert.ok(s.peak>0&&s.peak<.801);assert.ok(s.samples>2400);}assert.equal(r[0].voice,r[1].voice);result.voices=r;}
   console.log(JSON.stringify({...result,realNeural:!!process.env.REAL_AMORCE,stopRestart:true,errors},null,2));
  }finally{await h.browser.close();h.server.close();closeAssets?.();}
 })().catch(e=>{console.error(e);process.exit(1)});

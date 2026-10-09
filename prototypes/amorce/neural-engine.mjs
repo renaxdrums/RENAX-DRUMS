@@ -1,10 +1,20 @@
-import {synthesize as phoneticReference} from './engine.mjs';
+import {readAnnouncement,saveAnnouncement} from './piper-cache.mjs';
+import {synthesize as phoneticReference,piperInput} from './engine.mjs?v=20261009-piper-fast';
 import {phonemeInput} from './neural-core.mjs?v=20261009-levels';
-import {joinNumber} from './separate-number.mjs?v=20261009-un-complete';
 let worker,sequence=0;const pending=new Map();
+let frenchWorker,frenchSequence=0;const frenchPending=new Map();
+async function french(text){
+ const input=await piperInput(text);
+ if(!frenchWorker){
+  frenchWorker=new Worker(new URL('./piper-worker.mjs?v=20261009-piper-fast',import.meta.url),{type:'module'});
+  frenchWorker.onmessage=({data})=>{if(data.progress){window.dispatchEvent(new CustomEvent('amorce-neural-progress',{detail:data.progress}));return;}const job=frenchPending.get(data.id);if(!job)return;frenchPending.delete(data.id);data.error?job.reject(new Error(data.error)):job.resolve(data.result);};
+  frenchWorker.onerror=()=>{for(const job of frenchPending.values())job.reject(new Error('PIPER_ENGINE_FAILED'));frenchPending.clear();frenchWorker.terminate();frenchWorker=null;};
+ }
+ const id=++frenchSequence;return new Promise((resolve,reject)=>{frenchPending.set(id,{resolve,reject});frenchWorker.postMessage({id,input});});
+}
+
 async function generate(text,language='fr'){
- const parts=language==='fr'&&text.match(/^(.*\S)\s+(\d+)\s*$/u);
- if(parts){const [prefix,number]=await Promise.all([synthesize(parts[1],language),synthesize(parts[2],language)]);return joinNumber(prefix,number);}
+ if(language==='fr'){const saved=await readAnnouncement(text);if(saved)return {...saved,persistentCacheHit:true};const result=await french(text);await saveAnnouncement(text,result);return result;}
  const reference=await phoneticReference(text,language),input=phonemeInput(reference.events);
  if(!worker){
   worker=new Worker(new URL('./neural-worker.mjs?v=20261009-male-restored',import.meta.url),{type:'module'});

@@ -7,7 +7,7 @@ exports.install=async (context,testURL)=>{
  if(!fs.existsSync(link))fs.symlinkSync(path.join(root,'neural-assets'),link,'dir');
  const server=http.createServer((req,res)=>{
   const relative=new URL(req.url,'http://localhost').pathname;
-  const file=path.join(root,'neural-assets',relative);
+  const file=relative.includes('fr_FR-siwis-medium.onnx')?path.join(process.env.PIPER_ASSETS||'', 'fr_FR-siwis-medium.onnx'):path.join(root,'neural-assets',relative);
   res.setHeader('Access-Control-Allow-Origin','*');
   if(!fs.existsSync(file)){res.writeHead(404).end();return;}
   res.setHeader('Content-Type',file.endsWith('.json')?'application/json':'application/octet-stream');
@@ -26,7 +26,8 @@ exports.install=async (context,testURL)=>{
  await context.route('https://huggingface.co/**',route=>{
   const url=new URL(route.request().url()),relative=url.pathname.split('/resolve/')[1]?.split('/').slice(1).join('/');
   if(!relative)return route.abort();
+  if(url.pathname.includes('/rhasspy/piper-voices/'))return route.fulfill({headers:{'access-control-allow-origin':'*'},body:fs.readFileSync(path.join(process.env.PIPER_ASSETS,'fr_FR-siwis-medium.onnx'))});
   return route.fulfill({status:307,headers:{location:assetURL+'/'+relative,'access-control-allow-origin':'*'},body:''});
  });
- return ()=>{server.close();fs.unlinkSync(link);};
+ return ()=>{server.close();if(fs.existsSync(link))fs.unlinkSync(link);};
 };
