@@ -1,4 +1,4 @@
-import {neuralAudio} from './neural-core.mjs?v=20261009-male-level';
+import {neuralAudio} from './neural-core.mjs?v=20261009-no-liaison';
 const modelId='onnx-community/Kokoro-82M-v1.0-ONNX-timestamped',revision='dd4401a9add81ac692d20e240d22ec9dda82cc29';
 let initialized,model,tokenizer,runtime,backend='wasm',fallbackReason='';const voices=new Map();
 async function initialize(requested){

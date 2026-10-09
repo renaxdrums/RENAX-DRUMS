@@ -1,10 +1,10 @@
 // Kokoro's durations are model-predicted phoneme timings, not independent
 // acoustic annotations. Keep the existing unverified syllable gate intact.
-export function phonemeInput(events){
+export function phonemeInput(events, separateFinalNumber=false){
  const source=events.filter(e=>e.type==='phoneme'&&e.id?.trim());
  let text='',word;const offsets=[];
  for(const e of source){
-  if(word!==undefined&&word!==e.text_position)text+=' ';
+  if(word!==undefined&&word!==e.text_position)text+=separateFinalNumber&&e.text_position===source.at(-1).text_position?', ':' ';
   word=e.text_position;offsets.push(Array.from(text).length);text+=e.id;
  }
  if(!text)throw new Error('NO_PHONEME_EVENTS');
