@@ -35,14 +35,6 @@
 .rhythm-score .score-selected{filter:drop-shadow(0 0 3px rgba(255,107,0,.65));}
 .rhythm-score [data-event]{cursor:pointer;}
 .rhythm-score [data-event]:focus-visible{outline:2px solid var(--orange);}
-.rhythm-editor{align-self:stretch;flex-shrink:0;max-height:40%;overflow:auto;margin:0 0 8px;padding:10px;background:#18191e;border:1px solid var(--border);border-radius:4px;font-size:11px;}
-.score-editor-title{margin:0 0 8px;font-weight:700;}
-.score-duration-tools,.score-state-tools,.score-group-tools{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0;}
-.rhythm-editor button,.rhythm-editor select{min-height:28px;padding:4px 7px;border:1px solid #393b43;border-radius:3px;background:#22242b;color:#ddd;font:inherit;cursor:pointer;}
-.rhythm-editor button:disabled{opacity:.3;cursor:default;}
-.rhythm-editor button[aria-pressed=true]{border-color:var(--orange);}
-.score-state-tools button{border-left:4px solid var(--state);}
-.score-editor-message{margin:8px 0 0;color:var(--text-muted);line-height:1.5;}
 .score-pulse{height:22px;position:relative;width:70px;margin:6px auto 0;}
 .score-pulse span{position:absolute;left:30px;top:6px;width:10px;height:10px;border-radius:50%;background:#000;}
 .score-pulse.pulsing span{animation:scorePulse .4s ease-out;}
@@ -53,18 +45,31 @@
 
 .rhythm-score .score-active-head{filter:drop-shadow(0 0 3px var(--cyan));}
 
+/* Independent, compact notation toolbar. */
 .score-tools-panel{display:flex;align-items:flex-start;gap:12px;align-self:stretch;flex-shrink:0;max-height:42%;margin-bottom:10px;min-height:0;}
 .score-tools-panel .score-view-switch{position:static;align-self:flex-start;margin:0;}
-.score-tools-panel .rhythm-editor{flex:1;min-width:0;max-height:100%;margin:0;padding:12px 14px;background:#16191f;border:1px solid rgba(255,255,255,.07);border-radius:5px;}
 .panel-visu.score-view .sequencer-wrapper{justify-content:flex-start;}
 .panel-visu.score-view .rhythm-score{margin-top:auto;margin-bottom:auto;}
-.score-duration-tools button{display:inline-flex;align-items:center;gap:5px;background:#20242c;border-color:transparent;transition:background .15s,border-color .15s;}
-.score-duration-tools button svg{width:22px;height:24px;fill:none;stroke:currentColor;stroke-width:1.5;color:var(--orange);flex-shrink:0;}
-.rhythm-editor button:disabled{opacity:.45;}
-.rhythm-editor button:not(:disabled):hover{background:#2b303a;border-color:rgba(255,107,0,.55);}
+.score-tools-panel .rhythm-editor{flex:0 1 auto;width:max-content;max-width:calc(100% - 44px);min-width:0;max-height:100%;overflow:auto;box-sizing:border-box;margin:0;padding:10px 12px;background:#131419;border:1px solid var(--border);border-radius:8px;font:11px var(--font);scrollbar-width:thin;scrollbar-color:#343640 transparent;}
+.score-editor-title{margin:0 0 9px;color:var(--text-muted);font-size:10px;line-height:1.3;font-weight:600;letter-spacing:.2px;}
+.score-editor-body{display:flex;align-items:center;flex-wrap:wrap;gap:10px 16px;}
+.score-duration-tools{display:grid;grid-template-rows:repeat(2,34px);grid-auto-flow:column;grid-auto-columns:34px;gap:4px;margin:0;}
+.rhythm-editor button,.rhythm-editor select{box-sizing:border-box;border:1px solid var(--border);border-radius:5px;background:#1b1c23;color:var(--text);font:600 10px var(--font);cursor:pointer;transition:background .15s,border-color .15s;}
+.score-duration-tools button{display:flex;align-items:center;justify-content:center;min-height:0;width:34px;height:34px;padding:4px;}
+.score-duration-tools button svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.5;color:var(--orange);flex-shrink:0;}
+.rhythm-editor button:disabled{opacity:.55;cursor:default;}
+.rhythm-editor button:not(:disabled):hover{background:#282a32;border-color:var(--orange);}
+.rhythm-editor button[aria-pressed=true]{border-color:var(--cyan);background:rgba(0,229,255,.08);}
 .rhythm-editor button:focus-visible,.rhythm-editor select:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
-.score-state-tools button{border-left-width:3px;background:transparent;}
-.score-editor-title{font-size:12px;letter-spacing:.1px;}
-@media(max-height:500px){.score-tools-panel{max-height:110px;gap:10px;}.score-tools-panel .rhythm-editor{max-height:110px;padding:8px 10px;}.score-duration-tools button{min-height:27px;padding:3px 6px;}.score-duration-tools button svg{height:18px;width:18px;}}
-
-@media(max-height:500px){.score-tools-panel{max-height:86px;}.score-tools-panel .rhythm-editor{max-height:86px;}.score-tools-panel .score-view-switch{gap:4px;}.score-tools-panel .score-view-switch button{width:26px;height:26px;min-width:26px;min-height:26px;padding:4px;}}
+.score-state-tools{display:grid;grid-template-columns:repeat(2,max-content);gap:5px;margin:0;padding-left:14px;border-left:1px solid var(--border);}
+.score-state-tools button{display:flex;align-items:center;gap:7px;min-height:30px;padding:5px 9px;background:transparent;}
+.score-state-tools button::before{content:'';width:7px;height:7px;background:var(--state);border-radius:50%;flex-shrink:0;}
+.score-group-panel:empty{display:none;}
+.score-group-panel{display:flex;flex-direction:column;gap:6px;}
+#scoreGroupingToggle{min-height:30px;padding:5px 9px;color:var(--orange);}
+.score-group-tools{display:flex;flex-wrap:wrap;gap:5px;}
+.score-group-tools label{display:flex;align-items:center;gap:4px;color:var(--text-muted);font-size:9px;}
+.score-group-tools select{width:38px;min-width:38px;min-height:25px;padding:2px 5px;font-size:10px;}
+.score-editor-message{margin:8px 0 0;color:var(--text-muted);font-size:9px;line-height:1.4;}
+@media(max-width:600px){.score-duration-tools{grid-auto-columns:30px;grid-template-rows:repeat(2,30px);gap:3px;}.score-duration-tools button{width:30px;height:30px;}.score-tools-panel{gap:8px;}.score-tools-panel .rhythm-editor{padding:8px;}.score-editor-body{gap:8px;}.score-state-tools{display:flex;flex-wrap:wrap;padding:0;border:0;}.score-state-tools button{min-height:26px;padding:3px 6px;font-size:9px;}}
+@media(max-height:500px){.score-tools-panel{max-height:110px;gap:8px;}.score-tools-panel .rhythm-editor{max-height:110px;padding:7px 9px;}.score-editor-title{margin-bottom:5px;}.score-editor-body{gap:6px 12px;}.score-duration-tools{grid-template-rows:repeat(2,27px);grid-auto-columns:29px;gap:3px;}.score-duration-tools button{width:29px;height:27px;}.score-duration-tools button svg{width:23px;height:23px;}.score-editor-message{margin-top:5px;}.score-tools-panel .score-view-switch{gap:4px;}.score-tools-panel .score-view-switch button{width:26px;height:26px;min-width:26px;min-height:26px;padding:4px;}}
