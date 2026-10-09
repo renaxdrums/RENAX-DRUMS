@@ -1,4 +1,4 @@
-import {synthesize} from './neural-engine.mjs?v=20261009-speed';
+import {synthesize} from './neural-engine.mjs?v=20261009-male-level';
 import {lastSyllableCandidate} from './syllables.mjs';
 import {languageState} from './planner.mjs';
 import {renderSequence} from './sequence-render.mjs?v=20261009-neural';
@@ -48,7 +48,7 @@ $('run').onclick=async()=>{
   while(!adapter.ready()){if(id!==token)return;if(performance.now()-started>20000)throw new Error('Chargement des samples trop long. Réessayez.');await new Promise(r=>setTimeout(r,100));}
   if(id!==token)return;
   const result=renderSequence(context,blocks,speeches,candidates,{bpm,subdivisions:Number($('subdivisions').value)},adapter);
-  window.amorceTest={result,blocks,candidates,speeches,voices:speeches.map(s=>({model:s.model,voice:s.voice,timingSource:s.timingSource,backend:s.backend,inferenceMs:s.inferenceMs,preparationMs:s.preparationMs,fallbackReason:s.fallbackReason})),status:'calage-a-valider'};
+  window.amorceTest={result,blocks,candidates,speeches,voices:speeches.map(s=>({model:s.model,voice:s.voice,timingSource:s.timingSource,backend:s.backend,inferenceMs:s.inferenceMs,preparationMs:s.preparationMs,fallbackReason:s.fallbackReason,level:s.level})),status:'calage-a-valider'};
   $('status').textContent=`Lecture · ${result.countInMeasures} mesures de décompte · calage à valider\n`+blocks.map((b,i)=>`${i+1}. ${b.text} (${b.language.toUpperCase()}) — début du bloc à ${result.layout[i].blockStart.toFixed(2)} s`).join('\n');
   completion=setTimeout(async()=>{if(id!==token)return;await playback.stop();playback=null;busy(false);$('status').textContent+='\nLecture terminée. Le repère acoustique reste à valider.';},Math.ceil((result.end+.5)*1000));
  }catch(error){if(id!==token)return;if(playback)await playback.stop();playback=null;busy(false);$('status').textContent=errors[error.message]||error.message;}

@@ -1,4 +1,4 @@
-import {neuralAudio} from './neural-core.mjs';
+import {neuralAudio} from './neural-core.mjs?v=20261009-male-level';
 const modelId='onnx-community/Kokoro-82M-v1.0-ONNX-timestamped',revision='dd4401a9add81ac692d20e240d22ec9dda82cc29';
 let initialized,model,tokenizer,runtime,backend='wasm',fallbackReason='';const voices=new Map();
 async function initialize(requested){
@@ -21,9 +21,9 @@ let queue=Promise.resolve();
 self.onmessage=({data})=>{queue=queue.then(async()=>{
  const {id,input,language,device}=data;
  try{
-  if(!initialized)initialized=initialize(device).catch(e=>{initialized=null;throw e;});
+  if(!initialized)initialized=initialize('wasm').catch(e=>{initialized=null;throw e;});
   await initialized;
-  const voice=language==='fr'?'ff_siwis':'bm_george';
+  const voice='bm_george';
   if(!voices.has(voice)){
    const response=await fetch(`https://huggingface.co/${modelId}/resolve/${revision}/voices/${voice}.bin`);
    if(!response.ok)throw new Error('NEURAL_VOICE_DOWNLOAD_FAILED');

@@ -6,11 +6,19 @@
       "text": "Introduction",
       "language": "fr",
       "phones": "ɛ̃tʁodyksjˈɔ̃",
-      "duration": 1.6,
-      "inferenceMs": 2157,
-      "peak": 0.58455890417099,
+      "duration": 1.85,
+      "inferenceMs": 2092,
+      "peak": 0.45416393876075745,
+      "level": {
+        "gain": 1.0825224531465514,
+        "activeRmsBefore": 0.11085220417479365,
+        "activeRmsAfter": 0.12000000000000001,
+        "peakAfter": 0.45416394119673775,
+        "targetActiveRms": 0.12
+      },
+      "voice": "bm_george",
       "candidate": {
-        "anchorSeconds": 0.9612311661243439,
+        "anchorSeconds": 0.9379650771617889,
         "onsetPhone": "s",
         "nucleusPhone": "ˈɔ̃",
         "phones": [
@@ -28,11 +36,19 @@
       "text": "Couplet personnalisé",
       "language": "fr",
       "phones": "kuplˈɛ pɛʁsɔnalizˈe",
-      "duration": 1.875,
-      "inferenceMs": 2233,
-      "peak": 0.7015050649642944,
+      "duration": 2.475,
+      "inferenceMs": 2799,
+      "peak": 0.6328723430633545,
+      "level": {
+        "gain": 1.058701368474663,
+        "activeRmsBefore": 0.11334641058686028,
+        "activeRmsAfter": 0.12,
+        "peakAfter": 0.6328723226599117,
+        "targetActiveRms": 0.12
+      },
+      "voice": "bm_george",
       "candidate": {
-        "anchorSeconds": 1.366601923108101,
+        "anchorSeconds": 1.5860405564308164,
         "onsetPhone": "z",
         "nucleusPhone": "ˈe",
         "phones": [
@@ -49,11 +65,19 @@
       "text": "Refrain final",
       "language": "fr",
       "phones": "ʁəfʁˈɛ̃ finˈal",
-      "duration": 1.725,
-      "inferenceMs": 1974,
-      "peak": 0.6732172966003418,
+      "duration": 2.075,
+      "inferenceMs": 2458,
+      "peak": 0.47525912523269653,
+      "level": {
+        "gain": 1.0730632865689305,
+        "activeRmsBefore": 0.11182937810098262,
+        "activeRmsAfter": 0.11999999999999998,
+        "peakAfter": 0.4752591241546382,
+        "targetActiveRms": 0.12
+      },
+      "voice": "bm_george",
       "candidate": {
-        "anchorSeconds": 1.015843564271927,
+        "anchorSeconds": 1.1115310251712798,
         "onsetPhone": "n",
         "nucleusPhone": "ˈa",
         "phones": [
@@ -72,8 +96,16 @@
       "language": "en",
       "phones": "ˌɪntɹədˈʌkʃən",
       "duration": 1.7,
-      "inferenceMs": 1932,
-      "peak": 0.4305602014064789,
+      "inferenceMs": 2186,
+      "peak": 0.4501497745513916,
+      "level": {
+        "gain": 1.04549789134468,
+        "activeRmsBefore": 0.11477784985836798,
+        "activeRmsAfter": 0.12,
+        "peakAfter": 0.4501497826674144,
+        "targetActiveRms": 0.12
+      },
+      "voice": "bm_george",
       "candidate": {
         "anchorSeconds": 0.8608026742935181,
         "onsetPhone": "ʃ",
@@ -94,8 +126,16 @@
       "language": "en",
       "phones": "kˈɔːɹəs",
       "duration": 1.275,
-      "inferenceMs": 1685,
-      "peak": 0.5608736276626587,
+      "inferenceMs": 1603,
+      "peak": 0.5383834838867188,
+      "level": {
+        "gain": 0.9599015804894088,
+        "activeRmsBefore": 0.12501281635437836,
+        "activeRmsAfter": 0.12,
+        "peakAfter": 0.5383834816482143,
+        "targetActiveRms": 0.12
+      },
+      "voice": "bm_george",
       "candidate": {
         "anchorSeconds": 0.5472962319850921,
         "onsetPhone": "ɹ",
@@ -116,8 +156,16 @@
       "language": "en",
       "phones": "maɪ kˈʌstəm dɹˈʌm bɹˈeɪkdaʊn",
       "duration": 2.675,
-      "inferenceMs": 3008,
-      "peak": 0.5891284942626953,
+      "inferenceMs": 3513,
+      "peak": 0.633385956287384,
+      "level": {
+        "gain": 1.0751236077952446,
+        "activeRmsBefore": 0.11161507302968068,
+        "activeRmsAfter": 0.12,
+        "peakAfter": 0.633385952206689,
+        "targetActiveRms": 0.12
+      },
+      "voice": "bm_george",
       "candidate": {
         "anchorSeconds": 1.8681710928678517,
         "onsetPhone": "d",

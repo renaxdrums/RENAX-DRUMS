@@ -1,5 +1,9 @@
 # Amorce — nouvelles voix, calage à valider
 
+## Mise à jour : voix masculine commune
+
+La version courante utilise George pour les annonces FR et EN, avec RMS actif harmonisé à 0,12 et plafond de crête 0,8. WebGPU est suspendu après le parasite signalé ; tous les liens utilisent WASM. Six synthèses passent, huit mixages navigateur ne saturent pas (pic 0,343818). Le cache est conservé. David valide à l'écoute les repères de la version précédente ; le changement de style français demande une nouvelle écoute de la prononciation et du calage. Rapport actuel : [voix masculine et mini plan](../../tests/20261009-male-voice-validation.md). Les sections suivantes décrivent la version FR Siwis / EN George antérieure.
+
 9 octobre 2026. Prototype isolé publié pour la passe d'écoute autorisée par David. Ce n'est pas une certification du test minimal complet.
 
 ## Version actuelle

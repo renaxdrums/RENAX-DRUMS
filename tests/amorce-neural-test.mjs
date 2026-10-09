@@ -10,13 +10,13 @@ const [model,tokenizer]=await Promise.all([runtime.StyleTextToSpeech2Model.from_
 const results=[];
 for(const [text,language] of [['Introduction','fr'],['Couplet personnalisé','fr'],['Refrain final','fr'],['Introduction','en'],['Chorus','en'],['My custom drum breakdown','en']]){
  const reference=await synthesize(text,language),input=phonemeInput(reference.events);
- const bytes=await readFile(root+'/voices/'+(language==='fr'?'ff_siwis':'bm_george')+'.bin');
+ const bytes=await readFile(root+'/voices/'+'bm_george'+'.bin');
  const data=new Float32Array(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength));
  const started=Date.now(),audio=await neuralAudio(runtime,model,tokenizer,data,input),candidate=lastSyllableCandidate(audio.events,language);
  let peak=0;for(const v of audio.pcm)peak=Math.max(peak,Math.abs(v));
  assert(audio.pcm.length>2400&&candidate.anchorSeconds<audio.pcm.length/24000);
- assert.equal(audio.anchorVerified,false);
- results.push({text,language,phones:input.text,duration:audio.pcm.length/24000,inferenceMs:Date.now()-started,peak,candidate,timingSource:audio.timingSource});
+ assert.equal(audio.anchorVerified,false);assert(peak<=.801);assert(audio.level.activeRmsAfter<=.120001);
+ results.push({text,language,phones:input.text,duration:audio.pcm.length/24000,inferenceMs:Date.now()-started,peak,level:audio.level,voice:'bm_george',candidate,timingSource:audio.timingSource});
  console.log(results.at(-1));
 }
 await writeFile(new URL('../prototypes/amorce/neural-results.json',import.meta.url),JSON.stringify({model:'Kokoro-82M',revision:'dd4401a9add81ac692d20e240d22ec9dda82cc29',results,anchorVerified:false},null,2)+'\n');

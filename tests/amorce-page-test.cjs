@@ -22,13 +22,14 @@ const {start}=require('./audio-harness.cjs');
  try{await page.waitForFunction(()=>window.amorceTest||!document.getElementById('run').disabled,undefined,{timeout:180000});}finally{clearInterval(progress);}
  if(!await page.evaluate(()=>!!window.amorceTest))throw new Error(await page.locator('#status').textContent());
  const r=await page.evaluate(()=>{const {speeches,...r}=window.amorceTest;return r;});
- assert.deepEqual(r.voices.map(v=>v.voice),['bm_george','ff_siwis','bm_george']);
+ assert.deepEqual(r.voices.map(v=>v.voice),['bm_george','bm_george','bm_george']);
+ assert(r.voices.every(v=>v.backend==='wasm'&&v.level.peakAfter<=.801&&v.level.activeRmsAfter<=.120001));
  assert.equal(r.result.layout.length,3);assert.equal(r.result.anchorVerified,false);
  assert(r.result.countInMeasures>=2);
  for(const a of r.result.layout){const e=r.result.events.filter(e=>e.announcing&&e.subIndex===0&&e.time>=a.target-1e-9&&e.time<a.blockStart-1e-9);assert.equal(e.length,3);assert(e.every(x=>x.bank==='voiceMale'&&x.number>=2));}
  await page.locator('#stop').click();
  await page.waitForFunction(()=>!document.getElementById('run').disabled);
- const cacheCheck=await page.evaluate(async()=>{const {synthesize}=await import('/prototypes/amorce/neural-engine.mjs?v=20261009-speed');const b=amorceTest.blocks[0],a=synthesize(b.text,b.language),c=synthesize(b.text,b.language),start=performance.now();await c;return {samePromise:a===c,elapsedMs:performance.now()-start};});
+ const cacheCheck=await page.evaluate(async()=>{const {synthesize}=await import('/prototypes/amorce/neural-engine.mjs?v=20261009-male-level');const b=amorceTest.blocks[0],a=synthesize(b.text,b.language),c=synthesize(b.text,b.language),start=performance.now();await c;return {samePromise:a===c,elapsedMs:performance.now()-start};});
  assert(cacheCheck.samePromise);assert(cacheCheck.elapsedMs<100);
  assert.match(await page.locator('#status').textContent(),/arrêtée/);
  const mixed=await page.evaluate(async()=>{

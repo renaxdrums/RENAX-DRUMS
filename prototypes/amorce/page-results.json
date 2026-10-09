@@ -4,7 +4,7 @@
   "requestedBackend": "webgpu",
   "cacheCheck": {
     "samePromise": true,
-    "elapsedMs": 0.10000000055879354
+    "elapsedMs": 0
   },
   "voices": [
     {
@@ -12,27 +12,48 @@
       "voice": "bm_george",
       "timingSource": "model-predicted-phoneme-durations",
       "backend": "wasm",
-      "inferenceMs": 4958.200000000186,
-      "preparationMs": 8421,
-      "fallbackReason": "WebGPU indisponible"
-    },
-    {
-      "model": "Kokoro-82M",
-      "voice": "ff_siwis",
-      "timingSource": "model-predicted-phoneme-durations",
-      "backend": "wasm",
-      "inferenceMs": 5407.300000000745,
-      "preparationMs": 29874.900000000373,
-      "fallbackReason": "WebGPU indisponible"
+      "inferenceMs": 5020.799999999814,
+      "preparationMs": 8792.100000000559,
+      "fallbackReason": "",
+      "level": {
+        "gain": 1.0385113500281005,
+        "activeRmsBefore": 0.11555001300347173,
+        "activeRmsAfter": 0.12,
+        "peakAfter": 0.4507983115950761,
+        "targetActiveRms": 0.12
+      }
     },
     {
       "model": "Kokoro-82M",
       "voice": "bm_george",
       "timingSource": "model-predicted-phoneme-durations",
       "backend": "wasm",
-      "inferenceMs": 7250.799999999814,
-      "preparationMs": 37083.299999999814,
-      "fallbackReason": "WebGPU indisponible"
+      "inferenceMs": 6835.5999999996275,
+      "preparationMs": 33264.799999999814,
+      "fallbackReason": "",
+      "level": {
+        "gain": 1.0777749065908921,
+        "activeRmsBefore": 0.11134050279531167,
+        "activeRmsAfter": 0.12000000000000001,
+        "peakAfter": 0.4547317066740844,
+        "targetActiveRms": 0.12
+      }
+    },
+    {
+      "model": "Kokoro-82M",
+      "voice": "bm_george",
+      "timingSource": "model-predicted-phoneme-durations",
+      "backend": "wasm",
+      "inferenceMs": 7392.399999999441,
+      "preparationMs": 40613.89999999944,
+      "fallbackReason": "",
+      "level": {
+        "gain": 1.0624724567551391,
+        "activeRmsBefore": 0.11294410432670218,
+        "activeRmsAfter": 0.12000000000000001,
+        "peakAfter": 0.5895309990042856,
+        "targetActiveRms": 0.12
+      }
     }
   ],
   "mixedRenders": [
@@ -110,14 +131,14 @@
       "bpm": 120,
       "numerator": 7,
       "denominator": 8,
-      "peak": 0.3683215379714966,
+      "peak": 0.34381771087646484,
       "clipped": 0,
       "blocks": 3,
       "subdivisions": 4,
       "anchorVerified": false
     }
   ],
-  "worstMixedPeak": 0.3683215379714966,
+  "worstMixedPeak": 0.34381771087646484,
   "mobileWidth": 390,
   "multiblockScheduled": true,
   "languageScope": true,

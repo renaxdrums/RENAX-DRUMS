@@ -24,5 +24,16 @@ export async function neuralAudio(runtime,model,tokenizer,voiceData,input){
  const events=input.source.map((e,i)=>({...e,audio_position:starts[input.offsets[i]+1]*1000,timingSource:'kokoro-predicted-duration'}));
  const pcm=new Float32Array(waveform.data);
  if(!pcm.length||pcm.some(v=>!Number.isFinite(v)))throw new Error('INVALID_NEURAL_AUDIO');
- return {pcm,sampleRate:24000,events,anchorVerified:false,model:'Kokoro-82M',timingSource:'model-predicted-phoneme-durations'};
+ const level=normalizeSpeech(pcm);
+ return {level,pcm,sampleRate:24000,events,anchorVerified:false,model:'Kokoro-82M',timingSource:'model-predicted-phoneme-durations'};
+}
+
+export function normalizeSpeech(pcm){
+ let peak=0;for(const x of pcm)peak=Math.max(peak,Math.abs(x));
+ if(!peak)throw new Error('SILENT_NEURAL_AUDIO');
+ const threshold=peak*.02;let energy=0,count=0;
+ for(const x of pcm)if(Math.abs(x)>=threshold){energy+=x*x;count++;}
+ const activeRms=Math.sqrt(energy/count),gain=Math.min(.12/activeRms,.8/peak);
+ for(let i=0;i<pcm.length;i++)pcm[i]*=gain;
+ return {gain,activeRmsBefore:activeRms,activeRmsAfter:activeRms*gain,peakAfter:peak*gain,targetActiveRms:.12};
 }
