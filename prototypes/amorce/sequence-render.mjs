@@ -22,7 +22,8 @@ export function renderSequence(context,blocks,speeches,candidates,settings,adapt
    if(announcing&&number===1&&sub===0)continue;
    const time=start+(number-1)*pulse+sub*pulse/subdivisions;
    const bank=announcing?'voiceMale':b.bank;
-   adapter.click(bank,number,time+offset,sub?1:number===1?3:2,number===1&&sub===0,sub,pulse);
+   if(announcing&&sub===0&&adapter.count)adapter.count(number,time+offset,2,false,pulse);
+   else adapter.click(bank,number,time+offset,sub?1:number===1?3:2,number===1&&sub===0,sub,pulse);
    events.push({time,bank,number,subIndex:sub,blockIndex:index,announcing});
   }
  };

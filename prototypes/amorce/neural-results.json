@@ -1,0 +1,138 @@
+{
+  "model": "Kokoro-82M",
+  "revision": "dd4401a9add81ac692d20e240d22ec9dda82cc29",
+  "results": [
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "phones": "ɛ̃tʁodyksjˈɔ̃",
+      "duration": 1.6,
+      "inferenceMs": 2157,
+      "peak": 0.58455890417099,
+      "candidate": {
+        "anchorSeconds": 0.9612311661243439,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "timingSource": "model-predicted-phoneme-durations"
+    },
+    {
+      "text": "Couplet personnalisé",
+      "language": "fr",
+      "phones": "kuplˈɛ pɛʁsɔnalizˈe",
+      "duration": 1.875,
+      "inferenceMs": 2233,
+      "peak": 0.7015050649642944,
+      "candidate": {
+        "anchorSeconds": 1.366601923108101,
+        "onsetPhone": "z",
+        "nucleusPhone": "ˈe",
+        "phones": [
+          "z",
+          "ˈe"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "timingSource": "model-predicted-phoneme-durations"
+    },
+    {
+      "text": "Refrain final",
+      "language": "fr",
+      "phones": "ʁəfʁˈɛ̃ finˈal",
+      "duration": 1.725,
+      "inferenceMs": 1974,
+      "peak": 0.6732172966003418,
+      "candidate": {
+        "anchorSeconds": 1.015843564271927,
+        "onsetPhone": "n",
+        "nucleusPhone": "ˈa",
+        "phones": [
+          "n",
+          "ˈa",
+          "l"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "timingSource": "model-predicted-phoneme-durations"
+    },
+    {
+      "text": "Introduction",
+      "language": "en",
+      "phones": "ˌɪntɹədˈʌkʃən",
+      "duration": 1.7,
+      "inferenceMs": 1932,
+      "peak": 0.4305602014064789,
+      "candidate": {
+        "anchorSeconds": 0.8608026742935181,
+        "onsetPhone": "ʃ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ʃ",
+          "ə",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "timingSource": "model-predicted-phoneme-durations"
+    },
+    {
+      "text": "Chorus",
+      "language": "en",
+      "phones": "kˈɔːɹəs",
+      "duration": 1.275,
+      "inferenceMs": 1685,
+      "peak": 0.5608736276626587,
+      "candidate": {
+        "anchorSeconds": 0.5472962319850921,
+        "onsetPhone": "ɹ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ɹ",
+          "ə",
+          "s"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "timingSource": "model-predicted-phoneme-durations"
+    },
+    {
+      "text": "My custom drum breakdown",
+      "language": "en",
+      "phones": "maɪ kˈʌstəm dɹˈʌm bɹˈeɪkdaʊn",
+      "duration": 2.675,
+      "inferenceMs": 3008,
+      "peak": 0.5891284942626953,
+      "candidate": {
+        "anchorSeconds": 1.8681710928678517,
+        "onsetPhone": "d",
+        "nucleusPhone": "aʊ",
+        "phones": [
+          "d",
+          "aʊ",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "timingSource": "model-predicted-phoneme-durations"
+    }
+  ],
+  "anchorVerified": false
+}

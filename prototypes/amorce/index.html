@@ -9,7 +9,7 @@
 <label>Métrique<select id="meter"><option>4/4</option><option>3/4</option><option>5/4</option><option>7/8</option></select></label>
 <label>Mesures par bloc<input id="measures" type="number" min="2" max="8" value="2"></label>
 <label>Banque<select id="bank"><option value="claves">Claves</option><option value="clic">Clic</option><option value="cloche">Cloche</option><option value="clic808">Clic 808</option><option value="beep">Beep</option><option value="voiceMale">Voix masculine EN</option><option value="voiceFemale">Voix féminine EN</option></select></label>
-<label>Subdivisions<select id="subdivisions"><option value="1">1</option><option value="2" selected>2</option><option value="4">4</option></select></label>
+<label>Subdivisions<select id="subdivisions"><option value="1" selected>1</option><option value="2">2</option><option value="4">4</option></select></label>
 </div><div id="blocks"></div><div class="actions"><button id="run" class="primary">Écouter la séquence</button><button id="stop" disabled>Stop</button></div>
 <div id="status" role="status" aria-live="polite">FR par défaut. Au moins deux mesures de décompte sont ajoutées.</div></section>
 <section class="panel"><details><summary>Mini plan de test</summary><ol>
@@ -19,7 +19,7 @@
 <li>Essayer 3/4, 5/4 et 7/8, puis 60 et 240 BPM. En 7/8, le tempo est exprimé en noires : chaque temps est une croche.</li>
 <li>Vérifier les subdivisions et les accents. Appuyer sur Stop pendant la préparation et pendant la lecture, puis relancer.</li>
 <li>Noter si le début de la dernière syllabe tombe avant, sur ou après le premier temps de la mesure précédente. Cette écoute sert à valider le repère.</li>
-</ol><p>Limites : trois blocs de même métrique et de même banque, deux mesures minimum par bloc ; les annonces qui se chevauchent ou débordent sont refusées. Voix synthétique formantique. Premier chargement : environ 19 Mo de données depuis jsDelivr, sur une version figée. Les textes sont synthétisés sur votre appareil et ne sont pas envoyés au CDN.</p></details>
+</ol><p>Les annonces utilisent les voix neuronales Kokoro : Siwis en français et George en anglais. Le comptage utilise les enregistrements masculins anglais existants ; le début du sample est placé sur le temps, sans clic principal ajouté. Les subdivisions choisies restent entre les temps.</p><p>Limites : trois blocs de même métrique et de même banque, deux mesures minimum par bloc ; les annonces qui se chevauchent ou débordent sont refusées. Premier chargement : environ 140 Mo de moteur, modèle et données, puis cache du navigateur. Les textes sont synthétisés sur votre appareil et ne sont pas envoyés aux hébergeurs des fichiers.</p></details>
 <p><a href="./VALIDATION.md">Rapport et résultats de validation</a> · <a href="../../">Revenir au métronome</a></p></section>
 <iframe id="audio-app" src="../../index.html" title="Moteur audio isolé du test" aria-hidden="true" tabindex="-1"></iframe>
-<script type="module" src="./page.mjs"></script></body></html>
+<script type="module" src="./page.mjs?v=20261009-neural"></script></body></html>

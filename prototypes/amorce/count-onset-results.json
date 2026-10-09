@@ -1,0 +1,141 @@
+{
+  "cases": 15,
+  "worstErrorMs": 0.012046485260874817,
+  "results": [
+    {
+      "bpm": 40,
+      "number": 2,
+      "target": 1.8,
+      "firstSampleOnset": 0.0004761904761904762,
+      "errorMs": -0.002976190476067231,
+      "oscillatorCalls": 0,
+      "scope": "Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator."
+    },
+    {
+      "bpm": 40,
+      "number": 3,
+      "target": 3.3,
+      "firstSampleOnset": 0.0011337868480725624,
+      "errorMs": -0.012046485260430728,
+      "oscillatorCalls": 0,
+      "scope": "Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator."
+    },
+    {
+      "bpm": 40,
+      "number": 4,
+      "target": 4.8,
+      "firstSampleOnset": 0.00013605442176870748,
+      "errorMs": -0.009778911564950477,
+      "oscillatorCalls": 0,
+      "scope": "Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator."
+    },
+    {
+      "bpm": 60,
+      "number": 2,
+      "target": 1.3,
+      "firstSampleOnset": 0.0004761904761904762,
+      "errorMs": -0.002976190476067231,
+      "oscillatorCalls": 0,
+      "scope": "Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator."
+    },
+    {
+      "bpm": 60,
+      "number": 3,
+      "target": 2.3,
+      "firstSampleOnset": 0.0011337868480725624,
+      "errorMs": -0.012046485260430728,
+      "oscillatorCalls": 0,
+      "scope": "Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator."
+    },
+    {
+      "bpm": 60,
+      "number": 4,
+      "target": 3.3,
+      "firstSampleOnset": 0.00013605442176870748,
+      "errorMs": -0.009778911564506387,
+      "oscillatorCalls": 0,
+      "scope": "Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator."
+    },
+    {
+      "bpm": 120,
+      "number": 2,
+      "target": 0.8,
+      "firstSampleOnset": 0.0004761904761904762,
+      "errorMs": -0.002976190476178253,
+      "oscillatorCalls": 0,
+      "scope": "Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator."
+    },
+    {
+      "bpm": 120,
+      "number": 3,
+      "target": 1.3,
+      "firstSampleOnset": 0.0011337868480725624,
+      "errorMs": -0.012046485260874817,
+      "oscillatorCalls": 0,
+      "scope": "Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator."
+    },
+    {
+      "bpm": 120,
+      "number": 4,
+      "target": 1.8,
+      "firstSampleOnset": 0.00013605442176870748,
+      "errorMs": -0.009778911564506387,
+      "oscillatorCalls": 0,
+      "scope": "Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator."
+    },
+    {
+      "bpm": 240,
+      "number": 2,
+      "target": 0.55,
+      "firstSampleOnset": 0.0004761904761904762,
+      "errorMs": -0.002976190476178253,
+      "oscillatorCalls": 0,
+      "scope": "Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator."
+    },
+    {
+      "bpm": 240,
+      "number": 3,
+      "target": 0.8,
+      "firstSampleOnset": 0.0011337868480725624,
+      "errorMs": -0.012046485260763795,
+      "oscillatorCalls": 0,
+      "scope": "Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator."
+    },
+    {
+      "bpm": 240,
+      "number": 4,
+      "target": 1.05,
+      "firstSampleOnset": 0.00013605442176870748,
+      "errorMs": -0.009778911564506387,
+      "oscillatorCalls": 0,
+      "scope": "Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator."
+    },
+    {
+      "bpm": 320,
+      "number": 2,
+      "target": 0.4875,
+      "firstSampleOnset": 0.0004761904761904762,
+      "errorMs": -0.002976190476178253,
+      "oscillatorCalls": 0,
+      "scope": "Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator."
+    },
+    {
+      "bpm": 320,
+      "number": 3,
+      "target": 0.675,
+      "firstSampleOnset": 0.0011337868480725624,
+      "errorMs": -0.012046485260763795,
+      "oscillatorCalls": 0,
+      "scope": "Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator."
+    },
+    {
+      "bpm": 320,
+      "number": 4,
+      "target": 0.8625,
+      "firstSampleOnset": 0.00013605442176870748,
+      "errorMs": -0.00977891156461741,
+      "oscillatorCalls": 0,
+      "scope": "Rendered first sample above 1e-5 threshold; unchanged human sample and pitch. No main-beat click oscillator."
+    }
+  ]
+}

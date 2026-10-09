@@ -1,60 +1,54 @@
-# Amorce — test d’écoute, calage à valider
+# Amorce — nouvelles voix, calage à valider
 
-9 octobre 2026. David a autorisé la publication de cette page isolée avec un repère provisoire pour une passe d’écoute. Ce n’est pas une certification du test minimal ni une intégration de la fonction complète. La surveillance automatique est désactivée.
+9 octobre 2026. Prototype isolé publié pour la passe d'écoute autorisée par David. Ce n'est pas une certification du test minimal complet.
 
-Base du dépôt : `274f5030c501caab8d8e4d0eddb5730522707715`. Les fichiers de l’application existante et les samples restent inchangés. Aucun correctif audio/décompte ancien ou correctif de glisser-déposer n’est présenté comme Amorce.
+## Version actuelle
 
-## Page livrée
+Kokoro-82M synthétise localement les libellés libres : Siwis (ff_siwis) en FR, George (bm_george) en EN. eSpeak NG sert seulement à la phonémisation ; sa voix robotique n'est plus jouée. Les événements sont repositionnés à partir des durées prédites par Kokoro, sans réutiliser les timings du son eSpeak.
 
-Ouvrir `/prototypes/amorce/`. Trois blocs avec libellés libres, FR par défaut, boutons FR/EN près du texte. La première sélection définit une langue commune ; les changements suivants sont locaux. Les réglages du test sont communs aux trois blocs : banque, métrique, subdivisions, tempo et nombre de mesures.
+FR par défaut ; première sélection de langue commune puis modifications locales. Au moins deux mesures de décompte, premier bloc annoncé dans la dernière. L'annonce remplace one. Les enregistrements masculins anglais originaux comptent les temps suivants sans clic principal superposé ; les subdivisions restent entre les temps. La banque choisie reprend au début du bloc. L'adaptation audio reste dans l'iframe du prototype : moteur principal et samples inchangés.
 
-La page synthétise la voix complète localement, obtient des événements phonétiques et calcule un candidat de dernière syllabe. Elle place ce candidat sur le premier temps de la mesure précédente. L’annonce remplace one ; les autres temps utilisent les samples masculins anglais existants. La banque choisie reprend au début du bloc. Le décompte initial contient au moins deux mesures, davantage si le libellé l’exige. Les fonctions audio de l’application sont utilisées dans une instance séparée, à l’intérieur d’un iframe du test ; Stop ferme uniquement le contexte du prototype.
+**Le début acoustique réel de la dernière syllabe reste non certifié et son erreur réelle non mesurée.** Les repères prédits ne sont pas une annotation acoustique indépendante ; le dernier mot n'est pas utilisé comme substitut.
 
-**Le début acoustique réel de la dernière syllabe n’est pas certifié. Son erreur réelle reste non mesurée.** Le dernier mot n’est jamais utilisé comme substitut. Les horodatages de phonèmes ne constituent pas une annotation acoustique indépendante.
+## Résultats actuels
 
-## Résultats reproductibles
-
-| Vérification | Résultat | Portée |
+| Test | Résultat | Portée |
 | --- | --- | --- |
-| Synthèse de sept textes FR/EN | Tous produisent du PCM ; aucun échantillon saturé ; pic 0,7890015 | Synthèse isolée |
-| Corpus de 34 libellés, 17 FR et 17 EN | 33 candidats ; Psst EN refusé, absence de noyau détecté | Pas 33 syllabes certifiées |
-| Quatre attentes phonotactiques | Introduction FR, Couplet FR, Chorus EN, breakdown EN passent | Attentes linguistiques, pas annotation acoustique |
-| 75 calculs monobloc | 40/60/120/240/320 BPM ; 2/3/4/5/7 temps | Repères synthétiques |
-| 20 calculs multiblocs | Trois blocs ; 3/4, 4/4, 5/4, 7/8 ; cinq tempos | BPM défini comme la noire ; 7/8 compte des croches |
-| 54 rendus audio monoblocs Chromium, 48 kHz | Pic 0,452667 ; zéro saturation ; one remplacé, comptages masculins, reprise de banque | Sept banques, subdivisions 2/4 ; transport du candidat 0 ms, pas erreur acoustique de syllabe |
-| Huit rendus audio multiblocs Chromium, 48 kHz | Trois blocs ; 60/240 BPM ; 3/4, 4/4, 5/4, 7/8 ; zéro saturation | Banques claves/cloche/voiceFemale ; subdivisions 4 ; calage acoustique non certifié |
-| Stop dans Chromium | Contexte fermé ; source future annulée par fermeture ; Stop répété sans erreur | Contexte de l’application préservé |
-| Page mobile Chromium, 390 px | Langue commune puis locale, trois blocs programmés, Stop pendant préparation et lecture, relance, aucun débordement horizontal, aucune erreur JS | Pas de validation perceptive ou de compatibilité universelle |
+| Six synthèses neuronales FR/EN personnalisées | PCM fini, pic 0,7015051, zéro saturation | Exécution CPU native |
+| Synthèse WASM Chromium | Trois annonces avec Siwis et George | Dépendances externes servies par miroir local |
+| Huit mixages de trois blocs à 48 kHz | 60/120 BPM ; 3/4, 4/4, 5/4, 7/8 ; subdivisions 4 ; zéro saturation ; pic 0,3706495 | Banques claves/cloche/voiceFemale |
+| Quinze rendus de two/three/four | 40/60/120/240/320 BPM ; erreur maximale de transport 0,01205 ms ; aucun oscillateur de clic principal | Début du sample détecté au seuil 1e-5, pas attaque perceptive certifiée |
+| Page mobile 390 px | Langue commune puis locale, Stop préparation/lecture, relance, aucun débordement horizontal ou erreur JS | Chromium, pas compatibilité universelle |
 
-Preuves JSON dans ce dossier : engine-results, corpus-results, render-results, phonemic-results, stop-results, page-results et sequence-render-results.
+Preuves : neural-results.json, count-onset-results.json, page-results.json. Tests : tests/amorce-neural-test.mjs, tests/amorce-count-onset-test.cjs, tests/amorce-page-test.cjs. tests/amorce-neural-route.cjs fournit uniquement le miroir de test et n'est pas chargé en production.
 
-La resynthèse de la dernière syllabe a aussi été étudiée : les phonèmes d’Introduction FR et Couplet FR sont conservés, mais Chorus EN et Bottle EN prennent un accent principal supplémentaire lorsque leur fin est synthétisée séparément. Cette méthode n’est pas utilisée par la page. Fire EN regroupe aɪə dans un seul événement : compter les événements vocaliques ne prouve pas le nombre de syllabes.
+Les autres rapports du dossier concernent le prototype formantique historique ; ils ne valident pas les nouvelles voix. Aucun ancien correctif audio/décompte ou glisser-déposer n'est présenté comme ce travail.
 
-## Limites explicites
+## Limites et revue critique
 
-- Trois blocs de même métrique et de même banque, deux à huit mesures par bloc. Ce n’est pas l’éditeur de morceaux complet.
-- 40–320 BPM exprimés en noires. Les annonces qui se chevauchent ou débordent dans le bloc sont refusées plutôt que raccourcies.
-- Syllabification phonotactique expérimentale : prononciations rares, noms propres, langues mélangées et consonnes ambisyllabiques non certifiés.
-- Voix formantique eSpeak NG. L’intelligibilité et le confort d’écoute restent à juger par David.
-- Les tests du navigateur utilisent un miroir local des fichiers CDN. La disponibilité du CDN a été vérifiée séparément : HTTP 200 ; données identiques au fichier utilisé dans les tests, SHA-256 `34d8d90d112acd35f6b7cdf3da16125444aeeebc4b68bee87cd55d6f7e4dd3a0`.
-- Aucune validation perceptive humaine, aucune garantie d’erreur nulle de dernière syllabe. Timeline et raccourcis de navigation hors périmètre.
+- Trois blocs de même métrique et banque, deux à huit mesures par bloc, 40–320 BPM en noires.
+- Chevauchement ou débordement d'annonce refusé. Au-delà de 508 caractères phonétiques, refus explicite, pas de troncature ou de liste fixe.
+- Dernière syllabe, noms propres et prononciations rares restent à valider par annotation acoustique indépendante.
+- Premier téléchargement d'environ 140 Mo, puis cache selon le navigateur. Performance sur tous les téléphones non vérifiée.
+- Accès requis à jsDelivr et Hugging Face. Les tests navigateur utilisent les fichiers épinglés via un miroir ; l'accès distant de tous les utilisateurs n'est pas certifié.
+- Stop empêche la lecture après préparation sans interrompre immédiatement le calcul du worker.
+- Texte traité sur l'appareil, aucun compte payant, clé côté client, serveur payant ou installation utilisateur.
+- Timeline, raccourcis et intégration à la fonction complète hors périmètre.
 
-## Mini plan de test manuel
+## Mini plan manuel
 
-1. À 120 BPM en 4/4, lancer la séquence et écouter les trois textes. Vérifier au moins deux mesures de décompte et l’annonce du premier bloc dans la dernière.
-2. Entrer des libellés personnels FR/EN, courts et longs. Sélectionner EN une première fois puis FR sur un autre bloc : vérifier la portée commune puis locale.
-3. À chaque transition, écouter l’annonce à la place de one, les comptages masculins suivants, puis le retour de la banque choisie. Vérifier les accents et subdivisions.
-4. Essayer 3/4, 5/4, 7/8 et 60/240 BPM. Noter les refus de chevauchement ou de débordement, sans les confondre avec un calage validé.
-5. Stop pendant le chargement puis pendant la lecture ; relancer. Vérifier que la page principale du métronome fonctionne toujours comme auparavant.
-6. Pour chaque texte, noter le début de la dernière syllabe : avant, sur ou après le premier temps de la mesure précédente. Pour une mesure chiffrée conforme, annoter indépendamment la syllabe dans l’enregistrement du mix et comparer sa position à la grille.
+1. À 120 BPM, 4/4, subdivision 1, écouter les annonces FR puis EN et vérifier le décompte minimum de deux mesures.
+2. Entrer des libellés libres ; sélectionner EN puis FR sur un autre bloc pour vérifier la portée commune puis locale.
+3. Écouter two, three, four sans clic principal doublé ; vérifier la reprise de banque au bloc, puis ajouter des subdivisions.
+4. Essayer 60/120 BPM et 3/4, 5/4, 7/8 ; noter les refus de chevauchement.
+5. Stop pendant préparation puis lecture ; relancer.
+6. Noter la dernière syllabe avant/sur/après le temps précédent. Une mesure réelle exige une annotation indépendante du mix.
 
-## Sources, licence et reproduction
+## Dépendances et reproduction
 
-- https://wicg.github.io/speech-api/ : pas d’AudioBuffer ou de repères de syllabes fournis par SpeechSynthesis.
-- https://github.com/espeak-ng/espeak-ng/blob/master/src/include/espeak-ng/speak_lib.h : PCM et événements phonétiques.
-- https://espeak.sourceforge.net/phonemes.html : entrée phonémique, stress, diphtongues et triphtongues.
-- Moteur eSpeak NG Emscripten version 0.4.1 : https://github.com/echogarden-project/espeak-ng-emscripten/tree/7ab07eba2d966ce45040c88d9be953e1d68640e7 ; licence GPL-3.0, COPYING conservé.
+- Kokoro-82M quantifié, révision dd4401a9add81ac692d20e240d22ec9dda82cc29 : https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX-timestamped ; Apache-2.0.
+- Transformers.js 3.8.1 : https://github.com/huggingface/transformers.js ; Apache-2.0.
+- eSpeak NG Emscripten 0.4.1, révision 7ab07eba2d966ce45040c88d9be953e1d68640e7 : https://github.com/echogarden-project/espeak-ng-emscripten ; GPL-3.0, COPYING conservé.
+- https://wicg.github.io/speech-api/ : SpeechSynthesis ne fournit pas l'AudioBuffer et les repères de syllabes requis ici.
 
-Le navigateur charge les fichiers publics du moteur depuis jsDelivr sur cette révision immuable (~19 Mo de données et 604 Ko de JavaScript). Les textes saisis restent sur l’appareil ; aucune clé, aucun compte et aucune installation ne sont requis pour écouter le test. Le CDN doit être accessible.
-
-Pour reproduire les tests en développement, télécharger `espeak-ng.js` et `espeak-ng.data` de cette révision dans ce dossier. Les tests Node sont `tests/amorce-*-test.mjs`. Les tests Chromium pertinents sont amorce-page-test.cjs, amorce-render-test.cjs, amorce-sequence-render-test.cjs et amorce-stop-test.cjs ; ils utilisent le harnais existant, PLAYWRIGHT_MODULE et CHROME_PATH, et servent les modules .mjs avec le MIME JavaScript. Le miroir CDN du harnais n’est pas utilisé par la page publiée.
+Pour reproduire, télécharger modèle quantifié, tokenizer et styles ff_siwis/bm_george de la révision épinglée. Fournir TRANSFORMERS_MODULE et NEURAL_ASSETS au test natif ; PLAYWRIGHT_MODULE et CHROME_PATH aux tests Chromium. Les poids ne sont pas ajoutés au dépôt.
