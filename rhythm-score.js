@@ -2,6 +2,8 @@
    their existing engines. VexFlow is loaded only on the first score request. */
 (()=>{
  const panel=document.querySelector('.panel-visu'),wrapper=panel.querySelector('.sequencer-wrapper'),metronomeButton=document.getElementById('scoreMetronomeBtn'),partitionButton=document.getElementById('scorePartitionBtn');
+ const viewSwitch=document.getElementById("scoreViewSwitch");wrapper.prepend(viewSwitch);
+ for(const button of [metronomeButton,partitionButton]){for(const node of [...button.childNodes])if(node.nodeType===Node.TEXT_NODE)node.remove();button.title=button.getAttribute("aria-label");}
  const host=document.createElement('div');host.className='rhythm-score';host.id='rhythmScore';host.setAttribute('role','img');host.setAttribute('aria-label','Partition rythmique, police Bravura');wrapper.append(host);
  let enabled=false,loading,Flow,core,lastKey='',notes=new Map(),cues=[],active=[],frame=0,redraw=0;
  const status=text=>{host.replaceChildren();const p=document.createElement('div');p.className='rhythm-score-status';p.textContent=text;host.append(p);};
@@ -56,6 +58,6 @@
   status('Chargement de la partition…');try{await load();if(!enabled)return;lastKey='';draw();wake();}catch(error){if(enabled)status(error.message);}
  }
  partitionButton.addEventListener('click',()=>setView(true));metronomeButton.addEventListener('click',()=>setView(false));
- new ResizeObserver(refresh).observe(wrapper);
+ new ResizeObserver(()=>{wrapper.style.setProperty("--score-circle-space",`${Math.max(80,wrapper.clientHeight-75)}px`);resizeCanvas();updateRingRadius();refresh();}).observe(wrapper);
  window.RENAX_SCORE={get enabled(){return enabled;},refresh,get snapshot(){return {font:'Bravura',notes:notes.size,queued:cues.length,active:active.length};}};
 })();
