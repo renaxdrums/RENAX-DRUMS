@@ -1,0 +1,117 @@
+{
+  "status": "research-only-unverified",
+  "results": [
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "ascii": "E~_t_r_o_d_y_k_s_j_'O~",
+      "suffix": "sj'O~",
+      "reference": [
+        "s",
+        "j",
+        "ˈɔ̃"
+      ],
+      "regenerated": [
+        "s",
+        "j",
+        "ˈɔ̃"
+      ],
+      "samePhoneSequence": true,
+      "firstNonzeroSample": 264,
+      "firstNonzeroSeconds": 0.01197278911564626,
+      "firstPhoneEventSeconds": 0.011,
+      "durationSeconds": 0.32970521541950115,
+      "anchorVerified": false,
+      "limitation": "A known segment buffer is not proof of syllabification or of audible intelligibility after concatenation."
+    },
+    {
+      "text": "Couplet",
+      "language": "fr",
+      "ascii": "k_u_p_l_'E",
+      "suffix": "pl'E",
+      "reference": [
+        "p",
+        "l",
+        "ˈɛ"
+      ],
+      "regenerated": [
+        "p",
+        "l",
+        "ˈɛ"
+      ],
+      "samePhoneSequence": true,
+      "firstNonzeroSample": 1080,
+      "firstNonzeroSeconds": 0.04897959183673469,
+      "firstPhoneEventSeconds": 0.048,
+      "durationSeconds": 0.25578231292517006,
+      "anchorVerified": false,
+      "limitation": "A known segment buffer is not proof of syllabification or of audible intelligibility after concatenation."
+    },
+    {
+      "text": "Chorus",
+      "language": "en",
+      "ascii": "k_'o@_r_@_s",
+      "suffix": "r@s",
+      "reference": [
+        "ɹ",
+        "ə",
+        "s"
+      ],
+      "regenerated": [
+        "ɹ",
+        "ˈə",
+        "s"
+      ],
+      "samePhoneSequence": false,
+      "firstNonzeroSample": 0,
+      "firstNonzeroSeconds": 0,
+      "firstPhoneEventSeconds": 0,
+      "durationSeconds": 0.31378684807256235,
+      "anchorVerified": false,
+      "limitation": "A known segment buffer is not proof of syllabification or of audible intelligibility after concatenation."
+    },
+    {
+      "text": "Bottle",
+      "language": "en",
+      "ascii": "b_'0_t_@L",
+      "suffix": "t@L",
+      "reference": [
+        "t",
+        "əl"
+      ],
+      "regenerated": [
+        "t",
+        "ˈəl"
+      ],
+      "samePhoneSequence": false,
+      "firstNonzeroSample": 1080,
+      "firstNonzeroSeconds": 0.04897959183673469,
+      "firstPhoneEventSeconds": 0.048,
+      "durationSeconds": 0.27188208616780046,
+      "anchorVerified": false,
+      "limitation": "A known segment buffer is not proof of syllabification or of audible intelligibility after concatenation."
+    },
+    {
+      "text": "Fire",
+      "language": "en",
+      "ascii": "f_'aI@",
+      "suffix": "f'aI@",
+      "reference": [
+        "f",
+        "ˈaɪə"
+      ],
+      "regenerated": [
+        "f",
+        "ˈaɪə"
+      ],
+      "samePhoneSequence": true,
+      "firstNonzeroSample": 264,
+      "firstNonzeroSeconds": 0.01197278911564626,
+      "firstPhoneEventSeconds": 0.011,
+      "durationSeconds": 0.38798185941043084,
+      "anchorVerified": false,
+      "limitation": "A known segment buffer is not proof of syllabification or of audible intelligibility after concatenation."
+    }
+  ],
+  "conclusion": "Do not publish: phoneme sequence preservation and acoustic onset alone do not establish the last syllable of arbitrary text."
+}

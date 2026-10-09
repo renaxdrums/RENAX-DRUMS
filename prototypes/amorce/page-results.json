@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-09",
+  "mobileWidth": 390,
+  "multiblockScheduled": true,
+  "languageScope": true,
+  "stopDuringPlayback": true,
+  "stopDuringPreparation": true,
+  "noHorizontalOverflow": true,
+  "errors": [],
+  "anchorVerified": false
+}

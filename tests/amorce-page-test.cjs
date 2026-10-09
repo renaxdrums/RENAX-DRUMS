@@ -1,0 +1,38 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const {start}=require('./audio-harness.cjs');
+(async()=>{const h=await start();try{
+ const page=await h.browser.newPage({viewport:{width:390,height:844}}),errors=[];
+ page.on('pageerror',e=>errors.push(e.message));
+ await require('./amorce-runtime-route.cjs').install(page);
+ await page.route('**/*.mjs',route=>route.fulfill({contentType:'text/javascript',body:fs.readFileSync(path.join(__dirname,'..',new URL(route.request().url()).pathname),'utf8')}));
+ await page.goto(h.url+'/prototypes/amorce/index.html');
+ await page.waitForSelector('#label-2');
+ assert.equal(await page.locator('[data-lang="fr"].active').count(),3);
+ await page.locator('[data-index="0"][data-lang="en"]').click();
+ assert.equal(await page.locator('[data-lang="en"].active').count(),3);
+ await page.locator('[data-index="1"][data-lang="fr"]').click();
+ assert.equal(await page.locator('[data-lang="en"].active').count(),2);
+ await page.locator('#label-0').fill('Introduction');
+ await page.locator('#label-1').fill('Mon couplet personnalisé');
+ await page.locator('#label-2').fill('My custom drum breakdown');
+ await page.locator('#run').click();
+ await page.waitForFunction(()=>window.amorceTest,{timeout:60000});
+ const r=await page.evaluate(()=>window.amorceTest);
+ assert.equal(r.result.layout.length,3);assert.equal(r.result.anchorVerified,false);
+ assert(r.result.countInMeasures>=2);
+ for(const a of r.result.layout){const e=r.result.events.filter(e=>e.announcing&&e.subIndex===0&&e.time>=a.target-1e-9&&e.time<a.blockStart-1e-9);assert.equal(e.length,3);assert(e.every(x=>x.bank==='voiceMale'&&x.number>=2));}
+ await page.locator('#stop').click();
+ await page.waitForFunction(()=>!document.getElementById('run').disabled);
+ assert.match(await page.locator('#status').textContent(),/arrêtée/);
+ const audioState=await page.locator('#audio-app').evaluate(frame=>frame.contentWindow.eval('audioCtx.state'));
+ assert.equal(audioState,'closed');
+ await page.locator('#run').click();await page.locator('#stop').click();
+ await page.waitForFunction(()=>!document.getElementById('run').disabled);
+ await page.waitForTimeout(500);
+ assert.match(await page.locator('#status').textContent(),/arrêtée/);
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+ await page.screenshot({path:path.join(__dirname,'../prototypes/amorce/page-mobile.png'),fullPage:true});
+ assert.deepEqual(errors,[]);
+ const report={date:'2026-10-09',mobileWidth:390,multiblockScheduled:true,languageScope:true,stopDuringPlayback:true,stopDuringPreparation:true,noHorizontalOverflow:true,errors,anchorVerified:false};
+ fs.writeFileSync(path.join(__dirname,'../prototypes/amorce/page-results.json'),JSON.stringify(report,null,2)+'\n');console.log(report);
+}finally{await h.browser.close();h.server?.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

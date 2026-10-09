@@ -1,0 +1,908 @@
+{
+  "date": "2026-10-09",
+  "results": [
+    {
+      "text": "Couplet",
+      "language": "fr",
+      "sampleRate": 22050,
+      "duration": 0.40798185941043086,
+      "peak": 0.48974609375,
+      "clipped": 0,
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 38,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 80,
+          "id": "u"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 201,
+          "id": "p"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 238,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 308,
+          "id": "ˈɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 400,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 407,
+          "id": ""
+        }
+      ],
+      "lastSyllableVerified": false,
+      "alignmentErrorMs": null
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "sampleRate": 22050,
+      "duration": 0.7738321995464853,
+      "peak": 0.53106689453125,
+      "clipped": 0,
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 0,
+          "id": "ɛ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 123,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 156,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 220,
+          "id": "o"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 264,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 313,
+          "id": "y"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 414,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 456,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 528,
+          "id": "j"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 639,
+          "id": "ˈɔ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 14,
+          "word_length": 0,
+          "audio_position": 766,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 14,
+          "word_length": 0,
+          "audio_position": 773,
+          "id": ""
+        }
+      ],
+      "lastSyllableVerified": false,
+      "alignmentErrorMs": null
+    },
+    {
+      "text": "Refrain personnalisé de David",
+      "language": "fr",
+      "sampleRate": 22050,
+      "duration": 1.5431292517006803,
+      "peak": 0.69903564453125,
+      "clipped": 0,
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 0,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 78,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 129,
+          "id": "f"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 205,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 274,
+          "id": "ˈɛ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 374,
+          "id": "p"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 395,
+          "id": "ɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 482,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 523,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 595,
+          "id": "ɔ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 662,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 720,
+          "id": "a"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 761,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 807,
+          "id": "i"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 845,
+          "id": "z"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 906,
+          "id": "ˈe"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 22,
+          "word_length": 0,
+          "audio_position": 993,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 22,
+          "word_length": 0,
+          "audio_position": 1048,
+          "id": "ə-"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 25,
+          "word_length": 0,
+          "audio_position": 1112,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 25,
+          "word_length": 0,
+          "audio_position": 1164,
+          "id": "a"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 25,
+          "word_length": 0,
+          "audio_position": 1231,
+          "id": "v"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 25,
+          "word_length": 0,
+          "audio_position": 1312,
+          "id": "ˈi"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 25,
+          "word_length": 0,
+          "audio_position": 1452,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 32,
+          "word_length": 0,
+          "audio_position": 1536,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 32,
+          "word_length": 0,
+          "audio_position": 1543,
+          "id": ""
+        }
+      ],
+      "lastSyllableVerified": false,
+      "alignmentErrorMs": null
+    },
+    {
+      "text": "Transition très longue avant le solo de batterie",
+      "language": "fr",
+      "sampleRate": 22050,
+      "duration": 2.115918367346939,
+      "peak": 0.582611083984375,
+      "clipped": 0,
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 38,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 71,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 141,
+          "id": "ɑ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 196,
+          "id": "z"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 251,
+          "id": "i"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 324,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 397,
+          "id": "j"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 481,
+          "id": "ˈɔ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 12,
+          "word_length": 0,
+          "audio_position": 575,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 12,
+          "word_length": 0,
+          "audio_position": 608,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 12,
+          "word_length": 0,
+          "audio_position": 678,
+          "id": "ɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 747,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 817,
+          "id": "ˈɔ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 881,
+          "id": "ɡ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 24,
+          "word_length": 0,
+          "audio_position": 939,
+          "id": "a"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 24,
+          "word_length": 0,
+          "audio_position": 1014,
+          "id": "v"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 24,
+          "word_length": 0,
+          "audio_position": 1067,
+          "id": "ˌɑ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 30,
+          "word_length": 0,
+          "audio_position": 1172,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 30,
+          "word_length": 0,
+          "audio_position": 1250,
+          "id": "ə-"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 33,
+          "word_length": 0,
+          "audio_position": 1300,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 33,
+          "word_length": 0,
+          "audio_position": 1373,
+          "id": "o"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 33,
+          "word_length": 0,
+          "audio_position": 1448,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 33,
+          "word_length": 0,
+          "audio_position": 1503,
+          "id": "ˈo"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 38,
+          "word_length": 0,
+          "audio_position": 1556,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 38,
+          "word_length": 0,
+          "audio_position": 1611,
+          "id": "ə-"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 41,
+          "word_length": 0,
+          "audio_position": 1675,
+          "id": "b"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 41,
+          "word_length": 0,
+          "audio_position": 1724,
+          "id": "a"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 41,
+          "word_length": 0,
+          "audio_position": 1829,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 41,
+          "word_length": 0,
+          "audio_position": 1862,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 41,
+          "word_length": 0,
+          "audio_position": 1993,
+          "id": "ˈi"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 51,
+          "word_length": 0,
+          "audio_position": 2108,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 51,
+          "word_length": 0,
+          "audio_position": 2115,
+          "id": ""
+        }
+      ],
+      "lastSyllableVerified": false,
+      "alignmentErrorMs": null
+    },
+    {
+      "text": "Chorus",
+      "language": "en",
+      "sampleRate": 22050,
+      "duration": 0.4746938775510204,
+      "peak": 0.66064453125,
+      "clipped": 0,
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 48,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 95,
+          "id": "ˈɔː"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 269,
+          "id": "ɹ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 318,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 365,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 8,
+          "word_length": 0,
+          "audio_position": 467,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 8,
+          "word_length": 0,
+          "audio_position": 474,
+          "id": ""
+        }
+      ],
+      "lastSyllableVerified": false,
+      "alignmentErrorMs": null
+    },
+    {
+      "text": "Introduction",
+      "language": "en",
+      "sampleRate": 22050,
+      "duration": 0.8008163265306123,
+      "peak": 0.682281494140625,
+      "clipped": 0,
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 0,
+          "id": "ˌɪ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 55,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 154,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 224,
+          "id": "ɹ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 268,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 297,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 361,
+          "id": "ˈʌ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 493,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 538,
+          "id": "ʃ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 631,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 718,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 14,
+          "word_length": 0,
+          "audio_position": 793,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 14,
+          "word_length": 0,
+          "audio_position": 800,
+          "id": ""
+        }
+      ],
+      "lastSyllableVerified": false,
+      "alignmentErrorMs": null
+    },
+    {
+      "text": "My custom drum breakdown",
+      "language": "en",
+      "sampleRate": 22050,
+      "duration": 1.446485260770975,
+      "peak": 0.78900146484375,
+      "clipped": 0,
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 0,
+          "id": "m"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 72,
+          "id": "aɪ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 198,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 244,
+          "id": "ˈʌ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 322,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 407,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 447,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 511,
+          "id": "m"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 11,
+          "word_length": 0,
+          "audio_position": 644,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 11,
+          "word_length": 0,
+          "audio_position": 661,
+          "id": "ɹ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 11,
+          "word_length": 0,
+          "audio_position": 719,
+          "id": "ˈʌ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 11,
+          "word_length": 0,
+          "audio_position": 772,
+          "id": "m"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 912,
+          "id": "b"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 929,
+          "id": "ɹ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 993,
+          "id": "ˈeɪ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 1148,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 1225,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 1243,
+          "id": "aʊ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 1365,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 26,
+          "word_length": 0,
+          "audio_position": 1439,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 26,
+          "word_length": 0,
+          "audio_position": 1446,
+          "id": ""
+        }
+      ],
+      "lastSyllableVerified": false,
+      "alignmentErrorMs": null
+    }
+  ]
+}

@@ -1,0 +1,1629 @@
+{
+  "date": "2026-10-09",
+  "cases": 54,
+  "worstPeak": 0.4526669979095459,
+  "worstTransportErrorMs": 0,
+  "results": [
+    {
+      "text": "Couplet",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 3,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.201,
+        "onsetPhone": "p",
+        "nucleusPhone": "ˈɛ",
+        "phones": [
+          "p",
+          "l",
+          "ˈɛ"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Couplet",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 4,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.201,
+        "onsetPhone": "p",
+        "nucleusPhone": "ˈɛ",
+        "phones": [
+          "p",
+          "l",
+          "ˈɛ"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Couplet",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 7,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.201,
+        "onsetPhone": "p",
+        "nucleusPhone": "ˈɛ",
+        "phones": [
+          "p",
+          "l",
+          "ˈɛ"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Couplet",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 3,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.201,
+        "onsetPhone": "p",
+        "nucleusPhone": "ˈɛ",
+        "phones": [
+          "p",
+          "l",
+          "ˈɛ"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Couplet",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 4,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.344008207321167,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.201,
+        "onsetPhone": "p",
+        "nucleusPhone": "ˈɛ",
+        "phones": [
+          "p",
+          "l",
+          "ˈɛ"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Couplet",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 7,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.201,
+        "onsetPhone": "p",
+        "nucleusPhone": "ˈɛ",
+        "phones": [
+          "p",
+          "l",
+          "ˈɛ"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 3,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 4,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 7,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 3,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 4,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.344008207321167,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 7,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 4,
+      "bank": "clic",
+      "subdivisions": 4,
+      "peak": 0.4079171419143677,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 4,
+      "bank": "clic",
+      "subdivisions": 4,
+      "peak": 0.40867745876312256,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 4,
+      "bank": "cloche",
+      "subdivisions": 4,
+      "peak": 0.2831922173500061,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 4,
+      "bank": "cloche",
+      "subdivisions": 4,
+      "peak": 0.30087119340896606,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 4,
+      "bank": "clic808",
+      "subdivisions": 4,
+      "peak": 0.35585057735443115,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 4,
+      "bank": "clic808",
+      "subdivisions": 4,
+      "peak": 0.35585057735443115,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 4,
+      "bank": "beep",
+      "subdivisions": 4,
+      "peak": 0.2823981046676636,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 4,
+      "bank": "beep",
+      "subdivisions": 4,
+      "peak": 0.30087119340896606,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 4,
+      "bank": "voiceMale",
+      "subdivisions": 4,
+      "peak": 0.23215264081954956,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 4,
+      "bank": "voiceMale",
+      "subdivisions": 4,
+      "peak": 0.30444175004959106,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 4,
+      "bank": "voiceFemale",
+      "subdivisions": 4,
+      "peak": 0.23215264081954956,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 4,
+      "bank": "voiceFemale",
+      "subdivisions": 4,
+      "peak": 0.3086123466491699,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Refrain personnalisé de David",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 3,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.231,
+        "onsetPhone": "v",
+        "nucleusPhone": "ˈi",
+        "phones": [
+          "v",
+          "ˈi",
+          "d"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Refrain personnalisé de David",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 4,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.231,
+        "onsetPhone": "v",
+        "nucleusPhone": "ˈi",
+        "phones": [
+          "v",
+          "ˈi",
+          "d"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Refrain personnalisé de David",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 7,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.231,
+        "onsetPhone": "v",
+        "nucleusPhone": "ˈi",
+        "phones": [
+          "v",
+          "ˈi",
+          "d"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Refrain personnalisé de David",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 3,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.3447604179382324,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.231,
+        "onsetPhone": "v",
+        "nucleusPhone": "ˈi",
+        "phones": [
+          "v",
+          "ˈi",
+          "d"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 3,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Refrain personnalisé de David",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 4,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.344008207321167,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.231,
+        "onsetPhone": "v",
+        "nucleusPhone": "ˈi",
+        "phones": [
+          "v",
+          "ˈi",
+          "d"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 3,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Refrain personnalisé de David",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 7,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.231,
+        "onsetPhone": "v",
+        "nucleusPhone": "ˈi",
+        "phones": [
+          "v",
+          "ˈi",
+          "d"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Transition très longue avant le solo de batterie",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 3,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.829,
+        "onsetPhone": "t",
+        "nucleusPhone": "ˈi",
+        "phones": [
+          "t",
+          "ʁ",
+          "ˈi"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Transition très longue avant le solo de batterie",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 4,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.829,
+        "onsetPhone": "t",
+        "nucleusPhone": "ˈi",
+        "phones": [
+          "t",
+          "ʁ",
+          "ˈi"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Transition très longue avant le solo de batterie",
+      "language": "fr",
+      "bpm": 60,
+      "beatsPerMeasure": 7,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.829,
+        "onsetPhone": "t",
+        "nucleusPhone": "ˈi",
+        "phones": [
+          "t",
+          "ʁ",
+          "ˈi"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Transition très longue avant le solo de batterie",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 3,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34452855587005615,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.829,
+        "onsetPhone": "t",
+        "nucleusPhone": "ˈi",
+        "phones": [
+          "t",
+          "ʁ",
+          "ˈi"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 4,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Transition très longue avant le solo de batterie",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 4,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.344008207321167,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.829,
+        "onsetPhone": "t",
+        "nucleusPhone": "ˈi",
+        "phones": [
+          "t",
+          "ʁ",
+          "ˈi"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 3,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Transition très longue avant le solo de batterie",
+      "language": "fr",
+      "bpm": 240,
+      "beatsPerMeasure": 7,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.3446941375732422,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.829,
+        "onsetPhone": "t",
+        "nucleusPhone": "ˈi",
+        "phones": [
+          "t",
+          "ʁ",
+          "ˈi"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 3,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Chorus",
+      "language": "en",
+      "bpm": 60,
+      "beatsPerMeasure": 3,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.269,
+        "onsetPhone": "ɹ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ɹ",
+          "ə",
+          "s"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Chorus",
+      "language": "en",
+      "bpm": 60,
+      "beatsPerMeasure": 4,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.269,
+        "onsetPhone": "ɹ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ɹ",
+          "ə",
+          "s"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Chorus",
+      "language": "en",
+      "bpm": 60,
+      "beatsPerMeasure": 7,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.269,
+        "onsetPhone": "ɹ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ɹ",
+          "ə",
+          "s"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Chorus",
+      "language": "en",
+      "bpm": 240,
+      "beatsPerMeasure": 3,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.269,
+        "onsetPhone": "ɹ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ɹ",
+          "ə",
+          "s"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Chorus",
+      "language": "en",
+      "bpm": 240,
+      "beatsPerMeasure": 4,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.344008207321167,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.269,
+        "onsetPhone": "ɹ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ɹ",
+          "ə",
+          "s"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Chorus",
+      "language": "en",
+      "bpm": 240,
+      "beatsPerMeasure": 7,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.269,
+        "onsetPhone": "ɹ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ɹ",
+          "ə",
+          "s"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "en",
+      "bpm": 60,
+      "beatsPerMeasure": 3,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.538,
+        "onsetPhone": "ʃ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ʃ",
+          "ə",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "en",
+      "bpm": 60,
+      "beatsPerMeasure": 4,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.538,
+        "onsetPhone": "ʃ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ʃ",
+          "ə",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "en",
+      "bpm": 60,
+      "beatsPerMeasure": 7,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.538,
+        "onsetPhone": "ʃ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ʃ",
+          "ə",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "en",
+      "bpm": 240,
+      "beatsPerMeasure": 3,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.538,
+        "onsetPhone": "ʃ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ʃ",
+          "ə",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "en",
+      "bpm": 240,
+      "beatsPerMeasure": 4,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.4149017333984375,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.538,
+        "onsetPhone": "ʃ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ʃ",
+          "ə",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "en",
+      "bpm": 240,
+      "beatsPerMeasure": 7,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 0.538,
+        "onsetPhone": "ʃ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ʃ",
+          "ə",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "My custom drum breakdown",
+      "language": "en",
+      "bpm": 60,
+      "beatsPerMeasure": 3,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.225,
+        "onsetPhone": "d",
+        "nucleusPhone": "aʊ",
+        "phones": [
+          "d",
+          "aʊ",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "My custom drum breakdown",
+      "language": "en",
+      "bpm": 60,
+      "beatsPerMeasure": 4,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.225,
+        "onsetPhone": "d",
+        "nucleusPhone": "aʊ",
+        "phones": [
+          "d",
+          "aʊ",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "My custom drum breakdown",
+      "language": "en",
+      "bpm": 60,
+      "beatsPerMeasure": 7,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.34381771087646484,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.225,
+        "onsetPhone": "d",
+        "nucleusPhone": "aʊ",
+        "phones": [
+          "d",
+          "aʊ",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "My custom drum breakdown",
+      "language": "en",
+      "bpm": 240,
+      "beatsPerMeasure": 3,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.4526669979095459,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.225,
+        "onsetPhone": "d",
+        "nucleusPhone": "aʊ",
+        "phones": [
+          "d",
+          "aʊ",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 3,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "My custom drum breakdown",
+      "language": "en",
+      "bpm": 240,
+      "beatsPerMeasure": 4,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.344008207321167,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.225,
+        "onsetPhone": "d",
+        "nucleusPhone": "aʊ",
+        "phones": [
+          "d",
+          "aʊ",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 3,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    },
+    {
+      "text": "My custom drum breakdown",
+      "language": "en",
+      "bpm": 240,
+      "beatsPerMeasure": 7,
+      "bank": "claves",
+      "subdivisions": 2,
+      "peak": 0.45241665840148926,
+      "clipped": 0,
+      "candidate": {
+        "anchorSeconds": 1.225,
+        "onsetPhone": "d",
+        "nucleusPhone": "aʊ",
+        "phones": [
+          "d",
+          "aʊ",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "transportErrorMs": 0,
+      "countInMeasures": 2,
+      "oneReplaced": true,
+      "maleCounts": true,
+      "bankResumed": true,
+      "speechStartObserved": true,
+      "syllableOnsetVerified": false
+    }
+  ],
+  "limitation": "Timing error is measured for transport of a candidate phoneme landmark. It is NOT the real last-syllable alignment error. Acoustic onset not independently annotated."
+}

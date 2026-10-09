@@ -1,0 +1,4 @@
+import fs from 'node:fs';import {synthesize} from '../prototypes/amorce/engine.mjs';
+const cases=[['Couplet','fr'],['Introduction','fr'],['Refrain personnalisé de David','fr'],['Transition très longue avant le solo de batterie','fr'],['Chorus','en'],['Introduction','en'],['My custom drum breakdown','en']];const results=[];
+for(const [text,language] of cases){const r=await synthesize(text,language);let peak=0,clipped=0;for(const sample of r.pcm){peak=Math.max(peak,Math.abs(sample));if(Math.abs(sample)>=1)clipped++;}results.push({text,language,sampleRate:r.sampleRate,duration:r.pcm.length/r.sampleRate,peak,clipped,phonemes:r.events.filter(e=>e.type==='phoneme'),lastSyllableVerified:false,alignmentErrorMs:null});}
+fs.writeFileSync('prototypes/amorce/engine-results.json',JSON.stringify({date:'2026-10-09',results},null,2));console.log(JSON.stringify(results.map(({text,language,peak,clipped,phonemes})=>({text,language,peak,clipped,phonemes:phonemes.length})),null,2));

@@ -1,0 +1,3474 @@
+{
+  "date": "2026-10-09",
+  "results": [
+    {
+      "text": "Couplet",
+      "language": "fr",
+      "duration": 0.40798185941043086,
+      "candidate": {
+        "anchorSeconds": 0.201,
+        "onsetPhone": "p",
+        "nucleusPhone": "ˈɛ",
+        "phones": [
+          "p",
+          "l",
+          "ˈɛ"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 38,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 80,
+          "id": "u"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 201,
+          "id": "p"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 238,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 308,
+          "id": "ˈɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 400,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 407,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "fr",
+      "duration": 0.7738321995464853,
+      "candidate": {
+        "anchorSeconds": 0.456,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "s",
+          "j",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 0,
+          "id": "ɛ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 123,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 156,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 220,
+          "id": "o"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 264,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 313,
+          "id": "y"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 414,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 456,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 528,
+          "id": "j"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 639,
+          "id": "ˈɔ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 14,
+          "word_length": 0,
+          "audio_position": 766,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 14,
+          "word_length": 0,
+          "audio_position": 773,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Refrain personnalisé de David",
+      "language": "fr",
+      "duration": 1.5431292517006803,
+      "candidate": {
+        "anchorSeconds": 1.231,
+        "onsetPhone": "v",
+        "nucleusPhone": "ˈi",
+        "phones": [
+          "v",
+          "ˈi",
+          "d"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 0,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 78,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 129,
+          "id": "f"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 205,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 274,
+          "id": "ˈɛ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 374,
+          "id": "p"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 395,
+          "id": "ɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 482,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 523,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 595,
+          "id": "ɔ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 662,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 720,
+          "id": "a"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 761,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 807,
+          "id": "i"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 845,
+          "id": "z"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 906,
+          "id": "ˈe"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 22,
+          "word_length": 0,
+          "audio_position": 993,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 22,
+          "word_length": 0,
+          "audio_position": 1048,
+          "id": "ə-"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 25,
+          "word_length": 0,
+          "audio_position": 1112,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 25,
+          "word_length": 0,
+          "audio_position": 1164,
+          "id": "a"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 25,
+          "word_length": 0,
+          "audio_position": 1231,
+          "id": "v"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 25,
+          "word_length": 0,
+          "audio_position": 1312,
+          "id": "ˈi"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 25,
+          "word_length": 0,
+          "audio_position": 1452,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 32,
+          "word_length": 0,
+          "audio_position": 1536,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 32,
+          "word_length": 0,
+          "audio_position": 1543,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Transition très longue avant le solo de batterie",
+      "language": "fr",
+      "duration": 2.115918367346939,
+      "candidate": {
+        "anchorSeconds": 1.829,
+        "onsetPhone": "t",
+        "nucleusPhone": "ˈi",
+        "phones": [
+          "t",
+          "ʁ",
+          "ˈi"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 38,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 71,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 141,
+          "id": "ɑ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 196,
+          "id": "z"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 251,
+          "id": "i"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 324,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 397,
+          "id": "j"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 481,
+          "id": "ˈɔ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 12,
+          "word_length": 0,
+          "audio_position": 575,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 12,
+          "word_length": 0,
+          "audio_position": 608,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 12,
+          "word_length": 0,
+          "audio_position": 678,
+          "id": "ɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 747,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 817,
+          "id": "ˈɔ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 881,
+          "id": "ɡ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 24,
+          "word_length": 0,
+          "audio_position": 939,
+          "id": "a"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 24,
+          "word_length": 0,
+          "audio_position": 1014,
+          "id": "v"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 24,
+          "word_length": 0,
+          "audio_position": 1067,
+          "id": "ˌɑ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 30,
+          "word_length": 0,
+          "audio_position": 1172,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 30,
+          "word_length": 0,
+          "audio_position": 1250,
+          "id": "ə-"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 33,
+          "word_length": 0,
+          "audio_position": 1300,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 33,
+          "word_length": 0,
+          "audio_position": 1373,
+          "id": "o"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 33,
+          "word_length": 0,
+          "audio_position": 1448,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 33,
+          "word_length": 0,
+          "audio_position": 1503,
+          "id": "ˈo"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 38,
+          "word_length": 0,
+          "audio_position": 1556,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 38,
+          "word_length": 0,
+          "audio_position": 1611,
+          "id": "ə-"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 41,
+          "word_length": 0,
+          "audio_position": 1675,
+          "id": "b"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 41,
+          "word_length": 0,
+          "audio_position": 1724,
+          "id": "a"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 41,
+          "word_length": 0,
+          "audio_position": 1829,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 41,
+          "word_length": 0,
+          "audio_position": 1862,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 41,
+          "word_length": 0,
+          "audio_position": 1993,
+          "id": "ˈi"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 51,
+          "word_length": 0,
+          "audio_position": 2108,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 51,
+          "word_length": 0,
+          "audio_position": 2115,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Final à",
+      "language": "fr",
+      "duration": 0.4470294784580499,
+      "candidate": {
+        "anchorSeconds": 0.34,
+        "onsetPhone": "ˈa",
+        "nucleusPhone": "ˈa",
+        "phones": [
+          "ˈa"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 11,
+          "id": "f"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 87,
+          "id": "i"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 151,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 212,
+          "id": "ˈa"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 264,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 7,
+          "word_length": 0,
+          "audio_position": 340,
+          "id": "ˈa"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 10,
+          "word_length": 0,
+          "audio_position": 440,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 10,
+          "word_length": 0,
+          "audio_position": 447,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Final un",
+      "language": "fr",
+      "duration": 0.4785034013605442,
+      "candidate": {
+        "anchorSeconds": 0.351,
+        "onsetPhone": "ˈœ̃",
+        "nucleusPhone": "ˈœ̃",
+        "phones": [
+          "ˈœ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 11,
+          "id": "f"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 87,
+          "id": "i"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 151,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 212,
+          "id": "ˈa"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 264,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 7,
+          "word_length": 0,
+          "audio_position": 351,
+          "id": "ˈœ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 10,
+          "word_length": 0,
+          "audio_position": 471,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 10,
+          "word_length": 0,
+          "audio_position": 478,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Solo aérien",
+      "language": "fr",
+      "duration": 0.7858956916099773,
+      "candidate": {
+        "anchorSeconds": 0.461,
+        "onsetPhone": "ʁ",
+        "nucleusPhone": "ˈɛ̃",
+        "phones": [
+          "ʁ",
+          "j",
+          "ˈɛ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 11,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 84,
+          "id": "o"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 163,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 218,
+          "id": "ˈo"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 284,
+          "id": "a"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 374,
+          "id": "e"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 461,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 476,
+          "id": "j"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 551,
+          "id": "ˈɛ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 14,
+          "word_length": 0,
+          "audio_position": 778,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 14,
+          "word_length": 0,
+          "audio_position": 785,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Dernier refrain",
+      "language": "fr",
+      "duration": 0.7992290249433106,
+      "candidate": {
+        "anchorSeconds": 0.486,
+        "onsetPhone": "f",
+        "nucleusPhone": "ˈɛ̃",
+        "phones": [
+          "f",
+          "ʁ",
+          "ˈɛ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 12,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 27,
+          "id": "ɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 120,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 160,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 221,
+          "id": "j"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 297,
+          "id": "ˈe"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 372,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 387,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 486,
+          "id": "f"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 562,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 669,
+          "id": "ˈɛ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 792,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 799,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Section numéro 37",
+      "language": "fr",
+      "duration": 1.3566893424036282,
+      "candidate": {
+        "anchorSeconds": 1.058,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɛ",
+        "phones": [
+          "s",
+          "ˈɛ",
+          "t"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 11,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 84,
+          "id": "ɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 195,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 236,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 309,
+          "id": "j"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 393,
+          "id": "ˈɔ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 457,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 515,
+          "id": "y"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 562,
+          "id": "m"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 620,
+          "id": "e"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 681,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 695,
+          "id": "ˈo"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 833,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 866,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 929,
+          "id": "ɑ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 1013,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 1058,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 1131,
+          "id": "ˈɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 1304,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 20,
+          "word_length": 0,
+          "audio_position": 1349,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 20,
+          "word_length": 0,
+          "audio_position": 1356,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Pont",
+      "language": "fr",
+      "duration": 0.24680272108843537,
+      "candidate": {
+        "anchorSeconds": 0.048,
+        "onsetPhone": "p",
+        "nucleusPhone": "ˈɔ̃",
+        "phones": [
+          "p",
+          "ˈɔ̃"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 48,
+          "id": "p"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 69,
+          "id": "ˈɔ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 239,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 246,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Renax",
+      "language": "fr",
+      "duration": 0.47904761904761906,
+      "candidate": {
+        "anchorSeconds": 0.121,
+        "onsetPhone": "n",
+        "nucleusPhone": "ˈa",
+        "phones": [
+          "n",
+          "ˈa",
+          "k",
+          "s"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 0,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 78,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 121,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 203,
+          "id": "ˈa"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 328,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 369,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 7,
+          "word_length": 0,
+          "audio_position": 472,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 7,
+          "word_length": 0,
+          "audio_position": 479,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Extraordinaire",
+      "language": "fr",
+      "duration": 0.9220408163265306,
+      "candidate": {
+        "anchorSeconds": 0.612,
+        "onsetPhone": "n",
+        "nucleusPhone": "ˈɛ",
+        "phones": [
+          "n",
+          "ˈɛ",
+          "ʁ"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 0,
+          "id": "ɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 112,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 153,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 222,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 255,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 319,
+          "id": "a"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 374,
+          "id": "ɔ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 461,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 539,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 553,
+          "id": "i"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 612,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 710,
+          "id": "ˈɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 858,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 915,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 922,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Fin silencieuse",
+      "language": "fr",
+      "duration": 0.8599092970521542,
+      "candidate": {
+        "anchorSeconds": 0.44,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈø",
+        "phones": [
+          "s",
+          "j",
+          "ˈø",
+          "z"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 11,
+          "id": "f"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 87,
+          "id": "ˈɛ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 5,
+          "word_length": 0,
+          "audio_position": 195,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 5,
+          "word_length": 0,
+          "audio_position": 268,
+          "id": "i"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 5,
+          "word_length": 0,
+          "audio_position": 334,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 5,
+          "word_length": 0,
+          "audio_position": 384,
+          "id": "ɑ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 5,
+          "word_length": 0,
+          "audio_position": 440,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 5,
+          "word_length": 0,
+          "audio_position": 513,
+          "id": "j"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 5,
+          "word_length": 0,
+          "audio_position": 629,
+          "id": "ˈø"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 5,
+          "word_length": 0,
+          "audio_position": 757,
+          "id": "z"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 852,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 859,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Changement de métrique",
+      "language": "fr",
+      "duration": 1.002267573696145,
+      "candidate": {
+        "anchorSeconds": 0.657,
+        "onsetPhone": "t",
+        "nucleusPhone": "ˈi",
+        "phones": [
+          "t",
+          "ʁ",
+          "ˈi",
+          "k"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 11,
+          "id": "ʃ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 104,
+          "id": "ɑ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 197,
+          "id": "ʒ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 269,
+          "id": "m"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 333,
+          "id": "ˈɑ̃"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 12,
+          "word_length": 0,
+          "audio_position": 394,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 12,
+          "word_length": 0,
+          "audio_position": 449,
+          "id": "ə-"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 15,
+          "word_length": 0,
+          "audio_position": 518,
+          "id": "m"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 15,
+          "word_length": 0,
+          "audio_position": 576,
+          "id": "e"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 15,
+          "word_length": 0,
+          "audio_position": 657,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 15,
+          "word_length": 0,
+          "audio_position": 690,
+          "id": "ʁ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 15,
+          "word_length": 0,
+          "audio_position": 809,
+          "id": "ˈi"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 15,
+          "word_length": 0,
+          "audio_position": 954,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 25,
+          "word_length": 0,
+          "audio_position": 995,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 25,
+          "word_length": 0,
+          "audio_position": 1002,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Psst",
+      "language": "fr",
+      "duration": 0.6410430839002268,
+      "candidate": {
+        "anchorSeconds": 0.466,
+        "onsetPhone": "t",
+        "nucleusPhone": "ˈe",
+        "phones": [
+          "t",
+          "ˈe"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 38,
+          "id": "p"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 59,
+          "id": "ˌe"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 143,
+          "id": "ˌɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 226,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 299,
+          "id": "ˌɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 381,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 466,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 487,
+          "id": "ˈe"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 634,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 641,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Flou",
+      "language": "fr",
+      "duration": 0.2691609977324263,
+      "candidate": {
+        "anchorSeconds": 0.011,
+        "onsetPhone": "f",
+        "nucleusPhone": "ˈu",
+        "phones": [
+          "f",
+          "l",
+          "ˈu"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 11,
+          "id": "f"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 87,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 157,
+          "id": "ˈu"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 262,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 269,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Tout",
+      "language": "fr",
+      "duration": 0.23596371882086167,
+      "candidate": {
+        "anchorSeconds": 0.048,
+        "onsetPhone": "t",
+        "nucleusPhone": "ˈu",
+        "phones": [
+          "t",
+          "ˈu"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 48,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 70,
+          "id": "ˈu"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 228,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 235,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Chorus",
+      "language": "en",
+      "duration": 0.47496598639455784,
+      "candidate": {
+        "anchorSeconds": 0.269,
+        "onsetPhone": "ɹ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ɹ",
+          "ə",
+          "s"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 48,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 95,
+          "id": "ˈɔː"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 269,
+          "id": "ɹ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 318,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 365,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 8,
+          "word_length": 0,
+          "audio_position": 467,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 8,
+          "word_length": 0,
+          "audio_position": 474,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Introduction",
+      "language": "en",
+      "duration": 0.8006802721088435,
+      "candidate": {
+        "anchorSeconds": 0.538,
+        "onsetPhone": "ʃ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ʃ",
+          "ə",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 0,
+          "id": "ˌɪ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 55,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 154,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 224,
+          "id": "ɹ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 268,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 297,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 360,
+          "id": "ˈʌ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 493,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 538,
+          "id": "ʃ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 631,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 718,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 14,
+          "word_length": 0,
+          "audio_position": 793,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 14,
+          "word_length": 0,
+          "audio_position": 800,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "My custom drum breakdown",
+      "language": "en",
+      "duration": 1.4468480725623583,
+      "candidate": {
+        "anchorSeconds": 1.226,
+        "onsetPhone": "d",
+        "nucleusPhone": "aʊ",
+        "phones": [
+          "d",
+          "aʊ",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 0,
+          "id": "m"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 72,
+          "id": "aɪ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 198,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 244,
+          "id": "ˈʌ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 322,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 407,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 447,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 511,
+          "id": "m"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 11,
+          "word_length": 0,
+          "audio_position": 644,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 11,
+          "word_length": 0,
+          "audio_position": 661,
+          "id": "ɹ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 11,
+          "word_length": 0,
+          "audio_position": 720,
+          "id": "ˈʌ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 11,
+          "word_length": 0,
+          "audio_position": 772,
+          "id": "m"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 912,
+          "id": "b"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 929,
+          "id": "ɹ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 993,
+          "id": "ˈeɪ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 1149,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 1226,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 1243,
+          "id": "aʊ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 1365,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 26,
+          "word_length": 0,
+          "audio_position": 1439,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 26,
+          "word_length": 0,
+          "audio_position": 1446,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Bottle",
+      "language": "en",
+      "duration": 0.36099773242630384,
+      "candidate": {
+        "anchorSeconds": 0.189,
+        "onsetPhone": "t",
+        "nucleusPhone": "əl",
+        "phones": [
+          "t",
+          "əl"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 12,
+          "id": "b"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 44,
+          "id": "ˈɒ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 189,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 229,
+          "id": "əl"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 8,
+          "word_length": 0,
+          "audio_position": 354,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 8,
+          "word_length": 0,
+          "audio_position": 360,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Button",
+      "language": "en",
+      "duration": 0.39918367346938777,
+      "candidate": {
+        "anchorSeconds": 0.189,
+        "onsetPhone": "t",
+        "nucleusPhone": "ə",
+        "phones": [
+          "t",
+          "ə",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 12,
+          "id": "b"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 44,
+          "id": "ˈʌ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 189,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 229,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 310,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 8,
+          "word_length": 0,
+          "audio_position": 392,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 8,
+          "word_length": 0,
+          "audio_position": 399,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Rhythm",
+      "language": "en",
+      "duration": 0.41959183673469386,
+      "candidate": {
+        "anchorSeconds": 0.171,
+        "onsetPhone": "ð",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ð",
+          "ə",
+          "m"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 0,
+          "id": "ɹ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 98,
+          "id": "ˈɪ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 171,
+          "id": "ð"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 229,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 316,
+          "id": "m"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 8,
+          "word_length": 0,
+          "audio_position": 412,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 8,
+          "word_length": 0,
+          "audio_position": 419,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Fire",
+      "language": "en",
+      "duration": 0.38807256235827664,
+      "candidate": {
+        "anchorSeconds": 0.011,
+        "onsetPhone": "f",
+        "nucleusPhone": "ˈaɪə",
+        "phones": [
+          "f",
+          "ˈaɪə"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 11,
+          "id": "f"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 87,
+          "id": "ˈaɪə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 381,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 388,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Quiet transition before the final chorus",
+      "language": "en",
+      "duration": 2.3426303854875283,
+      "candidate": {
+        "anchorSeconds": 2.137,
+        "onsetPhone": "ɹ",
+        "nucleusPhone": "ə",
+        "phones": [
+          "ɹ",
+          "ə",
+          "s"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 48,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 95,
+          "id": "w"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 182,
+          "id": "ˈaɪə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 343,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 7,
+          "word_length": 0,
+          "audio_position": 437,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 7,
+          "word_length": 0,
+          "audio_position": 507,
+          "id": "ɹ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 7,
+          "word_length": 0,
+          "audio_position": 560,
+          "id": "a"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 7,
+          "word_length": 0,
+          "audio_position": 595,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 7,
+          "word_length": 0,
+          "audio_position": 664,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 7,
+          "word_length": 0,
+          "audio_position": 737,
+          "id": "ˈɪ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 7,
+          "word_length": 0,
+          "audio_position": 821,
+          "id": "ʃ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 7,
+          "word_length": 0,
+          "audio_position": 914,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 7,
+          "word_length": 0,
+          "audio_position": 983,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 18,
+          "word_length": 0,
+          "audio_position": 1103,
+          "id": "b"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 18,
+          "word_length": 0,
+          "audio_position": 1126,
+          "id": "ɪ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 18,
+          "word_length": 0,
+          "audio_position": 1180,
+          "id": "f"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 18,
+          "word_length": 0,
+          "audio_position": 1256,
+          "id": "ˌɔː"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 25,
+          "word_length": 0,
+          "audio_position": 1417,
+          "id": "ð"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 25,
+          "word_length": 0,
+          "audio_position": 1470,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 29,
+          "word_length": 0,
+          "audio_position": 1556,
+          "id": "f"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 29,
+          "word_length": 0,
+          "audio_position": 1632,
+          "id": "ˈaɪ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 29,
+          "word_length": 0,
+          "audio_position": 1753,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 29,
+          "word_length": 0,
+          "audio_position": 1803,
+          "id": "əl"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 35,
+          "word_length": 0,
+          "audio_position": 1916,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 35,
+          "word_length": 0,
+          "audio_position": 1962,
+          "id": "ˈɔː"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 35,
+          "word_length": 0,
+          "audio_position": 2137,
+          "id": "ɹ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 35,
+          "word_length": 0,
+          "audio_position": 2186,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 35,
+          "word_length": 0,
+          "audio_position": 2233,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 42,
+          "word_length": 0,
+          "audio_position": 2335,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 42,
+          "word_length": 0,
+          "audio_position": 2342,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Section number 37",
+      "language": "en",
+      "duration": 1.6183673469387756,
+      "candidate": {
+        "anchorSeconds": 1.375,
+        "onsetPhone": "v",
+        "nucleusPhone": "ə",
+        "phones": [
+          "v",
+          "ə",
+          "n"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 11,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 84,
+          "id": "ˈɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 201,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 247,
+          "id": "ʃ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 339,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 409,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 475,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 560,
+          "id": "ˈʌ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 603,
+          "id": "m"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 717,
+          "id": "b"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 743,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 827,
+          "id": "θ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 909,
+          "id": "ˈɜː"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 1068,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 16,
+          "word_length": 0,
+          "audio_position": 1108,
+          "id": "i"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 1184,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 1256,
+          "id": "ˈɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 1375,
+          "id": "v"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 1442,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 1529,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 19,
+          "word_length": 0,
+          "audio_position": 1611,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 19,
+          "word_length": 0,
+          "audio_position": 1618,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Bridge",
+      "language": "en",
+      "duration": 0.34739229024943313,
+      "candidate": {
+        "anchorSeconds": 0.012,
+        "onsetPhone": "b",
+        "nucleusPhone": "ˈɪ",
+        "phones": [
+          "b",
+          "ɹ",
+          "ˈɪ",
+          "dʒ"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 12,
+          "id": "b"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 30,
+          "id": "ɹ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 114,
+          "id": "ˈɪ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 207,
+          "id": "dʒ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 8,
+          "word_length": 0,
+          "audio_position": 340,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 8,
+          "word_length": 0,
+          "audio_position": 347,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Strengths",
+      "language": "en",
+      "duration": 0.6049886621315193,
+      "candidate": {
+        "anchorSeconds": 0.011,
+        "onsetPhone": "s",
+        "nucleusPhone": "ˈɛ",
+        "phones": [
+          "s",
+          "t",
+          "ɹ",
+          "ˈɛ",
+          "ŋ",
+          "θ",
+          "s"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 11,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 80,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 150,
+          "id": "ɹ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 223,
+          "id": "ˈɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 304,
+          "id": "ŋ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 413,
+          "id": "θ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 495,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 11,
+          "word_length": 0,
+          "audio_position": 598,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 11,
+          "word_length": 0,
+          "audio_position": 604,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Extraordinary",
+      "language": "en",
+      "duration": 0.8000907029478458,
+      "candidate": {
+        "anchorSeconds": 0.665,
+        "onsetPhone": "ɹ",
+        "nucleusPhone": "i",
+        "phones": [
+          "ɹ",
+          "i"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 0,
+          "id": "ɛ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 100,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 145,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 214,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 284,
+          "id": "ɹ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 345,
+          "id": "ˈɔː"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 493,
+          "id": "d"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 540,
+          "id": "ɪ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 583,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 633,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 665,
+          "id": "ɹ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 731,
+          "id": "i"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 15,
+          "word_length": 0,
+          "audio_position": 793,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 15,
+          "word_length": 0,
+          "audio_position": 800,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Hello Anna",
+      "language": "en",
+      "duration": 0.5516553287981859,
+      "candidate": {
+        "anchorSeconds": 0.411,
+        "onsetPhone": "n",
+        "nucleusPhone": "ə",
+        "phones": [
+          "n",
+          "ə"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 11,
+          "id": "h"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 62,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 123,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 193,
+          "id": "ˈəʊ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 7,
+          "word_length": 0,
+          "audio_position": 292,
+          "id": "ˈa"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 7,
+          "word_length": 0,
+          "audio_position": 411,
+          "id": "n"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 7,
+          "word_length": 0,
+          "audio_position": 480,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 12,
+          "word_length": 0,
+          "audio_position": 544,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 12,
+          "word_length": 0,
+          "audio_position": 551,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "My custom label",
+      "language": "en",
+      "duration": 1.0076643990929706,
+      "candidate": {
+        "anchorSeconds": 0.787,
+        "onsetPhone": "b",
+        "nucleusPhone": "əl",
+        "phones": [
+          "b",
+          "əl"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 0,
+          "id": "m"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 72,
+          "id": "aɪ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 198,
+          "id": "k"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 244,
+          "id": "ˈʌ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 323,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 408,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 448,
+          "id": "ə"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 4,
+          "word_length": 0,
+          "audio_position": 512,
+          "id": "m"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 11,
+          "word_length": 0,
+          "audio_position": 587,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 11,
+          "word_length": 0,
+          "audio_position": 665,
+          "id": "ˈeɪ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 11,
+          "word_length": 0,
+          "audio_position": 787,
+          "id": "b"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 11,
+          "word_length": 0,
+          "audio_position": 866,
+          "id": "əl"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 1000,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 17,
+          "word_length": 0,
+          "audio_position": 1007,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Psst",
+      "language": "en",
+      "duration": 0.30943310657596373,
+      "error": "NO_SYLLABLE_NUCLEUS",
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 38,
+          "id": "p"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 115,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 188,
+          "id": "s"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 257,
+          "id": "t"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 302,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 309,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Blue",
+      "language": "en",
+      "duration": 0.32299319727891157,
+      "candidate": {
+        "anchorSeconds": 0.012,
+        "onsetPhone": "b",
+        "nucleusPhone": "ˈuː",
+        "phones": [
+          "b",
+          "l",
+          "ˈuː"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 12,
+          "id": "b"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 30,
+          "id": "l"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 131,
+          "id": "ˈuː"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 316,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 6,
+          "word_length": 0,
+          "audio_position": 322,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    },
+    {
+      "text": "Shuffle",
+      "language": "en",
+      "duration": 0.4445351473922903,
+      "candidate": {
+        "anchorSeconds": 0.224,
+        "onsetPhone": "f",
+        "nucleusPhone": "əl",
+        "phones": [
+          "f",
+          "əl"
+        ],
+        "method": "phonotactic-candidate",
+        "anchorVerified": false,
+        "limitation": "Syllabification and acoustic attack require independent review; phoneme event timestamps are not acoustic ground truth."
+      },
+      "phonemes": [
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 11,
+          "id": "ʃ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 104,
+          "id": "ˈʌ"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 224,
+          "id": "f"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 1,
+          "word_length": 0,
+          "audio_position": 299,
+          "id": "əl"
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 437,
+          "id": ""
+        },
+        {
+          "type": "phoneme",
+          "text_position": 9,
+          "word_length": 0,
+          "audio_position": 444,
+          "id": ""
+        }
+      ],
+      "acousticOnsetVerified": false
+    }
+  ]
+}
