@@ -16,7 +16,7 @@
     ['exponential-up','Montée exponentielle','M6 18C18 18 24 14 28 4'],
     ['exponential-down','Descente exponentielle','M6 4C10 14 16 18 28 18'],
     ['inverse-up','Montée exponentielle inverse','M6 18C8 7 16 4 28 4'],
-    ['inverse-down','Descente exponentielle inverse','M6 4C8 15 16 18 28 18']
+    ['inverse-down','Descente exponentielle inverse','M6 4C18 4 26 7 28 18']
   ];
   const profile=()=>profiles.find(item=>item[0]===curve)||profiles[0];
   // The icon paths and tempo use the same normalized geometry.
@@ -25,7 +25,7 @@
     if(key==='exponential-up')return Math.expm1(3*p)/Math.expm1(3);
     if(key==='exponential-down')return Math.expm1(3*(1-p))/Math.expm1(3);
     if(key==='inverse-up')return Math.log1p(Math.expm1(3)*p)/3;
-    if(key==='inverse-down')return 1-Math.log1p(Math.expm1(3)*p)/3;
+    if(key==='inverse-down')return Math.log1p(Math.expm1(3)*(1-p))/3;
     if(key==='linear-up')return p;
     if(key==='linear-down')return 1-p;
     if(key==='linear-up-down')return 1-Math.abs(2*p-1);
