@@ -36,3 +36,7 @@
 .training-section .training-mode-tabs button svg,
 .training-section .training-curve-options button svg {stroke:var(--cyan);}
 .training-section .training-mode-tabs button[aria-selected=true] svg {stroke:var(--cyan);}
+
+.training-section .training-duration-row{display:flex;align-items:center;gap:8px;}
+.training-section .training-duration-row input{flex:1;min-width:0;}
+.training-section .training-duration-row #trainDurationUnit{flex:0 0 96px;width:96px;min-width:0;}
