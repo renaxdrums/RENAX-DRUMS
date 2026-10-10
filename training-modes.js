@@ -12,12 +12,16 @@
     ['round-up','Montée arrondie','M6 18Q17 4 28 4'],
     ['round-down','Descente arrondie','M6 4Q17 4 28 18'],
     ['round-up-down','Montée puis descente arrondie','M6 18Q17 -10 28 18'],
-    ['round-down-up','Descente puis montée arrondie','M6 4Q17 32 28 4']
+    ['round-down-up','Descente puis montée arrondie','M6 4Q17 32 28 4'],
+    ['exponential-up','Montée exponentielle','M6 18C18 18 24 14 28 4'],
+    ['exponential-down','Descente exponentielle','M6 4C10 14 16 18 28 18']
   ];
   const profile=()=>profiles.find(item=>item[0]===curve)||profiles[0];
   // The icon paths and tempo use the same normalized geometry.
   function curveLevel(key,p){
     p=Math.max(0,Math.min(1,p));
+    if(key==='exponential-up')return Math.expm1(3*p)/Math.expm1(3);
+    if(key==='exponential-down')return Math.expm1(3*(1-p))/Math.expm1(3);
     if(key==='linear-up')return p;
     if(key==='linear-down')return 1-p;
     if(key==='linear-up-down')return 1-Math.abs(2*p-1);
@@ -51,7 +55,7 @@
   }
   const curveRow=document.createElement('div');curveRow.className='training-curve-row';const curveLabel=document.createElement('span');curveLabel.textContent='Courbe';const curves=document.createElement('div');curves.className='training-curve-options';curves.setAttribute('role','group');curves.setAttribute('aria-label','Courbe du tempo');curveRow.append(curveLabel,curves);fields.append(curveRow);
   const curveStyle=document.createElement('style');curveStyle.textContent=`
-    .training-curve-options{position:relative;flex:1;min-width:0}
+    .training-section .training-curve-options{position:relative;display:block;width:100%;flex:1;min-width:0}
     .training-curve-select{position:relative;width:100%}
     .training-curve-select>summary{list-style:none;display:flex;align-items:center;gap:8px;background:var(--grey);border:1px solid var(--border);border-radius:4px;padding:6px 8px;cursor:pointer;font-size:10px;color:var(--text)}
     .training-curve-select>summary::-webkit-details-marker{display:none}
@@ -66,7 +70,7 @@
   `;document.head.append(curveStyle);
   const selector=document.createElement('details');selector.className='training-curve-select';
   const summary=document.createElement('summary');summary.setAttribute('aria-label','Choisir la courbe du tempo');
-  const menu=document.createElement('div');menu.className='training-curve-menu';menu.setAttribute('role','group');menu.setAttribute('aria-label','Huit courbes du tempo');
+  const menu=document.createElement('div');menu.className='training-curve-menu';menu.setAttribute('role','group');menu.setAttribute('aria-label','Courbes du tempo');
   selector.append(summary,menu);curves.append(selector);
   const curveButtons=[];
   for(const [value,label,path] of profiles){const button=document.createElement('button');button.type='button';button.dataset.curve=value;button.title=label;button.setAttribute('aria-label',label);button.innerHTML=svg(path);button.onclick=()=>{if(training.engaged)return;curve=value;update();selector.open=false;summary.focus();};menu.append(button);curveButtons.push(button);}
