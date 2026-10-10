@@ -43,6 +43,9 @@
   const direction=document.getElementById('dirToggle').closest('.training-row');
   fields.append(row(start),direction,row(end),row(duration));
   start.setAttribute('aria-label','BPM de départ');end.setAttribute('aria-label',"BPM d’arrivée");duration.setAttribute('aria-label','Durée totale en minutes');
+  const durationRow=row(duration);durationRow.classList.add('training-duration-row');durationRow.querySelector('.unit')?.remove();
+  const durationUnit=document.createElement('select');durationUnit.id='trainDurationUnit';durationUnit.setAttribute('aria-label','Unité du temps d’entraînement');durationUnit.innerHTML='<option value="seconds">secondes</option><option value="minutes" selected>minutes</option>';durationRow.append(durationUnit);
+  durationUnit.addEventListener('change',()=>{duration.max=durationUnit.value==='seconds'?'3600':'60';duration.setAttribute('aria-label','Durée totale en '+(durationUnit.value==='seconds'?'secondes':'minutes'));});
   const endLabel=row(end).querySelector('.row-label');endLabel.textContent='Arrivée';
   function makeRow(label,id,value,min,max){const wrapper=document.createElement('div');wrapper.className='training-row';const text=document.createElement('label');text.className='row-label';text.htmlFor=id;text.textContent=label;const input=document.createElement('input');input.type='number';input.id=id;input.inputMode='numeric';input.value=value;input.min=min;input.max=max;input.step=1;wrapper.append(text,input);fields.append(wrapper);return {wrapper,input};}
   const step=makeRow('Écart','trainStep',4,1,280);const stepUnit=document.createElement('span');stepUnit.className='unit';stepUnit.textContent='BPM';step.wrapper.append(stepUnit);
@@ -101,7 +104,7 @@
     const stepBpm=Math.max(1,Math.min(280,parseInt(step.input.value)||4));step.input.value=stepBpm;
     const max=unit.value==='minutes'?60:3600;const count=Math.max(1,Math.min(max,parseInt(interval.input.value)||1));interval.input.value=count;runStatus.hidden=true;
     const low=Math.min(a,b),high=Math.max(a,b),startsHigh=curve.includes('down')&&!curve.includes('up-down');
-    return {mode,curve,direction,startBpm:mode==='steps'?a:startsHigh?high:low,endBpm:mode==='steps'?(direction==='up'?300:20):startsHigh?low:high,lowBpm:low,highBpm:high,duration:dur*60000,stepBpm,stepMs:count*(unit.value==='minutes'?60000:1000)};
+    return {mode,curve,direction,startBpm:mode==='steps'?a:startsHigh?high:low,endBpm:mode==='steps'?(direction==='up'?300:20):startsHigh?low:high,lowBpm:low,highBpm:high,duration:dur*(durationUnit.value==='seconds'?1000:60000),stepBpm,stepMs:count*(unit.value==='minutes'?60000:1000)};
   }
   function at(run,elapsed){
     if(run.mode==='steps'){const n=Math.floor(Math.max(0,elapsed)/run.stepMs);const raw=run.startBpm+(run.direction==='up'?1:-1)*run.stepBpm*n;const bpm=Math.max(20,Math.min(300,raw));return {bpm,done:run.direction==='up'?raw>=300:raw<=20};}
