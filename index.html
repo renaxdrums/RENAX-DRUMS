@@ -1628,6 +1628,21 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
 
     const FIRST_BEAT_RATIO = 1.35;
     const FIRST_BEAT_VOL = 1.25;
+    const OTHER_STRONG_BEAT_RATIO = FIRST_BEAT_RATIO * Math.pow(2, -2 / 12);
+    function isOtherStrongBeat(m, beat, subIndex) {
+      if (beat === 0 || subIndex !== 0) return false;
+      let groups;
+      const custom = m.rhythmEditor;
+      if (custom?.custom && Array.isArray(custom.groups) && custom.groups.every(n => n === 2 || n === 3) && custom.groups.reduce((a,b)=>a+b,0) === m.numerator) groups = custom.groups;
+      else if (m.denominator >= 8 && m.numerator % 3 === 0) groups = Array(m.numerator / 3).fill(3);
+      else if (m.denominator >= 8 && m.numerator >= 5 && m.numerator % 2) groups = [...Array((m.numerator - 3) / 2).fill(2), 3];
+      else if (m.denominator >= 8 && m.numerator % 2 === 0) groups = Array(m.numerator / 2).fill(2);
+      else if (m.numerator === 4) groups = [2, 2];
+      else return false;
+      let start = 0;
+      for (const length of groups) { if (start === beat) return true; start += length; }
+      return false;
+    }
 
 
     const VOICE_METRONOME_FILES = {
@@ -1789,10 +1804,11 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
     const SOUND_BANKS = {
       clic: {
         name: 'Clic',
-        play(dest, time, state, isFirst) {
+        play(dest, time, state, isFirst, context = {}) {
           let freq = state === 3 ? 900 : state === 2 ? 1300 : 1800;
           let vol  = 0.55;
           if (isFirst) { freq *= FIRST_BEAT_RATIO; vol *= FIRST_BEAT_VOL; }
+          else if (context.isOtherStrongBeat) { freq *= OTHER_STRONG_BEAT_RATIO; vol *= FIRST_BEAT_VOL; }
           oscTone(dest, time, {
             type: 'sine', freqStart: freq, freqEnd: freq * 0.7,
             pitchTime: 0.02, vol, attack: 0.001, duration: 0.035
@@ -1801,10 +1817,11 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
       },
       cloche: {
         name: 'Cloche',
-        play(dest, time, state, isFirst) {
+        play(dest, time, state, isFirst, context = {}) {
           let base = state === 3 ? 650 : state === 2 ? 900 : 1200;
           let vol  = 0.42;
           if (isFirst) { base *= FIRST_BEAT_RATIO; vol *= FIRST_BEAT_VOL; }
+          else if (context.isOtherStrongBeat) { base *= OTHER_STRONG_BEAT_RATIO; vol *= FIRST_BEAT_VOL; }
           oscTone(dest, time, { type: 'sine', freqStart: base, vol, attack: 0.003, duration: 0.42 });
           oscTone(dest, time, { type: 'sine', freqStart: base * 2.76, vol: vol * 0.4, attack: 0.002, duration: 0.26 });
           oscTone(dest, time, { type: 'sine', freqStart: base * 5.4, vol: vol * 0.18, attack: 0.001, duration: 0.12 });
@@ -1812,10 +1829,11 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
       },
       claves: {
         name: 'Claves',
-        play(dest, time, state, isFirst) {
+        play(dest, time, state, isFirst, context = {}) {
           let freq = state === 3 ? 1400 : state === 2 ? 1900 : 2500;
           let vol  = 0.5;
           if (isFirst) { freq *= FIRST_BEAT_RATIO; vol *= FIRST_BEAT_VOL; }
+          else if (context.isOtherStrongBeat) { freq *= OTHER_STRONG_BEAT_RATIO; vol *= FIRST_BEAT_VOL; }
           oscTone(dest, time, {
             type: 'triangle', freqStart: freq, freqEnd: freq * 0.62,
             pitchTime: 0.03, vol, attack: 0.001, duration: 0.055
@@ -1824,9 +1842,9 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
       },
       clic808: {
         name: 'Clic 808',
-        play(dest, time, state, isFirst) {
-          const ratio = isFirst ? FIRST_BEAT_RATIO : 1;
-          const volMul = isFirst ? FIRST_BEAT_VOL : 1;
+        play(dest, time, state, isFirst, context = {}) {
+          const ratio = isFirst ? FIRST_BEAT_RATIO : context.isOtherStrongBeat ? OTHER_STRONG_BEAT_RATIO : 1;
+          const volMul = isFirst || context.isOtherStrongBeat ? FIRST_BEAT_VOL : 1;
           if (state === 1) {
             oscTone(dest, time, {
               type: 'square', freqStart: 1200 * ratio, freqEnd: 520 * ratio,
@@ -1845,10 +1863,11 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
       },
       beep: {
         name: 'Beep',
-        play(dest, time, state, isFirst) {
+        play(dest, time, state, isFirst, context = {}) {
           let freq = state === 3 ? 650 : state === 2 ? 1000 : 1500;
           let vol  = 0.24;
           if (isFirst) { freq *= FIRST_BEAT_RATIO; vol *= FIRST_BEAT_VOL; }
+          else if (context.isOtherStrongBeat) { freq *= OTHER_STRONG_BEAT_RATIO; vol *= FIRST_BEAT_VOL; }
           oscTone(dest, time, { type: 'square', freqStart: freq, vol, attack: 0.002, duration: 0.055 });
         }
       },
@@ -2758,6 +2777,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
         if (!window.RENAX_AMORCE?.step(nextNoteTime,state,isFirst,subIndex,beat) && state > 0 && isSilentCycleAudible()) {
           if(model.countIn)playCountIn(nextNoteTime,isFirst);else playClick(state, nextNoteTime, isFirst, {
             mode: 'metronome',
+            isOtherStrongBeat: isOtherStrongBeat(m, beat, subIndex),
             beatNumber: beat % voiceGroupSize === 0 ? Math.floor(beat / voiceGroupSize) + 1 : 0,
             subIndex,
             beatDurationSec: beatDurationSec * voiceGroupSize
