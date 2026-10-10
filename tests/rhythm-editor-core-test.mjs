@@ -8,3 +8,5 @@ const six=m(6,8,Array.from({length:6},()=>[1]));commitModel(six,regroup(six,true
 for(const denominator of [2,4,8,16,32])for(const count of [1,2,3,4,5,6,7,8]){const normal=count===3?2:count>=5&&count<=7?4:count;if(denominator*normal>32)continue;const bar=m(1,denominator,[Array.from({length:count},(_,i)=>i===0||i===count-1?1:0)]),model=editorModel(bar),pieces=spell(bar,model).flatMap(g=>g.notes);assert(Math.abs(pieces.reduce((sum,p)=>sum+(p.dots?1.5:1)/p.duration*(p.tuplet?p.tuplet.normal/p.tuplet.count:1),0)-1/denominator)<1e-8);project(bar,model);}
 const saved=m(2,4,[[1,1],[1,1]]);commitModel(saved,changeEvent(saved,0,{length:.5,state:0}));saved.beatStates[1][0]=2;assert.equal(editorModel(saved).events[0].state,0);assert.equal(editorModel(saved).events.find(e=>e.start===1).state,2);
 console.log('PASS fusion, leading and explicit rests, resize, groups, all tuplets, partial grid replacement');
+
+for(const n of [10,14,16]){const bar=m(n,8,Array.from({length:n},()=>[1]));assert.deepEqual(defaultGroups(bar),Array(n/2).fill(2));assert(spell(bar,editorModel(bar)).every(g=>g.length===2&&g.notes.length===2));}

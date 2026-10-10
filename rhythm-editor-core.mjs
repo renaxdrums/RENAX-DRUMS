@@ -4,6 +4,7 @@ export const allowed=d=>[1,2,3,4,5,6,7,8].filter(n=>d*normalCount(n)<=32);
 export function defaultGroups(m){
  if(m.denominator>=8&&m.numerator%3===0)return Array(m.numerator/3).fill(3);
  if(m.denominator>=8&&m.numerator>=5&&m.numerator%2){return [...Array((m.numerator-3)/2).fill(2),3];}
+ if(m.denominator>=8&&m.numerator%2===0)return Array(m.numerator/2).fill(2);
  return Array(m.numerator).fill(1);
 }
 export function groupRanges(groups){let start=0;return groups.map(length=>{const g={start,end:start+length,length};start+=length;return g;});}
