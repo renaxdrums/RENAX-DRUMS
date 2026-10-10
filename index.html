@@ -1808,7 +1808,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
           let freq = state === 3 ? 900 : state === 2 ? 1300 : 1800;
           let vol  = 0.55;
           if (isFirst) { freq *= FIRST_BEAT_RATIO; vol *= FIRST_BEAT_VOL; }
-          else if (context.isOtherStrongBeat) { freq *= OTHER_STRONG_BEAT_RATIO; vol *= FIRST_BEAT_VOL; }
+          else if (context.isMainBeat) { freq *= OTHER_STRONG_BEAT_RATIO; if (context.isOtherStrongBeat) vol *= FIRST_BEAT_VOL; }
           oscTone(dest, time, {
             type: 'sine', freqStart: freq, freqEnd: freq * 0.7,
             pitchTime: 0.02, vol, attack: 0.001, duration: 0.035
@@ -1821,7 +1821,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
           let base = state === 3 ? 650 : state === 2 ? 900 : 1200;
           let vol  = 0.42;
           if (isFirst) { base *= FIRST_BEAT_RATIO; vol *= FIRST_BEAT_VOL; }
-          else if (context.isOtherStrongBeat) { base *= OTHER_STRONG_BEAT_RATIO; vol *= FIRST_BEAT_VOL; }
+          else if (context.isMainBeat) { base *= OTHER_STRONG_BEAT_RATIO; if (context.isOtherStrongBeat) vol *= FIRST_BEAT_VOL; }
           oscTone(dest, time, { type: 'sine', freqStart: base, vol, attack: 0.003, duration: 0.42 });
           oscTone(dest, time, { type: 'sine', freqStart: base * 2.76, vol: vol * 0.4, attack: 0.002, duration: 0.26 });
           oscTone(dest, time, { type: 'sine', freqStart: base * 5.4, vol: vol * 0.18, attack: 0.001, duration: 0.12 });
@@ -1833,7 +1833,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
           let freq = state === 3 ? 1400 : state === 2 ? 1900 : 2500;
           let vol  = 0.5;
           if (isFirst) { freq *= FIRST_BEAT_RATIO; vol *= FIRST_BEAT_VOL; }
-          else if (context.isOtherStrongBeat) { freq *= OTHER_STRONG_BEAT_RATIO; vol *= FIRST_BEAT_VOL; }
+          else if (context.isMainBeat) { freq *= OTHER_STRONG_BEAT_RATIO; if (context.isOtherStrongBeat) vol *= FIRST_BEAT_VOL; }
           oscTone(dest, time, {
             type: 'triangle', freqStart: freq, freqEnd: freq * 0.62,
             pitchTime: 0.03, vol, attack: 0.001, duration: 0.055
@@ -1843,7 +1843,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
       clic808: {
         name: 'Clic 808',
         play(dest, time, state, isFirst, context = {}) {
-          const ratio = isFirst ? FIRST_BEAT_RATIO : context.isOtherStrongBeat ? OTHER_STRONG_BEAT_RATIO : 1;
+          const ratio = isFirst ? FIRST_BEAT_RATIO : context.isMainBeat ? OTHER_STRONG_BEAT_RATIO : 1;
           const volMul = isFirst || context.isOtherStrongBeat ? FIRST_BEAT_VOL : 1;
           if (state === 1) {
             oscTone(dest, time, {
@@ -1867,7 +1867,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
           let freq = state === 3 ? 650 : state === 2 ? 1000 : 1500;
           let vol  = 0.24;
           if (isFirst) { freq *= FIRST_BEAT_RATIO; vol *= FIRST_BEAT_VOL; }
-          else if (context.isOtherStrongBeat) { freq *= OTHER_STRONG_BEAT_RATIO; vol *= FIRST_BEAT_VOL; }
+          else if (context.isMainBeat) { freq *= OTHER_STRONG_BEAT_RATIO; if (context.isOtherStrongBeat) vol *= FIRST_BEAT_VOL; }
           oscTone(dest, time, { type: 'square', freqStart: freq, vol, attack: 0.002, duration: 0.055 });
         }
       },
@@ -2777,6 +2777,7 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
         if (!window.RENAX_AMORCE?.step(nextNoteTime,state,isFirst,subIndex,beat) && state > 0 && isSilentCycleAudible()) {
           if(model.countIn)playCountIn(nextNoteTime,isFirst);else playClick(state, nextNoteTime, isFirst, {
             mode: 'metronome',
+            isMainBeat: subIndex === 0,
             isOtherStrongBeat: isOtherStrongBeat(m, beat, subIndex),
             beatNumber: beat % voiceGroupSize === 0 ? Math.floor(beat / voiceGroupSize) + 1 : 0,
             subIndex,
