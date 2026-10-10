@@ -91,7 +91,7 @@
   }
   function playlistSongs(){const library=RENAX_SONGS.library;return library.profiles.find(p=>p.id===library.activeProfile)?.songs||[];}
   let dialog=null;
-  function openExport(){
+  function openExport(songId=null){
     if(dialog){dialog.showModal();return;}
     dialog=document.createElement('dialog');dialog.id='mp3ExportDialog';
     dialog.addEventListener('keydown',e=>e.stopPropagation());
@@ -104,6 +104,7 @@
     const label=document.createElement('label');label.htmlFor='mp3ExportSong';label.textContent='Morceau de la playlist';
     const select=document.createElement('select');select.id='mp3ExportSong';
     for(const song of playlistSongs()){const option=document.createElement('option');option.value=song.id;option.textContent=song.name;select.append(option);}
+    if(songId)select.value=songId;
     const actions=document.createElement('div');actions.className='mp3-actions';
     const save=document.createElement('button');save.id='mp3ExportSave';save.className='btn';save.textContent='Choisir l’emplacement et exporter';save.type='button';
     const close=document.createElement('button');close.className='btn';close.textContent='Fermer';close.type='button';close.onclick=()=>dialog.close();
@@ -139,9 +140,17 @@
   function install(){
     const pane=document.getElementById('songPane');if(!pane||pane.hidden||document.getElementById('mp3ExportOpen'))return;
     const playlistManager=pane.querySelector('.playlist-manager');
-    if(!playlistManager||playlistManager.hidden)return;
+    const detail=RENAX_SONGS.navigation.view==='detail';
+    if(!detail&&(!playlistManager||playlistManager.hidden))return;
     const actions=pane.querySelector('.song-actions');if(!actions)return;
-    const button=document.createElement('button');button.id='mp3ExportOpen';button.className='btn';button.type='button';button.textContent='Export';button.onclick=openExport;actions.append(button);
+    const button=document.createElement('button');button.id='mp3ExportOpen';button.className='btn';button.type='button';button.textContent='Export';button.onclick=()=>openExport(detail?RENAX_SONGS.navigation.song:null);
+    if(detail){
+      const addSection=[...pane.querySelectorAll('button')].find(b=>b.textContent==='+ Ajouter une section');
+      if(!addSection)return;
+      button.className=addSection.className;
+      button.style.display='block';button.style.marginTop='6px';button.style.width=getComputedStyle(addSection).width;
+      addSection.after(button);
+    }else actions.append(button);
   }
   const observer=new MutationObserver(install);observer.observe(document.getElementById('songsRoot'),{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});install();
   window.RENAX_MP3_EXPORT={exportSong,filename,isolatedRender,workerClient};
