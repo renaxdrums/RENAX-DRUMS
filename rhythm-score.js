@@ -8,7 +8,7 @@
  const status=text=>{host.replaceChildren();const p=document.createElement('div');p.className='rhythm-score-status';p.textContent=text;host.append(p);};
  async function load(){if(!loading)loading=Promise.all([import('./rhythm-editor-core.mjs?v=20261010-paired-groups1'),new Promise((resolve,reject)=>{if(window.Vex)return resolve();const script=document.createElement('script');script.src='vendor/vexflow-bravura-4.2.5.js';script.onload=resolve;script.onerror=()=>{script.remove();reject(new Error('Impossible de charger la partition. Réessaie avec Partition.'));};document.head.append(script);})]).then(([module])=>{core=module;Flow=window.Vex.Flow||window.Vex;Flow.setMusicFont('Bravura');}).catch(error=>{loading=null;throw error;});return loading;}
 
- const colors=['#80858e','var(--cyan)','var(--yellow)','var(--orange)'];
+ const colors=['#80858e','#111','var(--yellow)','var(--orange)'];
  let editing=false,selected=null,selectedMeasure=null;
  const pencil=document.createElement('button');pencil.id='scoreEditBtn';pencil.type='button';pencil.title='Éditer la partition';pencil.setAttribute('aria-label','Éditer la partition');pencil.setAttribute('aria-pressed','false');pencil.hidden=true;pencil.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 16 11-11 4 4L8 20H4v-4ZM13 7l4 4M15 5l2-2 4 4-2 2"/></svg>';viewSwitch.append(pencil);
  const editor=document.createElement('div');editor.id='rhythmEditor';editor.className='rhythm-editor';editor.hidden=true;editor.setAttribute('aria-label','Outils de partition');const toolsPanel=document.createElement('div');toolsPanel.className='score-tools-panel';wrapper.insertBefore(toolsPanel,host);toolsPanel.append(viewSwitch,editor);
