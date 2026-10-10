@@ -84,7 +84,14 @@
     metronomeMeasures=measures;activeMeasureIndex=0;playingMeasureIndex=0;currentStepInMeasure=0;renderSequencerList();renderActiveMeasure();updatePosition();
   }
   window.songAtEnd=()=>{if(!loaded||playingMeasureIndex!==0||currentStepInMeasure!==0)return false;clearTimeout(endTimer);endTimer=setTimeout(()=>{stopMetronome();status(loaded?.preview?'Bloc terminé.':'Morceau terminé.');},Math.max(0,(nextNoteTime-audioCtx.currentTime)*1000));return true;};
+  function syncDirectSongPlay(){
+    songPane.querySelectorAll('.song-direct-play').forEach(button=>{
+      const active=!!(isPlaying&&loaded?.song.id===button.dataset.playSongId);
+      button.setAttribute('aria-pressed',String(active));
+    });
+  }
   function syncSongTransport(){
+    syncDirectSongPlay();
     const songContext=!!(loaded||(!songsRoot.hidden&&songView==='detail'&&song()));
     playBtn.dataset.songTransport=String(songContext);
     if(!isPlaying)playBtn.textContent=songContext?'Lire le morceau':'Start';
@@ -95,12 +102,12 @@
     const current=loaded?.song?.amorce?song()||loaded.song:(!songsRoot.hidden&&songView==='detail'?song():null);
     if(!isPlaying&&current?.amorce){
       const epoch=++songStartEpoch;preparingAmorce=true;playBtn.textContent='Préparation…';
-      try{await initAudio();if(epoch!==songStartEpoch)return;const plan=await RENAX_AMORCE.prepare(current);await prepareAllVoiceAudio();if(epoch!==songStartEpoch)return;loadSong(null,plan);RENAX_AMORCE.install(plan);preparingAmorce=false;return await originalStart();}
+      try{await initAudio();if(epoch!==songStartEpoch)return;const plan=await RENAX_AMORCE.prepare(current);await prepareAllVoiceAudio();if(epoch!==songStartEpoch)return;loadSong(null,plan);RENAX_AMORCE.install(plan);preparingAmorce=false;const result=await originalStart();syncDirectSongPlay();return result;}
       catch(error){status(error.message);return;}finally{if(epoch===songStartEpoch){preparingAmorce=false;syncSongTransport();}}
     }
     if(!isPlaying&&loaded?.preview)loadSong();
     if(!isPlaying&&!loaded&&!songsRoot.hidden&&songView==='detail'&&song())loadSong();
-    return originalStart();
+    const result=await originalStart();syncDirectSongPlay();return result;
   };
   const originalStop=stopMetronome;stopMetronome=function(...args){songStartEpoch++;preparingAmorce=false;window.RENAX_AMORCE?.stop();clearTimeout(endTimer);const result=originalStop(...args);syncSongTransport();return result;};
   const originalMode=setAppMode;setAppMode=function(mode){unload();return originalMode(mode);};
@@ -244,7 +251,21 @@
   }
   function addSongMenu(row,item){
     const p=profile();
-    const wrap=el('div',undefined,row,'song-more-wrap'),trigger=button('⋯',wrap,()=>{const opening=menu.hidden;songPane.querySelectorAll('.song-more-menu').forEach(other=>other.hidden=true);songPane.querySelectorAll('.song-more').forEach(other=>other.setAttribute('aria-expanded','false'));menu.hidden=!opening;trigger.setAttribute('aria-expanded',String(opening));});
+    const wrap=el('div',undefined,row,'song-more-wrap');
+    wrap.style.display='inline-flex';wrap.style.gap='6px';
+    const directPlay=button('',wrap,async()=>{
+      if(preparingAmorce||isPlaying){stopMetronome();}
+      selectedSong=item.id;openSectionId=null;
+      loadSong();
+      try{await startMetronome();}catch(error){status(error.message);}
+      syncDirectSongPlay();
+    });
+    directPlay.className='song-more song-direct-play';
+    directPlay.dataset.playSongId=item.id;
+    directPlay.title='Lire uniquement ce morceau';
+    directPlay.setAttribute('aria-label','Lire le morceau '+item.name);
+    directPlay.innerHTML='<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" fill="currentColor"><path d="M4 2.5v11l9-5.5z"/></svg>';
+    const trigger=button('⋯',wrap,()=>{const opening=menu.hidden;songPane.querySelectorAll('.song-more-menu').forEach(other=>other.hidden=true);songPane.querySelectorAll('.song-more').forEach(other=>other.setAttribute('aria-expanded','false'));menu.hidden=!opening;trigger.setAttribute('aria-expanded',String(opening));});
     trigger.className='song-more';trigger.setAttribute('aria-label','Actions pour '+item.name);trigger.setAttribute('aria-haspopup','menu');trigger.setAttribute('aria-expanded','false');
     const menu=el('div',undefined,wrap,'song-more-menu');menu.hidden=true;menu.setAttribute('role','menu');
     const action=(label,fn)=>{const b=button(label,menu,e=>{menu.hidden=true;trigger.setAttribute('aria-expanded','false');fn(e);});b.setAttribute('role','menuitem');return b;};
@@ -301,7 +322,7 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
         const row=el('div',undefined,songPane,'song-section measure-card song-playlist-card');enableSongDrag(row,item,p);
         const openSong=()=>{selectedSong=item.id;openSectionId=null;songView='detail';render();panel.scrollTop=0;};
         row.tabIndex=0;row.setAttribute('aria-label','Ouvrir '+item.name);
-        row.addEventListener('click',e=>{if(!e.target.closest('.song-open'))openSong();});
+        row.addEventListener('click',e=>{if(!e.target.closest('.song-open,.song-more-wrap'))openSong();});
         row.addEventListener('keydown',e=>{if(e.target===row&&(e.key==='Enter'||e.key===' ')){e.preventDefault();e.stopPropagation();openSong();}});
         const open=button('',row,openSong);open.className='song-open measure-head';open.setAttribute('aria-label',item.name);
         el('span',item.name,open,'measure-num');
@@ -326,6 +347,7 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
       const icon=el('span',undefined,addCountIn,'song-count-in-icon');icon.innerHTML='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2h6M12 2v3m6 1 2-2M12 9v5l3 2"/><circle cx="12" cy="14" r="8"/></svg>';icon.setAttribute('aria-hidden','true');addCountIn.prepend(icon);
       // Keep the vocal toggle immediately to the right of the count-in control.
       addCountIn.after(amorce);
+      actions.prepend(backSong);actions.classList.add('song-detail-toolbar');
       if(s.countIn){
         const c=s.countIn,card=el('div',undefined,songPane,'song-count-in measure-card');card.dataset.countInId='count-in:'+s.id;
         const head=el('button','⏱ Décompte',card,'measure-head song-block-header');head.type='button';
@@ -392,6 +414,8 @@ const p=profile();if(!p.songs.some(s=>s.id===selectedSong))selectedSong=null;
   },true);
   const actionStyle=document.createElement('style');
   actionStyle.textContent='#songPane .song-playlist-card{position:relative;}\n#songPane .song-more-wrap{position:absolute;bottom:8px;right:8px;z-index:12;}\n#songPane .song-more{width:32px;height:32px;padding:0;border:1px solid #363640;border-radius:6px;background:#15151b;color:var(--text-muted);font:700 18px/1 var(--font);cursor:pointer;}\n#songPane .song-more:hover,#songPane .song-more[aria-expanded=true]{border-color:#a45427;color:var(--orange);background:#211a16;}\n#songPane .song-more-menu{position:absolute;bottom:36px;right:0;width:176px;padding:5px;border:1px solid #363640;border-radius:7px;background:#101116;box-shadow:0 10px 28px rgba(0,0,0,.38);}\n#songPane .song-more-menu[hidden]{display:none;}\n#songPane .song-more-menu .btn{display:block;width:100%;min-height:40px;padding:7px 9px;border:0;border-radius:5px;background:transparent;color:var(--text);font:600 11px/1.25 var(--font);text-align:left;text-transform:none;letter-spacing:0;}\n#songPane .song-more-menu .btn:hover{background:#211a16;color:var(--orange);}\n';
+  actionStyle.textContent+='#songPane .song-direct-play[aria-pressed="true"]{border-color:#a45427;color:var(--orange);background:#211a16;}';
+  actionStyle.textContent+='#songPane .song-detail-toolbar{display:flex;align-items:stretch;flex-wrap:nowrap;gap:6px;}#songPane .song-detail-toolbar > button{height:36px;min-height:36px;box-sizing:border-box;}#songPane .song-detail-toolbar .song-back{margin:0;flex:0 0 auto;}#songPane .song-detail-toolbar .song-count-in-button{min-width:0;padding:6px 8px;}';
   document.head.append(actionStyle);
   render();
   window.RENAX_SONGS={validateLibrary,loadSong,unload,locate,
