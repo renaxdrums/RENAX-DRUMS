@@ -3193,11 +3193,15 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
       if (training.engaged) {
         trainBtn.textContent = "Arrêter l'entraînement";
         trainBtn.classList.add('active');
-        panicBtn.textContent = "Arrêter l'entraînement";
+        panicBtn.textContent = "Arrêter";
+        panicBtn.setAttribute("aria-label", "Arrêter l'entraînement");
+        panicBtn.title = "Arrêter l'entraînement";
       } else {
         trainBtn.textContent = "Démarrer l'entraînement";
         trainBtn.classList.remove('active');
         panicBtn.textContent = "Reset";
+        panicBtn.setAttribute("aria-label", "Reset");
+        panicBtn.title = "Reset";
       }
     }
 
