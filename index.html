@@ -1173,8 +1173,8 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
       display: grid; grid-template-columns: minmax(0, 1fr) auto;
       grid-template-rows: auto auto minmax(0, 1fr) auto; column-gap: 16px; row-gap: 10px;
     }
-    .panel-visu .panel-title { grid-column: 1 / 3; grid-row: 1; }
-    .panel-visu .mode-switch { grid-column: 1; grid-row: 2; width: min(100%, 340px); align-self: center; }
+    .panel-visu .mode-switch { grid-column: 1 / 3; grid-row: 1; }
+    .panel-visu .panel-title { grid-column: 1; grid-row: 2; width: min(100%, 340px); align-self: center; }
     .panel-visu .visu-toolbar { grid-column: 2; grid-row: 2; border: 0; padding: 0; }
     .panel-visu .sequencer-wrapper { grid-column: 1 / 3; grid-row: 3; }
     .panel-visu .legend { grid-column: 1 / 3; grid-row: 4; }
@@ -1384,14 +1384,14 @@ header #fullscreenBtn,header #index2SettingsBtn:hover,header #index2SettingsBtn:
     </div>
 
     <div class="panel panel-visu mobile-active" data-panel="visu">
-      <div class="panel-title with-timer">
-        <span><svg class="orange-ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 17V7M7 17v-4M11 17V9M15 17v-7M19 17V5M3 17h18"/></svg>VISUALISATION</span>
-        <span class="train-timer" id="trainTimer">0:00</span>
-      </div>
-
       <div class="mode-switch" id="modeSwitch" aria-label="Mode de fonctionnement">
         <button type="button" class="active" data-mode="metronome"><svg class="orange-ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 20h10L14 4h-4L7 20Z M12 16l6-9 M9 20v-3h6v3"/></svg>Métronome</button>
         <button type="button" data-mode="polyrhythm"><svg class="orange-ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg>Polyrythmie</button>
+      </div>
+
+      <div class="panel-title with-timer">
+        <span><svg class="orange-ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 17V7M7 17v-4M11 17V9M15 17v-7M19 17V5M3 17h18"/></svg>VISUALISATION</span>
+        <span class="train-timer" id="trainTimer">0:00</span>
       </div>
 
       <div class="score-view-switch" id="scoreViewSwitch" role="group" aria-label="Vue de visualisation"><button id="scoreMetronomeBtn" type="button" class="active" aria-label="Vue métronome circulaire" aria-pressed="true" aria-controls="sequencerContainer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10L14 4h-4L7 20ZM12 16l6-9M9 20v-3h6v3"/></svg>Métronome</button><button id="scorePartitionBtn" type="button" aria-label="Vue partition" aria-pressed="false" aria-controls="rhythmScore"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 17V5l9-2v12"/><ellipse cx="6.5" cy="17.5" rx="2.5" ry="1.8"/><ellipse cx="15.5" cy="15.5" rx="2.5" ry="1.8"/></svg>Partition</button></div>
