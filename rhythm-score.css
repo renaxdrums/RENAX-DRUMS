@@ -95,3 +95,5 @@ html,body,body *{scrollbar-width:thin!important;scrollbar-color:rgba(0,229,255,.
 /* View icons do not consume the circular sequencer's centering area. */
 .panel-visu:not(.score-view) .sequencer-wrapper .score-tools-panel{position:absolute;top:0;left:0;margin:0;z-index:3;}
 .panel-visu:not(.score-view) .sequencer-wrapper #sequencerContainer{margin:auto;}
+
+.panel-visu:not(.score-view) .sequencer-wrapper #sequencerContainer{max-width:min(100%,var(--score-circle-space,100%));}
