@@ -12,8 +12,8 @@
   for(const a of plan.announcements){const speech=plan.speeches[a.index],buffer=context.createBuffer(1,speech.pcm.length,speech.sampleRate);buffer.copyToChannel(speech.pcm,0);const source=context.createBufferSource(),gain=context.createGain();source.buffer=buffer;gain.gain.value=.25*masterVolume;source.connect(gain);gain.connect(getAudioMixDestination(context));source.start(origin+a.start);sources.add(source);source.onended=()=>sources.delete(source);}
  }
  function step(time,state,isFirst,subIndex,beat){if(!session||session.origin===null||subIndex!==0)return false;const t=time-session.origin,a=session.plan.announcements.find(a=>t>=a.target-1e-6&&t<a.blockStart-1e-6);if(!a)return false;
-  if(Math.abs(t-a.target)<1e-6)return true;
-  if(state){const bank=currentBank;currentBank='voiceMale';try{playClick(state,time,isFirst,{mode:'metronome',beatNumber:beat+1,subIndex:0,beatDurationSec:60/a.measure.tempo*4/a.measure.denominator});}finally{currentBank=bank;}}return true;
+  if(Math.abs(t-a.target)<1e-6)return false;
+  if(state){const bank=currentBank;currentBank='voiceMale';try{playClick(state,time,isFirst,{mode:'metronome',beatNumber:beat+1,subIndex:0,beatDurationSec:60/a.measure.tempo*4/a.measure.denominator});}finally{currentBank=bank;}}return false;
  }
  window.RENAX_AMORCE={prepare,install,begin,step,stop,get active(){return !!session;},get generation(){return generation;}};
 })();
