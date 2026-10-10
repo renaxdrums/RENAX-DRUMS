@@ -86,3 +86,8 @@ html,body,body *{scrollbar-width:thin!important;scrollbar-color:rgba(0,229,255,.
 @media(max-width:600px){.score-group-panel{padding-left:0;border-left:0;}}
 
 @supports selector(::-webkit-scrollbar){html,body,body *{scrollbar-width:auto!important;scrollbar-color:auto!important;}}
+
+/* Keep view icons at the top of the visualisation frame in both views. */
+.panel-visu .sequencer-wrapper{justify-content:flex-start;}
+.score-tools-panel{order:-1;}
+.panel-visu:not(.score-view) .sequencer-wrapper #sequencerContainer{margin-block:auto;}
